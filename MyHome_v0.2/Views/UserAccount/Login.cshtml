@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+    <div class="col-lg-12">
+        <div class="form-group">
+            <label for="email">Email :</label>
+            <input type="email" class="form-control" placeholder="Enter email" id="txtLoginEmail">
+        </div>
+        <div class="form-group">
+            <label for="pwd">Password :</label>
+            <input type="password" id="txtLoginPassword" class="form-control" placeholder="Enter password">
+        </div>
+        <button type="button" id="btnLogin" class="btn btn-primary">Login</button>
+        <button type="button" id="btnRegister" class="btn btn-primary" >Register</button>
+        <div id="loginErrMsgDiv" class="alert alert-danger collapse">
+            <a id="loginLinkClose" class="close" href="#">&times;</a>
+            <div id="loginErrTxt"></div>
+        </div>
+    </div>
+
+

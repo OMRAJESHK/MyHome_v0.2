@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    $('#btnRegister').click(() => {
+    $('#btnSaveRegister').click(() => {
         $.ajax({
             url: '/api/account/Register',
             method: 'post',
@@ -18,8 +18,10 @@
             }
         });
     });
+    $('#btnLoginBack').click(() => {
+        window.location.href = "Login";
+    })
     $('#linkCLose').click(() => {
         $('#errMsgDiv').hide('fade');
     });
-
 })

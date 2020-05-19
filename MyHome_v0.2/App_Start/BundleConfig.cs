@@ -7,7 +7,8 @@ namespace MyHome_v0._2 {
         public static void RegisterBundles(BundleCollection bundles) {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/Jquery/jQuery.js",
-                        "~/Scripts/src/Registration.js"));
+                        "~/Scripts/src/Registration.js",
+                        "~/Scripts/src/Login.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/Bootstrap/bootstrap.js"));

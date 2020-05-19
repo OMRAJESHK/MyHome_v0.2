@@ -12,11 +12,11 @@ namespace MyHomeDataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class ClientRegistration
+    public partial class Registration
     {
         public int ID { get; set; }
-        public string ClientName { get; set; }
-        public string ClientPassword { get; set; }
-        public string ClentEmail { get; set; }
+        public string Name { get; set; }
+        public string Password { get; set; }
+        public string Email { get; set; }
     }
 }

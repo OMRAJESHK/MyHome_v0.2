@@ -50,53 +50,66 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientRegistration.cs">
-      <DependentUpon>MyHomeDataModel.tt</DependentUpon>
+    <Compile Include="AspNetRole.cs">
+      <DependentUpon>MyHomeDataAccessModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MyHomeDataModel.Context.cs">
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>MyHomeDataAccessModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaim.cs">
+      <DependentUpon>MyHomeDataAccessModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLogin.cs">
+      <DependentUpon>MyHomeDataAccessModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C__MigrationHistory.cs">
+      <DependentUpon>MyHomeDataAccessModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MyHomeDataAccessModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MyHomeDataModel.Context.tt</DependentUpon>
+      <DependentUpon>MyHomeDataAccessModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="MyHomeDataModel.cs">
+    <Compile Include="MyHomeDataAccessModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MyHomeDataModel.tt</DependentUpon>
+      <DependentUpon>MyHomeDataAccessModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MyHomeDataModel.Designer.cs">
+    <Compile Include="MyHomeDataAccessModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MyHomeDataModel.edmx</DependentUpon>
+      <DependentUpon>MyHomeDataAccessModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="MyHomeDataModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MyHomeDataModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
+    <Compile Include="Registration.cs">
+      <DependentUpon>MyHomeDataAccessModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="MyHomeDataModel.edmx.diagram">
-      <DependentUpon>MyHomeDataModel.edmx</DependentUpon>
+    <EntityDeploy Include="MyHomeDataAccessModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MyHomeDataAccessModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="MyHomeDataAccessModel.edmx.diagram">
+      <DependentUpon>MyHomeDataAccessModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MyHomeDataModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MyHomeDataModel.Context.cs</LastGenOutput>
-      <DependentUpon>MyHomeDataModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="MyHomeDataModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MyHomeDataModel.edmx</DependentUpon>
-      <LastGenOutput>MyHomeDataModel.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="MyHomeDataAccessModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MyHomeDataAccessModel.edmx</DependentUpon>
+      <LastGenOutput>MyHomeDataAccessModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="MyHomeDataAccessModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MyHomeDataAccessModel.edmx</DependentUpon>
+      <LastGenOutput>MyHomeDataAccessModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
