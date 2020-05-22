@@ -247,7 +247,10 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="Scripts\Bootstrap\bootstrap.js" />
+    <Content Include="Scripts\Global.js" />
     <Content Include="Scripts\Jquery\jQuery.js" />
+    <Content Include="Scripts\RestAPI\ApiDirectory.js" />
+    <Content Include="Scripts\RestAPI\ManageAjax.js" />
     <Content Include="Scripts\src\Login.js" />
     <Content Include="Scripts\src\Registration.js" />
     <Content Include="Web.config" />
@@ -287,6 +290,9 @@
     <Content Include="Views\UserAccount\Login.cshtml" />
     <Content Include="Scripts\Bootstrap\bootstrap.min.js.map" />
     <Content Include="Views\Shared\_LayoutMain.cshtml" />
+    <Content Include="Views\Home\Test.cshtml" />
+    <Content Include="Views\UserAccount\AdminRegister.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyHomeDataAccess\MyHomeDataAccess.csproj">

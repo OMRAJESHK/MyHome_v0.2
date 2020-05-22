@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -17,12 +18,14 @@ using MyHome_v0._2.Models;
 using MyHome_v0._2.Providers;
 using MyHome_v0._2.Results;
 
+
 namespace MyHome_v0._2.Controllers
 {
     [Authorize]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
+
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
 
@@ -191,6 +194,15 @@ namespace MyHome_v0._2.Controllers
             return Ok();
         }
 
+        [AllowAnonymous]
+        public IHttpActionResult GetUserRole(string Email){
+            string id = UserManager.FindByEmail(Email).Id;
+            IList<string> roleNames=UserManager.GetRoles(id);
+            var roleID = (roleNames[0] == "admin") ? 1 : 0;
+            return Ok(roleID);
+             
+        }
+
         // POST api/Account/RemoveLogin
         [Route("RemoveLogin")]
         public async Task<IHttpActionResult> RemoveLogin(RemoveLoginBindingModel model)
@@ -323,20 +335,32 @@ namespace MyHome_v0._2.Controllers
         [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {
-            if (!ModelState.IsValid)
-            {
+            if (!ModelState.IsValid){
                 return BadRequest(ModelState);
             }
-
             var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
-
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
-
-            if (!result.Succeeded)
-            {
+             UserManager.AddToRole(user.Id, "client");
+            if (!result.Succeeded){
                 return GetErrorResult(result);
             }
-
+            return Ok();
+        }
+        
+        // ADMIN REGISTRATION
+        // POST api/Account/AdminRegister
+        [AllowAnonymous]
+        [Route("AdminRegister")]
+        public async Task<IHttpActionResult> AdminRegister(RegisterBindingModel model){
+            if (!ModelState.IsValid){
+                return BadRequest(ModelState);
+            }
+            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+             UserManager.AddToRole(user.Id, "admin");
+            if (!result.Succeeded){
+                return GetErrorResult(result);
+            }
             return Ok();
         }
 

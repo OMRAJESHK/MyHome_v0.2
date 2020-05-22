@@ -32,7 +32,8 @@ namespace MyHome_v0._2.Providers
             var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
 
             ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
-
+            var rolename = user.Roles.FirstOrDefault();
+    //return rolename;
             if (user == null)
             {
                 context.SetError("invalid_grant", "The user name or password is incorrect.");

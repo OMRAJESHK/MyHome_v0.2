@@ -18,10 +18,35 @@
             }
         });
     });
-    $('#btnLoginBack').click(() => {
+    $('#btnLoginBack,#btnAdminLoginBack').click(() => {
         window.location.href = "Login";
     })
     $('#linkCLose').click(() => {
         $('#errMsgDiv').hide('fade');
+    });
+
+    $('#btnAdminSaveRegister').click(() => {
+        $.ajax({
+            url: '/api/account/AdminRegister',
+            method: 'post',
+            data: {
+                email: $('#txtAdminEmail').val(),
+                password: $('#txtAdminPassword').val(),
+                confirmPassword: $('#txtAdminConfirmPassword').val(),
+            },
+            success: () => {
+                console.log('Registration Completed Successfully...!!!');
+                $('#AdminErrMsgDiv').hide('fade');
+            },
+            error: (jqXHR) => {
+                $('#AdminErrTxt').text(jqXHR.responseText);
+                $('#AdminErrMsgDiv').show('fade');
+            }
+        });
+    });
+
+
+    $('#AdminLinkCLose').click(() => {
+        $('#AdminErrMsgDiv').hide('fade');
     });
 })

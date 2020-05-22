@@ -9,6 +9,10 @@ namespace MyHome_v0._2.Controllers
     public class UserAccountController : Controller
     {
         // GET: UserAccount
+        public ActionResult AdminRegister()
+        {
+            return View();
+        }
         public ActionResult Register()
         {
             return View();
