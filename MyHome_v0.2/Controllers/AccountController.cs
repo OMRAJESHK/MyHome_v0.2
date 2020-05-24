@@ -198,8 +198,9 @@ namespace MyHome_v0._2.Controllers
         public IHttpActionResult GetUserRole(string Email){
             string id = UserManager.FindByEmail(Email).Id;
             IList<string> roleNames=UserManager.GetRoles(id);
-            var roleID = (roleNames[0] == "admin") ? 1 : 0;
-            return Ok(roleID);
+            var roleID = (roleNames[0] == "admin") ? "1" : "0";
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(roleID);
+            return Ok(System.Convert.ToBase64String(plainTextBytes));
              
         }
 

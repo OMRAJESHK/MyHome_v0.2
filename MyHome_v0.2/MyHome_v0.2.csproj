@@ -223,7 +223,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\Bootstrap4\css\bootstrap-grid.css" />
+    <Content Include="Content\Bootstrap4\css\bootstrap-grid.min.css" />
+    <Content Include="Content\Bootstrap4\css\bootstrap-reboot.css" />
+    <Content Include="Content\Bootstrap4\css\bootstrap-reboot.min.css" />
     <Content Include="Content\Bootstrap4\css\bootstrap.css" />
+    <Content Include="Content\Bootstrap4\css\bootstrap.min.css" />
+    <Content Include="Content\Layout\css-hamburgers\hamburgers.css" />
+    <Content Include="Content\Layout\css-hamburgers\hamburgers.min.css" />
+    <Content Include="Content\Layout\font-awesome-5\css\fontawesome-all.min.css" />
+    <Content Include="Content\Layout\font-awesome-5\webfonts\fa-brands-400.svg" />
+    <Content Include="Content\Layout\font-awesome-5\webfonts\fa-regular-400.svg" />
+    <Content Include="Content\Layout\font-awesome-5\webfonts\fa-solid-900.svg" />
+    <Content Include="Content\Layout\perfect-scrollbar\perfect-scrollbar.css" />
+    <Content Include="Content\Layout\theme.css" />
+    <Content Include="Content\styles.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -246,9 +260,30 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="Images\avatar-01.jpg" />
+    <Content Include="Images\avatar-02.jpg" />
+    <Content Include="Images\avatar-03.jpg" />
+    <Content Include="Images\avatar-04.jpg" />
+    <Content Include="Images\avatar-05.jpg" />
+    <Content Include="Images\avatar-06.jpg" />
+    <Content Include="Images\avatar-big-01.jpg" />
+    <Content Include="Images\logo-blue.png" />
+    <Content Include="Images\logo-mini.png" />
+    <Content Include="Images\logo-white.png" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\Profile.jpg" />
+    <Content Include="Images\Untitled-1.jpg" />
+    <Content Include="Scripts\Assets\Calculator.js" />
+    <Content Include="Scripts\Bootstrap\bootstrap.bundle.js" />
+    <Content Include="Scripts\Bootstrap\bootstrap.bundle.min.js" />
     <Content Include="Scripts\Bootstrap\bootstrap.js" />
+    <Content Include="Scripts\Bootstrap\bootstrap.min.js" />
     <Content Include="Scripts\Global.js" />
     <Content Include="Scripts\Jquery\jQuery.js" />
+    <Content Include="Scripts\Layout\chartjs\Chart.bundle.min.js" />
+    <Content Include="Scripts\Layout\main.js" />
+    <Content Include="Scripts\Layout\perfect-scrollbar\perfect-scrollbar.js" />
+    <Content Include="Scripts\Layout\perfect-scrollbar\perfect-scrollbar.min.js" />
     <Content Include="Scripts\RestAPI\ApiDirectory.js" />
     <Content Include="Scripts\RestAPI\ManageAjax.js" />
     <Content Include="Scripts\src\Login.js" />
@@ -286,6 +321,23 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Bootstrap4\css\bootstrap.min.css.map" />
+    <Content Include="Content\Layout\font-awesome-5\webfonts\fa-brands-400.eot" />
+    <Content Include="Content\Layout\font-awesome-5\webfonts\fa-brands-400.ttf" />
+    <Content Include="Content\Layout\font-awesome-5\webfonts\fa-brands-400.woff" />
+    <Content Include="Content\Layout\font-awesome-5\webfonts\fa-brands-400.woff2" />
+    <Content Include="Content\Layout\font-awesome-5\webfonts\fa-regular-400.eot" />
+    <Content Include="Content\Layout\font-awesome-5\webfonts\fa-regular-400.ttf" />
+    <Content Include="Content\Layout\font-awesome-5\webfonts\fa-regular-400.woff" />
+    <Content Include="Content\Layout\font-awesome-5\webfonts\fa-regular-400.woff2" />
+    <Content Include="Content\Layout\font-awesome-5\webfonts\fa-solid-900.eot" />
+    <Content Include="Content\Layout\font-awesome-5\webfonts\fa-solid-900.ttf" />
+    <Content Include="Content\Layout\font-awesome-5\webfonts\fa-solid-900.woff" />
+    <Content Include="Content\Layout\font-awesome-5\webfonts\fa-solid-900.woff2" />
+    <Content Include="Content\Bootstrap4\css\bootstrap-grid.css.map" />
+    <Content Include="Content\Bootstrap4\css\bootstrap-grid.min.css.map" />
+    <Content Include="Content\Bootstrap4\css\bootstrap-reboot.css.map" />
+    <Content Include="Content\Bootstrap4\css\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\Bootstrap4\css\bootstrap.css.map" />
     <None Include="packages.config" />
     <Content Include="Views\UserAccount\Login.cshtml" />
     <Content Include="Scripts\Bootstrap\bootstrap.min.js.map" />
@@ -293,6 +345,9 @@
     <Content Include="Views\Home\Test.cshtml" />
     <Content Include="Views\UserAccount\AdminRegister.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Scripts\Bootstrap\bootstrap.bundle.js.map" />
+    <Content Include="Scripts\Bootstrap\bootstrap.js.map" />
+    <Content Include="Scripts\Bootstrap\bootstrap.bundle.min.js.map" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyHomeDataAccess\MyHomeDataAccess.csproj">

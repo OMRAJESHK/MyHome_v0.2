@@ -53,6 +53,7 @@
 });
 
 function getRoleID(res) {
+    atob(res)
     sessionStorage.setItem('RoleID', res);
     window.location.href = window.rootpath + "Home/index";
 }
