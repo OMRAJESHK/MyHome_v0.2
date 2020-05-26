@@ -44,3 +44,9 @@
 .keys span:active { box-shadow: 0px 0px #6b54d3; top: 4px; }
 .keys span.eval:active { box-shadow: 0px 0px #717a33; top: 4px; }
 .top span.clear:active { top: 4px; box-shadow: 0px 0px #d3545d; }
+
+
+.angleRotate180 {
+    -ms-transform: rotate(180deg); /* IE 9 */
+    transform: rotate(180deg);
+}

@@ -16,6 +16,5 @@ namespace MyHome_v0._2.Controllers {
         public ActionResult Test() {
             return View();
         }
-          
     }
 }

@@ -21,6 +21,9 @@ namespace MyHome_v0._2 {
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/Bootstrap4/css/bootstrap.css",
                       "~/Content/site.css"));
+            bundles.Add(new ScriptBundle("~/bundles/Mainjs").Include(
+                      "~/Scripts/Global.js"));
+
         }
     }
 }

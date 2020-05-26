@@ -17,19 +17,20 @@
     <link href="~/Content/styles.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" />
 
-
 </head>
 <body>
+    <script>
+        window.rootpath = "@(Url.Content("~"))";
+    </script>
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
         <header class="header-mobile d-block d-lg-none">
             <div class="header-mobile__bar">
                 <div class="container-fluid">
-                    <div class="header-mobile-inner text-center">
-                        @*<a class="logo" href="index.html">
-                                <img src="images/icon/logo.png" alt="CoolAdmin" />
-                            </a>*@
-                        <div class="p-2 text-primary">EXPENSE CALCULATOR</div>
+                    <div class="header-mobile-inner">
+                        <div class="logo">
+                            <label class="text-primary text-bold" style="font-size:22px">EXPENSE CALCULATOR</label>
+                        </div>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
                                 <span class="hamburger-inner"></span>
@@ -44,6 +45,7 @@
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard
+                                <i class="fas fa-angle-down" id="dashboardAngle" style="float: right;"></i>
                             </a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li> <a href="#">Dashboard 1</a> </li>
@@ -52,19 +54,12 @@
                                 <li> <a href="#">Dashboard 4</a> </li>
                             </ul>
                         </li>
-                        <li><a href="#"><i class="fas fa-chart-bar"></i>Charts</a></li>
-                        <li><a href="#"><i class="fas fa-table"></i>Tables</a></li>
-                        <li><a href="#"><i class="far fa-check-square"></i>Forms</a></li>
-                        <li><a href="#"><i class="fas fa-calendar-alt"></i>Calendar</a></li>
-                        <li><a href="#"><i class="fas fa-map-marker-alt"></i>Maps</a></li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#"><i class="fas fa-copy"></i>Pages</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                <li><a href="#">Login</a></li>
-                                <li><a href="#">Register</a></li>
-                                <li><a href="#">Forget Password</a></li>
-                            </ul>
-                        </li>
+                        <li><a href="#"><i class="fas fa-chart-bar"></i>All Transactions</a></li>
+                        <li><a href="#"><i class="fas fa-table"></i>Tenent Details</a></li>
+                        <li><a href="#"><i class="fas fa-home"></i>House Details </a></li>
+                        <li><a href="#"><i class="fas fa-calendar-alt"></i>Emergency Contact</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i>Proximity</a></li>
+                        <li><a href="#"><i class="far fa-comment"></i>Raise Request</a></li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-desktop"></i>UI Elements
@@ -90,107 +85,28 @@
         <!-- END HEADER MOBILE-->
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
-            <div class="logo"><label class="text-primary text-bold">EXPENSE CALCULATOR</label> </div>
+            <div class="logo"><label class="text-primary text-bold">EXPENSE CALCULATOR</label></div>
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                        <li class="active has-sub">
+                        <li class="active has-sub" id="btn_T_Dashboard">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard
-                                <i class="fas fa-angle-down" style="margin-left:80px"></i>
+                                <i class="fas fa-angle-down" id="dashboardAngle" style="float: right;"></i>
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="#">Dashboard 1</a>
-                                </li>
-                                <li>
-                                    <a href="#">Dashboard 2</a>
-                                </li>
-                                <li>
-                                    <a href="#">Dashboard 3</a>
-                                </li>
-                                <li>
-                                    <a href="#">Dashboard 4</a>
-                                </li>
+                                <li> <a href="#">Dashboard 1</a> </li>
+                                <li> <a href="#">Dashboard 2</a> </li>
+                                <li> <a href="#">Dashboard 3</a> </li>
+                                <li> <a href="#">Dashboard 4</a> </li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="#"> <i class="fas fa-chart-bar"></i>Charts</a>
-                        </li>
-                        <li>
-                            <a href="#"> <i class="fas fa-table"></i>Tables</a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="far fa-check-square"></i>Forms
-                            </a>
-                        </li>
-                        <li>
-                            <a href="calendar.html">
-                                <i class="fas fa-calendar-alt"></i>Calendar
-                            </a>
-                        </li>
-                        <li>
-                            <a href="map.html">
-                                <i class="fas fa-map-marker-alt"></i>Maps
-                            </a>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-copy"></i>Pages
-                            </a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="login.html">Login</a>
-                                </li>
-                                <li>
-                                    <a href="register.html">Register</a>
-                                </li>
-                                <li>
-                                    <a href="forget-pass.html">Forget Password</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-desktop"></i>UI Elements
-                            </a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="button.html">Button</a>
-                                </li>
-                                <li>
-                                    <a href="badge.html">Badges</a>
-                                </li>
-                                <li>
-                                    <a href="tab.html">Tabs</a>
-                                </li>
-                                <li>
-                                    <a href="card.html">Cards</a>
-                                </li>
-                                <li>
-                                    <a href="alert.html">Alerts</a>
-                                </li>
-                                <li>
-                                    <a href="progress-bar.html">Progress Bars</a>
-                                </li>
-                                <li>
-                                    <a href="modal.html">Modals</a>
-                                </li>
-                                <li>
-                                    <a href="switch.html">Switchs</a>
-                                </li>
-                                <li>
-                                    <a href="grid.html">Grids</a>
-                                </li>
-                                <li>
-                                    <a href="fontawesome.html">Fontawesome Icon</a>
-                                </li>
-                                <li>
-                                    <a href="typo.html">Typography</a>
-                                </li>
-                            </ul>
-                        </li>
+                        <li id="btnAllTransactions"> <a href="#"> <i class="fas fa-chart-bar"></i>All Transactions</a> </li>
+                        <li> <a href="#"> <i class="fas fa-table"></i>Tenent Details</a> </li>
+                        <li> <a href="#"> <i class="fas fa-home"></i>House Details </a> </li>
+                        <li> <a href="#"> <i class="fas fa-calendar-alt"></i>Emergency Contact </a> </li>
+                        <li> <a href="#"> <i class="fas fa-map-marker-alt"></i>Proximity </a> </li>
+                        <li> <a href="#"> <i class="far fa-comment"></i>Raise Request </a> </li>
                     </ul>
                 </nav>
             </div>
@@ -204,8 +120,7 @@
                     <div class="container-fluid">
                         <div class="header-wrap">
                             <form class="form-header">
-                                <input class="au-input au-input--xl"
-                                       type="text" name="search"
+                                <input class="au-input au-input--xl" type="text" name="search"
                                        placeholder="Search here..." />
                                 <button class="au-btn--submit" type="submit">
                                     <i class="zmdi zmdi-search"></i>
@@ -305,8 +220,7 @@
                                             </div>
                                             <div class="email__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="~/Images/avatar-06.jpg"
-                                                         alt="Cynthia Harvey" />
+                                                    <img src="~/Images/avatar-06.jpg" alt="Cynthia Harvey" />
                                                 </div>
                                                 <div class="content">
                                                     <p>Meeting about new dashboard...</p>
@@ -315,8 +229,7 @@
                                             </div>
                                             <div class="email__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="~/Images/avatar-05.jpg"
-                                                         alt="Cynthia Harvey" />
+                                                    <img src="~/Images/avatar-05.jpg" alt="Cynthia Harvey" />
                                                 </div>
                                                 <div class="content">
                                                     <p>Meeting about new dashboard...</p>
@@ -325,17 +238,14 @@
                                             </div>
                                             <div class="email__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="~/Images/avatar-04.jpg"
-                                                         alt="Cynthia Harvey" />
+                                                    <img src="~/Images/avatar-04.jpg" alt="Cynthia Harvey" />
                                                 </div>
                                                 <div class="content">
                                                     <p>Meeting about new dashboard...</p>
                                                     <span>Cynthia Harvey, April 12,,2018</span>
                                                 </div>
                                             </div>
-                                            <div class="email__footer">
-                                                <a href="#">See all emails</a>
-                                            </div>
+                                            <div class="email__footer"> <a href="#">See all emails</a> </div>
                                         </div>
                                     </div>
                                 </div>
@@ -357,27 +267,19 @@
                                                     </a>
                                                 </div>
                                                 <div class="content">
-                                                    <h5 class="name">
-                                                        <a href="#">john doe</a>
-                                                    </h5>
+                                                    <h5 class="name"> <a href="#">john doe</a> </h5>
                                                     <span class="email">johndoe@example.com</span>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__body">
                                                 <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-account"></i>Account
-                                                    </a>
+                                                    <a href="#"> <i class="zmdi zmdi-account"></i>Account </a>
                                                 </div>
                                                 <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-settings"></i>Setting
-                                                    </a>
+                                                    <a href="#"> <i class="zmdi zmdi-settings"></i>Setting </a>
                                                 </div>
                                                 <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-money-box"></i>Billing
-                                                    </a>
+                                                    <a href="#"> <i class="zmdi zmdi-money-box"></i>Billing </a>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
@@ -402,7 +304,7 @@
     </div>
     <footer>
         <div>
-            <div class="col-md-12 text-center font-bold">
+            <div class="offset-md-3 col-md-9 text-center font-bold">
                 <div>
                     <p>
                         Copyright © @DateTime.Now.Year Expense Calculator. All Rights Reserved.
@@ -419,9 +321,10 @@
     <script src="~/Scripts/RestAPI/ApiDirectory.js"></script>
     <script src="~/Scripts/RestAPI/ManageAjax.js"></script>
 
-
+    @Scripts.Render("~/bundles/Mainjs")
+    @RenderSection("scripts", required: false)
     @*@Scripts.Render("~/Scripts/jQuery")
-    @Scripts.Render("~/Scripts/bootstrap")
-    @RenderSection("scripts", required: false)*@
+        @Scripts.Render("~/Scripts/bootstrap")
+        @RenderSection("scripts", required: false)*@
 </body>
 </html>
