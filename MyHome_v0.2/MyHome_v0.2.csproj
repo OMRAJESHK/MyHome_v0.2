@@ -350,6 +350,10 @@
     <Content Include="Scripts\Bootstrap\bootstrap.js.map" />
     <Content Include="Scripts\Bootstrap\bootstrap.bundle.min.js.map" />
     <Content Include="Views\Tenent\_allTransactions.cshtml" />
+    <Content Include="Views\Tenent\_tenentDashboard.cshtml" />
+    <Content Include="Views\Tenent\_tenentDetails.cshtml" />
+    <Content Include="Views\Tenent\_houseDetails.cshtml" />
+    <Content Include="Views\Tenent\_emrcyContact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyHomeDataAccess\MyHomeDataAccess.csproj">

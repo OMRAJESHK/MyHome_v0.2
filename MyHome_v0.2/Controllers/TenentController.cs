@@ -12,5 +12,17 @@ namespace MyHome_v0._2.Controllers
         public ActionResult _allTransactions() {
             return View();
         }
+        public ActionResult _tenentDashboard() {
+            return View();
+        }
+        public ActionResult _tenentDetails() {
+            return View();
+        }
+        public ActionResult _houseDetails() {
+            return View();
+        }
+         public ActionResult _emrcyContact() {
+            return View();
+        }
     }
 }
