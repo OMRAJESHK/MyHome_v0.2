@@ -12,9 +12,5 @@ namespace MyHome_v0._2.Controllers {
             ViewBag.Title = "Home Page";
             return View();
         }
-         //[Authorize(Roles="admin")]
-        public ActionResult Test() {
-            return View();
-        }
     }
 }

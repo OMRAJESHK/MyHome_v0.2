@@ -21,7 +21,16 @@ namespace MyHome_v0._2.Controllers
         public ActionResult _houseDetails() {
             return View();
         }
-         public ActionResult _emrcyContact() {
+        public ActionResult _emrcyContact() {
+            return View();
+        }
+        public ActionResult _proximity() {
+            return View();
+        }
+        public ActionResult _raiseRequest() {
+            return View();
+        }
+        public ActionResult _TenentDocuments() {
             return View();
         }
     }

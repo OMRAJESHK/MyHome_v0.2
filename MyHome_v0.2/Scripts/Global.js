@@ -23,6 +23,12 @@
             $('#RenderContent').html(response);
         });
     });
+    $(".btnDocuments").click(() => {
+        var url = window.rootpath + "Tenent/_TenentDocuments";
+        $.get(url, function (response) {
+            $('#RenderContent').html(response);
+        });
+    });
     $(".btnHouseDetails").click(() => {
         var url = window.rootpath + "Tenent/_houseDetails";
         $.get(url, function (response) {
@@ -35,6 +41,17 @@
             $('#RenderContent').html(response);
         });
     });
-    
+    $(".btnProximity").click(() => {
+        var url = window.rootpath + "Tenent/_proximity";
+        $.get(url, function (response) {
+            $('#RenderContent').html(response);
+        });
+    });
+    $(".btnRaiseReq").click(() => {
+        var url = window.rootpath + "Tenent/_raiseRequest";
+        $.get(url, function (response) {
+            $('#RenderContent').html(response);
+        });
+    });
     
 });

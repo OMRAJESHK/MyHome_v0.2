@@ -343,7 +343,6 @@
     <Content Include="Views\UserAccount\Login.cshtml" />
     <Content Include="Scripts\Bootstrap\bootstrap.min.js.map" />
     <Content Include="Views\Shared\_LayoutMain.cshtml" />
-    <Content Include="Views\Home\Test.cshtml" />
     <Content Include="Views\UserAccount\AdminRegister.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\Bootstrap\bootstrap.bundle.js.map" />
@@ -354,6 +353,9 @@
     <Content Include="Views\Tenent\_tenentDetails.cshtml" />
     <Content Include="Views\Tenent\_houseDetails.cshtml" />
     <Content Include="Views\Tenent\_emrcyContact.cshtml" />
+    <Content Include="Views\Tenent\_raiseRequest.cshtml" />
+    <Content Include="Views\Tenent\_proximity.cshtml" />
+    <Content Include="Views\Tenent\_TenentDocuments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyHomeDataAccess\MyHomeDataAccess.csproj">
