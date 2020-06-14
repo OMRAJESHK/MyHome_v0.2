@@ -62,7 +62,16 @@
     <Compile Include="AspNetUserLogin.cs">
       <DependentUpon>MyHomeDataAccessModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="AssetRegistration.cs">
+      <DependentUpon>MyHomeDataAccessModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="C__MigrationHistory.cs">
+      <DependentUpon>MyHomeDataAccessModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmergencyContact.cs">
+      <DependentUpon>MyHomeDataAccessModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MailLog.cs">
       <DependentUpon>MyHomeDataAccessModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MyHomeDataAccessModel.Context.cs">
@@ -80,8 +89,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MyHomeDataAccessModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Notification.cs">
+      <DependentUpon>MyHomeDataAccessModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Proximity.cs">
+      <DependentUpon>MyHomeDataAccessModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Registration.cs">
+      <DependentUpon>MyHomeDataAccessModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TenentAgreement.cs">
+      <DependentUpon>MyHomeDataAccessModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TenentRequest.cs">
+      <DependentUpon>MyHomeDataAccessModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Transaction.cs">
       <DependentUpon>MyHomeDataAccessModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

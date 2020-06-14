@@ -31,5 +31,13 @@ namespace MyHomeDataAccess
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<AssetRegistration> AssetRegistrations { get; set; }
+        public virtual DbSet<EmergencyContact> EmergencyContacts { get; set; }
+        public virtual DbSet<MailLog> MailLogs { get; set; }
+        public virtual DbSet<Notification> Notifications { get; set; }
+        public virtual DbSet<Proximity> Proximities { get; set; }
+        public virtual DbSet<TenentAgreement> TenentAgreements { get; set; }
+        public virtual DbSet<TenentRequest> TenentRequests { get; set; }
+        public virtual DbSet<Transaction> Transactions { get; set; }
     }
 }

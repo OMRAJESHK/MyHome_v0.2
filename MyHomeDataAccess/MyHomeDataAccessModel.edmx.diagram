@@ -14,6 +14,14 @@
         <AssociationConnector Association="MyHomeDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="MyHomeDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="MyHomeDBModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="MyHomeDBModel.AssetRegistration" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MyHomeDBModel.EmergencyContact" Width="1.5" PointX="8.375" PointY="4.625" />
+        <EntityTypeShape EntityType="MyHomeDBModel.MailLog" Width="1.5" PointX="10.25" PointY="4.625" />
+        <EntityTypeShape EntityType="MyHomeDBModel.Notification" Width="1.5" PointX="12.125" PointY="4.625" />
+        <EntityTypeShape EntityType="MyHomeDBModel.Proximity" Width="1.5" PointX="15.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MyHomeDBModel.TenentAgreement" Width="1.5" PointX="13.5" PointY="0.75" />
+        <EntityTypeShape EntityType="MyHomeDBModel.TenentRequest" Width="1.5" PointX="14" PointY="4.625" />
+        <EntityTypeShape EntityType="MyHomeDBModel.Transaction" Width="1.5" PointX="11" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
