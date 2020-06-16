@@ -23,6 +23,8 @@ namespace MyHome_v0._2 {
                       "~/Content/site.css"));
             bundles.Add(new ScriptBundle("~/bundles/Mainjs").Include(
                       "~/Scripts/Global.js"));
+            bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
+                      "~/Scripts/Assets/jqueryui.js"));
 
         }
     }
