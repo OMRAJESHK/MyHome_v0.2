@@ -15,7 +15,7 @@ namespace MyHomeDataAccess
     public partial class Notification
     {
         public int NotificationId { get; set; }
-        public int AssetName { get; set; }
+        public string AssetName { get; set; }
         public int NotificationType { get; set; }
         public string Description { get; set; }
         public System.DateTime NotificationDate { get; set; }

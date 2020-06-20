@@ -50,6 +50,7 @@
         $('#loginErrMsgDiv').hide('fade');
     });
 
+
 });
 
 function getRoleID(res) {
@@ -59,5 +60,6 @@ function getRoleID(res) {
 }
 function getToken(res) {
     sessionStorage.setItem('accessToken', res.access_token);
-    ManageAjaxCalls.Get(ApiDictionary.GetUserRole(), getRoleID);
+    let emailObj = { Email: $('#txtLoginEmail').val() }
+    ManageAjaxCalls.Get(ApiDictionary.GetUserRole(), emailObj , getRoleID);
 }

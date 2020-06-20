@@ -9,6 +9,7 @@
 <body>
 
     <script>
+        sessionStorage.setItem('path', 'https://localhost:44395')
         window.rootpath = "@(Url.Content("~"))";
     </script>
 
@@ -36,13 +37,23 @@
     </nav>
     @*@Html.Partial("_LoginPartial")*@
 
-    <div class="container body-content">
+<div class="container body-content mt-5">
+    <div class="offset-md-3 col-md-9 font-bold">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
     </div>
+    <hr />
+    <footer>
+        <div>
+            <div class="col-md-9 text-center font-bold">
+                <div>
+                    <p>
+                        Copyright © @DateTime.Now.Year Expense Calculator. All Rights Reserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/Scripts")

@@ -11,10 +11,10 @@ namespace MyHome_v0._2.Controllers
     [Authorize]
     public class ClientController : ApiController
     {
-         public IEnumerable<Registration> Get() {
-            using (MyHomeDBEntities entities=new MyHomeDBEntities()) {
-                return entities.Registrations.ToList();
-            }
-        }
+        // public IEnumerable<Registration> Get() {
+        //    using (MyHomeDBEntities entities=new MyHomeDBEntities()) {
+        //        return entities.Registrations.ToList();
+        //    }
+        //}
     }
 }

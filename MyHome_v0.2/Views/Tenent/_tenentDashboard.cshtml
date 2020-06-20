@@ -90,25 +90,45 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="card">
-                        <h5 class="card-header">Featured</h5>
+                        <div class="d-flex justify-content-between card-header bg-warning">
+                            <h5 class="text-light">Overall Expenses</h5>
+                            <h5 class="text-light">&#8377; 31,900</h5>
+                        </div>
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <div>
-                                <canvas id="elecBill"></canvas>
+                            <div class="doughnut">
+                                <div class="doughnutChartContainer">
+                                    <canvas id="doughnutChart" height="230"></canvas>
+                                </div>
+                                <div id="legend" class="chart-legend"></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card">
-                        <h5 class="card-header">Water Motor Bill</h5>
+                        <div class="d-flex justify-content-between card-header bg-info">
+                            <h5 class="text-light">Featured</h5>
+                            <h5 class="text-light">&#8377; 20,000</h5>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <div> <canvas id="elecBill"></canvas> </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="d-flex justify-content-between card-header bg-primary">
+                            <h5 class="text-light">Water Motor Bill</h5>
+                            <h5 class="text-light">&#8377; 1,900</h5>
+                        </div>
                         <div class="card-body">
                             <h5 class="card-title">Special title treatment</h5>
                             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                             <div>
                                 <canvas id="waterMotorBill"></canvas>
-                            </div> 
+                            </div>
                         </div>
                     </div>
                 </div>

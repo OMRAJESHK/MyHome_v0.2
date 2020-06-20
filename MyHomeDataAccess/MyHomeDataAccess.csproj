@@ -51,72 +51,69 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AspNetRole.cs">
-      <DependentUpon>MyHomeDataAccessModel.tt</DependentUpon>
+      <DependentUpon>MyHomeDataAccessLayer.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUser.cs">
-      <DependentUpon>MyHomeDataAccessModel.tt</DependentUpon>
+      <DependentUpon>MyHomeDataAccessLayer.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUserClaim.cs">
-      <DependentUpon>MyHomeDataAccessModel.tt</DependentUpon>
+      <DependentUpon>MyHomeDataAccessLayer.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUserLogin.cs">
-      <DependentUpon>MyHomeDataAccessModel.tt</DependentUpon>
+      <DependentUpon>MyHomeDataAccessLayer.tt</DependentUpon>
     </Compile>
     <Compile Include="AssetRegistration.cs">
-      <DependentUpon>MyHomeDataAccessModel.tt</DependentUpon>
+      <DependentUpon>MyHomeDataAccessLayer.tt</DependentUpon>
     </Compile>
     <Compile Include="C__MigrationHistory.cs">
-      <DependentUpon>MyHomeDataAccessModel.tt</DependentUpon>
+      <DependentUpon>MyHomeDataAccessLayer.tt</DependentUpon>
     </Compile>
     <Compile Include="EmergencyContact.cs">
-      <DependentUpon>MyHomeDataAccessModel.tt</DependentUpon>
+      <DependentUpon>MyHomeDataAccessLayer.tt</DependentUpon>
     </Compile>
     <Compile Include="MailLog.cs">
-      <DependentUpon>MyHomeDataAccessModel.tt</DependentUpon>
+      <DependentUpon>MyHomeDataAccessLayer.tt</DependentUpon>
     </Compile>
-    <Compile Include="MyHomeDataAccessModel.Context.cs">
+    <Compile Include="MyHomeDataAccessLayer.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MyHomeDataAccessModel.Context.tt</DependentUpon>
+      <DependentUpon>MyHomeDataAccessLayer.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="MyHomeDataAccessModel.cs">
+    <Compile Include="MyHomeDataAccessLayer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MyHomeDataAccessModel.tt</DependentUpon>
+      <DependentUpon>MyHomeDataAccessLayer.tt</DependentUpon>
     </Compile>
-    <Compile Include="MyHomeDataAccessModel.Designer.cs">
+    <Compile Include="MyHomeDataAccessLayer.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MyHomeDataAccessModel.edmx</DependentUpon>
+      <DependentUpon>MyHomeDataAccessLayer.edmx</DependentUpon>
     </Compile>
     <Compile Include="Notification.cs">
-      <DependentUpon>MyHomeDataAccessModel.tt</DependentUpon>
+      <DependentUpon>MyHomeDataAccessLayer.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proximity.cs">
-      <DependentUpon>MyHomeDataAccessModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Registration.cs">
-      <DependentUpon>MyHomeDataAccessModel.tt</DependentUpon>
+      <DependentUpon>MyHomeDataAccessLayer.tt</DependentUpon>
     </Compile>
     <Compile Include="TenentAgreement.cs">
-      <DependentUpon>MyHomeDataAccessModel.tt</DependentUpon>
+      <DependentUpon>MyHomeDataAccessLayer.tt</DependentUpon>
     </Compile>
     <Compile Include="TenentRequest.cs">
-      <DependentUpon>MyHomeDataAccessModel.tt</DependentUpon>
+      <DependentUpon>MyHomeDataAccessLayer.tt</DependentUpon>
     </Compile>
     <Compile Include="Transaction.cs">
-      <DependentUpon>MyHomeDataAccessModel.tt</DependentUpon>
+      <DependentUpon>MyHomeDataAccessLayer.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <EntityDeploy Include="MyHomeDataAccessModel.edmx">
+    <EntityDeploy Include="MyHomeDataAccessLayer.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MyHomeDataAccessModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>MyHomeDataAccessLayer.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="MyHomeDataAccessModel.edmx.diagram">
-      <DependentUpon>MyHomeDataAccessModel.edmx</DependentUpon>
+    <None Include="MyHomeDataAccessLayer.edmx.diagram">
+      <DependentUpon>MyHomeDataAccessLayer.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -124,15 +121,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MyHomeDataAccessModel.Context.tt">
+    <Content Include="MyHomeDataAccessLayer.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MyHomeDataAccessModel.edmx</DependentUpon>
-      <LastGenOutput>MyHomeDataAccessModel.Context.cs</LastGenOutput>
+      <DependentUpon>MyHomeDataAccessLayer.edmx</DependentUpon>
+      <LastGenOutput>MyHomeDataAccessLayer.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="MyHomeDataAccessModel.tt">
+    <Content Include="MyHomeDataAccessLayer.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MyHomeDataAccessModel.edmx</DependentUpon>
-      <LastGenOutput>MyHomeDataAccessModel.cs</LastGenOutput>
+      <DependentUpon>MyHomeDataAccessLayer.edmx</DependentUpon>
+      <LastGenOutput>MyHomeDataAccessLayer.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -15,7 +15,7 @@ namespace MyHomeDataAccess
     public partial class EmergencyContact
     {
         public int EmcyContactId { get; set; }
-        public int AssetName { get; set; }
+        public string AssetName { get; set; }
         public string ContactName { get; set; }
         public string ContactNumber { get; set; }
         public string Profession { get; set; }

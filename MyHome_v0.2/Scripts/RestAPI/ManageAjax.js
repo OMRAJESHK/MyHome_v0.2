@@ -1,12 +1,29 @@
 ﻿class ManageAjaxCalls {
-    static Get = (url,callBack) => {
+    static Get = (url,param,callBack) => {
         $.ajax({
             url: url,
             method: 'get',
-            data: { Email: $('#txtLoginEmail').val() },
+            data: param,
             success: (response) => { callBack(response) },
             error: (jqXHR) => {
                 console.log('something went wrong...I donno what')
+            }
+        });
+    }
+    static GetData = (url, callBack) => {
+        $.ajax({
+            url: url,
+            method: 'get',
+            headers: {
+                'Authorization': "Bearer " + sessionStorage.getItem('accessToken')
+            },
+            success: (response) => { callBack(response) },
+            error: (jqXHR) => {
+                if (jqXHR.status == '401') {
+                    alert('Session Expired...!!!');
+                    window.location.href = window.rootpath + "UserAccount/Login";
+                }
+                console.log('something went wrong...I donno what');
             }
         });
     }

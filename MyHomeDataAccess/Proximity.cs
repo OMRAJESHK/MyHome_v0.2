@@ -15,7 +15,7 @@ namespace MyHomeDataAccess
     public partial class Proximity
     {
         public int ProximityId { get; set; }
-        public int AssetName { get; set; }
+        public string AssetName { get; set; }
         public string RailwayStation { get; set; }
         public string BusStation { get; set; }
         public string Airport { get; set; }

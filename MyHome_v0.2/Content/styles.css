@@ -50,3 +50,62 @@
     -ms-transform: rotate(180deg); /* IE 9 */
     transform: rotate(180deg);
 }
+
+
+/* chartjs css */
+
+.doughnut {
+.doughnut {
+    background-color: white;
+    font-family: calibri;
+    height: 230px;
+}
+
+.doughnutChartContainer {
+    float: left;
+    background-color: white;
+    /*width: 450px*/
+}
+
+.doughnut .chart-legend {
+    float: left;
+    width: 180px;
+    background-color: white;
+    list-style-type: none;
+    margin-top: 20px;
+    text-align: center;
+    /* NOTE: Browsers automatically add 40px of padding-left to all lists, so we should offset that, otherwise the legend is off-center */
+    -webkit-padding-start: 0;
+    /* Webkit */
+    -moz-padding-start: 0;
+    /* Mozilla */
+    padding-left: 0;
+    /* IE (handles all cases, really, but we should also include the vendor-specific properties just to be safe) */
+}
+
+    .doughnut .chart-legend li {
+        display: inline-block;
+        white-space: nowrap;
+        position: relative;
+        margin-bottom: 4px;
+        border-radius: 5px;
+        padding: 2px 24px 2px 0;
+        font-size: smaller;
+        cursor: default;
+    }
+
+        .doughnut .chart-legend li .line-legend-icon,
+        .doughnut .chart-legend li .doughnut-legend-icon {
+            display: block;
+            float: left;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 5px;
+        }
+
+        .doughnut .chart-legend li .doughnut-legend-text,
+        .doughnut .chart-legend li .line-legend-text {
+            padding-left: 10px;
+        }

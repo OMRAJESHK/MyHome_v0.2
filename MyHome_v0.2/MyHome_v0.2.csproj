@@ -206,9 +206,13 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AdminDataController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TenentAgreementController.cs" />
     <Compile Include="Controllers\TenentController.cs" />
+    <Compile Include="Controllers\TenentDataController.cs" />
     <Compile Include="Controllers\UserAccountController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -311,6 +315,9 @@
     <Content Include="Scripts\Layout\perfect-scrollbar\perfect-scrollbar.min.js" />
     <Content Include="Scripts\RestAPI\ApiDirectory.js" />
     <Content Include="Scripts\RestAPI\ManageAjax.js" />
+    <Content Include="Scripts\src\Admin\adminGlobal.js" />
+    <Content Include="Scripts\src\AllTransactions.js" />
+    <Content Include="Scripts\src\GlobalConstants.js" />
     <Content Include="Scripts\src\Login.js" />
     <Content Include="Scripts\src\Registration.js" />
     <Content Include="test.html" />
@@ -381,6 +388,8 @@
     <Content Include="Views\Tenent\_raiseRequest.cshtml" />
     <Content Include="Views\Tenent\_proximity.cshtml" />
     <Content Include="Views\Tenent\_TenentDocuments.cshtml" />
+    <Content Include="Views\UserAccount\UserLogin.cshtml" />
+    <Content Include="Views\Admin\_AssetRegistration.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyHomeDataAccess\MyHomeDataAccess.csproj">
