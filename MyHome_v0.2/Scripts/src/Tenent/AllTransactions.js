@@ -73,6 +73,7 @@ function transactionCall() {
     //        PercentageIncreased: 2,
     //        ContactNumbers: '9080907066,9070678433',
     //        TenentEmailId:"someone@gmail.com",
+    //        TenentPassword:"123456",
     //        Remarks: 'Not Available'
     //    }),
     //    headers: {

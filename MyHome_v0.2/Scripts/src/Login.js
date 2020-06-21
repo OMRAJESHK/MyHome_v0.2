@@ -50,9 +50,28 @@
         $('#loginErrMsgDiv').hide('fade');
     });
 
+    $('#btnUserLogin').click(() => {
+        let postData = {
+            phoneNumber: $('#txtLoginPhoneNumber').val()
+        }
+        ManageAjaxCalls.Get(ApiDictionary.GetTenentAgreement(), postData, getCredentials);
 
+    })
 });
 
+function getCredentials(data) {
+    if (data == '404') {
+        console.log(data)
+    } else {
+        sessionStorage.setItem('RoleID', 0);
+        let postData = {
+            username: data.TenentEmailId,
+            password: data.TenentPassword,
+            grant_type: 'password'
+        }
+        ManageAjaxCalls.Post(ApiDictionary.token(), postData, getToken);
+    }
+}
 function getRoleID(res) {
     atob(res)
     sessionStorage.setItem('RoleID', res);
@@ -60,6 +79,5 @@ function getRoleID(res) {
 }
 function getToken(res) {
     sessionStorage.setItem('accessToken', res.access_token);
-    let emailObj = { Email: $('#txtLoginEmail').val() }
-    ManageAjaxCalls.Get(ApiDictionary.GetUserRole(), emailObj , getRoleID);
+    window.location.href = window.rootpath + "Home/index";
 }

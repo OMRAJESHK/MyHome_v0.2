@@ -145,6 +145,7 @@
           <Property Name="PercentageIncreased" Type="int" Nullable="false" />
           <Property Name="ContactNumbers" Type="nvarchar" MaxLength="50" />
           <Property Name="TenentEmailId" Type="nvarchar" MaxLength="50" />
+          <Property Name="TenentPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="TenentRequests">
@@ -403,6 +404,7 @@
           <Property Name="PercentageIncreased" Type="Int32" Nullable="false" />
           <Property Name="ContactNumbers" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TenentEmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenentPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TenentRequest">
@@ -633,6 +635,7 @@
                 <ScalarProperty Name="PercentageIncreased" ColumnName="PercentageIncreased" />
                 <ScalarProperty Name="ContactNumbers" ColumnName="ContactNumbers" />
                 <ScalarProperty Name="TenentEmailId" ColumnName="TenentEmailId" />
+                <ScalarProperty Name="TenentPassword" ColumnName="TenentPassword" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
               </MappingFragment>
             </EntityTypeMapping>

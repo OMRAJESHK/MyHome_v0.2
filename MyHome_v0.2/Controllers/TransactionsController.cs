@@ -9,13 +9,12 @@ using MyHomeDataAccess;
 namespace MyHome_v0._2.Controllers
 {
     [Authorize]
-    public class TenentDataController : ApiController{
+    public class TransactionsController : ApiController
+    {
         public IEnumerable<Transaction> GetTransactions() {
             using (MyHomeDBEntities entities = new MyHomeDBEntities()) {
                 return entities.Transactions.ToList();
             }
         }
     }
-
-
 }

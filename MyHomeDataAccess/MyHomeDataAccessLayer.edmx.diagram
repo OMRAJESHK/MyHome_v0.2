@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7723e9f1e52e4d61a583041045a27264" Name="Diagram1">
+      <Diagram DiagramId="2936c25bcbee43a0909eb592367c7bd4" Name="Diagram1">
         <EntityTypeShape EntityType="MyHomeDBModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyHomeDBModel.AspNetRole" Width="1.5" PointX="0.5" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyHomeDBModel.AspNetUserClaim" Width="1.5" PointX="5" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyHomeDBModel.AspNetUserLogin" Width="1.5" PointX="5" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyHomeDBModel.AspNetUser" Width="1.5" PointX="2.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyHomeDBModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyHomeDBModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyHomeDBModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyHomeDBModel.AspNetUser" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="MyHomeDBModel.AssetRegistration" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MyHomeDBModel.EmergencyContact" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MyHomeDBModel.MailLog" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
