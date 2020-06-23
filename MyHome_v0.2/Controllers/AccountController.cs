@@ -17,7 +17,7 @@ using Microsoft.Owin.Security.OAuth;
 using MyHome_v0._2.Models;
 using MyHome_v0._2.Providers;
 using MyHome_v0._2.Results;
-
+using MyHomeDataAccess;
 
 namespace MyHome_v0._2.Controllers
 {
@@ -25,7 +25,7 @@ namespace MyHome_v0._2.Controllers
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
-
+        private MyHomeDBEntities entities = new MyHomeDBEntities();
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
 
@@ -336,16 +336,35 @@ namespace MyHome_v0._2.Controllers
         [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {
+            var entity = entities.TenentAgreements.FirstOrDefault(x => x.ContactNumbers==model.PhoneNumber);
+            if (entity == null) {
+                return BadRequest("Please Enter Number that you Provided to Owner At the Beginning...!!!");
+            } else { 
             if (!ModelState.IsValid){
                 return BadRequest(ModelState);
             }
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email,PhoneNumber = model.PhoneNumber};
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
-             UserManager.AddToRole(user.Id, "client");
+            UserManager.AddToRole(user.Id, "client");
             if (!result.Succeeded){
                 return GetErrorResult(result);
             }
-            return Ok();
+            entity.TenentEmailId = model.Email;
+            entity.TenentPassword = model.Password;
+            entities.SaveChanges();
+            return Ok("Registration Completed.");
+            }
+        }
+
+         [AllowAnonymous]
+         [Route("IsValidNumber")]
+         [HttpGet]
+        public IHttpActionResult IsValidNumber(string phoneNumber) {
+            var getValidData = entities.TenentAgreements.Where(x => x.ContactNumbers.Contains(phoneNumber)).SingleOrDefault();
+            if (getValidData == null){
+                return Ok("404");
+            }
+            return Ok(getValidData);
         }
         
         // ADMIN REGISTRATION

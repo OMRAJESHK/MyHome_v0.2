@@ -10,15 +10,16 @@ namespace MyHome_v0._2.Controllers
 {
     public class TenentAgreementController : ApiController{
         private MyHomeDBEntities entities = new MyHomeDBEntities();
-        public IHttpActionResult GetTenentAgreement(string phoneNumber)
+        public IHttpActionResult GetTenentAgreement(string phoneNumber,string password)
         {
-            var test = entities.TenentAgreements.Where(x => x.ContactNumbers.Contains(phoneNumber)).SingleOrDefault();
-            if (test == null){
+            var getValidData = entities.TenentAgreements.Where(x => x.ContactNumbers==phoneNumber && x.TenentPassword == password).SingleOrDefault();
+
+            if (getValidData == null){
                 return Ok("404");
             }
-            return Ok(test);
+            return Ok(getValidData);
         }
-
+        [Authorize]
         public HttpResponseMessage PostTenentAgreement(TenentAgreement tenentagreement) {
             try { 
                  entities.TenentAgreements.Add(tenentagreement);

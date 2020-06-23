@@ -52,7 +52,8 @@
 
     $('#btnUserLogin').click(() => {
         let postData = {
-            phoneNumber: $('#txtLoginPhoneNumber').val()
+            phoneNumber: $('#txtLoginPhoneNumber').val(),
+            password: $('#txtLoginPassword').val()
         }
         ManageAjaxCalls.Get(ApiDictionary.GetTenentAgreement(), postData, getCredentials);
 

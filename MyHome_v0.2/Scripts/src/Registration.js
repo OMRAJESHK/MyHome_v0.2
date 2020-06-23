@@ -7,9 +7,10 @@
                 email: $('#txtEmail').val(),
                 password: $('#txtPassword').val(),
                 confirmPassword: $('#txtConfirmPassword').val(),
+                PhoneNumber: $('#txtPhoneNumber').val()
             },
-            success: () => {
-                console.log('Registration Completed Successfully...!!!');
+            success: (data) => {
+                console.log(data);
                 $('#errMsgDiv').hide('fade');
             },
             error: (jqXHR) => {
