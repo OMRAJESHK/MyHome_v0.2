@@ -1,4 +1,6 @@
 ﻿$(document).ready(() => {
+    $('.UserName').text(sessionStorage.getItem('UserName'));
+    $('.UserMail').text(sessionStorage.getItem('UserMail'));
     if (sessionStorage.getItem('accessToken') == null) {
         window.location.href = window.rootpath + ApiDictionary.gotoLogin();
     }
