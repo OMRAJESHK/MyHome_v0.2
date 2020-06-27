@@ -1,18 +1,21 @@
 ﻿
 function transactionCall() {
+    let TransactionsList = convertObjectArray(TransactionTypes);
+    let TransactionModesList = convertObjectArray(ModeOFPayment);
+    let StatusList = convertObjectArray(Status);
     const getTransactionsfn=(transactions)=> {
         $('#tblTransactions tbody').empty();
         let rowItem = '';
         $.each(transactions, function (key, row) {
             rowItem = '<tr><td>' +
                 row.Description + '</td><td>' +
-                row.TransactionType + '</td><td>' +
+                TransactionsList.filter((x) => x.value == row.TransactionType)[0].name  + '</td><td>' +
                 row.Amount + '</td><td>' +
                 row.Date + '</td><td>' +
-                row.TransactionMode + '</td><td>' +
+                TransactionModesList.filter((x) => x.value == row.TransactionMode)[0].name + '</td><td>' +
                 row.PaidBy + '</td><td>' +
                 row.PaidTo + '</td><td>' +
-                row.Status + '</td><td>' +
+                StatusList.filter((x) => x.value == row.Status)[0].name + '</td><td>' +
                 row.Remarks + '</td></tr>'
 
         });
@@ -20,7 +23,7 @@ function transactionCall() {
     }
     ManageAjaxCalls.GetData(ApiDictionary.GetTransactions(), getTransactionsfn);  
 
-
+    console.log();
 
     // Implemented ASSET REGISTRATION POST 
 
@@ -55,7 +58,7 @@ function transactionCall() {
     //});
 
 
-    // // Implemented Tenent Agreement POST 
+     // Implemented Tenent Agreement POST 
 
     //$.ajax({
     //    type: "POST",
@@ -89,4 +92,55 @@ function transactionCall() {
     //    }
     //});
 
+
+     // Implemented TenantAgreement PUT 
+
+    //$.ajax({
+    //    type: "PUT",
+    //    contentType: "application/json",
+    //    url: ApiDictionary.PutTenentAgreement()+'?id=1',
+    //    data:JSON.stringify({
+    //            AssetName: 'Sweet Home1',
+    //            ResidentsNumber: 4,
+    //            JoiningDate: '2010-01-12',
+    //            LeavingDate: '2010-01-12',
+    //            ResidentsNames: 'Rajesh Kumar',
+    //            IdentityProofs: 'Voter card,College IDs',
+    //            AdvanceAmount: 20000,
+    //            RentAmount: 5000,
+    //            PercentageIncreased: 4,
+    //            ContactNumbers: '9653652344',
+    //            TenentEmailId: 'abc@gmail.com',
+    //            Remarks: 'Teehee teehee'
+    //        }),
+        
+    //    headers: {
+    //        'Authorization': "Bearer " + sessionStorage.getItem('accessToken')
+    //    },
+    //    dataType: "JSON",
+    //    success: function (data) {
+    //        console.log(data);
+    //    },
+    //    error: (jqXHR) => {
+    //        console.log('something went wrong with the POST...!!!');
+    //    }
+    //});
+
+    // Implemented TenantAgreement DELETE 
+
+    //$.ajax({
+    //    type: "DELETE",
+    //    contentType: "application/json",
+    //    url: ApiDictionary.DeleteTenentAgreement() + '?id=4', 
+    //    headers: {
+    //        'Authorization': "Bearer " + sessionStorage.getItem('accessToken')
+    //    },
+    //    dataType: "JSON",
+    //    success: function (data) {
+    //        console.log(data);
+    //    },
+    //    error: (jqXHR) => {
+    //        console.log('something went wrong with the POST...!!!');
+    //    }
+    //});
 }

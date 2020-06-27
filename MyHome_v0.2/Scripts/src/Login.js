@@ -37,7 +37,6 @@ function getCredentials(data) {
             password: data.TenentPassword,
             grant_type: 'password'
         }
-        console.log(data)
         sessionStorage.setItem('UserName', data.ResidentsNames)
         ManageAjaxCalls.Post(ApiDictionary.token(), postData, getToken);
     }

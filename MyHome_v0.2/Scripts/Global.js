@@ -4,6 +4,13 @@
     if (sessionStorage.getItem('accessToken') == null) {
         window.location.href = window.rootpath + ApiDictionary.gotoLogin();
     }
+    if (sessionStorage.getItem('RoleID') == '0') {
+        $('.AdminMenu').hide();
+        $('.ClientMenu').show();
+    } else {
+        $('.ClientMenu').hide();
+        $('.AdminMenu').show();
+    }
     $(".btnTenentDetails").click(() => {
         $('.dashboardAngle').hasClass('angleRotate180') ?
             $('.dashboardAngle').removeClass('angleRotate180')
@@ -15,27 +22,7 @@
         $.get(url, function (response) {
             $('#RenderContent').html(response);
             $('#RenderContent').find("#trnFrom , #trnTo").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true });
-
-            //const getTransactionsfn=(transactions)=> {
-            //    $('#tblTransactions tbody').empty();
-            //    let rowItem = '';
-            //    $.each(transactions, function (key, row) {
-            //        rowItem = '<tr><td>' +
-            //            row.Description + '</td><td>' +
-            //            row.TransactionType + '</td><td>' +
-            //            row.Amount + '</td><td>' +
-            //            row.Date + '</td><td>' +
-            //            row.TransactionMode + '</td><td>' +
-            //            row.PaidBy + '</td><td>' +
-            //            row.PaidTo + '</td><td>' +
-            //            row.Status + '</td><td>' +
-            //            row.Remarks + '</td></tr>'
-
-            //    });
-            //    $('#RenderContent #tblTransactions tbody').append(rowItem);
-            //}
-            transactionCall()
-
+            transactionCall();
         });
     });
     $(".btn_T_Dashboad").click(() => {
@@ -211,6 +198,12 @@
     });
     $(".btnRaiseReq").click(() => {
         var url = window.rootpath + "Tenent/_raiseRequest";
+        $.get(url, function (response) {
+            $('#RenderContent').html(response);
+        });
+    });
+    $(".btn_A_Notifications").click(() => {
+        var url = window.rootpath + "Tenent/_AllNotification";
         $.get(url, function (response) {
             $('#RenderContent').html(response);
         });
