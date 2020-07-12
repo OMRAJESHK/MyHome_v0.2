@@ -10,7 +10,9 @@
     } else {
         $('.ClientMenu').hide();
         $('.AdminMenu').show();
+        $('.main-content').find('#btnAddNotifications').show();
     }
+    //------TENANT BUTTONS-----------//
     $(".btnTenentDetails").click(() => {
         $('.dashboardAngle').hasClass('angleRotate180') ?
             $('.dashboardAngle').removeClass('angleRotate180')
@@ -190,10 +192,13 @@
             $('#RenderContent').html(response);
         });
     });
-    $(".btnProximity").click(() => {
+    $(".btnProximity , .btn_A_Proximity").click(() => {
         var url = window.rootpath + "Tenent/_proximity";
         $.get(url, function (response) {
             $('#RenderContent').html(response);
+            (sessionStorage.getItem('RoleID') == '0') ?
+                $('.main-content').find('#btnAddProximities').hide() :
+                $('.main-content').find('#btnAddProximities').show();
         });
     });
     $(".btnRaiseReq").click(() => {
@@ -202,12 +207,70 @@
             $('#RenderContent').html(response);
         });
     });
-    $(".btn_A_Notifications").click(() => {
+
+    $(".btn_A_Notifications,#btn_AllNotifications").click(() => {
         var url = window.rootpath + "Tenent/_AllNotification";
+        $.get(url, function (response) {
+            $('#RenderContent').html(response);
+            $('#notificationsTab').removeClass('show-dropdown');
+            (sessionStorage.getItem('RoleID') == '0') ?
+                $('.main-content').find('#btnAddNotifications').hide() :
+                $('.main-content').find('#btnAddNotifications').show();
+        });
+    });
+        //------ADMIN BUTTONS-----------//
+    $(".btn_A_Dashboad").click(() => {
+        var url = window.rootpath + "Admin/_AdminDashboard";
         $.get(url, function (response) {
             $('#RenderContent').html(response);
         });
     });
+    $(".btnAssetRegistration").click(() => {
+        var url = window.rootpath + "Admin/_AssetRegistration";
+        $.get(url, function (response) {
+            $('#RenderContent').html(response);
+        });
+    });
+    $(".btnTenantAgreement").click(() => {
+        var url = window.rootpath + "Admin/_TenantDeedRegistration";
+        $.get(url, function (response) {
+            $('#RenderContent').html(response);
+        });
+    });
+    $(".btn_A_AllTransactions").click(() => {
+        var url = window.rootpath + "Admin/_SaveTransactions";
+        $.get(url, function (response) {
+            $('#RenderContent').html(response);
+        });
+    });
+    $(".btnAddProximity").click(() => {
+        var url = window.rootpath + "Admin/_SaveTransactions";
+        $.get(url, function (response) {
+            $('#RenderContent').html(response);
+        });
+    });
+    $(".main-content").on('click', '#btnAddNotifications', () => {
+        var url = window.rootpath + "Admin/_SaveNotifications";
+        $.get(url, function (response) {
+            $('#RenderContent').html(response);
+        });
+    });
+    $(".main-content").on('click', '#btnAddNotifications', () => {
+        var url = window.rootpath + "Admin/_SaveNotifications";
+        $.get(url, function (response) {
+            $('#RenderContent').html(response);
+        });
+    });
+    $(".btn_A_SendMail").click(() => {
+        var url = window.rootpath + "Admin/_Sendmail";
+        $.get(url, function (response) {
+            $('#RenderContent').html(response);
+        });
+    });
+    
+    
+        //------COMMON BUTTONS----------//
+
     $('#btnLogOut').click(() => {
         sessionStorage.removeItem('accessToken')
         window.location.href = window.rootpath + ApiDictionary.gotoLogin();

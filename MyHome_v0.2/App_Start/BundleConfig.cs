@@ -26,6 +26,9 @@ namespace MyHome_v0._2 {
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
                       "~/Scripts/Assets/jqueryui.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/Assetjs").Include(
+                      "~/Scripts/src/Admin/AssetRegistration.js"));
+
         }
     }
 }

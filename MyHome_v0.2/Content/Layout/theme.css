@@ -321,7 +321,7 @@ section {
 
 @media (max-width: 991px) {
     .main-content {
-        padding-top: 50px;
+        padding-top: 10px;
         padding-bottom: 100px;
     }
 }
@@ -805,7 +805,7 @@ section {
     }
 
 .au-input--xl {
-    min-width: 935px;
+    min-width: 500px;
 }
 
 @media (max-width: 1600px) {
@@ -1299,7 +1299,6 @@ section {
 
 @media (max-width: 991px) {
     .header-button {
-        margin-top: 30px;
         width: 100%;
         -webkit-box-pack: justify;
         -webkit-justify-content: space-between;

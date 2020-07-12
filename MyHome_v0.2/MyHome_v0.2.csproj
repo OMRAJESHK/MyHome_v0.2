@@ -315,6 +315,7 @@
     <Content Include="Scripts\RestAPI\ApiDirectory.js" />
     <Content Include="Scripts\RestAPI\ManageAjax.js" />
     <Content Include="Scripts\src\Admin\adminGlobal.js" />
+    <Content Include="Scripts\src\Admin\AssetRegistration.js" />
     <Content Include="Scripts\src\Tenent\AllTransactions.js" />
     <Content Include="Scripts\src\GlobalConstants.js" />
     <Content Include="Scripts\src\Login.js" />
@@ -390,6 +391,12 @@
     <Content Include="Views\UserAccount\UserLogin.cshtml" />
     <Content Include="Views\Admin\_AssetRegistration.cshtml" />
     <Content Include="Views\Tenent\_AllNotification.cshtml" />
+    <Content Include="Views\Admin\_AdminDashboard.cshtml" />
+    <Content Include="Views\Admin\_TenantDeedRegistration.cshtml" />
+    <Content Include="Views\Admin\_SaveNotifications.cshtml" />
+    <Content Include="Views\Admin\_SaveTransactions.cshtml" />
+    <Content Include="Views\Admin\_SaveProximities.cshtml" />
+    <Content Include="Views\Admin\_Sendmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyHomeDataAccess\MyHomeDataAccess.csproj">

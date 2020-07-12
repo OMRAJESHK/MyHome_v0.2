@@ -23,41 +23,6 @@ function transactionCall() {
     }
     ManageAjaxCalls.GetData(ApiDictionary.GetTransactions(), getTransactionsfn);  
 
-    console.log();
-
-    // Implemented ASSET REGISTRATION POST 
-
-    //$.ajax({
-    //    type: "POST",
-    //    contentType: "application/json;charset=utf-8",
-    //    url: "/api/AdminData/PostAssetDetails",
-    //    data: JSON.stringify({
-    //        AssetName: 'Sweet Home13',
-    //        RegisteredDate: '2020-02-01',
-    //        Address: 'Some Tehee Address',
-    //        LandTaxAmount: 9000,
-    //        NumberofDoors:3,
-    //        NumberofWindows: 3,
-    //        NumberofTaps: 3,
-    //        NumberofFans: 3,
-    //        NumberofBulbs:4,
-    //        IsSump: 1,
-    //        Remarks: '1000 Balance to give.'
-    //    }),
-    //    headers: {
-    //        'Authorization': "Bearer " + sessionStorage.getItem('accessToken')
-    //    },
-    //    dataType: "JSON",
-    //    success: function (data) {
-    //        console.log(data);
-
-    //    },
-    //    error: (jqXHR) => {
-    //        console.log('something went wrong with the POST...!!!');
-    //    }
-    //});
-
-
      // Implemented Tenent Agreement POST 
 
     //$.ajax({

@@ -44,7 +44,7 @@
             <nav class="navbar-mobile">
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled ClientMenu">
-                        <li class="btn_T_Dashboad"><a href="#"> <i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
+                        <li class="btn_T_Dashboad"><a href="#"> <i class="fab fa-microsoft"></i>Dashboard</a></li>
                         <li class="btnAllTransactions"><a href="#"><i class="fas fa-chart-bar"></i>All Transactions</a></li>
                         <li class="has-sub">
                             <a class="js-arrow btnTenentDetails" href="#">
@@ -62,7 +62,7 @@
                         <li class="btnRaiseReq"><a href="#"><i class="far fa-comment"></i>Raise Request</a></li>
                     </ul>
                     <ul class="navbar-mobile__list list-unstyled AdminMenu">
-                        <li class="btn_A_Dashboad"><a href="#"> <i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
+                        <li class="btn_A_Dashboad"><a href="#"> <i class="fab fa-microsoft"></i>Dashboard</a></li>
                         <li class="btnAssetRegistration"><a href="#"><i class="fas fa-home"></i>Assets</a></li>
                         <li class="btnTenantAgreement"><a href="#"><i class="fas fa-home"></i>Tenant Agreement</a></li>
                         <li class="btn_A_AllTransactions"><a href="#"><i class="fas fa-chart-bar"></i>Transactions</a></li>
@@ -82,7 +82,7 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list ClientMenu">
-                        <li class="btn_T_Dashboad"><a href="#"> <i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
+                        <li class="btn_T_Dashboad"><a href="#"> <i class="fab fa-microsoft"></i>Dashboard</a></li>
                         <li class="btnAllTransactions"> <a href="#"> <i class="fas fa-chart-bar"></i>All Transactions</a> </li>
                         <li class="has-sub">
                             <a class="js-arrow btnTenentDetails" href="#">
@@ -100,7 +100,7 @@
                         <li class="btnRaiseReq"> <a href="#"> <i class="far fa-comment"></i>Raise Request </a> </li>
                     </ul>
                     <ul class="list-unstyled navbar__list AdminMenu">
-                        <li class="btn_A_Dashboad"><a href="#"> <i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
+                        <li class="btn_A_Dashboad"><a href="#"> <i class="fab fa-microsoft"></i>Dashboard</a></li>
                         <li class="btnAssetRegistration"><a href="#"><i class="fas fa-home"></i>Assets</a></li>
                         <li class="btnTenantAgreement"><a href="#"><i class="fas fa-home"></i>Tenant Agreement</a></li>
                         <li class="btn_A_AllTransactions"><a href="#"><i class="fas fa-chart-bar"></i>Transactions</a></li>
@@ -128,15 +128,16 @@
                                     <i class="zmdi zmdi-search"></i>
                                 </button>
                             </form>
+                            <label class="font-weight-bold mb-2 mt-2" id="lblAssetName">Sree Lakshmi Narasimha Swamy Nilaya</label>
                             <div class="header-button">
                                 <div class="noti-wrap">
                                     <!-- message -->
-                                    <div class="noti__item js-item-menu">
+                                    <div class="noti__item js-item-menu" id="notificationsTab">
                                         @*<i class="zmdi zmdi-comment-more"></i>*@
                                         <i class="far fa-bell text-primary"></i>
                                         <span class="quantity">3</span>
                                         <div class="mess-dropdown js-dropdown">
-                                            <div class="notifi__title">
+                                            <div class="notifi__title font-weight-bold">
                                                 <p>You have 3 Notifications</p>
                                             </div>
                                             <div class="notifi__item">
@@ -166,7 +167,7 @@
                                                     <span class="date">April 12, 2018 06:50</span>
                                                 </div>
                                             </div>
-                                            <div class="notifi__footer">
+                                            <div class="notifi__footer" id="btn_AllNotifications">
                                                 <a href="#">All notifications</a>
                                             </div>
                                         </div>
@@ -176,7 +177,7 @@
                                     <div class="noti__item js-item-menu">
                                         <i class="fas fa-calculator text-primary"></i>
                                         <div class="notifi-dropdown js-dropdown">
-                                            <div class="notifi__title">
+                                            <div class="notifi__title font-weight-bold">
                                                 <p>Simple Calculator</p>
                                             </div>
                                             <div class="notifi__item">
@@ -214,7 +215,7 @@
                                         <i class="fas fa-cog text-primary"></i>
                                         @*<span class="quantity">1</span>*@
                                         <div class="email-dropdown js-dropdown">
-                                            <div class="email__title">
+                                            <div class="email__title font-weight-bold">
                                                 <p>You have 3 New Emails</p>
                                             </div>
                                             <div class="email__item">
@@ -254,10 +255,10 @@
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="~/Images/Profile.jpg" class="rounded-circle" alt="John Doe" />
+                                            <img src="~/Images/Profile.jpg" class="img-thumbnail rounded-circle" alt="John Doe" style="border:1px solid #007bff;" />
                                         </div>
                                         <div class="content">
-                                            <p class="UserName"></p>
+                                            <p class="UserName font-weight-bold"></p>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
@@ -329,6 +330,8 @@
     <script src="~/Scripts/src/Admin/adminGlobal.js"></script>
     <script src="~/Scripts/src/GlobalConstants.js"></script>
     @Scripts.Render("~/bundles/Mainjs")
+    @Scripts.Render("~/bundles/Assetjs")
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

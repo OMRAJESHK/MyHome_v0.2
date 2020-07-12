@@ -1,4 +1,29 @@
-﻿/* Using box shadows to create 3D effects */
+﻿/*Global CSS*/
+.minWidthFull {
+    min-width:100% ;
+}
+#customFile .custom-file-input:lang(en)::after {
+    content: "Select file...";
+}
+
+#customFile .custom-file-input:lang(en)::before {
+    content: "Click me";
+}
+
+/*when a value is selected, this class removes the content */
+.custom-file-input.selected:lang(en)::after {
+    content: "" !important;
+}
+
+.custom-file {
+    overflow: hidden;
+}
+
+.custom-file-input {
+    white-space: nowrap;
+}
+/*Calculator*/
+/* Using box shadows to create 3D effects */
 #calculator {
     width: 325px;height: auto;padding: 20px 20px 9px;
     background: #9dd2ea;background: linear-gradient(#9dd2ea, #007bff);
