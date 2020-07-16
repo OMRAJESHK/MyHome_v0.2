@@ -49,4 +49,7 @@ function getRoleID(res) {
 function getToken(res) {
     sessionStorage.setItem('accessToken', res.access_token);
     window.location.href = window.rootpath + "Home/index";
+    if (sessionStorage.getItem('RoleID') == 1) {
+        $(".btn_A_Dashboad").click()
+    }
 }

@@ -1,4 +1,7 @@
 ﻿$(document).ready(() => {
+    const RenderContent = $('#RenderContent');
+    const mainContent = $('.main-content');
+
     $('.UserName').text(sessionStorage.getItem('UserName'));
     $('.UserMail').text(sessionStorage.getItem('UserMail'));
     if (sessionStorage.getItem('accessToken') == null) {
@@ -7,10 +10,21 @@
     if (sessionStorage.getItem('RoleID') == '0') {
         $('.AdminMenu').hide();
         $('.ClientMenu').show();
+        var url = window.rootpath + "Tenent/_tenentDetails";
+        $.get(url, function (response) {
+            RenderContent.html(response);
+        });
     } else {
         $('.ClientMenu').hide();
         $('.AdminMenu').show();
-        $('.main-content').find('#btnAddNotifications').show();
+
+        var url = window.rootpath + "Admin/_AdminDashboard";
+
+        $.get(url, function (response) {
+            RenderContent.html(response);
+            mainContent.find('#myModal').modal('show');
+        });
+        mainContent.find('#btnAddNotifications').show();
     }
     //------TENANT BUTTONS-----------//
     $(".btnTenentDetails").click(() => {
@@ -22,13 +36,13 @@
     $(".btnAllTransactions").click(() => {
         var url = window.rootpath + "Tenent/_allTransactions";
         $.get(url, function (response) {
-            $('#RenderContent').html(response);
-            $('#RenderContent').find("#trnFrom , #trnTo").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true });
+            RenderContent.html(response);
+            RenderContent.find("#trnFrom , #trnTo").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true });
             transactionCall();
         });
     });
     $(".btn_T_Dashboad").click(() => {
-        var url = window.rootpath + "Tenent/_tenentDashboard";
+        var url = window.rootpath + TenantURLs.Dashboard;
         $.get(url, function (response) {
             $('#RenderContent').html(response);
             var ctx = document.getElementById("elecBill").getContext('2d');
@@ -171,100 +185,94 @@
     $(".btnRentAgreement").click(() => {
         var url = window.rootpath + "Tenent/_tenentDetails";
         $.get(url, function (response) {
-            $('#RenderContent').html(response);
+            RenderContent.html(response);
         });
     });
     $(".btnDocuments").click(() => {
         var url = window.rootpath + "Tenent/_TenentDocuments";
         $.get(url, function (response) {
-            $('#RenderContent').html(response);
+            RenderContent.html(response);
         });
     });
     $(".btnHouseDetails").click(() => {
         var url = window.rootpath + "Tenent/_houseDetails";
         $.get(url, function (response) {
-            $('#RenderContent').html(response);
+            RenderContent.html(response);
         });
     });
     $(".btnEmcyContact").click(() => {
         var url = window.rootpath + "Tenent/_emrcyContact";
         $.get(url, function (response) {
-            $('#RenderContent').html(response);
+            RenderContent.html(response);
         });
     });
     $(".btnProximity , .btn_A_Proximity").click(() => {
         var url = window.rootpath + "Tenent/_proximity";
         $.get(url, function (response) {
-            $('#RenderContent').html(response);
+            RenderContent.html(response);
             (sessionStorage.getItem('RoleID') == '0') ?
-                $('.main-content').find('#btnAddProximities').hide() :
-                $('.main-content').find('#btnAddProximities').show();
+                mainContent.find('#btnAddProximities').hide() :
+                mainContent.find('#btnAddProximities').show();
         });
     });
     $(".btnRaiseReq").click(() => {
         var url = window.rootpath + "Tenent/_raiseRequest";
         $.get(url, function (response) {
-            $('#RenderContent').html(response);
+            RenderContent.html(response);
         });
     });
 
     $(".btn_A_Notifications,#btn_AllNotifications").click(() => {
         var url = window.rootpath + "Tenent/_AllNotification";
         $.get(url, function (response) {
-            $('#RenderContent').html(response);
+            RenderContent.html(response);
             $('#notificationsTab').removeClass('show-dropdown');
             (sessionStorage.getItem('RoleID') == '0') ?
-                $('.main-content').find('#btnAddNotifications').hide() :
-                $('.main-content').find('#btnAddNotifications').show();
+                mainContent.find('#btnAddNotifications').hide() :
+                mainContent.find('#btnAddNotifications').show();
         });
     });
         //------ADMIN BUTTONS-----------//
     $(".btn_A_Dashboad").click(() => {
-        var url = window.rootpath + "Admin/_AdminDashboard";
+        var url = window.rootpath + AdminURLs.Dashboard;
         $.get(url, function (response) {
-            $('#RenderContent').html(response);
+            RenderContent.html(response);
         });
     });
     $(".btnAssetRegistration").click(() => {
-        var url = window.rootpath + "Admin/_AssetRegistration";
+        var url = window.rootpath + AdminURLs.Asset;
         $.get(url, function (response) {
-            $('#RenderContent').html(response);
+            RenderContent.html(response);
         });
     });
     $(".btnTenantAgreement").click(() => {
-        var url = window.rootpath + "Admin/_TenantDeedRegistration";
+        var url = window.rootpath + AdminURLs.TenantDeed;
         $.get(url, function (response) {
-            $('#RenderContent').html(response);
+            RenderContent.html(response);
         });
     });
     $(".btn_A_AllTransactions").click(() => {
-        var url = window.rootpath + "Admin/_SaveTransactions";
+        var url = window.rootpath + AdminURLs.SaveTransaction;
         $.get(url, function (response) {
-            $('#RenderContent').html(response);
+            RenderContent.html(response);
         });
     });
-    $(".btnAddProximity").click(() => {
+    mainContent.find('#btnAddProximities').on('click', '#btnAddProximity', () => {
         var url = window.rootpath + "Admin/_SaveTransactions";
         $.get(url, function (response) {
-            $('#RenderContent').html(response);
+            RenderContent.html(response);
         });
     });
     $(".main-content").on('click', '#btnAddNotifications', () => {
-        var url = window.rootpath + "Admin/_SaveNotifications";
+        var url = window.rootpath + AdminURLs.SaveNotification;
         $.get(url, function (response) {
-            $('#RenderContent').html(response);
-        });
-    });
-    $(".main-content").on('click', '#btnAddNotifications', () => {
-        var url = window.rootpath + "Admin/_SaveNotifications";
-        $.get(url, function (response) {
-            $('#RenderContent').html(response);
+            RenderContent.html(response);
         });
     });
     $(".btn_A_SendMail").click(() => {
         var url = window.rootpath + "Admin/_Sendmail";
         $.get(url, function (response) {
-            $('#RenderContent').html(response);
+            RenderContent.html(response);
         });
     });
     
@@ -272,7 +280,10 @@
         //------COMMON BUTTONS----------//
 
     $('#btnLogOut').click(() => {
-        sessionStorage.removeItem('accessToken')
-        window.location.href = window.rootpath + ApiDictionary.gotoLogin();
+        sessionStorage.removeItem('accessToken'); 
+        sessionStorage.getItem('RoleID') == 0?
+            window.location.href = window.rootpath + ApiDictionary.gotoLogin() :
+            window.location.href = window.rootpath + ApiDictionary.gotoAdminLogin()
     });
+
 });

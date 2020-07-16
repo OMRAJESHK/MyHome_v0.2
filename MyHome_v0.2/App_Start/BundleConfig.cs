@@ -8,12 +8,11 @@ namespace MyHome_v0._2 {
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/Jquery/jQuery.js"));
-             bundles.Add(new ScriptBundle("~/Scripts").Include(
-                        "~/Scripts/Jquery/jQuery.js",
-                        "~/Scripts/src/Registration.js",
-                        "~/Scripts/src/Login.js",
-                        "~/Scripts/RestAPI/ApiDirectory.js",
-                        "~/Scripts/RestAPI/ManageAjax.js"));
+            bundles.Add(new ScriptBundle("~/bundles/Scripts").Include(
+                       "~/Scripts/src/Registration.js",
+                       "~/Scripts/src/Login.js",
+                       "~/Scripts/RestAPI/ApiDirectory.js",
+                       "~/Scripts/RestAPI/ManageAjax.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/Bootstrap/bootstrap.js"));

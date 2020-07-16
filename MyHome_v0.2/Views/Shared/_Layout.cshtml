@@ -37,27 +37,30 @@
     </nav>
     @*@Html.Partial("_LoginPartial")*@
 
-<div class="container body-content mt-5">
-    <div class="offset-md-3 col-md-9 font-bold">
-        @RenderBody()
-    </div>
-    <hr />
-    <footer>
-        <div>
-            <div class="col-md-9 text-center font-bold">
-                <div>
-                    <p>
-                        Copyright © @DateTime.Now.Year Expense Calculator. All Rights Reserved.
-                    </p>
+    <div class="container body-content mt-5">
+        <div class="offset-md-3 col-md-9 font-bold">
+            @RenderBody()
+        </div>
+        <hr />
+        <footer>
+            <div>
+                <div class="col-md-9 text-center font-bold">
+                    <div>
+                        <p>
+                            Copyright © @DateTime.Now.Year Expense Calculator. All Rights Reserved.
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </footer>
-</div>
+        </footer>
+    </div>
 
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/Scripts")
-
+    @*@Scripts.Render("~/bundles/Scripts")*@
+    <script src="~/Scripts/RestAPI/ApiDirectory.js"></script>
+    <script src="~/Scripts/RestAPI/ManageAjax.js"></script>
+    <script src="~/Scripts/src/Registration.js"></script>
+    <script src="~/Scripts/src/Login.js"></script>
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
