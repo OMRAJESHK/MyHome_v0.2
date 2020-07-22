@@ -93,6 +93,9 @@
       <DependentUpon>MyHomeDataAccessLayer.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyTax.cs">
+      <DependentUpon>MyHomeDataAccessLayer.tt</DependentUpon>
+    </Compile>
     <Compile Include="Proximity.cs">
       <DependentUpon>MyHomeDataAccessLayer.tt</DependentUpon>
     </Compile>

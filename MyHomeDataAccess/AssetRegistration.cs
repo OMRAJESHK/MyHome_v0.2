@@ -16,6 +16,7 @@ namespace MyHomeDataAccess
     {
         public int AssetId { get; set; }
         public string AssetName { get; set; }
+        public string RegusteredTo { get; set; }
         public System.DateTime RegisteredDate { get; set; }
         public string Address { get; set; }
         public int LandTaxAmount { get; set; }
@@ -25,6 +26,7 @@ namespace MyHomeDataAccess
         public int NumberofFans { get; set; }
         public int NumberofBulbs { get; set; }
         public int IsSump { get; set; }
+        public int IsRent { get; set; }
         public string Remarks { get; set; }
     }
 }

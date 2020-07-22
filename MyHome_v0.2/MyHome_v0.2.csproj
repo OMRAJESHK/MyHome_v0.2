@@ -207,7 +207,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\AdminDataController.cs" />
+    <Compile Include="Controllers\AssetController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TenentAgreementController.cs" />
     <Compile Include="Controllers\TenentController.cs" />
@@ -397,6 +397,7 @@
     <Content Include="Views\Admin\_SaveTransactions.cshtml" />
     <Content Include="Views\Admin\_SaveProximities.cshtml" />
     <Content Include="Views\Admin\_Sendmail.cshtml" />
+    <Content Include="Views\Admin\_SelectAsset.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyHomeDataAccess\MyHomeDataAccess.csproj">

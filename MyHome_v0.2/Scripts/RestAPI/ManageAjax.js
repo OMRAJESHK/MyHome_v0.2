@@ -31,6 +31,7 @@
         $.ajax({
             url: url,
             method: 'post',
+            headers: { 'Authorization': "Bearer " + sessionStorage.getItem('accessToken') },
             contentType: 'application/json',
             data: data,
             success: (response) => { callBack(response) },
@@ -39,4 +40,30 @@
             }
         });
     }
+    static Put = (url, data, callBack) => {
+        $.ajax({
+            url: url,
+            method: 'put',
+            headers: { 'Authorization': "Bearer " + sessionStorage.getItem('accessToken') },
+            contentType: 'application/json',
+            data: data,
+            success: (response) => { callBack(response) },
+            error: (jqXHR) => {
+                console.log('something went wrong...I donno what')
+            }
+        });
+    }
+    static Delete = (url, callBack) => {
+        $.ajax({
+            url: url,
+            method: 'delete',
+            headers: { 'Authorization': "Bearer " + sessionStorage.getItem('accessToken') },
+            contentType: 'application/json',
+            success: (response) => { callBack(response) },
+            error: (jqXHR) => {
+                console.log('something went wrong...I donno what')
+            }
+        });
+    }
+    
 }

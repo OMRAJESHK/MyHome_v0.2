@@ -15,7 +15,7 @@ namespace MyHomeDataAccess
     public partial class TenentRequest
     {
         public int TenentRequestId { get; set; }
-        public string AssetName { get; set; }
+        public int AssetName { get; set; }
         public string Description { get; set; }
         public System.DateTime RequestDate { get; set; }
     }

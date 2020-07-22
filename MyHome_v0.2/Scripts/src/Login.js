@@ -22,8 +22,7 @@
             phoneNumber: $('#txtLoginPhoneNumber').val(),
             password: $('#txtLoginPassword').val()
         }
-        ManageAjaxCalls.Get(ApiDictionary.GetTenentAgreement(), postData, getCredentials);
-
+        ManageAjaxCalls.Get(ApiDictionary.GetTenantAgreement(), postData, getCredentials);
     })
 });
 

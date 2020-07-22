@@ -71,7 +71,8 @@
             <PropertyRef Name="AssetId" />
           </Key>
           <Property Name="AssetId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AssetName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AssetName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RegusteredTo" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="RegisteredDate" Type="date" Nullable="false" />
           <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
           <Property Name="LandTaxAmount" Type="int" Nullable="false" />
@@ -81,6 +82,7 @@
           <Property Name="NumberofFans" Type="int" Nullable="false" />
           <Property Name="NumberofBulbs" Type="int" Nullable="false" />
           <Property Name="IsSump" Type="int" Nullable="false" />
+          <Property Name="IsRent" Type="int" Nullable="false" />
           <Property Name="Remarks" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="EmergencyContact">
@@ -88,7 +90,7 @@
             <PropertyRef Name="EmcyContactId" />
           </Key>
           <Property Name="EmcyContactId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AssetName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AssetName" Type="int" Nullable="false" />
           <Property Name="ContactName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ContactNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Profession" Type="nvarchar" MaxLength="50" />
@@ -98,7 +100,7 @@
             <PropertyRef Name="MailId" />
           </Key>
           <Property Name="MailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AssetName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AssetName" Type="int" Nullable="false" />
           <Property Name="MailTo" Type="nvarchar" MaxLength="50" />
           <Property Name="Description" Type="nvarchar" MaxLength="50" />
           <Property Name="MailDate" Type="date" />
@@ -108,17 +110,28 @@
             <PropertyRef Name="NotificationId" />
           </Key>
           <Property Name="NotificationId" Type="int" Nullable="false" />
-          <Property Name="AssetName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AssetName" Type="int" Nullable="false" />
           <Property Name="NotificationType" Type="int" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="NotificationDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PropertyTax">
+          <Key>
+            <PropertyRef Name="PropertyID" />
+          </Key>
+          <Property Name="PropertyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AssetName" Type="int" Nullable="false" />
+          <Property Name="TaxDate" Type="date" Nullable="false" />
+          <Property Name="TaxAmount" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Remarks" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Proximities">
           <Key>
             <PropertyRef Name="ProximityId" />
           </Key>
           <Property Name="ProximityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AssetName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AssetName" Type="int" Nullable="false" />
           <Property Name="RailwayStation" Type="nvarchar" MaxLength="50" />
           <Property Name="BusStation" Type="nvarchar" MaxLength="50" />
           <Property Name="Airport" Type="nvarchar" MaxLength="50" />
@@ -134,7 +147,7 @@
             <PropertyRef Name="AgreementId" />
           </Key>
           <Property Name="AgreementId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AssetName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AssetName" Type="int" Nullable="false" />
           <Property Name="ResidentsNumber" Type="int" Nullable="false" />
           <Property Name="JoiningDate" Type="date" Nullable="false" />
           <Property Name="LeavingDate" Type="date" Nullable="false" />
@@ -153,7 +166,7 @@
             <PropertyRef Name="TenentRequestId" />
           </Key>
           <Property Name="TenentRequestId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AssetName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AssetName" Type="int" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="RequestDate" Type="date" Nullable="false" />
         </EntityType>
@@ -162,7 +175,7 @@
             <PropertyRef Name="TransactionId" />
           </Key>
           <Property Name="TransactionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AssetName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AssetName" Type="int" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="50" />
           <Property Name="TransactionType" Type="int" Nullable="false" />
           <Property Name="Amount" Type="int" Nullable="false" />
@@ -240,6 +253,7 @@
           <EntitySet Name="EmergencyContact" EntityType="Self.EmergencyContact" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MailLogs" EntityType="Self.MailLogs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Notifications" EntityType="Self.Notifications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyTax" EntityType="Self.PropertyTax" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Proximities" EntityType="Self.Proximities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TenentAgreement" EntityType="Self.TenentAgreement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TenentRequests" EntityType="Self.TenentRequests" Schema="dbo" store:Type="Tables" />
@@ -330,7 +344,8 @@
             <PropertyRef Name="AssetId" />
           </Key>
           <Property Name="AssetId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AssetName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AssetName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RegusteredTo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="RegisteredDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LandTaxAmount" Type="Int32" Nullable="false" />
@@ -340,6 +355,7 @@
           <Property Name="NumberofFans" Type="Int32" Nullable="false" />
           <Property Name="NumberofBulbs" Type="Int32" Nullable="false" />
           <Property Name="IsSump" Type="Int32" Nullable="false" />
+          <Property Name="IsRent" Type="Int32" Nullable="false" />
           <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="EmergencyContact">
@@ -347,7 +363,7 @@
             <PropertyRef Name="EmcyContactId" />
           </Key>
           <Property Name="EmcyContactId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AssetName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AssetName" Type="Int32" Nullable="false" />
           <Property Name="ContactName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ContactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Profession" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -357,7 +373,7 @@
             <PropertyRef Name="MailId" />
           </Key>
           <Property Name="MailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AssetName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AssetName" Type="Int32" Nullable="false" />
           <Property Name="MailTo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MailDate" Type="DateTime" Precision="0" />
@@ -367,17 +383,28 @@
             <PropertyRef Name="NotificationId" />
           </Key>
           <Property Name="NotificationId" Type="Int32" Nullable="false" />
-          <Property Name="AssetName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AssetName" Type="Int32" Nullable="false" />
           <Property Name="NotificationType" Type="Int32" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="NotificationDate" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="PropertyTax">
+          <Key>
+            <PropertyRef Name="PropertyID" />
+          </Key>
+          <Property Name="PropertyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AssetName" Type="Int32" Nullable="false" />
+          <Property Name="TaxDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TaxAmount" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Proximity">
           <Key>
             <PropertyRef Name="ProximityId" />
           </Key>
           <Property Name="ProximityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AssetName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AssetName" Type="Int32" Nullable="false" />
           <Property Name="RailwayStation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="BusStation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Airport" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -393,7 +420,7 @@
             <PropertyRef Name="AgreementId" />
           </Key>
           <Property Name="AgreementId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AssetName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AssetName" Type="Int32" Nullable="false" />
           <Property Name="ResidentsNumber" Type="Int32" Nullable="false" />
           <Property Name="JoiningDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="LeavingDate" Type="DateTime" Nullable="false" Precision="0" />
@@ -412,7 +439,7 @@
             <PropertyRef Name="TenentRequestId" />
           </Key>
           <Property Name="TenentRequestId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AssetName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AssetName" Type="Int32" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="RequestDate" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
@@ -421,7 +448,7 @@
             <PropertyRef Name="TransactionId" />
           </Key>
           <Property Name="TransactionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AssetName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AssetName" Type="Int32" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TransactionType" Type="Int32" Nullable="false" />
           <Property Name="Amount" Type="Int32" Nullable="false" />
@@ -474,6 +501,7 @@
           <EntitySet Name="EmergencyContacts" EntityType="Self.EmergencyContact" />
           <EntitySet Name="MailLogs" EntityType="Self.MailLog" />
           <EntitySet Name="Notifications" EntityType="Self.Notification" />
+          <EntitySet Name="PropertyTaxes" EntityType="Self.PropertyTax" />
           <EntitySet Name="Proximities" EntityType="Self.Proximity" />
           <EntitySet Name="TenentAgreements" EntityType="Self.TenentAgreement" />
           <EntitySet Name="TenentRequests" EntityType="Self.TenentRequest" />
@@ -557,6 +585,7 @@
               <MappingFragment StoreEntitySet="AssetRegistration">
                 <ScalarProperty Name="AssetId" ColumnName="AssetId" />
                 <ScalarProperty Name="AssetName" ColumnName="AssetName" />
+                <ScalarProperty Name="RegusteredTo" ColumnName="RegusteredTo" />
                 <ScalarProperty Name="RegisteredDate" ColumnName="RegisteredDate" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="LandTaxAmount" ColumnName="LandTaxAmount" />
@@ -566,6 +595,7 @@
                 <ScalarProperty Name="NumberofFans" ColumnName="NumberofFans" />
                 <ScalarProperty Name="NumberofBulbs" ColumnName="NumberofBulbs" />
                 <ScalarProperty Name="IsSump" ColumnName="IsSump" />
+                <ScalarProperty Name="IsRent" ColumnName="IsRent" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -600,6 +630,18 @@
                 <ScalarProperty Name="NotificationType" ColumnName="NotificationType" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="NotificationDate" ColumnName="NotificationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyTaxes">
+            <EntityTypeMapping TypeName="MyHomeDBModel.PropertyTax">
+              <MappingFragment StoreEntitySet="PropertyTax">
+                <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+                <ScalarProperty Name="AssetName" ColumnName="AssetName" />
+                <ScalarProperty Name="TaxDate" ColumnName="TaxDate" />
+                <ScalarProperty Name="TaxAmount" ColumnName="TaxAmount" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

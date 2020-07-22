@@ -29,5 +29,8 @@ namespace MyHome_v0._2.Controllers
         public ActionResult _Sendmail() {
             return View();
         }
+         public ActionResult _SelectAsset() {
+            return View();
+        }
     }
 }

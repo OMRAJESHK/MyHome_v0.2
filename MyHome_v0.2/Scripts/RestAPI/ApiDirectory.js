@@ -4,9 +4,13 @@
     static gotoAdminLogin = () => "UserAccount/Login";
     static GetUserRole = () => sessionStorage.getItem('path')+"/api/account/GetUserRole";
     static GetTransactions = () => sessionStorage.getItem('path') + '/api/Transactions/GetTransactions';
-    static GetTenentAgreement = () => sessionStorage.getItem('path') + '/api/TenentAgreement/GetTenentAgreement';
+    static GetTenantAgreement = () => sessionStorage.getItem('path') + '/api/TenentAgreement/GetTenentAgreement';
     static PutTenentAgreement = () => sessionStorage.getItem('path') + '/api/TenentAgreement/PutTenentAgreement';
     static DeleteTenentAgreement = () => sessionStorage.getItem('path') + '/api/TenentAgreement/DeleteTenentAgreement';
+    static AssetPost = () => sessionStorage.getItem('path') + "/api/Asset/PostAssetDetails";
+    static AssetPut = () => sessionStorage.getItem('path') + "/api/Asset/PutAsset";
+    static DeleteAsset = () => sessionStorage.getItem('path') + "/api/Asset/DeleteAsset";
+
 }
 const Admin = 'Admin/';
 const Client = 'tenent/';
@@ -15,9 +19,9 @@ const AdminURLs = {
     Asset: Admin + '_AssetRegistration',
     TenantDeed: Admin + '_TenantDeedRegistration',
     SaveTransaction: Admin + '_SaveTransactions',
-    SaveNotification: Admin +'_SaveNotifications',
+    SaveNotification: Admin + '_SaveNotifications',
+    selectAsset: Admin + '_SelectAsset',
 }
 const TenantURLs = {
     Dashboard: Client + '_tenentDashboard',
-
 }

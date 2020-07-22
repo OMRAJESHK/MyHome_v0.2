@@ -2,6 +2,13 @@
 .minWidthFull {
     min-width:100% ;
 }
+.asset-title {
+    letter-spacing: 2px;
+    text-transform: uppercase
+}
+.cursor-pointer {
+    cursor:pointer !important;
+}
 #customFile .custom-file-input:lang(en)::after {
     content: "Select file...";
 }
@@ -108,29 +115,12 @@
     /* IE (handles all cases, really, but we should also include the vendor-specific properties just to be safe) */
 }
 
-    .doughnut .chart-legend li {
-        display: inline-block;
-        white-space: nowrap;
-        position: relative;
-        margin-bottom: 4px;
-        border-radius: 5px;
-        padding: 2px 24px 2px 0;
-        font-size: smaller;
-        cursor: default;
-    }
+.doughnut .chart-legend li {
+    display: inline-block;white-space: nowrap;position: relative;margin-bottom: 4px;
+    border-radius: 5px;padding: 2px 24px 2px 0;font-size: smaller;cursor: default;
+}
 
-        .doughnut .chart-legend li .line-legend-icon,
-        .doughnut .chart-legend li .doughnut-legend-icon {
-            display: block;
-            float: left;
-            left: 0;
-            top: 0;
-            width: 20px;
-            height: 20px;
-            border-radius: 5px;
-        }
-
-        .doughnut .chart-legend li .doughnut-legend-text,
-        .doughnut .chart-legend li .line-legend-text {
-            padding-left: 10px;
-        }
+.doughnut .chart-legend li .line-legend-icon,
+.doughnut .chart-legend li .doughnut-legend-icon { display: block;float: left;left: 0;top: 0;width: 20px;height: 20px;border-radius: 5px; }
+.doughnut .chart-legend li .doughnut-legend-text,
+.doughnut .chart-legend li .line-legend-text { padding-left: 10px; }

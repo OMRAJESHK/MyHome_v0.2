@@ -7,7 +7,7 @@
     if (sessionStorage.getItem('accessToken') == null) {
         window.location.href = window.rootpath + ApiDictionary.gotoLogin();
     }
-    if (sessionStorage.getItem('RoleID') == '0') {
+    if (sessionStorage.getItem('RoleID') == 0) {
         $('.AdminMenu').hide();
         $('.ClientMenu').show();
         var url = window.rootpath + "Tenent/_tenentDetails";
@@ -17,12 +17,10 @@
     } else {
         $('.ClientMenu').hide();
         $('.AdminMenu').show();
-
         var url = window.rootpath + "Admin/_AdminDashboard";
-
         $.get(url, function (response) {
             RenderContent.html(response);
-            mainContent.find('#myModal').modal('show');
+            callAssetModal();
         });
         mainContent.find('#btnAddNotifications').show();
     }
@@ -227,12 +225,13 @@
         $.get(url, function (response) {
             RenderContent.html(response);
             $('#notificationsTab').removeClass('show-dropdown');
-            (sessionStorage.getItem('RoleID') == '0') ?
+            (sessionStorage.getItem('RoleID') == 0) ?
                 mainContent.find('#btnAddNotifications').hide() :
                 mainContent.find('#btnAddNotifications').show();
         });
     });
         //------ADMIN BUTTONS-----------//
+
     $(".btn_A_Dashboad").click(() => {
         var url = window.rootpath + AdminURLs.Dashboard;
         $.get(url, function (response) {
@@ -243,6 +242,9 @@
         var url = window.rootpath + AdminURLs.Asset;
         $.get(url, function (response) {
             RenderContent.html(response);
+            callAssetModal();
+            RenderContent.find("#txtRegDate").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true });
+
         });
     });
     $(".btnTenantAgreement").click(() => {
@@ -275,8 +277,11 @@
             RenderContent.html(response);
         });
     });
-    
-    
+
+
+    $(document).on('click', '.assetDivs', () => {
+        console.log($(this).html());
+    })
         //------COMMON BUTTONS----------//
 
     $('#btnLogOut').click(() => {

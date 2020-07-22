@@ -15,7 +15,7 @@ namespace MyHomeDataAccess
     public partial class Transaction
     {
         public int TransactionId { get; set; }
-        public string AssetName { get; set; }
+        public int AssetName { get; set; }
         public string Description { get; set; }
         public int TransactionType { get; set; }
         public int Amount { get; set; }

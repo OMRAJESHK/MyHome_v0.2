@@ -12,12 +12,13 @@ namespace MyHomeDataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class Notification
+    public partial class PropertyTax
     {
-        public int NotificationId { get; set; }
+        public int PropertyID { get; set; }
         public int AssetName { get; set; }
-        public int NotificationType { get; set; }
-        public string Description { get; set; }
-        public System.DateTime NotificationDate { get; set; }
+        public System.DateTime TaxDate { get; set; }
+        public int TaxAmount { get; set; }
+        public int Status { get; set; }
+        public string Remarks { get; set; }
     }
 }

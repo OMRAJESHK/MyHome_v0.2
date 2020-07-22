@@ -15,7 +15,7 @@ namespace MyHomeDataAccess
     public partial class TenentAgreement
     {
         public int AgreementId { get; set; }
-        public string AssetName { get; set; }
+        public int AssetName { get; set; }
         public int ResidentsNumber { get; set; }
         public System.DateTime JoiningDate { get; set; }
         public System.DateTime LeavingDate { get; set; }

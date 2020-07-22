@@ -14,15 +14,15 @@
                 <div class="card-body">
                     <div autocomplete="off" class="form" role="form">
                         <div class="form-group">
-                            <label for="inputAssetName">Asset Name</label>
+                            <label for="inputAssetName" class="font-weight-bold">Asset Name</label>
                             <input class="form-control minWidthFull" id="txtAssetName" placeholder="Asset Name..." type="text">
                         </div>
                         <div class="form-group">
-                            <label for="inputAssetName">Registration Date</label>
+                            <label for="inputAssetName" class="font-weight-bold">Registration Date</label>
                             <input class="form-control minWidthFull" id="txtRegDate" placeholder="Registration Date..." type="text">
                         </div>
                         <div class="form-group">
-                            <label for="inputTranAmt">Registered To</label>
+                            <label for="inputTranAmt" class="font-weight-bold">Registered To</label>
                             <input class="form-control minWidthFull" id="txtRegTo" placeholder="Registered To..." type="text">
                         </div>
                         
@@ -36,15 +36,15 @@
                 <div class="card-body card-body pb-4">
                     <div autocomplete="off" class="form" role="form">
                         <div class="form-group">
-                            <label for="inputLandTax">Land Tax Amount</label>
+                            <label for="inputLandTax" class="font-weight-bold">Land Tax Amount</label>
                             <input class="form-control minWidthFull" id="txtRegTaxAmt" placeholder="Land Tax Amount..." type="text">
                         </div>
                         <div class="form-group">
-                            <label for="inputNumberOfDoors">Number Of Doors</label>
+                            <label for="inputNumberOfDoors" class="font-weight-bold">Number Of Doors</label>
                             <input class="form-control minWidthFull" id="txtNumDoors" placeholder="Number Of Doors..." type="number">
                         </div>
                         <div class="form-group">
-                            <label for="inputNumberOfWindows">Number Of Windows</label>
+                            <label for="inputNumberOfWindows" class="font-weight-bold">Number Of Windows</label>
                             <input class="form-control minWidthFull" id="txtNumWindows" placeholder="Number Of Windows..." type="number">
                         </div>
                     </div>
@@ -58,15 +58,15 @@
                     <div autocomplete="off" class="form" role="form">
 
                         <div class="form-group">
-                            <label for="inputNumberOfTaps">Number Of Taps</label>
+                            <label for="inputNumberOfTaps" class="font-weight-bold">Number Of Taps</label>
                             <input class="form-control minWidthFull" id="txtNumTaps" placeholder="Number Of Taps..." type="number">
                         </div>
                         <div class="form-group">
-                            <label for="inputNumberOfBulbs">Number Of Bulbs</label>
+                            <label for="inputNumberOfBulbs" class="font-weight-bold">Number Of Bulbs</label>
                             <input class="form-control minWidthFull" id="txtNumBulbs" placeholder="Number Of Bulbs..." type="number">
                         </div>
                         <div class="form-group">
-                            <label for="inputNumberOfBulbs">Number Of Fans</label>
+                            <label for="inputNumberOfBulbs" class="font-weight-bold">Number Of Fans</label>
                             <input class="form-control minWidthFull" id="txtNumFans" placeholder="Number Of Fans..." type="number">
                         </div>
                     </div>
@@ -81,29 +81,36 @@
                 <div class="card-body">
                     <div autocomplete="off" class="form" role="form">
                         <div class="form-group">
-                            <label for="inputAddress">Address</label>
+                            <label for="inputAddress" class="font-weight-bold">Address</label>
                             <input class="form-control minWidthFull" id="txtAssetAddress" placeholder="Address..." type="text">
                         </div>
-                        <div class="custom-control custom-checkbox form-group">
-                            <input type="checkbox" id="ckbIsSump" class="custom-control-input">
-                            <label class="custom-control-label"  for="IsSump">Is Sump</label>
-                        </div>
-                        <div class="custom-control custom-checkbox form-group">
-                            <input type="checkbox" class="custom-control-input" id="ckbIsRent">
-                            <label class="custom-control-label"  for="IsRent">Is Rent</label>
+                        <div style="display:flex;margin-top:20px">
+                            <div style="flex:1" className="text-right">
+                                <div class="form-check">
+                                    <label class="font-weight-bold" for="IsSump">
+                                        <input type="checkbox" class="form-check-input" id="ckbIsSump">Is Sump
+                                    </label>
+                                </div>
+                            </div>
+                            <div style="flex:1">
+                                <div class="form-check">
+                                    <label class="font-weight-bold" for="IsRent">
+                                        <input type="checkbox" class="form-check-input" id="ckbIsRent">Is Rent
+                                    </label>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="form-group">
-                            <label for="inputRemarks">Remarks</label>
-                            <textarea class="form-control minWidthFull" id="txtAssetRegRemarks" placeholder="Remarks..." rows="4"></textarea>
+                            <label for="inputRemarks" class="font-weight-bold">Remarks</label>
+                            <textarea class="form-control minWidthFull" id="txtAssetRegRemarks" placeholder="Remarks..." rows="3"></textarea>
                         </div>
-
                     </div>
                 </div>
                 <div class="card-footer p-2">
                     <div class="d-flex justify-content-between">
-                        <button class="btn btn-info w-25" type="button">Back</button>
-                        <button class="btn btn-danger w-25" type="submit">clear</button>
-                        <button class="btn btn-info w-25" type="button" id="btnAssetRegistration">Save</button>
+                        <button class="btn btn-danger w-25" type="button" onclick="clearTextBoxes()">clear</button>
+                        <button class="btn btn-info w-25" type="button" id="btnSaveAsset" onclick="saveAsset()">Save</button>
                     </div>
                 </div>
             </div>
