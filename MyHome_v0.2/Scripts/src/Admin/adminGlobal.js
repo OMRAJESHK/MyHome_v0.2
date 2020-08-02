@@ -26,7 +26,7 @@ const callAssetModal = () => {
                             <div class="card-footer">
                                 <div class="d-flex justify-content-between">
                                       <button class="btn btn-primary" onclick="AssetSelected('${value.AssetName}');">Select</button>
-                                      <button class="btn btn-info">Edit</button>
+                                      <button class="btn btn-info" onclick="AssetEdit(${value.AssetId})">Edit</button>
                                       <button class="btn btn-danger pull-right"onclick="deleteAsset(${value.AssetId})">Delete</button>
                                   </div>
                             </div>
@@ -61,7 +61,7 @@ const AssetEdit = (id) => {
         $('#txtNumTaps').val(Asset[0].NumberofTaps);
         $('#txtNumFans').val(Asset[0].NumberofFans);
         $('#txtNumBulbs').val(Asset[0].NumberofBulbs);
-        $("#ckbIsRent").attr('checked', Asset[0].IsRent == 1 ? true:false);
+        $("#ckbIsRent").attr('checked', Asset[0].IsRent == 1 ? true : false);
         $("#ckbIsSump").attr('checked', Asset[0].IsSump == 1 ? true : false);
         $('#txtAssetRegRemarks').val(Asset[0].Remarks);
     }

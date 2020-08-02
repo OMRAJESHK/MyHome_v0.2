@@ -26,6 +26,15 @@ namespace MyHome_v0._2.Controllers
                  return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
              } 
          }
+        [AllowAnonymous]
+        public IHttpActionResult GetAssetName(int AssetName)
+        {
+            var getAssetName = entities.AssetRegistrations.Where(x => x.AssetId == AssetName).SingleOrDefault();
+            if (getAssetName == null){
+                return Ok("404");
+            }
+            return Ok(getAssetName);
+        }
         [HttpPost]
          public HttpResponseMessage PostAssetDetails(AssetRegistration asset) {
              try { 

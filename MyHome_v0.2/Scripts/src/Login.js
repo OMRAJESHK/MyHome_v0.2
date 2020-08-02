@@ -9,7 +9,6 @@
         sessionStorage.setItem('UserMail', Mail);
         let adminName = Mail.split('@');
         sessionStorage.setItem('UserName', adminName[0]);
-
         let postData = { username: Mail, password: Password, grant_type: 'password' }
         ManageAjaxCalls.Post(ApiDictionary.token(), postData, getToken);
     });
@@ -36,14 +35,10 @@ function getCredentials(data) {
             password: data.TenentPassword,
             grant_type: 'password'
         }
-        sessionStorage.setItem('UserName', data.ResidentsNames)
+        sessionStorage.setItem('AssetName', data.AssetName);
+        sessionStorage.setItem('UserName', data.ResidentsNames);
         ManageAjaxCalls.Post(ApiDictionary.token(), postData, getToken);
     }
-}
-function getRoleID(res) {
-    atob(res)
-    sessionStorage.setItem('RoleID', res);
-    window.location.href = window.rootpath + "Home/index";
 }
 function getToken(res) {
     sessionStorage.setItem('accessToken', res.access_token);

@@ -12,16 +12,13 @@
                     <div autocomplete="off" class="form" role="form">
                         <div class="form-group">
                             <label for="inputName">Transaction Type</label>
-                            <select class="form-control minWidthFull">
-                                <option>--Select--</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
+                            <select class="form-control minWidthFull" id="ddlTransactionType">
+                                <option value="0" disabled>--Select--</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="inputTranDesc">Transaction Description</label>
-                            <input class="form-control minWidthFull" placeholder="Description..." type="text">
+                            <input class="form-control minWidthFull" placeholder="Description..." id="txtDescription" type="text">
                         </div>
                         <div class="form-group">
                             <label for="inputTranAmt">Transaction Amount</label>
@@ -63,13 +60,14 @@
                 <div class="card-header bg-primary"><h3 class="mb-0 text-light">Add Transaction</h3></div>
                 <div class="card-body card-body pb-4">
                     <div autocomplete="off" class="form" role="form">
-                        <div class="custom-control custom-checkbox form-group">
-                            <input type="checkbox" class="custom-control-input" id="defaultChecked2" checked>
-                            <label class="custom-control-label" for="defaultChecked2">Payment Status</label>
+                        <div class="form-check">
+                            <label class="font-weight-bold" for="PaymentStatus">
+                                <input type="checkbox" class="form-check-input" id="ckbPaymentStatus">Payment Status
+                            </label>
                         </div>
                         <div class="form-group">
                             <label for="inputRemarks">Remarks</label>
-                            <textarea class="form-control minWidthFull" placeholder="Remarks..." rows="4"></textarea>
+                            <textarea class="form-control minWidthFull" id="txtRemarks" placeholder="Remarks..." rows="4"></textarea>
                         </div>
                     </div>
                 </div>
@@ -77,7 +75,7 @@
                     <div class="d-flex justify-content-between">
                         <button class="btn btn-info w-25" type="button">Back</button>
                         <button class="btn btn-danger w-25" type="submit">clear</button>
-                        <button class="btn btn-info w-25" type="submit">Save</button>
+                        <button class="btn btn-info w-25" type="button" id="btnSaveTransaction">Save</button>
                     </div>
                 </div>
             </div>

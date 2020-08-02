@@ -10,7 +10,8 @@
     static AssetPost = () => sessionStorage.getItem('path') + "/api/Asset/PostAssetDetails";
     static AssetPut = () => sessionStorage.getItem('path') + "/api/Asset/PutAsset";
     static DeleteAsset = () => sessionStorage.getItem('path') + "/api/Asset/DeleteAsset";
-
+    static GetAssetName = () => sessionStorage.getItem('path') + '/api/Asset/GetAssetName';
+    static GetProximity = () => sessionStorage.getItem('path') + '/api/Proximities/GetProximity';
 }
 const Admin = 'Admin/';
 const Client = 'tenent/';

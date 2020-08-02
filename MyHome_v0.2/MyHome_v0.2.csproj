@@ -209,6 +209,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AssetController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProximitiesController.cs" />
     <Compile Include="Controllers\TenentAgreementController.cs" />
     <Compile Include="Controllers\TenentController.cs" />
     <Compile Include="Controllers\TransactionsController.cs" />
@@ -316,10 +317,14 @@
     <Content Include="Scripts\RestAPI\ManageAjax.js" />
     <Content Include="Scripts\src\Admin\adminGlobal.js" />
     <Content Include="Scripts\src\Admin\AssetRegistration.js" />
+    <Content Include="Scripts\src\Admin\Transaction.js" />
     <Content Include="Scripts\src\Tenent\AllTransactions.js" />
     <Content Include="Scripts\src\GlobalConstants.js" />
     <Content Include="Scripts\src\Login.js" />
     <Content Include="Scripts\src\Registration.js" />
+    <Content Include="Scripts\src\Tenent\houseDetails.js" />
+    <Content Include="Scripts\src\Tenent\Proximities.js" />
+    <Content Include="Scripts\src\Tenent\TenantGlobal.js" />
     <Content Include="test.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

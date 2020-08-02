@@ -1,12 +1,4 @@
-﻿
-// Implemented ASSET REGISTRATION POST
-$('.main-content').on('click', '#btnSaveAsset', () => {
-});
-
-const clearTextBoxes = () => {
-    $("#ckbIsRent, #ckbIsSump").prop('checked', false);
-    $('.main-content').find('.form-control').val('')
-}
+﻿// Save and Edit Asset
 const saveAsset = () => {
     let IsRent = $("#ckbIsRent").is(':checked') ? 1 : 0;
     let IsSump = $("#ckbIsSump").is(':checked') ? 1 : 0;
@@ -29,12 +21,27 @@ const saveAsset = () => {
     addetID != null ? ManageAjaxCalls.Put(ApiDictionary.AssetPut() + `?id=${addetID}`, assetToSave, assetPostResponse) :
     ManageAjaxCalls.Post(ApiDictionary.AssetPost(), assetToSave, assetPostResponse);
 }
+// Delete Asset
+const deleteAsset = (id) => {
+    ManageAjaxCalls.Delete(ApiDictionary.DeleteAsset() + `?id=${Number(id)}`, assetDeleteResponse);
+}
 const assetPostResponse = (res) => {
     console.log(res);
 }
 const assetDeleteResponse = (res) => {
     console.log('delete',res);
 }
-const deleteAsset = (id) => {
-    ManageAjaxCalls.Delete(ApiDictionary.DeleteAsset() + `?id=${Number(id)}`, assetDeleteResponse);
+const clearTextBoxes = () => {
+    $("#ckbIsRent, #ckbIsSump").prop('checked', false);
+    $('.main-content').find('.form-control').val('');
+}
+const getTransactionList = () => {
+    let TransactionsList = convertObjectArray(TransactionTypes);
+    var optionList = '';
+    TransactionsList.map((list, index) => {
+        if (list.value != 0) {
+            optionList += `<option id=${index+1} value=${list.value}>${list.name}</option>`
+        }
+    });
+    return optionList;
 }

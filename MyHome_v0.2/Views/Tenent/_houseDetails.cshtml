@@ -1,6 +1,80 @@
 ﻿@{
     Layout = null;
 }
-<h1>House Details</h1>
+<div class="container-fluid mt-3">
+        <div class="d-flex justify-content-between mb-1">
+            <h5 class="h2">Home Aminities</h5>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card card-outline-secondary">
+                    <div class="card-header bg-primary"><h3 class="mb-0 text-light">Primary</h3></div>
+                    <div class="card-body">
+                        <div autocomplete="off" class="form" role="form">
+                            <div class="form-group">
+                                <label for="inputNumberOfDoors" class="font-weight-bold">Number Of Doors</label>
+                                <label for="inputNumberOfDoors" class="font-weight-bold float-right" id="lblNumberofDoors">4</label>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputNumberOfWindows" class="font-weight-bold">Number Of Windows</label>
+                                <label for="inputNumberOfWindows" class="font-weight-bold float-right" id="lblNumberofWindows">5</label>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputNumberOfTaps" class="font-weight-bold">Number Of Taps</label>
+                                <label for="inputNumberOfTaps" class="font-weight-bold float-right" id="lblNumberofTaps">10</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card card-outline-secondary">
+                    <div class="card-header bg-primary"><h3 class="mb-0 text-light">Secondary</h3></div>
+                    <div class="card-body">
+                        <div autocomplete="off" class="form" role="form">
+                            <div class="form-group">
+                                <label for="inputAddress" class="font-weight-bold">Address</label>
+                                <label for="inputAddress" class="font-weight-bold float-right" id="lblAddress"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card card-outline-secondary">
+                    <div class="card-header bg-primary"><h3 class="mb-0 text-light">Tertiary</h3></div>
+                    <div class="card-body">
+                        <div autocomplete="off" class="form" role="form">
+                            <div class="form-group">
+                                <label for="inputNumberOfBulbs" class="font-weight-bold">Number Of Bulbs</label>
+                                <label for="inputNumberOfBulbs" class="font-weight-bold float-right" id="lblNumberofBulbs">6</label>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputNumberOfBulbs" class="font-weight-bold">Number Of Fans</label>
+                                <label for="inputNumberOfBulbs" class="font-weight-bold float-right" id="lblNumberofFans">3</label>
+                            </div>
+                            <div style="display:flex;margin-top:20px">
+                                <div style="flex:1" className="text-right">
+                                    <div class="form-check">
+                                        <label class="font-weight-bold" for="IsSump">
+                                            <input type="checkbox" class="form-check-input" id="ckbIsSump" disabled>Is Sump
+                                        </label>
+                                    </div>
+                                </div>
+                                <div style="flex:1">
+                                    <div class="form-check">
+                                        <label class="font-weight-bold" for="IsRent">
+                                            <input type="checkbox" class="form-check-input" id="ckbIsRent" disabled>Is Rent
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
 
 

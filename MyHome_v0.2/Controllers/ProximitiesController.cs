@@ -5,21 +5,17 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using MyHomeDataAccess;
+using System.Web.Http.Description;
+
 
 namespace MyHome_v0._2.Controllers
 {
-    [Authorize]
-    public class TransactionsController : ApiController
-    {
+    public class ProximitiesController : ApiController{
          private MyHomeDBEntities entities = new MyHomeDBEntities();
-        public IEnumerable<Transaction> GetTransactions() {
-            using (MyHomeDBEntities entities = new MyHomeDBEntities()) {
-                return entities.Transactions.ToList();
-            }
-        }
+         
         [HttpGet]
-         public HttpResponseMessage GetTransaction(int AssetName) {
-            var getValidData = entities.Transactions.Where(x => x.AssetName == AssetName).ToList();
+         public HttpResponseMessage GetProximity(int AssetName) {
+            var getValidData = entities.Proximities.Where(x => x.AssetName == AssetName).FirstOrDefault();
              try { 
                  if (getValidData == null){
                     return Request.CreateResponse(HttpStatusCode.NotFound, getValidData);
@@ -30,33 +26,33 @@ namespace MyHome_v0._2.Controllers
              } 
          }
         [HttpPost]
-         public HttpResponseMessage PostTransaction(Transaction transaction) {
+         public HttpResponseMessage PostProximity(Proximity proximity) {
              try { 
-                entities.Transactions.Add(transaction);
+                entities.Proximities.Add(proximity);
                 entities.SaveChanges();
-                var message=Request.CreateResponse(HttpStatusCode.Created, transaction);
+                var message=Request.CreateResponse(HttpStatusCode.Created, proximity);
                 return message;
              }catch(Exception ex){
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
              } 
          }
         [HttpPut]
-        public HttpResponseMessage PutTransaction(int id,[FromBody]Transaction transaction) {
+        public HttpResponseMessage PutProximity(int id,[FromBody]Proximity proximity) {
             try {
-                var entity = entities.Transactions.FirstOrDefault(x => x.TransactionId == id);
+                var entity = entities.Proximities.FirstOrDefault(x => x.ProximityId == id);
                 if (entity == null) {
                     return Request.CreateErrorResponse(HttpStatusCode.NotFound, id.ToString());
                 } else {
-                    entity.AssetName = transaction.AssetName;
-                    entity.Description = transaction.Description;
-                    entity.TransactionType = transaction.TransactionType;
-                    entity.Amount = transaction.Amount;
-                    entity.Date = transaction.Date;
-                    entity.TransactionMode = transaction.TransactionMode;
-                    entity.PaidBy = transaction.PaidBy;
-                    entity.PaidTo = transaction.PaidTo;
-                    entity.Status = transaction.Status;
-                    entity.Remarks = transaction.Remarks;
+                    entity.AssetName = proximity.AssetName;
+                    entity.RailwayStation = proximity.RailwayStation;
+                    entity.BusStation = proximity.BusStation;
+                    entity.Airport = proximity.Airport;
+                    entity.MetroStation = proximity.MetroStation;
+                    entity.SchoolorCollege = proximity.SchoolorCollege;
+                    entity.Hospital = proximity.Hospital;
+                    entity.Market = proximity.Market;
+                    entity.Temple = proximity.Temple;
+                    entity.Hotel = proximity.Hotel;
                     entities.SaveChanges();
                     return Request.CreateResponse(HttpStatusCode.OK, entity);
                 }
@@ -65,16 +61,16 @@ namespace MyHome_v0._2.Controllers
             }
         }
         [HttpDelete]
-        public HttpResponseMessage DeleteTransaction(int id) {
+        public HttpResponseMessage DeleteProximity(int id) {
             try {
-                var entity = entities.Transactions.FirstOrDefault(x => x.TransactionId == id);
+                var entity = entities.Proximities.FirstOrDefault(x => x.ProximityId == id);
                 if (entity == null) {
                     return Request.CreateErrorResponse(HttpStatusCode.NotFound,id.ToString()+" Not Found");
                 } else { 
-                    entities.Transactions.Remove(entity);
+                    entities.Proximities.Remove(entity);
                     entities.SaveChanges();
                     return Request.CreateResponse(HttpStatusCode.OK, id.ToString());
-                }
+                }                
             } catch (Exception ex) {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }

@@ -10,13 +10,13 @@ namespace MyHome_v0._2.Controllers
 {
     public class TenentAgreementController : ApiController{
         private MyHomeDBEntities entities = new MyHomeDBEntities();
-        public IHttpActionResult GetTenentAgreement(string phoneNumber,string password)
-        {
-            var getValidData = entities.TenentAgreements.Where(x => x.ContactNumbers==phoneNumber && x.TenentPassword == password).SingleOrDefault();
-            if (getValidData == null){
-                return Ok("404");
+        public HttpResponseMessage GetTenentAgreement(string phoneNumber, string password) {
+            TenentAgreementController customObj = new TenentAgreementController();
+            var getValidData = entities.TenentAgreements.Where(x => x.ContactNumbers == phoneNumber && x.TenentPassword == password).SingleOrDefault();
+            if (getValidData == null) {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest,"404");
             }
-            return Ok(getValidData);
+            return Request.CreateResponse(HttpStatusCode.Created, getValidData);
         }
         [Authorize]
         public HttpResponseMessage PostTenentAgreement([FromBody]TenentAgreement tenentagreement) {
@@ -56,7 +56,7 @@ namespace MyHome_v0._2.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
-
+        [HttpDelete]
         public HttpResponseMessage DeleteTenentAgreement(int id) {
             try {
                 var entity = entities.TenentAgreements.FirstOrDefault(x => x.AgreementId == id);
