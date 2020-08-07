@@ -134,11 +134,12 @@
                                     <div class="noti__item js-item-menu" id="notificationsTab">
                                         @*<i class="zmdi zmdi-comment-more"></i>*@
                                         <i class="far fa-bell text-primary"></i>
-                                        <span class="quantity">3</span>
+                                        <span class="quantity" id="Notiquantity">3</span>
                                         <div class="mess-dropdown js-dropdown">
                                             <div class="notifi__title font-weight-bold">
-                                                <p>You have 3 Notifications</p>
+                                                <p id="NotiCount"></p>
                                             </div>
+                                            <div id="listNotifications"></div>
                                             <div class="notifi__item">
                                                 <div class="bg-c1 img-cir img-40">
                                                     <i class="zmdi zmdi-email-open"></i>
@@ -148,7 +149,7 @@
                                                     <span class="date">April 12, 2018 06:50</span>
                                                 </div>
                                             </div>
-                                            <div class="notifi__item">
+                                            @*<div class="notifi__item">
                                                 <div class="bg-c2 img-cir img-40">
                                                     <i class="zmdi zmdi-account-box"></i>
                                                 </div>
@@ -165,9 +166,9 @@
                                                     <p>You got a new file</p>
                                                     <span class="date">April 12, 2018 06:50</span>
                                                 </div>
-                                            </div>
-                                            <div class="notifi__footer" id="btn_AllNotifications">
-                                                <a href="#">All notifications</a>
+                                            </div>*@
+                                            <div class="notifi__footer text-center" >
+                                                <button id="btnAllNotifn"class="btn btn-info" onclick="getAllNotification()">All notifications</button>
                                             </div>
                                         </div>
                                     </div>
@@ -331,6 +332,8 @@
     <script src="~/Scripts/src/Tenent/TenantGlobal.js"></script>
     <script src="~/Scripts/src/Tenent/Proximities.js"></script>
     <script src="~/Scripts/src/Tenent/houseDetails.js"></script>
+    <script src="~/Scripts/src/Tenent/SendRequest.js"></script>
+    <script src="~/Scripts/src/Tenent/Notification.js"></script>
     @Scripts.Render("~/bundles/Mainjs")
     @Scripts.Render("~/bundles/Assetjs")
 

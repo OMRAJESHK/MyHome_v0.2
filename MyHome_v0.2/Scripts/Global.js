@@ -83,22 +83,19 @@
         });
     });
     $(".btnRaiseReq").click(() => {
-        var url = window.rootpath + "Tenent/_raiseRequest";
-        $.get(url, function (response) {
-            RenderContent.html(response);
-        });
+        getRaiseReqHTML();
     });
 
-    $(".btn_A_Notifications,#btn_AllNotifications").click(() => {
-        var url = window.rootpath + "Tenent/_AllNotification";
-        $.get(url, function (response) {
-            RenderContent.html(response);
-            $('#notificationsTab').removeClass('show-dropdown');
-            (sessionStorage.getItem('RoleID') == 0) ?
-                mainContent.find('#btnAddNotifications').hide() :
-                mainContent.find('#btnAddNotifications').show();
-        });
-    });
+    //$(".btn_A_Notifications,#btn_AllNotifications").click(() => {
+    //    var url = window.rootpath + "Tenent/_AllNotification";
+    //    $.get(url, function (response) {
+    //        RenderContent.html(response);
+    //        $('#notificationsTab').removeClass('show-dropdown');
+    //        (sessionStorage.getItem('RoleID') == 0) ?
+    //            mainContent.find('#btnAddNotifications').hide() :
+    //            mainContent.find('#btnAddNotifications').show();
+    //    });
+    //});
         //------ADMIN BUTTONS-----------//
 
     $(".btn_A_Dashboad").click(() => {

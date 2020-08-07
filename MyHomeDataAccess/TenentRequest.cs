@@ -18,5 +18,6 @@ namespace MyHomeDataAccess
         public int AssetName { get; set; }
         public string Description { get; set; }
         public System.DateTime RequestDate { get; set; }
+        public string Response { get; set; }
     }
 }

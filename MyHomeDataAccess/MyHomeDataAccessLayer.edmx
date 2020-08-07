@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MyHomeDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MyHomeDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -109,11 +109,12 @@
           <Key>
             <PropertyRef Name="NotificationId" />
           </Key>
-          <Property Name="NotificationId" Type="int" Nullable="false" />
+          <Property Name="NotificationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AssetName" Type="int" Nullable="false" />
           <Property Name="NotificationType" Type="int" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="NotificationDate" Type="date" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PropertyTax">
           <Key>
@@ -167,8 +168,9 @@
           </Key>
           <Property Name="TenentRequestId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AssetName" Type="int" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
           <Property Name="RequestDate" Type="date" Nullable="false" />
+          <Property Name="Response" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Transactions">
           <Key>
@@ -275,8 +277,7 @@
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MyHomeDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -385,8 +386,9 @@
           <Property Name="NotificationId" Type="Int32" Nullable="false" />
           <Property Name="AssetName" Type="Int32" Nullable="false" />
           <Property Name="NotificationType" Type="Int32" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="NotificationDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="PropertyTax">
           <Key>
@@ -440,8 +442,9 @@
           </Key>
           <Property Name="TenentRequestId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AssetName" Type="Int32" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="RequestDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Response" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Transaction">
           <Key>
@@ -625,6 +628,7 @@
           <EntitySetMapping Name="Notifications">
             <EntityTypeMapping TypeName="MyHomeDBModel.Notification">
               <MappingFragment StoreEntitySet="Notifications">
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="NotificationId" ColumnName="NotificationId" />
                 <ScalarProperty Name="AssetName" ColumnName="AssetName" />
                 <ScalarProperty Name="NotificationType" ColumnName="NotificationType" />
@@ -685,6 +689,7 @@
           <EntitySetMapping Name="TenentRequests">
             <EntityTypeMapping TypeName="MyHomeDBModel.TenentRequest">
               <MappingFragment StoreEntitySet="TenentRequests">
+                <ScalarProperty Name="Response" ColumnName="Response" />
                 <ScalarProperty Name="TenentRequestId" ColumnName="TenentRequestId" />
                 <ScalarProperty Name="AssetName" ColumnName="AssetName" />
                 <ScalarProperty Name="Description" ColumnName="Description" />

@@ -9,6 +9,17 @@
 .cursor-pointer {
     cursor:pointer !important;
 }
+.fontSize_20 {
+    font-size: 20px;
+}
+.notifnLetter {
+    font-size: 20px;
+    color: white;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
 #customFile .custom-file-input:lang(en)::after {
     content: "Select file...";
 }

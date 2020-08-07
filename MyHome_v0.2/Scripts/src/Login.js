@@ -35,15 +35,23 @@ function getCredentials(data) {
             password: data.TenentPassword,
             grant_type: 'password'
         }
-        sessionStorage.setItem('AssetName', data.AssetName);
         sessionStorage.setItem('UserName', data.ResidentsNames);
-        ManageAjaxCalls.Post(ApiDictionary.token(), postData, getToken);
+        $.isNumeric(data.AssetName) ?
+            ManageAjaxCalls.Get(ApiDictionary.GetAssetName(), { AssetName: Number(data.AssetName) }, (res) => {
+                var name = '';
+                var id=''
+                if (res != undefined) {
+                    name = res.AssetName;
+                    id = res.AssetId;
+                } else { name = id = 'N/A' }
+                sessionStorage.setItem('AssetName', name);
+                sessionStorage.setItem('AssetID', id);
+                ManageAjaxCalls.Post(ApiDictionary.token(), postData, getToken);
+            }) :
+            null;
     }
 }
 function getToken(res) {
     sessionStorage.setItem('accessToken', res.access_token);
     window.location.href = window.rootpath + "Home/index";
-    if (sessionStorage.getItem('RoleID') == 1) {
-        $(".btn_A_Dashboad").click()
-    }
 }

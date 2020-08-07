@@ -209,7 +209,9 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AssetController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NotificationsController.cs" />
     <Compile Include="Controllers\ProximitiesController.cs" />
+    <Compile Include="Controllers\RequestController.cs" />
     <Compile Include="Controllers\TenentAgreementController.cs" />
     <Compile Include="Controllers\TenentController.cs" />
     <Compile Include="Controllers\TransactionsController.cs" />
@@ -323,7 +325,9 @@
     <Content Include="Scripts\src\Login.js" />
     <Content Include="Scripts\src\Registration.js" />
     <Content Include="Scripts\src\Tenent\houseDetails.js" />
+    <Content Include="Scripts\src\Tenent\Notification.js" />
     <Content Include="Scripts\src\Tenent\Proximities.js" />
+    <Content Include="Scripts\src\Tenent\SendRequest.js" />
     <Content Include="Scripts\src\Tenent\TenantGlobal.js" />
     <Content Include="test.html" />
     <Content Include="Web.config" />
@@ -403,6 +407,7 @@
     <Content Include="Views\Admin\_SaveProximities.cshtml" />
     <Content Include="Views\Admin\_Sendmail.cshtml" />
     <Content Include="Views\Admin\_SelectAsset.cshtml" />
+    <Content Include="Views\Tenent\_saveRequest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyHomeDataAccess\MyHomeDataAccess.csproj">

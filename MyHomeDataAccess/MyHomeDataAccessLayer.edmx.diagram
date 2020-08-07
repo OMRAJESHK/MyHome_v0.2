@@ -17,7 +17,7 @@
         <EntityTypeShape EntityType="MyHomeDBModel.PropertyTax" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MyHomeDBModel.Proximity" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MyHomeDBModel.TenentAgreement" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyHomeDBModel.TenentRequest" Width="1.5" PointX="4.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyHomeDBModel.TenentRequest" Width="1.5" PointX="4.75" PointY="9.5" IsExpanded="true" />
         <EntityTypeShape EntityType="MyHomeDBModel.Transaction" Width="1.5" PointX="10.75" PointY="5.75" IsExpanded="true" />
         <AssociationConnector Association="MyHomeDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="MyHomeDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />

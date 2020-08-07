@@ -1,8 +1,10 @@
-﻿class ApiDictionary  {
+﻿const path = sessionStorage.getItem('path');
+
+class ApiDictionary  {
     static token = () => '/token'; 
     static gotoLogin = () => "UserAccount/UserLogin";
     static gotoAdminLogin = () => "UserAccount/Login";
-    static GetUserRole = () => sessionStorage.getItem('path')+"/api/account/GetUserRole";
+    static GetUserRole = () => path+"/api/account/GetUserRole";
     static GetTransactions = () => sessionStorage.getItem('path') + '/api/Transactions/GetTransactions';
     static GetTenantAgreement = () => sessionStorage.getItem('path') + '/api/TenentAgreement/GetTenentAgreement';
     static PutTenentAgreement = () => sessionStorage.getItem('path') + '/api/TenentAgreement/PutTenentAgreement';
@@ -12,9 +14,15 @@
     static DeleteAsset = () => sessionStorage.getItem('path') + "/api/Asset/DeleteAsset";
     static GetAssetName = () => sessionStorage.getItem('path') + '/api/Asset/GetAssetName';
     static GetProximity = () => sessionStorage.getItem('path') + '/api/Proximities/GetProximity';
+    static GetRequest = () => sessionStorage.getItem('path') + '/api/Request/GetRequestsByID';
+    static PostRequest = () => sessionStorage.getItem('path') + "/api/Request/PostRequest";
+    static GetNotification = () => sessionStorage.getItem('path') + "/api/Notifications/GetNotification";
+    static DeleteNotification = () => sessionStorage.getItem('path') + "/api/Notifications/DeleteNotification";
+
 }
 const Admin = 'Admin/';
 const Client = 'tenent/';
+
 const AdminURLs = {
     Dashboard:Admin + '_AdminDashboard',
     Asset: Admin + '_AssetRegistration',
@@ -23,6 +31,8 @@ const AdminURLs = {
     SaveNotification: Admin + '_SaveNotifications',
     selectAsset: Admin + '_SelectAsset',
 }
+
 const TenantURLs = {
     Dashboard: Client + '_tenentDashboard',
+    saveRequest: Client + '_saveRequest'
 }

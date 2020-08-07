@@ -19,5 +19,6 @@ namespace MyHomeDataAccess
         public int NotificationType { get; set; }
         public string Description { get; set; }
         public System.DateTime NotificationDate { get; set; }
+        public int Status { get; set; }
     }
 }

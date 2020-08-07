@@ -2,4 +2,66 @@
 @{
     Layout = null;
 }
-<h1>Raise Request</h1>
+
+    <div class="container-fluid">
+        <div class="row mb-1">
+            <div class="col-lg-3">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Transaction in</span>
+                    </div>
+                    <select class="form-control" id="ddlTransactions" name="Transactions">
+                        <option>Today</option>
+                        <option>This Weekly</option>
+                        <option>This Month</option>
+                        <option>This Year</option>
+                        <option>Between Dates</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">From</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="" id="trnFrom">
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">To</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="" id="trnTo">
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <input type="button" class="btn btn-secondary" id="btnDateWise" value="Search" />
+                <input type="button" class="btn btn-success" onclick="saveRequestPage()" value="Request" />
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table table table-bordered table-hover" id="tblRequest">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Date</th>
+                            <th>Request</th>
+                            <th>Response</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <ul class="pagination ml-2">
+                <li class="page-item"><label>6 of 100</label></li>
+                <li class="page-item"><button class="btn btn-primary page-link">Previous</button></li>
+                <li class="page-item"><button class="btn btn-primary page-link">1</button></li>
+                <li class="page-item"><button class="btn btn-primary page-link">2</button></li>
+                <li class="page-item"><button class="btn btn-primary disabled page-link">3</button></li>
+                <li class="page-item"><button class="btn btn-info page-link">Next</button></li>
+            </ul>
+        </div>
+    </div>
