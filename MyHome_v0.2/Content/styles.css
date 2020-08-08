@@ -4,7 +4,7 @@
 }
 .asset-title {
     letter-spacing: 2px;
-    text-transform: uppercase
+    text-transform: uppercase;
 }
 .cursor-pointer {
     cursor:pointer !important;
@@ -19,6 +19,13 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+}
+.checkBoxStyle_1 {
+    width:30px;
+    height:30px;
+}
+.txtRounded {
+    border-radius: 0.50rem !important;
 }
 #customFile .custom-file-input:lang(en)::after {
     content: "Select file...";

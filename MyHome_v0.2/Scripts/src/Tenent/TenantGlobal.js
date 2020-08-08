@@ -1,10 +1,10 @@
 ﻿$("#lblAssetName").text(sessionStorage.getItem('AssetName'));
 
-function getAssetName(res) {
-    sessionStorage.setItem('AssetName', res.AssetName);
-    $("#lblAssetName").text(sessionStorage.getItem('AssetName'))
-    sessionStorage.setItem('AssetID', res.AssetId);
-}
+//function getAssetName(res) {
+//    sessionStorage.setItem('AssetName', res.AssetName);
+//    $("#lblAssetName").text(sessionStorage.getItem('AssetName'))
+//    sessionStorage.setItem('AssetID', res.AssetId);
+//}
 
 function getRaiseReqHTML(){
     var url = window.rootpath + "Tenent/_raiseRequest";

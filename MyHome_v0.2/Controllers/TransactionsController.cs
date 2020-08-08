@@ -29,6 +29,18 @@ namespace MyHome_v0._2.Controllers
                  return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
              } 
          }
+        [HttpGet]
+         public HttpResponseMessage GetTransactionByDate(DateTime From, DateTime To) {
+            var getValidData = entities.Transactions.Where(x => x.Date >= From && x.Date <= To).ToList();
+             try { 
+                 if (getValidData == null){
+                    return Request.CreateResponse(HttpStatusCode.NotFound, getValidData);
+                 }
+                 return Request.CreateResponse(HttpStatusCode.Created, getValidData);
+             }catch(Exception ex){
+                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+             } 
+         }
         [HttpPost]
          public HttpResponseMessage PostTransaction(Transaction transaction) {
              try { 
