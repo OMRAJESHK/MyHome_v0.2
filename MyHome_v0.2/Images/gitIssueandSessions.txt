@@ -1,0 +1,116 @@
+--------------------------
+ New Sessions
+--------------------------
+gstin:33GSPTN0871G1Z8  
+entityId:6             
+clientId:31            
+assesseeId:253         
+userId:565             
+branchId:0             
+userName:omrajeshk1994
+clientName:OTPTest
+
+sessionStorage.setItem('gstin','33GSPTN0871G1Z8')
+sessionStorage.setItem('entityId','6')
+sessionStorage.setItem('clientId','31')
+sessionStorage.setItem('assesseeId','253')
+sessionStorage.setItem('userId','565')
+sessionStorage.setItem('branchId','0')
+-------------------------
+
+-------------------------
+       Issue Login
+-------------------------
+gstin:27ASDFR4567RFGT
+entityId:163
+assesseeId:362
+branchId:0
+clientId:233
+userId:907
+---------------------------
+
+
+-------------------------
+       Ma'am Login
+-------------------------
+1.
+sessionStorage.setItem('gstin','27ASDFR4567RFGT')
+sessionStorage.setItem('entityId','163')
+sessionStorage.setItem('clientId','233')
+sessionStorage.setItem('assesseeId','362')
+sessionStorage.setItem('userId','907')
+sessionStorage.setItem('branchId','0')
+
+2. ranjitha entity
+sessionStorage.setItem('gstin','29ASDER5678TGHY')
+sessionStorage.setItem('entityId','161')
+sessionStorage.setItem('clientId','377')
+sessionStorage.setItem('assesseeId','434')
+sessionStorage.setItem('userId','907')
+sessionStorage.setItem('branchId','113')
+
+
+---------------------------
+Roopali
+---------------------------
+sessionStorage.setItem('gstin','29AAAFE9302R1ZY')
+sessionStorage.setItem('entityId','53')
+sessionStorage.setItem('clientId','381')
+sessionStorage.setItem('userId','657')
+sessionStorage.setItem('branchId','0')
+sessionStorage.setItem('assesseeId','437')
+
+
+sessionStorage.setItem('gstin','29AAAFE9302R1ZY')
+sessionStorage.setItem('entityId','56')
+sessionStorage.setItem('clientId','388')
+sessionStorage.setItem('userId','657')
+sessionStorage.setItem('branchId','114')
+sessionStorage.setItem('assesseeId','447')
+sessionStorage.setItem('userName','roopalisindagi0')
+sessionStorage.setItem('clientName','Branch1')
+---------------------------
+
+-------------------------
+nikitha.sr@relyonsoft.com login
+saral entity
+divakatr assesee
+-------------------------
+gstin:27ASDRT5678TGHY
+entityId:163
+assesseeId:370
+branchId:86
+clientId:242
+userId:565
+---------------------------
+url = "https://swapi.co/api/planets/4/";
+https://jsonplaceholder.typicode.com/todos/1
+
+
+Steps to merge conflicts while rebasing:
+
+1. rebase command:  git pull --rebase origin develop
+2. resolve the conflicts
+3. git rebase --continue   for submitting the current patch on resolve
+4. git rebase --skip   for moving to next patch
+5. git add .    after resolving all the conflicts(if branch is visible)
+6. git commit -m "resolve rebase conflicts"
+7. git pull
+8. git push
+
+
+premkiranpk@gmail.com
+Saral@123
+nikitha.sr@relyonsoft.com
+Saral@124
+roopalisindagi0@gmail.com
+Roopali@123
+omrajeshk1994@gmail.com
+Saral.Pro@123
+gstrSummaryList
+
+mstsc :203.192.204.166:12368
+
+** current change - local branch changes
+** incoming change - changes from the conflicting branch(remote branch)
+** no of patches = no of commits in the current branch

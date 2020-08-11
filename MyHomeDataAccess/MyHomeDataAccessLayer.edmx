@@ -101,9 +101,10 @@
           </Key>
           <Property Name="MailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AssetName" Type="int" Nullable="false" />
-          <Property Name="MailTo" Type="nvarchar" MaxLength="50" />
-          <Property Name="Description" Type="nvarchar" MaxLength="50" />
-          <Property Name="MailDate" Type="date" />
+          <Property Name="MailTo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="100" />
+          <Property Name="Body" Type="nvarchar(max)" />
+          <Property Name="MailDate" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Notifications">
           <Key>
@@ -375,9 +376,10 @@
           </Key>
           <Property Name="MailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AssetName" Type="Int32" Nullable="false" />
-          <Property Name="MailTo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MailDate" Type="DateTime" Precision="0" />
+          <Property Name="MailTo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MailDate" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="Subject" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Notification">
           <Key>
@@ -617,10 +619,11 @@
           <EntitySetMapping Name="MailLogs">
             <EntityTypeMapping TypeName="MyHomeDBModel.MailLog">
               <MappingFragment StoreEntitySet="MailLogs">
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
                 <ScalarProperty Name="MailId" ColumnName="MailId" />
                 <ScalarProperty Name="AssetName" ColumnName="AssetName" />
                 <ScalarProperty Name="MailTo" ColumnName="MailTo" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="MailDate" ColumnName="MailDate" />
               </MappingFragment>
             </EntityTypeMapping>

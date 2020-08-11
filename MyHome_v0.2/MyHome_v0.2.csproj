@@ -212,6 +212,7 @@
     <Compile Include="Controllers\NotificationsController.cs" />
     <Compile Include="Controllers\ProximitiesController.cs" />
     <Compile Include="Controllers\RequestController.cs" />
+    <Compile Include="Controllers\SendMailController.cs" />
     <Compile Include="Controllers\TenentAgreementController.cs" />
     <Compile Include="Controllers\TenentController.cs" />
     <Compile Include="Controllers\TransactionsController.cs" />
@@ -223,6 +224,7 @@
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\UploadImage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -320,6 +322,7 @@
     <Content Include="Scripts\src\Admin\adminGlobal.js" />
     <Content Include="Scripts\src\Admin\AssetRegistration.js" />
     <Content Include="Scripts\src\Admin\Transaction.js" />
+    <Content Include="Scripts\src\SendMail.js" />
     <Content Include="Scripts\src\Tenent\AllTransactions.js" />
     <Content Include="Scripts\src\GlobalConstants.js" />
     <Content Include="Scripts\src\Login.js" />
@@ -348,6 +351,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="MailDocs\" />
+    <Folder Include="Views\SendMail\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

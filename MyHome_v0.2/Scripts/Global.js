@@ -36,7 +36,7 @@
         var url = window.rootpath + "Tenent/_allTransactions";
         $.get(url, function (response) {
             RenderContent.html(response);
-            RenderContent.find("#trnFrom , #trnTo").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true });
+            RenderContent.find("#trnFrom , #trnTo").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true }).datepicker('setDate', new Date());
             transactionCall();
         });
     });
@@ -156,5 +156,4 @@
             window.location.href = window.rootpath + ApiDictionary.gotoLogin() :
             window.location.href = window.rootpath + ApiDictionary.gotoAdminLogin()
     });
-
 });

@@ -1,8 +1,6 @@
-﻿btnSaveTransaction
-// Save and Edit Asset
+﻿// Save and Edit Asset
 const saveTransaction = () => {
     let PaymentStatus = $("#ckbPaymentStatus").is(':checked') ? 1 : 0;
-
     let TransactionToSave = JSON.stringify({
         AssetName: $('#txtAssetName').val(),
         Description: $('#txtDescription').val(),
