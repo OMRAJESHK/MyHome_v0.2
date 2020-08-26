@@ -17,7 +17,7 @@
     <link href="~/Content/Site.css" rel="stylesheet" />
     <link href="~/Content/AssetsCSS/jqueryui.css" rel="stylesheet" />
     <link href="~/Content/AssetsCSS/Chart.min.css" rel="stylesheet" />
-  
+
 </head>
 <body>
     <script>
@@ -67,9 +67,9 @@
                         <li class="btn_A_AllTransactions"><a href="#"><i class="fas fa-chart-bar"></i>Transactions</a></li>
                         <li class="btn_A_Proximity"><a href="#"><i class="fas fa-map-marker-alt"></i>Proximities</a></li>
                         <li class="btn_A_EmcyContact"><a href="#"><i class="fas fa-calendar-alt"></i>Emergency Contacts</a></li>
-                        <li class="btn_A_Notifications"><a href="#"><i class="fas fa-map-marker-alt"></i>Notifications</a></li>
-                        <li class="btn_A_SendMail"><a href="#"><i class="fas fa-map-marker-alt"></i>Send mail</a></li>
-                        <li class="btn_A_ReqReceive"><a href="#"><i class="fas fa-map-marker-alt"></i>Requests</a></li>
+                        
+                        <li class="btn_A_SendMail"><a href="#"><i class="fas fa-envelope"></i>Send mail</a></li>
+                        <li class="btn_A_ReqReceive"><a href="#"><i class="far fa-comments"></i>Requests</a></li>
                     </ul>
                 </div>
             </nav>
@@ -105,9 +105,9 @@
                         <li class="btn_A_AllTransactions"><a href="#"><i class="fas fa-chart-bar"></i>Transactions</a></li>
                         <li class="btn_A_Proximity"><a href="#"><i class="fas fa-map-marker-alt"></i>Proximities</a></li>
                         <li class="btn_A_EmcyContact"><a href="#"><i class="fas fa-calendar-alt"></i>Emergency Contacts</a></li>
-                        <li class="btn_A_Notifications"><a href="#"><i class="fas fa-map-marker-alt"></i>Notifications</a></li>
-                        <li class="btn_A_SendMail"><a href="#"><i class="fas fa-map-marker-alt"></i>Send mail</a></li>
-                        <li class="btn_A_ReqReceive"><a href="#"><i class="fas fa-map-marker-alt"></i>Requests</a></li>
+                        
+                        <li class="btn_A_SendMail"><a href="#"><i class="fas fa-envelope"></i>Send mail</a></li>
+                        <li class="btn_A_ReqReceive"><a href="#"><i class="far fa-comments"></i>Requests</a></li>
                     </ul>
                 </nav>
             </div>
@@ -153,25 +153,25 @@
                                                 </div>
                                             </div>
                                             @*<div class="notifi__item">
-                                                <div class="bg-c2 img-cir img-40">
-                                                    <i class="zmdi zmdi-account-box"></i>
+                                                    <div class="bg-c2 img-cir img-40">
+                                                        <i class="zmdi zmdi-account-box"></i>
+                                                    </div>
+                                                    <div class="content">
+                                                        <p>Your account has been blocked</p>
+                                                        <span class="date">April 12, 2018 06:50</span>
+                                                    </div>
                                                 </div>
-                                                <div class="content">
-                                                    <p>Your account has been blocked</p>
-                                                    <span class="date">April 12, 2018 06:50</span>
-                                                </div>
-                                            </div>
-                                            <div class="notifi__item">
-                                                <div class="bg-c3 img-cir img-40">
-                                                    <i class="zmdi zmdi-file-text"></i>
-                                                </div>
-                                                <div class="content">
-                                                    <p>You got a new file</p>
-                                                    <span class="date">April 12, 2018 06:50</span>
-                                                </div>
-                                            </div>*@
-                                            <div class="notifi__footer text-center" >
-                                                <button id="btnAllNotifn"class="btn btn-info" onclick="getAllNotification()">All notifications</button>
+                                                <div class="notifi__item">
+                                                    <div class="bg-c3 img-cir img-40">
+                                                        <i class="zmdi zmdi-file-text"></i>
+                                                    </div>
+                                                    <div class="content">
+                                                        <p>You got a new file</p>
+                                                        <span class="date">April 12, 2018 06:50</span>
+                                                    </div>
+                                                </div>*@
+                                            <div class="notifi__footer text-center">
+                                                <button id="btnAllNotifn" class="btn btn-info" onclick="getAllNotification()">All notifications</button>
                                             </div>
                                         </div>
                                     </div>
@@ -217,58 +217,58 @@
                                     <div class="noti__item js-item-menu">
                                         <i class="fas fa-cog text-primary"></i>
                                         @*<span class="quantity">1</span>*@
-                                    <div class="email-dropdown js-dropdown">
-                                        <div class="email__title font-weight-bold">
-                                            <p>Customize</p>
-                                        </div>
-                                        <div>Light Theme</div>
-                                        <div>Dark Theme</div>
+                                        <div class="email-dropdown js-dropdown">
+                                            <div class="email__title font-weight-bold">
+                                                <p>Customize</p>
+                                            </div>
+                                            <div>Light Theme</div>
+                                            <div>Dark Theme</div>
 
-                                        <label>Logo Backgrounds</label>
-                                        <div>Logo colors</div>
-                                        <label>Navbar Backgrounds( the top header )</label>
-                                        <div>Navbar colors</div>
-                                        <label>Navbar Backgrounds( the top header )</label>
-                                        <div>Navbar colors</div>
+                                            <label>Logo Backgrounds</label>
+                                            <div>Logo colors</div>
+                                            <label>Navbar Backgrounds( the top header )</label>
+                                            <div>Navbar colors</div>
+                                            <label>Navbar Backgrounds( the top header )</label>
+                                            <div>Navbar colors</div>
 
-                                        <label>Sidebar</label>
-                                        <div>colors</div>
+                                            <label>Sidebar</label>
+                                            <div>colors</div>
 
-                                        <label>Image Background</label>
-                                        <div>Images</div>
-                                        <label>Page Content</label>
-                                        <div>Page Content colors</div>
-                                        <div>Reset to Defaults</div>
+                                            <label>Image Background</label>
+                                            <div>Images</div>
+                                            <label>Page Content</label>
+                                            <div>Page Content colors</div>
+                                            <div>Reset to Defaults</div>
 
-                                        <div class="email__item">
-                                            <div class="image img-cir img-40">
-                                                <img src="~/Images/avatar-06.jpg" alt="Cynthia Harvey" />
+                                            <div class="email__item">
+                                                <div class="image img-cir img-40">
+                                                    <img src="~/Images/avatar-06.jpg" alt="Cynthia Harvey" />
+                                                </div>
+                                                <div class="content">
+                                                    <p>Meeting about new dashboard...</p>
+                                                    <span>Cynthia Harvey, 3 min ago</span>
+                                                </div>
                                             </div>
-                                            <div class="content">
-                                                <p>Meeting about new dashboard...</p>
-                                                <span>Cynthia Harvey, 3 min ago</span>
+                                            <div class="email__item">
+                                                <div class="image img-cir img-40">
+                                                    <img src="~/Images/avatar-05.jpg" alt="Cynthia Harvey" />
+                                                </div>
+                                                <div class="content">
+                                                    <p>Meeting about new dashboard...</p>
+                                                    <span>Cynthia Harvey, Yesterday</span>
+                                                </div>
                                             </div>
+                                            <div class="email__item">
+                                                <div class="image img-cir img-40">
+                                                    <img src="~/Images/avatar-04.jpg" alt="Cynthia Harvey" />
+                                                </div>
+                                                <div class="content">
+                                                    <p>Meeting about new dashboard...</p>
+                                                    <span>Cynthia Harvey, April 12,,2018</span>
+                                                </div>
+                                            </div>
+                                            <div class="email__footer"> <a href="#">See all emails</a> </div>
                                         </div>
-                                        <div class="email__item">
-                                            <div class="image img-cir img-40">
-                                                <img src="~/Images/avatar-05.jpg" alt="Cynthia Harvey" />
-                                            </div>
-                                            <div class="content">
-                                                <p>Meeting about new dashboard...</p>
-                                                <span>Cynthia Harvey, Yesterday</span>
-                                            </div>
-                                        </div>
-                                        <div class="email__item">
-                                            <div class="image img-cir img-40">
-                                                <img src="~/Images/avatar-04.jpg" alt="Cynthia Harvey" />
-                                            </div>
-                                            <div class="content">
-                                                <p>Meeting about new dashboard...</p>
-                                                <span>Cynthia Harvey, April 12,,2018</span>
-                                            </div>
-                                        </div>
-                                        <div class="email__footer"> <a href="#">See all emails</a> </div>
-                                    </div>
                                     </div>
                                     <div class="noti__item js-item-menu">
                                         <i class="fas fa-compress text-primary"></i>
@@ -338,7 +338,7 @@
     </footer>
     <script src="~/Scripts/Jquery/jQuery.js"></script>
     @Scripts.Render("~/bundles/jqueryui")
-
+    <script src="~/Content/Layout/font-awesome-5/js/fontawesome.js"></script>
     <script src="~/Scripts/Bootstrap/bootstrap.min.js"></script>
     <script src="~/Scripts/Layout/chartjs/Chart.bundle.min.js"></script>
     <script src="~/Scripts/Layout/perfect-scrollbar/perfect-scrollbar.min.js"></script>
@@ -357,6 +357,7 @@
     <script src="~/Scripts/src/Tenent/SendRequest.js"></script>
     <script src="~/Scripts/src/Tenent/Notification.js"></script>
     <script src="~/Scripts/src/SendMail.js"></script>
+    <script src="~/Scripts/src/GlobalFunctions.js"></script>
     @Scripts.Render("~/bundles/Mainjs")
     @Scripts.Render("~/bundles/Assetjs")
 

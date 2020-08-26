@@ -1,5 +1,6 @@
 ﻿// Save and Edit Asset
-const saveTransaction = () => {
+function saveTransaction() {
+
     let PaymentStatus = $("#ckbPaymentStatus").is(':checked') ? 1 : 0;
     let TransactionToSave = JSON.stringify({
         AssetName: $('#txtAssetName').val(),
@@ -14,6 +15,6 @@ const saveTransaction = () => {
         Remarks: Number($('#txtRemarks').val()),
     });
     let addetID = sessionStorage.getItem('AssetID');
-        addetID != null ? ManageAjaxCalls.Put(ApiDictionary.AssetPut() + `?id=${addetID}`, TransactionToSave, assetPostResponse) :
+    addetID != null ? ManageAjaxCalls.Put(ApiDictionary.AssetPut() + `?id=${addetID}`, TransactionToSave, assetPostResponse) :
         ManageAjaxCalls.Post(ApiDictionary.AssetPost(), TransactionToSave, assetPostResponse);
 }

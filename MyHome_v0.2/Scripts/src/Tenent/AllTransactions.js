@@ -4,8 +4,8 @@ function transactionCall() {
     let TransactionModesList = convertObjectArray(ModeOFPayment);
     let StatusList = convertObjectArray(Status);
     let assetID = sessionStorage.getItem('AssetID');
-    let trnFrom = $('#RenderContent').find('#trnFrom').val();
-    let trnTo = $('#RenderContent').find('#trnTo').val();
+    let trnFrom = dateFormat($('#RenderContent').find('#trnFrom').val());
+    let trnTo = dateFormat($('#RenderContent').find('#trnTo').val());
     ManageAjaxCalls.GetData(ApiDictionary.GetTransactions() + `?AssetName=${assetID}&trnFrom=${trnFrom}&trnTo=${trnTo}`, (transactions) => {
         $('#tblTransactions tbody').empty();
         let rowItem = '';
@@ -29,4 +29,3 @@ function transactionCall() {
         $('#RenderContent #tblTransactions tbody').append(rowItem);
     });  
 }
-

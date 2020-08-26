@@ -12,6 +12,12 @@
 .fontSize_20 {
     font-size: 20px;
 }
+.fontSize_50 {
+    font-size: 50px !important;
+}
+.border-right-2 {
+    border-right: 2px solid #a7a9ab;
+}
 .notifnLetter {
     font-size: 20px;
     color: white;

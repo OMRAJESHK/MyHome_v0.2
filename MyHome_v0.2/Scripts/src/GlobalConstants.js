@@ -1,11 +1,12 @@
 ﻿const TransactionTypes = {
-  Rent: 1,
-  'Water Bill': 2,
-  'Electricity Bill': 3,
-  'Motor Bill': 4,
-  'Plumbing': 5,
-  'Electric Households': 6,
-  'Water Tanks': 7
+  Advance: 1,
+  Rent: 2,
+  'Water Bill': 3,
+  'Electricity Bill': 4,
+  'Motor Bill': 5,
+  'Plumbing': 6,
+  'Electric Households': 7,
+  'Water Tanks': 8
 };
 
 const ModeOFPayment = {
@@ -19,29 +20,32 @@ const Status = {
 };
 
 const NotificationTypes = {
-    'Rent Paid': 1,
-    'Rent Unpaid': 2,
-    'Electricity Bill Paid': 3,
-    'Electricity Bill Unpaid': 4,
-    'Water Bill Paid':5,
-    'Water Bill Unpaid':6,
-    'Plumbing Households Paid':7,
-    'Plumbing Households Unpaid': 8,
-    'Electric Households Paid': 9,
-    'Electric Households Unpaid': 10,
-    'Festival Wishes': 11 ,
-    'Miscellanious Unpaid': 12,
-    'Miscellanious Paid': 13,
+    "Advance Paid": 1,
+    "Advance UnPaid": 2,
+    'Rent Paid': 3,
+    'Rent Unpaid': 4,
+    'Electricity Bill Paid': 5,
+    'Electricity Bill Unpaid': 6,
+    'Water Bill Paid':7,
+    'Water Bill Unpaid':8,
+    'Plumbing Households Paid':9,
+    'Plumbing Households Unpaid': 10,
+    'Electric Households Paid': 11,
+    'Electric Households Unpaid': 12,
+    'Festival Wishes': 13 ,
+    'Miscellanious Unpaid': 14,
+    'Miscellanious Paid': 15,
 };
 
 const NotificationLetter = {
-    0:'R',
-    1:"E",
-    2:'W',
-    3:"PH",
-    4:"EH",
-    5:"F",
-    6:"M"
+    0:"A",
+    1:"R",
+    2:"E",
+    3:'W',
+    4:"PH",
+    5:"EH",
+    6:"F",
+    7: "M",
 }
 
 function convertObjectArray (object) {

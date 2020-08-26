@@ -32,14 +32,6 @@
             : $('.dashboardAngle').addClass('angleRotate180')
     });
 
-    $(".btnAllTransactions").click(() => {
-        var url = window.rootpath + "Tenent/_allTransactions";
-        $.get(url, function (response) {
-            RenderContent.html(response);
-            RenderContent.find("#trnFrom , #trnTo").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true }).datepicker('setDate', new Date());
-            transactionCall();
-        });
-    });
     $(".btn_T_Dashboad").click(() => {
         var url = window.rootpath + TenantURLs.Dashboard;
         $.get(url, function (response) {
@@ -119,21 +111,9 @@
             RenderContent.html(response);
         });
     });
-    $(".btn_A_AllTransactions").click(() => {
-        var url = window.rootpath + AdminURLs.SaveTransaction;
-        $.get(url, function (response) {
-            RenderContent.html(response);
-            RenderContent.find('#ddlTransactionType').append(getTransactionList()).prop('selectedIndex', 0);
-        });
-    });
+
     mainContent.find('#btnAddProximities').on('click', '#btnAddProximity', () => {
         var url = window.rootpath + "Admin/_SaveTransactions";
-        $.get(url, function (response) {
-            RenderContent.html(response);
-        });
-    });
-    $(".main-content").on('click', '#btnAddNotifications', () => {
-        var url = window.rootpath + AdminURLs.SaveNotification;
         $.get(url, function (response) {
             RenderContent.html(response);
         });
@@ -149,6 +129,19 @@
         console.log($(this).html());
     })
         //------COMMON BUTTONS----------//
+
+    $(".btn_A_AllTransactions, .btnAllTransactions").click(() => {
+        var url = window.rootpath + TenantURLs.Transactions;
+        $.get(url, function (response) {
+            RenderContent.html(response);
+            (sessionStorage.getItem('RoleID') == '0') ?
+                mainContent.find('#btnAddTransactions').hide() :
+                mainContent.find('#btnAddTransactions').show();
+            RenderContent.find("#trnFrom , #trnTo").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true }).datepicker('setDate', new Date());
+            RenderContent.find('#ddlTransactionType').append(getTransactionList()).prop('selectedIndex', 0);
+            transactionCall();
+        });
+    });
 
     $('#btnLogOut').click(() => {
         sessionStorage.removeItem('accessToken'); 

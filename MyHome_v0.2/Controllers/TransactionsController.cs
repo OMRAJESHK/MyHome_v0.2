@@ -19,10 +19,11 @@ namespace MyHome_v0._2.Controllers
         }
         [HttpGet]
          public HttpResponseMessage GetTransaction(int AssetName,DateTime trnFrom, DateTime trnTo) {
-            var getValidData = entities.Transactions.Where(x => x.AssetName == AssetName && x.Date >= trnFrom && x.Date <= trnTo).ToList();
+            string[] empty= new string[0]; 
+            var getValidData= entities.Transactions.Where(x => x.AssetName == AssetName && x.Date >= trnFrom && x.Date <= trnTo).ToList();
              try { 
                  if (getValidData == null){
-                    return Request.CreateResponse(HttpStatusCode.NotFound, getValidData);
+                    return Request.CreateResponse(HttpStatusCode.NotFound, empty);
                  }
                  return Request.CreateResponse(HttpStatusCode.Created, getValidData);
              }catch(Exception ex){

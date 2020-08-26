@@ -1,16 +1,18 @@
-﻿// get Notifications
-var NotificationRes = '';
-$('#btnAllNotifn').prop('disabled', true);
-getNotifications();
-function getNotifications() {
-    ManageAjaxCalls.GetData(ApiDictionary.GetNotification() + `?AssetName=${sessionStorage.getItem('AssetID')}`, (res) => {
-        let NotificationList = '';
-        NotificationRes = res;
-        $('#btnAllNotifn').prop('disabled', false);
-        let list = convertObjectArray(NotificationTypes);
-        res.map(row => {
-            if (row.Status == 0) {
-                NotificationList += `
+﻿var NotificationRes = '';
+$(document).ready(() => {
+    $('#btnAllNotifn').prop('disabled', true);
+    $('#notificationsTab').click(() => {
+        getNotifications();
+    })
+    function getNotifications() {
+        ManageAjaxCalls.GetData(ApiDictionary.GetNotification() + `?AssetName=${sessionStorage.getItem('AssetID')}`, (res) => {
+            let NotificationList = '';
+            NotificationRes = res;
+            $('#btnAllNotifn').prop('disabled', false);
+            let list = convertObjectArray(NotificationTypes);
+            res.map(row => {
+                if (row.Status == 0) {
+                    NotificationList += `
                 <div class="notifi__item">
                     <div class="bg-c3 img-cir img-40">
                         <label class="notifnLetter">${NotificationLetter[row.NotificationType]}</label>
@@ -20,13 +22,14 @@ function getNotifications() {
                     </div>
                 </div>
             `
-            }
+                }
+            });
+            $('#listNotifications').html(NotificationList);
+            $('#NotiCount').text(`You have ${res.length} Notifications`);
+            $('#Notiquantity').text(res.length)
         });
-        $('#listNotifications').html(NotificationList);
-        $('#NotiCount').text(`You have ${res.length} Notifications`);
-        $('#Notiquantity').text(res.length)
-    });
-}
+    }
+})
 
 function getAllNotification() {
     var url = window.rootpath + "Tenent/_AllNotification";
@@ -75,5 +78,31 @@ function deleteNotification(id) {
         getNotifications();
         getAllNotification();
     });
+}
+function saveNotifcation() {
+    let notiToSave = JSON.stringify({
+        AssetName: sessionStorage.getItem('AssetID'),
+        NotificationType: $("#ddlNotifications option:selected").attr('value'),
+        Description: $('#txtNotiDesc').val(),
+        NotificationDate: getCurrentDate(),
+        Status:0
+    });
+    let assetID = sessionStorage.getItem('AssetID');
+    ManageAjaxCalls.Post(ApiDictionary.PostNotification(), notiToSave, () => {
+        console.log('Notification Added')
+    })        
+}
 
+function gotoSaveNotification() {
+    let NotificationList = convertObjectArray(NotificationTypes);
+    var url = window.rootpath + AdminURLs.SaveNotification;
+    $.get(url, function (response) {
+        RenderContent.html(response);
+        let options = `<option value="0">--Select--</option>`;
+        options += NotificationList.map(x => {
+            return `<option value=${x.value}>${x.name}</option>`;
+        });
+        console.log('options', options)
+        RenderContent.find('#ddlNotifications').html(options)
+    });
 }

@@ -262,6 +262,7 @@
     <Content Include="Content\Layout\css-hamburgers\hamburgers.css" />
     <Content Include="Content\Layout\css-hamburgers\hamburgers.min.css" />
     <Content Include="Content\Layout\font-awesome-5\css\fontawesome-all.min.css" />
+    <Content Include="Content\Layout\font-awesome-5\js\fontawesome.js" />
     <Content Include="Content\Layout\font-awesome-5\webfonts\fa-brands-400.svg" />
     <Content Include="Content\Layout\font-awesome-5\webfonts\fa-regular-400.svg" />
     <Content Include="Content\Layout\font-awesome-5\webfonts\fa-solid-900.svg" />
@@ -322,6 +323,7 @@
     <Content Include="Scripts\src\Admin\adminGlobal.js" />
     <Content Include="Scripts\src\Admin\AssetRegistration.js" />
     <Content Include="Scripts\src\Admin\Transaction.js" />
+    <Content Include="Scripts\src\GlobalFunctions.js" />
     <Content Include="Scripts\src\SendMail.js" />
     <Content Include="Scripts\src\Tenent\AllTransactions.js" />
     <Content Include="Scripts\src\GlobalConstants.js" />

@@ -39,7 +39,7 @@ function getCredentials(data) {
         $.isNumeric(data.AssetName) ?
             ManageAjaxCalls.Get(ApiDictionary.GetAssetName(), { AssetName: Number(data.AssetName) }, (res) => {
                 var name = '';
-                var id=''
+                var id = '';
                 if (res != undefined) {
                     name = res.AssetName;
                     id = res.AssetId;

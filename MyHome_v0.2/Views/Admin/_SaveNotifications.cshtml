@@ -12,7 +12,7 @@
                     <div autocomplete="off" class="form" role="form">
                         <div class="form-group">
                             <label for="inputName">Notification Type</label>
-                            <select class="form-control minWidthFull">
+                            <select class="form-control minWidthFull" id="ddlNotifications">
                                 <option>--Select--</option>
                                 <option>1</option>
                                 <option>2</option>
@@ -21,7 +21,7 @@
                         </div>
                         <div class="form-group">
                             <label for="inputNotiDesc">Notification Description</label>
-                            <input class="form-control minWidthFull" placeholder="Description..." type="text">
+                            <textarea class="form-control minWidthFull" placeholder="Description..." rows="5" id="txtNotiDesc"></textarea>
                         </div>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                         <div class="d-flex justify-content-between">
                             <button class="btn btn-info w-25" type="button">Back</button>
                             <button class="btn btn-danger w-25" type="submit">clear</button>
-                            <button class="btn btn-info w-25" type="submit">Save</button>
+                            <button class="btn btn-info w-25" type="submit" onclick="saveNotifcation()">Save</button>
                         </div>                    
                     </div>
                 </div>

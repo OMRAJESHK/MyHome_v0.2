@@ -6,55 +6,76 @@
         <h5 class="h2">Home Aminities</h5>
     </div>
     <div class="row">
-        <div class="offset-lg-1 col-lg-5">
-            <div class="card card-outline-secondary">
+        <div class="col-lg-12">
+            <div class="card card-outline-secondary shadow">
                 <div class="card-header bg-primary"><h3 class="mb-0 text-light">Primary</h3></div>
                 <div class="card-body">
                     <div autocomplete="off" class="form" role="form">
-                        <div class="form-group">
-                            <label for="inputNumberOfDoors" class="font-weight-bold">Number Of Doors</label>
-                            <label for="inputNumberOfDoors" class="font-weight-bold float-right" id="lblNumberofDoors"></label>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputNumberOfWindows" class="font-weight-bold">Number Of Windows</label>
-                            <label for="inputNumberOfWindows" class="font-weight-bold float-right" id="lblNumberofWindows"></label>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputNumberOfTaps" class="font-weight-bold">Number Of Taps</label>
-                            <label for="inputNumberOfTaps" class="font-weight-bold float-right" id="lblNumberofTaps"></label>
+                        <div class="d-flex">
+                            <div class="form-group flex-fill text-center border-right-2">
+                                <div><i class='fas fa-door-open fontSize_50 text-primary'></i></div>
+                                <label for="inputNumberOfDoors" class="font-weight-bold mt-2">Number Of Doors</label>
+                                <div><label for="inputNumberOfDoors" id="lblNumberofDoors"></label></div>
+                            </div>
+                            <div class="form-group flex-fill text-center border-right-2">
+                                <div><i class="fas fa-wind fontSize_50 text-primary"></i></div>
+                                <label for="inputNumberOfWindows" class="font-weight-bold mt-2"> Number Of Windows</label>
+                                <div><label for="inputNumberOfWindows" id="lblNumberofWindows"></label></div>
+                            </div>
+                            <div class="form-group flex-fill text-center border-right-2">
+                                <div><i class="fas fa-faucet fontSize_50 text-primary"></i></div>
+                                <label for="inputNumberOfTaps" class="font-weight-bold mt-2"> Number Of Taps</label>
+                                <div><label for="inputNumberOfTaps" id="lblNumberofTaps"></label></div>
+                            </div>
+                            <div class="form-group flex-fill text-center border-right-2">
+                                <div><i class="fas fa-lightbulb fontSize_50 text-primary"></i></div>
+                                <label for="inputNumberOfBulbs" class="font-weight-bold mt-2"> Number Of Bulbs</label>
+                                <div><label for="inputNumberOfBulbs" id="lblNumberofBulbs"></label></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-5">
-            <div class="card card-outline-secondary">
+        <div class="col-lg-12">
+            <div class="card card-outline-secondary shadow">
                 <div class="card-header bg-primary"><h3 class="mb-0 text-light">Secondary</h3></div>
                 <div class="card-body">
                     <div class="form">
-                        <div class="form-group">
-                            <label for="inputNumberOfBulbs" class="font-weight-bold">Number Of Bulbs</label>
-                            <label for="inputNumberOfBulbs" class="font-weight-bold float-right" id="lblNumberofBulbs"></label>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputNumberOfBulbs" class="font-weight-bold">Number Of Fans</label>
-                            <label for="inputNumberOfBulbs" class="font-weight-bold float-right" id="lblNumberofFans"></label>
-                        </div>  
-                        <div class="form-group">
-                            <label for="inputAddress" class="font-weight-bold">Address</label>
-                            <label for="inputAddress" class="font-weight-bold float-right" id="lblAddress"></label>
-                        </div>
                         <div class="d-flex">
-                            <div class="flex-fill">
-                                <div class="form-check">
-                                    <input type="checkbox" class="checkBoxStyle_1 checkBoxDisabled" id="ckbIsSump">
-                                    <label class="font-weight-bold" for="IsSump">Is Sump</label>
-                                </div>
+                            <div class="form-group flex-fill text-center border-right-2">
+                                <div><i class="fas fa-fan fontSize_50 text-primary"></i></div>
+                                <label for="inputNumberOfFans" class="font-weight-bold mt-2"> Number Of Fans</label>
+                                <div><label for="inputNumberOfFans" id="lblNumberofFans"></label></div>
                             </div>
-                            <div class="flex-fill">
-                                <div class="form-check">
-                                    <input type="checkbox" class="checkBoxStyle_1 checkBoxDisabled" id="ckbIsRent">
-                                    <label class="font-weight-bold" for="IsRent"> Is Rent</label>
+                            <div class="form-group flex-fill text-center border-right-2">
+                                <div><i class="fas fa-map-marker-alt fontSize_50 text-primary"></i></div>
+                                <label for="inputAddress" class="font-weight-bold mt-2"> Address</label>
+                                <div><label for="inputAddress" id="lblAddress"></label></div>
+                            </div>
+                            <div class="form-group flex-fill text-center border-right-2">
+                                <label for="inputExtras" class="font-weight-bold mt-2">Extras</label>
+                                <div class="d-flex">
+                                    <i class="fas fa-swimming-pool fontSize_50 text-primary flex-fill"></i>
+                                    <i class="fas fa-people-arrows fontSize_50 text-primary flex-fill"></i>
+                                </div>
+                                <div class="mt-2">
+                                    <div class="form-group flex-fill text-center">
+                                        <div class="d-flex">
+                                            <div class="flex-fill">
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="checkBoxStyle_1 checkBoxDisabled" id="ckbIsSump">
+                                                    <label class="font-weight-bold" for="IsSump">Is Sump</label>
+                                                </div>
+                                            </div>
+                                            <div class="flex-fill">
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="checkBoxStyle_1 checkBoxDisabled" id="ckbIsRent">
+                                                    <label class="font-weight-bold" for="IsRent"> Is Rent</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

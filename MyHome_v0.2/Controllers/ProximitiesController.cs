@@ -15,10 +15,11 @@ namespace MyHome_v0._2.Controllers
          
         [HttpGet]
          public HttpResponseMessage GetProximity(int AssetName) {
+            string[] empty= new string[0]; 
             var getValidData = entities.Proximities.Where(x => x.AssetName == AssetName).FirstOrDefault();
              try { 
                  if (getValidData == null){
-                    return Request.CreateResponse(HttpStatusCode.NotFound, getValidData);
+                    return Request.CreateResponse(HttpStatusCode.NotFound, empty);
                  }
                  return Request.CreateResponse(HttpStatusCode.Created, getValidData);
              }catch(Exception ex){
@@ -39,7 +40,7 @@ namespace MyHome_v0._2.Controllers
         [HttpPut]
         public HttpResponseMessage PutProximity(int id,[FromBody]Proximity proximity) {
             try {
-                var entity = entities.Proximities.FirstOrDefault(x => x.ProximityId == id);
+                var entity = entities.Proximities.FirstOrDefault(x => x.AssetName == id);
                 if (entity == null) {
                     return Request.CreateErrorResponse(HttpStatusCode.NotFound, id.ToString());
                 } else {
