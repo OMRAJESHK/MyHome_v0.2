@@ -39,13 +39,6 @@ namespace MyHome_v0._2.Controllers
                     mail.Subject = mailLog.Subject;
                     mail.Body = mailLog.Body;
                     Attachment data = new Attachment(Server.MapPath(attachment));
-                    // deleteing File after upload
-                    //string fullPath = Request.MapPath(attachment);
-                    //if (System.IO.File.Exists(fullPath))
-                    //{
-                    //   System.IO.File.Delete(attachment);
-                    //}
-                   // System.IO.File.Delete(Server.MapPath(attachment));
                     mail.Attachments.Add(data);
                     mail.IsBodyHtml = false;
                     SmtpClient smtp = new SmtpClient();
@@ -56,14 +49,21 @@ namespace MyHome_v0._2.Controllers
                     smtp.Credentials = networkCredential;
                     smtp.Port = 587;
                     smtp.Send(mail);
-
-                    
-
-                    return Json(attachment, JsonRequestBehavior.AllowGet);
+                    return Json("Mail Success", JsonRequestBehavior.AllowGet);
                 }
             } else { 
-                return Json(attachment, JsonRequestBehavior.AllowGet);
+                return Json("Mail Failed", JsonRequestBehavior.AllowGet);
             }
         }
+        public JsonResult DeleteImg(string attachment){
+            string path = Server.MapPath(attachment);
+            FileInfo fi = new FileInfo(path);
+            if (fi.Exists) { 
+            fi.Delete();
+                return Json("Positive", JsonRequestBehavior.AllowGet);
+            }
+            else
+            return Json("negative", JsonRequestBehavior.DenyGet);
+        }      
     }
-    }
+}

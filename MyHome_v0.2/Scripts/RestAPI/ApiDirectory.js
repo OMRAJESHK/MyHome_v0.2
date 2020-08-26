@@ -19,11 +19,20 @@ class ApiDictionary  {
     static PutProximity = () => sessionStorage.getItem('path') + '/api/Proximities/PutProximity';
     static GetRequest = () => sessionStorage.getItem('path') + '/api/Request/GetRequestsByID';
     static PostRequest = () => sessionStorage.getItem('path') + "/api/Request/PostRequest";
-    static GetNotification = () => sessionStorage.getItem('path') + "/api/Notifications/GetNotification";
-    static GetNotification = () => sessionStorage.getItem('path') + "/api/Notifications/GetNotification";
+    static GetNotification = () => path + "/api/Notifications/GetNotification";
     static PostNotification = () => path + "/api/Notifications/PostNotification";
     static PutNotification = () => path + "/api/Notifications/PutNotification";
     static DeleteNotification = () => path + "/api/Notifications/DeleteNotification";
+    static DeleteImg = () => path + "/SendMail/DeleteImg";
+    static Sendmail = () => path + "/SendMail/Sendmail";
+    static GetMailLogs = () => path + "/api/MailLogs/GetMailLogs";
+    static PostMailLogs = () => path + "/api/MailLogs/PostMailLogs";
+    static PutMailLogs = () => path + "/api/MailLogs/PutMailLogs";
+    static DeleteMailLogs = () => path + "/api/MailLogs/DeleteMailLogs";
+    static GetPropertyTaxes = () => path + "/api/PropertyTax/GetPropertyTaxes";
+    static PostPropertyTaxes = () => path + "/api/PropertyTax/PostPropertyTaxes";
+    static PutPropertyTaxes = () => path + "/api/PropertyTax/PutPropertyTaxes";
+    static DeletePropertyTaxes = () => path + "/api/PropertyTax/DeletePropertyTaxes";
 
 }
 
@@ -35,6 +44,10 @@ const AdminURLs = {
     SaveProximity: Admin + '_SaveProximities',
     SaveNotification: Admin + '_SaveNotifications',
     selectAsset: Admin + '_SelectAsset',
+    MailLogs: Admin + '_MailLogs',
+    SendMail: Admin + '_Sendmail',
+    propertyTaxLogs: Admin + '_propertyTaxLogs',
+    SavePropertyTax: Admin +'_SavePropertyTax'
 }
 
 const TenantURLs = {

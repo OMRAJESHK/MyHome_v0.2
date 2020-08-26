@@ -119,12 +119,22 @@
         });
     });
     $(".btn_A_SendMail").click(() => {
-        var url = window.rootpath + "Admin/_Sendmail";
+        var url = window.rootpath + AdminURLs.MailLogs;
         $.get(url, function (response) {
             RenderContent.html(response);
+            getMailLogs();
         });
     });
 
+    $(".btnPropertyTax").click(() => {
+        var url = window.rootpath + AdminURLs.propertyTaxLogs;
+        $.get(url, function (response) {
+            RenderContent.html(response);
+            getPropertyTaxLogs();
+        });
+    });
+
+    
     $(document).on('click', '.assetDivs', () => {
         console.log($(this).html());
     })

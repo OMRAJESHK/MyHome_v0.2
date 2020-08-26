@@ -209,7 +209,9 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AssetController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MailLogsController.cs" />
     <Compile Include="Controllers\NotificationsController.cs" />
+    <Compile Include="Controllers\PropertyTaxController.cs" />
     <Compile Include="Controllers\ProximitiesController.cs" />
     <Compile Include="Controllers\RequestController.cs" />
     <Compile Include="Controllers\SendMailController.cs" />
@@ -322,6 +324,7 @@
     <Content Include="Scripts\RestAPI\ManageAjax.js" />
     <Content Include="Scripts\src\Admin\adminGlobal.js" />
     <Content Include="Scripts\src\Admin\AssetRegistration.js" />
+    <Content Include="Scripts\src\Admin\PropertyTax.js" />
     <Content Include="Scripts\src\Admin\Transaction.js" />
     <Content Include="Scripts\src\GlobalFunctions.js" />
     <Content Include="Scripts\src\SendMail.js" />
@@ -415,6 +418,9 @@
     <Content Include="Views\Admin\_Sendmail.cshtml" />
     <Content Include="Views\Admin\_SelectAsset.cshtml" />
     <Content Include="Views\Tenent\_saveRequest.cshtml" />
+    <Content Include="Views\Admin\_MailLogs.cshtml" />
+    <Content Include="Views\Admin\_PropertyTaxLogs.cshtml" />
+    <Content Include="Views\Admin\_SavePropertyTax.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyHomeDataAccess\MyHomeDataAccess.csproj">

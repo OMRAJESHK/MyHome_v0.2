@@ -29,7 +29,16 @@ namespace MyHome_v0._2.Controllers
         public ActionResult _Sendmail() {
             return View();
         }
-         public ActionResult _SelectAsset() {
+        public ActionResult _MailLogs() {
+            return View();
+        }
+        public ActionResult _SelectAsset() {
+            return View();
+        }
+        public ActionResult _PropertyTaxLogs() {
+            return View();
+        }
+        public ActionResult _SavePropertyTax() {
             return View();
         }
     }

@@ -1,0 +1,24 @@
+﻿@{
+    Layout = null;
+}
+    <div class="container-fluid">
+        <div class="d-flex justify-content-between mb-1">
+            <h5 class="h2">Mail Logs</h5>
+            <button class="btn btn-primary" onclick="gotoSendMail()">Send Mail</button>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table table table-bordered table-hover" id="tblMailLogs">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Mail To</th>
+                            <th>Mail Subject</th>
+                            <th>Mail Body</th>
+                            <th>Mail Date</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
