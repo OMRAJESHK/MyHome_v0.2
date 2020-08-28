@@ -1,82 +1,100 @@
 ﻿@{
     Layout = null;
 }
-<div class="container-fluid mt-3">
-    <div class="d-flex justify-content-between mb-1">
-         <h5 class="h2">All Proximities</h5>
-         <button class="btn btn-primary" id="btnAddProximities" onclick="GotosaveProximities()">Add New</button>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card card-outline-secondary shadow">
-                <div class="card-header bg-primary">
-                    <h3 class="mb-0 text-light">Primary</h3>
+    <div class="container-fluid mt-1">
+        <div class="d-flex justify-content-between">
+            <h5 class="h4 font-weight-bold">All Proximities</h5>
+            <button class="btn global-bg-primary text-light" id="btnAddProximities" onclick="GotosaveProximities()">Add New</button>
+        </div>
+        <div class="card card-outline-secondary shadow mb-3">
+            <div class="card-header global-bg-primary">
+                <h3 class="mb-0 text-light">Primary</h3>
+            </div>
+            <div class="card-body p-2">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="form-group text-center border-right-2">
+                            <div><i class="fas fa-plane fontSize_50 global-text-primary"></i></div>
+                            <label for="inputAirport" class="font-weight-bold mt-2">NearBy Airport</label>
+                            <div><label for="inputAirport" id="lblAirport"></label></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group text-center border-right-2">
+                            <div><i class="fa fa-subway fontSize_50 global-text-primary"></i></div>
+                            <label for="inputRailwayStation" class="font-weight-bold mt-2">NearBy Railway Station</label>
+                            <div><label for="inputRailwayStation" id="lblRailwayStation"></label></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group text-center border-right-2">
+                            <div><i class="fas fa-bus fontSize_50 global-text-primary"></i></div>
+                            <label for="inputBusStation" class="font-weight-bold mt-2">NearBy Bus Station</label>
+                            <div><label for="inputBusStation" id="lblBusStation"></label></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group text-center border-right-2">
+                            <div><i class="fas fa-train fontSize_50 global-text-primary"></i></div>
+                            <label for="inputMetro" class="font-weight-bold mt-2">NearBy Metro Station</label>
+                            <div><label for="inputMetro" id="lblMetroStation"></label></div>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="card-body">
-                    <div autocomplete="off" class="form" role="form">
-                        <div class="d-flex">
-                            <div class="form-group flex-fill text-center border-right-2">
-                                <div><i class="fas fa-plane fontSize_50 text-primary"></i></div>
-                                <label for="inputAirport" class="font-weight-bold mt-2">NearBy Airport</label>
-                                <div><label for="inputAirport" id="lblAirport"></label></div>
-                            </div>
-                            <div class="form-group flex-fill text-center border-right-2">
-                                <div><i class="fa fa-subway fontSize_50 text-primary"></i></div>
-                                <label for="inputRailwayStation" class="font-weight-bold mt-2">NearBy Railway Station</label>
-                                <div><label for="inputRailwayStation" id="lblRailwayStation"></label></div>
-                            </div>
-                            <div class="form-group flex-fill text-center border-right-2">
-                                <div><i class="fas fa-bus fontSize_50 text-primary"></i></div>
-                                <label for="inputBusStation" class="font-weight-bold mt-2">NearBy Bus Station</label>
-                                <div><label for="inputBusStation" id="lblBusStation"></label></div>
-                            </div>
-                            <div class="form-group flex-fill text-center border-right-2">
-                                <div><i class="fas fa-train fontSize_50 text-primary"></i></div>
-                                <label for="inputMetro" class="font-weight-bold mt-2">NearBy Metro Station</label>
-                                <div><label for="inputMetro" id="lblMetroStation"></label></div>
-                            </div>
-                            <div class="form-group flex-fill text-center">
-                                <div><i class="far fa-hospital fontSize_50 text-primary"></i></div>
-                                <label for="inputHospital" class="font-weight-bold mt-2" > NearBy Hospital</label>
-                                <div><label for="inputHospital" id="lblHospital"></label></div>
-                            </div>
+            </div>
+        </div>
+        <div class="card card-outline-secondary shadow mb-3">
+            <div class="card-header global-bg-primary">
+                <h3 class="mb-0 text-light">Secondary</h3>
+            </div>
+            <div class="card-body p-2">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="form-group text-center border-right-2">
+                            <div><i class="far fa-hospital fontSize_50 global-text-primary"></i></div>
+                            <label for="inputHospital" class="font-weight-bold mt-2"> NearBy Hospital</label>
+                            <div><label for="inputHospital" id="lblHospital"></label></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group text-center border-right-2">
+                            <div><i class="fas fa-university fontSize_50 global-text-primary"></i></div>
+                            <label for="inputSchoolCollege" class="font-weight-bold mt-2"> NearBy School/College</label>
+                            <div><label for="inputSchoolCollege" id="lblSchoolorCollege"></label></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group flex-fill text-center border-right-2">
+                            <div><i class="fas fa-shopping-cart fontSize_50 global-text-primary"></i></div>
+                            <label for="inputMarket" class="font-weight-bold mt-2"> NearBy Market</label>
+                            <div><label for="inputMarket" id="lblMarket"></label></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-12">
-            <div class="card card-outline-secondary shadow">
-                <div class="card-header bg-primary">
-                    <h3 class="mb-0 text-light">Secondary</h3>
-                </div>
-                <div class="card-body">
-                    <div autocomplete="off" class="form" role="form">
-                        <div class="d-flex">
-                            <div class="form-group flex-fill text-center border-right-2">
-                                <div><i class="fas fa-university fontSize_50 text-primary"></i></div>
-                                <label for="inputSchoolCollege" class="font-weight-bold mt-2"> NearBy School/College</label>
-                                <div><label for="inputSchoolCollege" id="lblSchoolorCollege"></label></div>
-                            </div>
-                            <div class="form-group flex-fill text-center border-right-2">
-                                <div><i class="fas fa-shopping-cart fontSize_50 text-primary"></i></div>
-                                <label for="inputMarket" class="font-weight-bold mt-2"> NearBy Market</label>
-                                <div><label for="inputMarket" id="lblMarket"></label></div>
-                            </div>
-                            <div class="form-group flex-fill text-center border-right-2">
-                                <div><i class="fas fa-utensils fontSize_50 text-primary"></i></div>
-                                <label for="inputHotel" class="font-weight-bold mt-2"> NearBy Hotel</label>
-                                <div><label for="inputHotel" id="lblHotel"></label></div> 
-                            </div>
-                            <div class="form-group flex-fill text-center">
-                                <div><i class="fas fa-gopuram fontSize_50 text-primary"></i></div>
-                                <label for="inputTemple" class="font-weight-bold mt-2"> NearBy Temple</label>
-                                <div><label for="inputTemple" id="lblTemple"></label></div>
-                            </div>
+        <div class="card card-outline-secondary shadow mb-3">
+            <div class="card-header global-bg-primary">
+                <h3 class="mb-0 text-light">Tertiary</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group flex-fill text-center border-right-2">
+                            <div><i class="fas fa-utensils fontSize_50 global-text-primary"></i></div>
+                            <label for="inputHotel" class="font-weight-bold mt-2"> NearBy Hotel</label>
+                            <div><label for="inputHotel" id="lblHotel"></label></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group flex-fill text-center">
+                            <div><i class="fas fa-gopuram fontSize_50 global-text-primary"></i></div>
+                            <label for="inputTemple" class="font-weight-bold mt-2"> NearBy Temple</label>
+                            <div><label for="inputTemple" id="lblTemple"></label></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>

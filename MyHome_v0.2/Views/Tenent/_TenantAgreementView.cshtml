@@ -1,0 +1,100 @@
+﻿@{
+    Layout = null;
+}
+    <div class="container-fluid">
+        <div class="d-flex justify-content-between mb-1">
+            <h5 class="h4">Tenant Deed Registration</h5>
+            <button class="btn global-bg-primary text-light float-right" onclick="gotoEditAgreement()" id="btnEditAgreement">Edit</button>
+        </div>
+        <div class="card card-outline-secondary shadow mb-3">
+            <div class="card-header global-bg-primary">
+                <h3 class="mb-0 text-light">Primary</h3>
+            </div>
+            <div class="card-body p-2">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="form-group text-center border-right-2">
+                            <div><i class="fas fa-users fontSize_50 global-text-primary"></i></div>
+                            <label for="inputNumOfRecidents" class="font-weight-bold mt-2">Number Of Residents</label>
+                            <div><label for="inputNumOfRecidents" id="lblNumOfRecidents"></label></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group text-center border-right-2">
+                            <div><i class="far fa-user fontSize_50 global-text-primary"></i></div>
+                            <label for="inputResidentsNames" class="font-weight-bold mt-2">Residents Name</label>
+                            <div><label for="inputResidentsNames" id="lblResidentsNames"></label></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group text-center border-right-2">
+                            <div><i class="fas fa-address-book fontSize_50 global-text-primary"></i></div>
+                            <label for="inputResidentContactNumber" class="font-weight-bold mt-2">Residents Contact Number</label>
+                            <div><label for="inputResidentContactNumber" id="lblResidentContactNumber"></label></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group text-center border-right-2">
+                            <div><i class="fas fa-suitcase fontSize_50 global-text-primary"></i></div>
+                            <label for="inputAdvAmt" class="font-weight-bold mt-2">Advance Amount</label>
+                            <div><label for="inputAdvAmt" id="lblAdvAmt"></label></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card card-outline-secondary shadow mb-3">
+            <div class="card-header global-bg-primary">
+                <h3 class="mb-0 text-light">Secondary</h3>
+            </div>
+            <div class="card-body p-2">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="form-group text-center border-right-2">
+                            <div><i class="fas fa-money-bill-wave fontSize_50 global-text-primary"></i></div>
+                            <label for="inputRentAmt" class="font-weight-bold mt-2">Rent Amount</label>
+                            <div><label for="inputRentAmt" id="lblRentAmt"></label></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group text-center border-right-2">
+                            <div><i class="fas fa-percentage fontSize_50 global-text-primary"></i></div>
+                            <label for="inputPercInc" class="font-weight-bold mt-2">Percentage Increase</label>
+                            <div><label for="inputPercInc" id="lblPercInc"></label></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group flex-fill text-center border-right-2">
+                            <div><i class="fas fa-calendar-day fontSize_50 global-text-primary"></i></div>
+                            <label for="inputJoiningDate" class="font-weight-bold mt-2">Joining Date</label>
+                            <div><label for="inputJoiningDate" id="lblJoiningDate"></label></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card card-outline-secondary shadow mb-3">
+            <div class="card-header global-bg-primary">
+                <h3 class="mb-0 text-light">Tertiary</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group flex-fill text-center border-right-2">
+                            <div><i class="far fa-id-badge fontSize_50 global-text-primary"></i></div>
+                            <label for="inputIdentityProofs" class="font-weight-bold mt-2">Identity Proofs</label>
+                            <div><label for="inputIdentityProofsl" id="lblIdentityProofs"></label></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group flex-fill text-center">
+                            <div><i class="fas fa-marker fontSize_50 global-text-primary"></i></div>
+                            <label for="inputTenantRemarks" class="font-weight-bold mt-2">Remarks</label>
+                            <div><label for="inputTenantRemarks" id="lblTenantRemarks"></label></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+

@@ -1,69 +1,37 @@
 ﻿/*Global CSS*/
-.minWidthFull {
-    min-width:100% ;
+.global-bg-primary { background-color: #fb8103 !important; }
+.global-bg-secondary { background-color: bisque !important; }
+.global-text-primary { color: #fb8103 !important; }
+
+.global-text-secondary {
+    color: bisque !important;
 }
-.asset-title {
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-.cursor-pointer {
-    cursor:pointer !important;
-}
-.fontSize_20 {
-    font-size: 20px;
-}
-.fontSize_50 {
-    font-size: 50px !important;
-}
-.border-right-2 {
-    border-right: 2px solid #a7a9ab;
-}
-.notifnLetter {
-    font-size: 20px;
-    color: white;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
-.checkBoxStyle_1 {
-    width:30px;
-    height:30px;
-}
-.checkBoxDisabled {
-    opacity: 0.5;
-    pointer-events: none;
-}
-.txtRounded {
-    border-radius: 0.50rem !important;
-}
-.noRecords {
-    background: #808080;
-    color: #efefef;
-    font-style: italic;
-    text-align:center;
-}
-#customFile .custom-file-input:lang(en)::after {
-    content: "Select file...";
+.minWidthFull { min-width:100%; }
+.asset-title { letter-spacing: 2px; text-transform: uppercase; }
+.cursor-pointer { cursor:pointer !important; }
+.fontSize_20 { font-size: 20px !important; }
+.fontSize_50 { font-size: 50px !important; }
+.border-right-2 { border-right: 2px solid #a7a9ab; }
+.notifnLetter { font-size: 20px; color: white; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+.checkBoxStyle_1 { width:30px; height:30px; }
+.checkBoxDisabled { opacity: 0.5; pointer-events: none; }
+.txtRounded { border-radius: 0.50rem !important; }
+.noRecords { background: #808080; color: #efefef; font-style: italic; text-align:center; }
+.list-unstyled li a:hover {
+    padding-left: 10px;
 }
 
-#customFile .custom-file-input:lang(en)::before {
-    content: "Click me";
-}
+
+#customFile .custom-file-input:lang(en)::after { content: "Select file..."; }
+#customFile .custom-file-input:lang(en)::before { content: "Click me"; }
 
 /*when a value is selected, this class removes the content */
-.custom-file-input.selected:lang(en)::after {
-    content: "" !important;
-}
+.custom-file-input.selected:lang(en)::after { content: "" !important; }
+.custom-file { overflow: hidden; }
+.custom-file-input { white-space: nowrap; }
 
-.custom-file {
-    overflow: hidden;
-}
 
-.custom-file-input {
-    white-space: nowrap;
-}
-/*Calculator*/
+/*Calculator CSS*/
 /* Using box shadows to create 3D effects */
 #calculator {
     width: 325px;height: auto;padding: 20px 20px 9px;
@@ -119,20 +87,8 @@
 
 
 /* chartjs css */
-
-.doughnut {
-.doughnut {
-    background-color: white;
-    font-family: calibri;
-    height: 230px;
-}
-
-.doughnutChartContainer {
-    float: left;
-    background-color: white;
-    /*width: 450px*/
-}
-
+.doughnut { background-color: white; font-family: calibri; height: 230px; }
+.doughnutChartContainer { float: left; background-color: white; }
 .doughnut .chart-legend {
     float: left;
     width: 180px;

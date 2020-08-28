@@ -97,18 +97,17 @@
         });
     });
     $(".btnAssetRegistration").click(() => {
-        var url = window.rootpath + AdminURLs.Asset;
-        $.get(url, function (response) {
-            RenderContent.html(response);
-            callAssetModal();
-            RenderContent.find("#txtRegDate").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true });
-
-        });
+        callAssetModal();
+        gotoAssetSave();
     });
     $(".btnTenantAgreement").click(() => {
-        var url = window.rootpath + AdminURLs.TenantDeed;
+        var url = window.rootpath + TenantURLs.TenantDeedView;
         $.get(url, function (response) {
+            (sessionStorage.getItem('RoleID') == '0') ?
+                mainContent.find('#btnEditAgreement').hide() :
+                mainContent.find('#btnEditAgreement').show();
             RenderContent.html(response);
+            getTenantAgreementLogs();
         });
     });
 
@@ -133,11 +132,6 @@
             getPropertyTaxLogs();
         });
     });
-
-    
-    $(document).on('click', '.assetDivs', () => {
-        console.log($(this).html());
-    })
         //------COMMON BUTTONS----------//
 
     $(".btn_A_AllTransactions, .btnAllTransactions").click(() => {

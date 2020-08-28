@@ -8,6 +8,7 @@ class ApiDictionary  {
     static GetUserRole = () => path+"/api/account/GetUserRole";
     static GetTransactions = () => sessionStorage.getItem('path') + '/api/Transactions/GetTransaction';
     static GetTenantAgreement = () => sessionStorage.getItem('path') + '/api/TenentAgreement/GetTenentAgreement';
+    static GetTenentAgreementByID = () => path + '/api/TenentAgreement/GetTenentAgreementByID';
     static PutTenentAgreement = () => sessionStorage.getItem('path') + '/api/TenentAgreement/PutTenentAgreement';
     static DeleteTenentAgreement = () => sessionStorage.getItem('path') + '/api/TenentAgreement/DeleteTenentAgreement';
     static AssetPost = () => sessionStorage.getItem('path') + "/api/Asset/PostAssetDetails";
@@ -47,11 +48,14 @@ const AdminURLs = {
     MailLogs: Admin + '_MailLogs',
     SendMail: Admin + '_Sendmail',
     propertyTaxLogs: Admin + '_propertyTaxLogs',
-    SavePropertyTax: Admin +'_SavePropertyTax'
+    SavePropertyTax: Admin + '_SavePropertyTax',
+    
 }
 
 const TenantURLs = {
     Dashboard: Client + '_tenentDashboard',
     saveRequest: Client + '_saveRequest',
-    Transactions: Client +'_allTransactions'
+    Transactions: Client + '_allTransactions',
+    TenantDeedView: Client + '_TenantAgreementView',
+
 }

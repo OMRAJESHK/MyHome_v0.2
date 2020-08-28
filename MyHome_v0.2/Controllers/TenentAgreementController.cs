@@ -18,6 +18,16 @@ namespace MyHome_v0._2.Controllers
             }
             return Request.CreateResponse(HttpStatusCode.Created, getValidData);
         }
+
+        [Authorize]
+        public HttpResponseMessage GetTenentAgreementByID(int AssetName) {
+            TenentAgreementController customObj = new TenentAgreementController();
+            var getValidData = entities.TenentAgreements.Where(x => x.AssetName == AssetName).SingleOrDefault();
+            if (getValidData == null) {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest,"404");
+            }
+            return Request.CreateResponse(HttpStatusCode.Created, getValidData);
+        }
         [Authorize]
         public HttpResponseMessage PostTenentAgreement([FromBody]TenentAgreement tenentagreement) {
             try { 

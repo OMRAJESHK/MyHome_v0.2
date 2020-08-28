@@ -46,6 +46,7 @@ const callAssetModal = () => {
 const AssetEdit = (id) => {
     if (AssetList.length > 0) {
         let Asset = AssetList.filter(data => data.AssetId == id);
+        $('#lblAssetName').text(Asset[0].AssetName);
         sessionStorage.setItem('AssetID', Asset[0].AssetId)
         $('#txtAssetName').val(Asset[0].AssetName);
         $('#txtRegDate').val(getDateOnly(Asset[0].RegisteredDate));
@@ -80,9 +81,17 @@ function GotoSaveTransaction() {
 }
 
 $('div').on("click", '#RenderContent .crdAssets', function () {
-    let id = $(this).attr("data-assetid");
-    let name = AssetList.filter(x => x.AssetId == id)[0].AssetName;
     mainContent.find('#modSelectAsset').modal('hide');
-    sessionStorage.setItem('AssetID', id)
+    let id = $(this).attr("data-assetid");
+    sessionStorage.setItem('AssetID', id);
+    let name = AssetList.filter(x => x.AssetId == id)[0].AssetName;
     $('#lblAssetName').text(name);
 });
+
+const gotoAssetSave=() => {
+    var url = window.rootpath + AdminURLs.Asset;
+    $.get(url, function (response) {
+        RenderContent.html(response);
+        RenderContent.find("#txtRegDate").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true });
+    });
+}

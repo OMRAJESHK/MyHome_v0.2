@@ -45,3 +45,7 @@ const getTransactionList = () => {
     });
     return optionList;
 }
+function btngotoSaveAsset() {
+    mainContent.find('#modSelectAsset').modal('hide');
+    gotoAssetSave()
+}

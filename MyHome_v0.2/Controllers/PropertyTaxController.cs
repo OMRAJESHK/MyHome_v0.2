@@ -39,7 +39,7 @@ namespace MyHome_v0._2.Controllers
         [HttpPut]
         public HttpResponseMessage PutPropertyTaxes(int id,[FromBody]PropertyTax propertytax) {
             try {
-                var entity = entities.PropertyTaxes.FirstOrDefault(x => x.AssetName == id);
+                var entity = entities.PropertyTaxes.FirstOrDefault(x => x.PropertyID == id);
                 if (entity == null) {
                     return Request.CreateErrorResponse(HttpStatusCode.NotFound, id.ToString());
                 } else {

@@ -325,6 +325,7 @@
     <Content Include="Scripts\src\Admin\adminGlobal.js" />
     <Content Include="Scripts\src\Admin\AssetRegistration.js" />
     <Content Include="Scripts\src\Admin\PropertyTax.js" />
+    <Content Include="Scripts\src\Admin\TenantAgreement.js" />
     <Content Include="Scripts\src\Admin\Transaction.js" />
     <Content Include="Scripts\src\GlobalFunctions.js" />
     <Content Include="Scripts\src\SendMail.js" />
@@ -421,6 +422,7 @@
     <Content Include="Views\Admin\_MailLogs.cshtml" />
     <Content Include="Views\Admin\_PropertyTaxLogs.cshtml" />
     <Content Include="Views\Admin\_SavePropertyTax.cshtml" />
+    <Content Include="Views\Tenent\_TenantAgreementView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyHomeDataAccess\MyHomeDataAccess.csproj">

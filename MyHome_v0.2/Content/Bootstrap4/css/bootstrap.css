@@ -413,9 +413,7 @@ hr {
     display: inline-block
 }
 
-    .list-inline-item:not(:last-child) {
-        margin-right: .5rem
-    }
+.list-inline-item:not(:last-child) { margin-right: .5rem }
 
 .initialism {
     font-size: 90%;
