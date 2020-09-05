@@ -12,3 +12,5 @@ function getCurrentDate(){
     var yyyy = today.getFullYear();
     return dateFormat(dd + '/' + mm + '/' + yyyy);
 }
+// Function to Trauncate Time From Date
+const getDateOnly = (date) => date.split("T")[0];

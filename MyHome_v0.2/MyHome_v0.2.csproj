@@ -418,11 +418,11 @@
     <Content Include="Views\Admin\_SaveProximities.cshtml" />
     <Content Include="Views\Admin\_Sendmail.cshtml" />
     <Content Include="Views\Admin\_SelectAsset.cshtml" />
-    <Content Include="Views\Tenent\_saveRequest.cshtml" />
     <Content Include="Views\Admin\_MailLogs.cshtml" />
     <Content Include="Views\Admin\_PropertyTaxLogs.cshtml" />
     <Content Include="Views\Admin\_SavePropertyTax.cshtml" />
     <Content Include="Views\Tenent\_TenantAgreementView.cshtml" />
+    <Content Include="Views\Admin\_AssetView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyHomeDataAccess\MyHomeDataAccess.csproj">

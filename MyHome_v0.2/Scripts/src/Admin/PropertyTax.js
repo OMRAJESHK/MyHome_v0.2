@@ -17,7 +17,7 @@ function getPropertyTaxLogs() {
                     StatusList.filter(x => x.value === row.Status)[0].name + '</td><td>' +
                     row.Remarks + '</td><td>'+
                     '<div class="d-flex justify-content-center">'+
-                    '<button title="Edit" class="btn"><i class="fas fa-edit fontSize_20 text-primary" onclick="propertyTaxEdit(' + row.PropertyID+')"></i></button>'+
+                    '<button title="Edit" class="btn"><i class="fas fa-edit fontSize_20 text-info" onclick="propertyTaxEdit(' + row.PropertyID+')"></i></button>'+
                     '<button title="Delete" class="btn"><i class="fas fa-trash-alt fontSize_20 text-danger" onclick="propertyTaxDelete(' + row.PropertyID +')"></i></button>'+
                     '</div></td></tr > ';
             });

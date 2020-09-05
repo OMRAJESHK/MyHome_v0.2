@@ -20,6 +20,8 @@ class ApiDictionary  {
     static PutProximity = () => sessionStorage.getItem('path') + '/api/Proximities/PutProximity';
     static GetRequest = () => sessionStorage.getItem('path') + '/api/Request/GetRequestsByID';
     static PostRequest = () => sessionStorage.getItem('path') + "/api/Request/PostRequest";
+    static PutRequest = () => path + "/api/Request/PutRequest";
+
     static GetNotification = () => path + "/api/Notifications/GetNotification";
     static PostNotification = () => path + "/api/Notifications/PostNotification";
     static PutNotification = () => path + "/api/Notifications/PutNotification";
@@ -49,12 +51,11 @@ const AdminURLs = {
     SendMail: Admin + '_Sendmail',
     propertyTaxLogs: Admin + '_propertyTaxLogs',
     SavePropertyTax: Admin + '_SavePropertyTax',
-    
+    AssetView: Admin + "_AssetView"
 }
 
 const TenantURLs = {
     Dashboard: Client + '_tenentDashboard',
-    saveRequest: Client + '_saveRequest',
     Transactions: Client + '_allTransactions',
     TenantDeedView: Client + '_TenantAgreementView',
 

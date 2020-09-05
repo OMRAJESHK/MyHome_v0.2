@@ -1,4 +1,4 @@
-﻿$("#lblAssetName").text(sessionStorage.getItem('AssetName'));
+﻿$("#lblAssetNamehdr").text(sessionStorage.getItem('AssetName'));
 
 //function getAssetName(res) {
 //    sessionStorage.setItem('AssetName', res.AssetName);

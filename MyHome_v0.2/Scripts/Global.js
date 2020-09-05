@@ -58,12 +58,6 @@
             getHouseDetails();
         });
     });
-    $(".btnEmcyContact").click(() => {
-        var url = window.rootpath + "Tenent/_emrcyContact";
-        $.get(url, function (response) {
-            RenderContent.html(response);
-        });
-    });
     $(".btnProximity , .btn_A_Proximity").click(() => {
         var url = window.rootpath + "Tenent/_proximity";
         $.get(url, function (response) {
@@ -74,9 +68,7 @@
                 getProximities(Number(sessionStorage.getItem('AssetID')));
         });
     });
-    $(".btnRaiseReq").click(() => {
-        getRaiseReqHTML();
-    });
+    
 
     //$(".btn_A_Notifications,#btn_AllNotifications").click(() => {
     //    var url = window.rootpath + "Tenent/_AllNotification";
@@ -98,7 +90,7 @@
     });
     $(".btnAssetRegistration").click(() => {
         callAssetModal();
-        gotoAssetSave();
+        
     });
     $(".btnTenantAgreement").click(() => {
         var url = window.rootpath + TenantURLs.TenantDeedView;
@@ -146,11 +138,20 @@
             transactionCall();
         });
     });
-
+    $(".btnEmcyContact").click(() => {
+        var url = window.rootpath + "Tenent/_emrcyContact";
+        $.get(url, function (response) {
+            RenderContent.html(response);
+        });
+    });
     $('#btnLogOut').click(() => {
         sessionStorage.removeItem('accessToken'); 
         sessionStorage.getItem('RoleID') == 0?
             window.location.href = window.rootpath + ApiDictionary.gotoLogin() :
             window.location.href = window.rootpath + ApiDictionary.gotoAdminLogin()
+    });
+
+    $(".btnRaiseReq").click(() => {
+        getRaiseReqHTML();
     });
 });

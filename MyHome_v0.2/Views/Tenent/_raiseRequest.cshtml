@@ -2,15 +2,14 @@
 @{
     Layout = null;
 }
-
-    <div class="container-fluid">
-        <div class="row mb-1">
+<div class="container-fluid">
+        @*<div class="row mb-5">
             <div class="col-lg-3">
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text">Transaction in</span>
+                        <span class="input-group-text">Requests in</span>
                     </div>
-                    <select class="form-control" id="ddlTransactions" name="Transactions">
+                    <select class="form-control" id="ddlRequest" name="ddlrequests">
                         <option>Today</option>
                         <option>This Weekly</option>
                         <option>This Month</option>
@@ -32,7 +31,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">To</span>
                     </div>
-                    <input type="text" class="form-control" placeholder="" id="trnTo">
+                    <input type="text" class="form-control" id="trnTo">
                 </div>
             </div>
             <div class="col-lg-3">
@@ -40,28 +39,36 @@
                 <input type="button" class="btn btn-success" onclick="saveRequestPage()" value="Request" />
 
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <table class="table table table-bordered table-hover" id="tblRequest">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>Date</th>
-                            <th>Request</th>
-                            <th>Response</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+        </div>*@
+        <div class="row mb-1">
+            <div class="offset-lg-3 col-lg-4 border p-2" >
+                <div class="card">
+                    <div class="card-header text-left global-bg-primary">
+                        <div class="account-item clearfix js-item-menu">
+                            <div class="image">
+                                <img src="~/Images/Profile.jpg" class="img-thumbnail rounded-circle global-text-primary" alt="John Doe" style="border:1px solid;" />
+                            </div>
+                            <div class="content">
+                                <p class="font-weight-bold">Owner</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body" id="divChatBody"style="height: 530px;overflow-y: scroll;"></div>
+                    <div class="card-footer text-muted">
+                        <div style="display:flex;">
+                            <input class="form-control minWidthFull" id="txtRequestBody" placeholder="Request Body..." style="flex:1;min-width: 85%;" />
+                            <button class="btn btn-info ml-1" type="button" onclick="saveRequest()">Save</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <ul class="pagination ml-2">
-                <li class="page-item"><label>6 of 100</label></li>
-                <li class="page-item"><button class="btn btn-primary page-link">Previous</button></li>
-                <li class="page-item"><button class="btn btn-primary page-link">1</button></li>
-                <li class="page-item"><button class="btn btn-primary page-link">2</button></li>
-                <li class="page-item"><button class="btn btn-primary disabled page-link">3</button></li>
-                <li class="page-item"><button class="btn btn-info page-link">Next</button></li>
-            </ul>
         </div>
-    </div>
+</div>
+<script>
+     $(document).find("div#RenderContent #divChatBody").scroll(function () {
+        var scrollValue = $(this).scrollTop();
+         if (scrollValue == 0) {
+             $(document).find("div#RenderContent #divLoadMore").removeClass('d-none');
+         }
+    });
+</script>

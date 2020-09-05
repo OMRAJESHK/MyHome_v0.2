@@ -1,11 +1,9 @@
 ﻿/*Global CSS*/
-.global-bg-primary { background-color: #fb8103 !important; }
-.global-bg-secondary { background-color: bisque !important; }
+.global-bg-primary { background-color: #fb8103 !important; color:#fff!important }
+.global-bg-secondary { background-color: bisque !important;color: #fff !important }
 .global-text-primary { color: #fb8103 !important; }
 
-.global-text-secondary {
-    color: bisque !important;
-}
+.global-text-secondary { color: bisque !important; }
 .minWidthFull { min-width:100%; }
 .asset-title { letter-spacing: 2px; text-transform: uppercase; }
 .cursor-pointer { cursor:pointer !important; }
@@ -17,6 +15,14 @@
 .checkBoxDisabled { opacity: 0.5; pointer-events: none; }
 .txtRounded { border-radius: 0.50rem !important; }
 .noRecords { background: #808080; color: #efefef; font-style: italic; text-align:center; }
+.chatBubble {
+    width: 300px;
+    padding: 5px;
+    border-radius: 10px;
+    color: #fff;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
 .list-unstyled li a:hover {
     padding-left: 10px;
 }

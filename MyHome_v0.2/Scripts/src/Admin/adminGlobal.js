@@ -1,7 +1,7 @@
 ﻿const RenderContent = $('#RenderContent');
 const mainContent = $('.main-content');
 var AssetList = [];
-
+sessionStorage.getItem('RoleID') == '0' ? $('#btnEmrcyContact').hide() : $('#btnEmrcyContact').show();
 
 const callAssetModal = () => {
     $.ajax({
@@ -20,8 +20,8 @@ const callAssetModal = () => {
                     AssetListHtml += `
                     <div class="col" id=${key+1}>
                         <div class="card shadow">
-                            <div class="card-body cursor-pointer bg-secondary crdAssets" data-assetid=${value.AssetId} style="height:220px">
-                                 <div class="h4 asset-title text-light font-weight-bold">${value.AssetName}</div>
+                            <div class="card-body cursor-pointer global-bg-primary crdAssets" data-assetid=${value.AssetId} style="height:220px">
+                                 <div class="h4 asset-title text-light font-weight-bold border-bottom">${value.AssetName}</div>
                                  <div class="h5 text-light font-weight-bold mt-4 mb-4">${value.RegusteredTo}</div>
                                  <div class="h6 text-light text-right font-weight-bold">${value.Address}</div>
                             </div>
@@ -42,30 +42,38 @@ const callAssetModal = () => {
             console.log('something went wrong with the POST...!!!');
         }
     });
+    //gotoAssetSave();
+    gotoAssetView();
 }
 const AssetEdit = (id) => {
     if (AssetList.length > 0) {
-        let Asset = AssetList.filter(data => data.AssetId == id);
-        $('#lblAssetName').text(Asset[0].AssetName);
-        sessionStorage.setItem('AssetID', Asset[0].AssetId)
-        $('#txtAssetName').val(Asset[0].AssetName);
-        $('#txtRegDate').val(getDateOnly(Asset[0].RegisteredDate));
-        $('#txtRegTo').val(Asset[0].RegusteredTo);
-        $('#txtAssetAddress').val(Asset[0].Address);
-        $('#txtRegTaxAmt').val(Asset[0].LandTaxAmount);
-        $('#txtNumDoors').val(Asset[0].NumberofDoors);
-        $('#txtNumWindows').val(Asset[0].NumberofWindows);
-        $('#txtNumTaps').val(Asset[0].NumberofTaps);
-        $('#txtNumFans').val(Asset[0].NumberofFans);
-        $('#txtNumBulbs').val(Asset[0].NumberofBulbs);
-        $("#ckbIsRent").attr('checked', Asset[0].IsRent == 1 ? true : false);
-        $("#ckbIsSump").attr('checked', Asset[0].IsSump == 1 ? true : false);
-        $('#txtAssetRegRemarks').val(Asset[0].Remarks);
+
+        var url = window.rootpath + AdminURLs.Asset;
+        let TransactionsList = convertObjectArray(TransactionTypes);
+        $.get(url, function (response) {
+            RenderContent.html(response);
+            let Asset = AssetList.filter(data => data.AssetId == id);
+            $('#txtAssetName').text(Asset[0].AssetName);
+            sessionStorage.setItem('AssetID', Asset[0].AssetId)
+            $('#txtAssetName').val(Asset[0].AssetName);
+            $('#txtRegDate').val(getDateOnly(Asset[0].RegisteredDate));
+            $('#txtRegTo').val(Asset[0].RegusteredTo);
+            $('#txtAssetAddress').val(Asset[0].Address);
+            $('#txtRegTaxAmt').val(Asset[0].LandTaxAmount);
+            $('#txtNumDoors').val(Asset[0].NumberofDoors);
+            $('#txtNumWindows').val(Asset[0].NumberofWindows);
+            $('#txtNumTaps').val(Asset[0].NumberofTaps);
+            $('#txtNumFans').val(Asset[0].NumberofFans);
+            $('#txtNumBulbs').val(Asset[0].NumberofBulbs);
+            $("#ckbIsRent").attr('checked', Asset[0].IsRent == 1 ? true : false);
+            $("#ckbIsSump").attr('checked', Asset[0].IsSump == 1 ? true : false);
+            $('#txtAssetRegRemarks').val(Asset[0].Remarks);
+        });
+
+        
     }
     mainContent.find('#modSelectAsset').modal('hide');
 }
-// Function to Trauncate Time From Date
-const getDateOnly = (date) => date.split("T")[0];
 
 function GotoSaveTransaction() {
     var url = window.rootpath + AdminURLs.SaveTransaction;
@@ -84,12 +92,35 @@ $('div').on("click", '#RenderContent .crdAssets', function () {
     mainContent.find('#modSelectAsset').modal('hide');
     let id = $(this).attr("data-assetid");
     sessionStorage.setItem('AssetID', id);
-    let name = AssetList.filter(x => x.AssetId == id)[0].AssetName;
-    $('#lblAssetName').text(name);
+    //let name = AssetList.filter(x => x.AssetId == id)[0].AssetName;
+    let Asset = AssetList.filter(data => data.AssetId == id);
+    //$('#lblAssetNamehdr').text(Asset[0].AssetName);
+    sessionStorage.setItem('AssetID', Asset[0].AssetId)
+    $('#lblAssetName, #lblAssetNamehdr').text(Asset[0].AssetName);
+    $('#lblRegDate').text(getDateOnly(Asset[0].RegisteredDate));
+    $('#lblRegTo').text(Asset[0].RegusteredTo);
+    $('#lblAssetAddress').text(Asset[0].Address);
+    $('#lblRegTaxAmt').text(Asset[0].LandTaxAmount);
+    $('#lblNumDoors').text(Asset[0].NumberofDoors);
+    $('#lblNumWindows').text(Asset[0].NumberofWindows);
+    $('#lblNumTaps').text(Asset[0].NumberofTaps);
+    $('#lblNumFans').text(Asset[0].NumberofFans);
+    $('#lblNumBulbs').text(Asset[0].NumberofBulbs);
+    $("#ckbIsRent").attr('checked', Asset[0].IsRent == 1 ? true : false);
+    $("#ckbIsSump").attr('checked', Asset[0].IsSump == 1 ? true : false);
+    $('#lblAssetRegRemarks').text(Asset[0].Remarks);
+
 });
 
 const gotoAssetSave=() => {
     var url = window.rootpath + AdminURLs.Asset;
+    $.get(url, function (response) {
+        RenderContent.html(response);
+        RenderContent.find("#txtRegDate").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true });
+    });
+}
+const gotoAssetView = () => {
+    var url = window.rootpath + AdminURLs.AssetView;
     $.get(url, function (response) {
         RenderContent.html(response);
         RenderContent.find("#txtRegDate").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true });

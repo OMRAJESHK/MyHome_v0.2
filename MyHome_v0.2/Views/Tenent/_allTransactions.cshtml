@@ -4,13 +4,12 @@
 <div class="container-fluid">
     <div class="d-flex justify-content-between mb-1">
          <h5 class="h2">All Transactions</h5>
-         
     </div>
     <div class="row mb-1">
         <div class="col-lg-3">
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text">Request in</span>
+                    <span class="input-group-text global-bg-primary">Request in</span>
                 </div>
                 <select class="form-control" id="ddlRequest" name="Request">
                     <option>Today</option>
@@ -24,7 +23,7 @@
         <div class="col-lg-3">
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text">From</span>
+                    <span class="input-group-text global-bg-primary">From</span>
                 </div>
                 <input type="text" class="form-control" placeholder="" id="trnFrom">
             </div>
@@ -32,23 +31,23 @@
         <div class="col-lg-3">
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text">To</span>
+                    <span class="input-group-text global-bg-primary">To</span>
                 </div>
                 <input type="text" class="form-control" placeholder="" id="trnTo">
             </div>
         </div>
         <div class="col-lg-1">
-            <input type="button" class="btn btn-primary" onclick="transactionCall()" value="Search" />
+            <input type="button" class="btn global-bg-primary" onclick="transactionCall()" value="GET" />
         </div>
         <div class="col-lg-2">
-            <button class="btn btn-primary" id="btnAddTransactions" onclick="GotoSaveTransaction()">Add New</button>
+            <button class="btn global-bg-primary" id="btnAddTransactions" onclick="GotoSaveTransaction()">Add New</button>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-12">
             <table class="table table table-bordered table-hover" id="tblTransactions">
-                <thead class="thead-dark">
-                    <tr>
+                <thead >
+                    <tr class="global-bg-primary ">
                         <th>Description</th>
                         <th>Transaction Type</th>
                         <th>Amount</th>

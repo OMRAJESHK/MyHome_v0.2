@@ -43,7 +43,7 @@
             <nav class="navbar-mobile">
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled ClientMenu global-bg-primary">
-                        <li class="btn_T_Dashboad"><a href="#" class="text-light"> <i class="fab fa-microsoft"></i>Dashboard</a></li>
+                        <li class="btn_T_Dashboad"><a href="#" class="text-light"> <i class="fas fa-border-all"></i>Dashboard</a></li>
                         <li class="btnAllTransactions"><a href="#" class="text-light"><i class="fas fa-chart-bar"></i>All Transactions</a></li>
                         <li class="has-sub">
                             <a class="js-arrow text-light btnTenentDetails" href="#">
@@ -61,15 +61,14 @@
                         <li class="btnRaiseReq"><a href="#" class="text-light"><i class="far fa-comment"></i>Raise Request</a></li>
                     </ul>
                     <ul class="navbar-mobile__list list-unstyled AdminMenu global-bg-primary">
-                        <li class="btn_A_Dashboad text-light"><a href="#" class="text-light"> <i class="fab fa-microsoft"></i>Dashboard</a></li>
+                        <li class="btn_A_Dashboad text-light"><a href="#" class="text-light"><i class="fas fa-border-all"></i>Dashboard</a></li>
                         <li class="btnAssetRegistration"><a href="#" class="text-light"><i class="fas fa-home"></i>Assets</a></li>
                         <li class="btnPropertyTax"><a href="#" class="text-light"><i class="fas fa-chart-bar"></i>Property Tax</a></li>
                         <li class="btnTenantAgreement"><a href="#" class="text-light"><i class="fas fa-home"></i>Tenant Agreement</a></li>
                         <li class="btn_A_AllTransactions"><a href="#" class="text-light"><i class="fas fa-chart-bar"></i>Transactions</a></li>
                         <li class="btn_A_Proximity"><a href="#" class="text-light"><i class="fas fa-map-marker-alt"></i>Proximities</a></li>
-                        <li class="btn_A_EmcyContact"><a href="#" class="text-light"><i class="fas fa-calendar-alt"></i>Emergency Contacts</a></li>
                         <li class="btn_A_SendMail"><a href="#" class="text-light"><i class="fas fa-envelope"></i>Send mail</a></li>
-                        <li class="btn_A_ReqReceive"><a href="#" class="text-light"><i class="far fa-comments"></i>Requests</a></li>
+                        <li class="btnRaiseReq"><a href="#" class="text-light"><i class="far fa-comments"></i>Requests</a></li>
                     </ul>
                 </div>
             </nav>
@@ -81,7 +80,7 @@
             <div class="menu-sidebar__content js-scrollbar1 global-bg-primary">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list ClientMenu">
-                        <li class="btn_T_Dashboad text-light"><a href="#"> <i class="fab fa-microsoft"></i>Dashboard</a></li>
+                        <li class="btn_T_Dashboad text-light"><a href="#"> <i class="fas fa-border-all"></i>Dashboard</a></li>
                         <li class="btnAllTransactions"> <a href="#"> <i class="fas fa-chart-bar"></i>All Transactions</a> </li>
                         <li class="has-sub">
                             <a class="js-arrow btnTenentDetails" href="#">
@@ -99,15 +98,14 @@
                         <li class="btnRaiseReq"> <a href="#"> <i class="far fa-comment"></i>Raise Request </a> </li>
                     </ul>
                     <ul class="list-unstyled navbar__list AdminMenu">
-                        <li class="btn_A_Dashboad"><a href="#" class="text-light"> <i class="fab fa-microsoft"></i>Dashboard</a></li>
+                        <li class="btn_A_Dashboad"><a href="#" class="text-light"><i class="fas fa-border-all"></i>Dashboard</a></li>
                         <li class="btnAssetRegistration"><a href="#" class="text-light"><i class="fas fa-home"></i>Assets</a></li>
                         <li class="btnPropertyTax"><a href="#" class="text-light"><i class="fas fa-chart-bar"></i>Property Tax</a></li>
                         <li class="btnTenantAgreement"><a href="#" class="text-light"><i class="fas fa-home"></i>Tenant Agreement</a></li>
                         <li class="btn_A_AllTransactions"><a href="#" class="text-light"><i class="fas fa-chart-bar"></i>Transactions</a></li>
                         <li class="btn_A_Proximity"><a href="#" class="text-light"><i class="fas fa-map-marker-alt"></i>Proximities</a></li>
-                        <li class="btn_A_EmcyContact"><a href="#" class="text-light"><i class="fas fa-calendar-alt"></i>Emergency Contacts</a></li>
                         <li class="btn_A_SendMail"><a href="#" class="text-light"><i class="fas fa-envelope"></i>Send mail</a></li>
-                        <li class="btn_A_ReqReceive"><a href="#" class="text-light"><i class="far fa-comments"></i>Requests</a></li>
+                        <li class="btnRaiseReq"><a href="#" class="text-light"><i class="far fa-comments"></i>Requests</a></li>
                     </ul>
                 </nav>
             </div>
@@ -129,20 +127,19 @@
                             </form>
                             <span>
                                 <i class="fas fa-home fontSize_20 global-text-primary"></i>
-                                <label class="font-weight-bold mb-2 mt-2 asset-title ml-1 global-text-primary" id="lblAssetName"></label>
+                                <label class="font-weight-bold mb-2 mt-2 asset-title ml-1 global-text-primary" id="lblAssetNamehdr"></label>
                             </span>
                             <div class="header-button">
                                 <div class="noti-wrap">
-                                    <!-- message -->
-                                    <div class="noti__item js-item-menu" id="notificationsTab">
-                                        @*<i class="zmdi zmdi-comment-more"></i>*@
+                                    <!-- Requests -->
+                                    <div class="noti__item js-item-menu" id="requestTab">
                                         <i class="far fa-bell global-text-primary"></i>
-                                        <span class="quantity" id="Notiquantity">3</span>
+                                        <span class="quantity" id="ReqQuantity"></span>
                                         <div class="mess-dropdown js-dropdown">
                                             <div class="notifi__title font-weight-bold">
-                                                <p id="NotiCount"></p>
+                                                <p id="RequestCount"></p>
                                             </div>
-                                            <div id="listNotifications"></div>
+                                            <div id="listRequest"></div>
                                             <div class="notifi__item">
                                                 <div class="bg-c1 img-cir img-40">
                                                     <i class="zmdi zmdi-email-open"></i>
@@ -152,24 +149,22 @@
                                                     <span class="date">April 12, 2018 06:50</span>
                                                 </div>
                                             </div>
-                                            @*<div class="notifi__item">
-                                                    <div class="bg-c2 img-cir img-40">
-                                                        <i class="zmdi zmdi-account-box"></i>
-                                                    </div>
-                                                    <div class="content">
-                                                        <p>Your account has been blocked</p>
-                                                        <span class="date">April 12, 2018 06:50</span>
-                                                    </div>
-                                                </div>
-                                                <div class="notifi__item">
-                                                    <div class="bg-c3 img-cir img-40">
-                                                        <i class="zmdi zmdi-file-text"></i>
-                                                    </div>
-                                                    <div class="content">
-                                                        <p>You got a new file</p>
-                                                        <span class="date">April 12, 2018 06:50</span>
-                                                    </div>
-                                                </div>*@
+                                            <div class="notifi__footer text-center">
+                                                <button id="btnAllNotifn" class="btn btn-info" onclick="getAllRequest()">All Reuests</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Notification -->
+                                    <div class="noti__item js-item-menu" id="notificationsTab">
+                                        @*<i class="zmdi zmdi-comment-more"></i>*@
+                                        <i class="far fa-bell global-text-primary"></i>
+                                        <span class="quantity" id="Notiquantity">3</span>
+                                        <div class="mess-dropdown js-dropdown">
+                                            <div class="notifi__title font-weight-bold">
+                                                <p id="NotiCount"></p>
+                                            </div>
+                                            <div id="listNotifications"></div>
                                             <div class="notifi__footer text-center">
                                                 <button id="btnAllNotifn" class="btn btn-info" onclick="getAllNotification()">All notifications</button>
                                             </div>
@@ -301,8 +296,8 @@
                                                 <div class="account-dropdown__item">
                                                     <a href="#"> <i class="zmdi zmdi-settings"></i>Setting </a>
                                                 </div>
-                                                <div class="account-dropdown__item">
-                                                    <a href="#"> <i class="zmdi zmdi-money-box"></i>Billing </a>
+                                                <div class="account-dropdown__item btnEmcyContact" id="btnEmrcyContact">
+                                                    <a href="#"> <i class="zmdi zmdi-money-box"></i>Contact Details </a>
                                                 </div>
                                             </div>
                                             <div id="btnLogOut" class="account-dropdown__footer">
