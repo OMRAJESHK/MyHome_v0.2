@@ -101,17 +101,67 @@ $('div').on("click", '#RenderContent .crdAssets', function () {
     $('#lblRegTo').text(Asset[0].RegusteredTo);
     $('#lblAssetAddress').text(Asset[0].Address);
     $('#lblRegTaxAmt').text(Asset[0].LandTaxAmount);
-    $('#lblNumDoors').text(Asset[0].NumberofDoors);
-    $('#lblNumWindows').text(Asset[0].NumberofWindows);
-    $('#lblNumTaps').text(Asset[0].NumberofTaps);
-    $('#lblNumFans').text(Asset[0].NumberofFans);
-    $('#lblNumBulbs').text(Asset[0].NumberofBulbs);
+    $('#lblNumDoors').text(inWords(Asset[0].NumberofDoors));
+    $('#lblNumWindows').text(inWords(Asset[0].NumberofWindows));
+    $('#lblNumTaps').text(inWords(Asset[0].NumberofTaps));
+    $('#lblNumFans').text(inWords(Asset[0].NumberofFans));
+    $('#lblNumBulbs').text(inWords(Asset[0].NumberofBulbs));
     $("#ckbIsRent").attr('checked', Asset[0].IsRent == 1 ? true : false);
     $("#ckbIsSump").attr('checked', Asset[0].IsSump == 1 ? true : false);
     $('#lblAssetRegRemarks').text(Asset[0].Remarks);
-
+    getNotifications();
+    getRequests();
 });
+function getNotifications() {
+    ManageAjaxCalls.GetData(ApiDictionary.GetNotification() + `?AssetName=${sessionStorage.getItem('AssetID')}`, (res) => {
+        let NotificationList = '';
+        NotificationRes = res;
+        $('#btnAllNotifn').prop('disabled', false);
+        let list = convertObjectArray(NotificationTypes);
+        res.map(row => {
+            if (row.Status == 0) {
+                NotificationList += `
+                    <div class="notifi__item">
+                        <div class="bg-c3 img-cir img-40">
+                            <label class="notifnLetter">${NotificationLetter[row.NotificationType]}</label>
+                        </div>
+                        <div class="content">
+                             <p>${list[row.NotificationType].name}</p><span class="date">${row.NotificationDate}</span>
+                        </div>
+                    </div>`
+            }
+        });
+        let notiNum = NotificationRes.filter(x => x.Status === 0).length;
+        $('#listNotifications').html(NotificationList);
+        $('#NotiCount').text(`You have ${notiNum} Notifications`);
+        notiNum != 0 ? $('#Notiquantity').text(notiNum).removeClass('d-none') : $('#Notiquantity').addClass('d-none');
 
+    });
+}
+function getRequests() {
+    ManageAjaxCalls.GetData(ApiDictionary.GetRequest() + `?AssetName=${sessionStorage.getItem('AssetID')}`, (res) => {
+        let RequestList = '';
+        $('#btnAllRequest').prop('disabled', false);
+        res.map(row => {
+            if (sessionStorage.getItem('RoleID')==1 && row.Status == 0) {
+                RequestList += `
+                    <div class="notifi__item">
+                        <div class="bg-c3 img-cir img-40">
+                            <label class="notifnLetter">T</label>
+                        </div>
+                        <div class="content">
+                             <p>${row.Description}</p><span class="date">${row.RequestDate}</span>
+                        </div>
+                    </div>`
+            }
+        });
+        let ReqNum = res.filter(x => x.Status === 0).length;
+        $('#listRequest').html(RequestList);
+        $('#RequestCount').text(`You have ${ReqNum} Requests`);
+        ReqNum != 0 ? $('#ReqQuantity').text(ReqNum).removeClass('d-none') : $('#ReqQuantity').addClass('d-none');
+
+    });
+}
 const gotoAssetSave=() => {
     var url = window.rootpath + AdminURLs.Asset;
     $.get(url, function (response) {

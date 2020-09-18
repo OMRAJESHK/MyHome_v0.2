@@ -1,7 +1,6 @@
 ﻿$(document).ready(() => {
     const RenderContent = $('#RenderContent');
     const mainContent = $('.main-content');
-
     $('.UserName').text(sessionStorage.getItem('UserName'));
     $('.UserMail').text(sessionStorage.getItem('UserMail'));
     if (sessionStorage.getItem('accessToken') == null) {

@@ -51,8 +51,8 @@
                                 <i class="fas fa-angle-down dashboardAngle" style="float: right;"></i>
                             </a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                <li class="btnRentAgreement"> <a href="#" class="text-light">Rental Agreement</a> </li>
-                                <li class="btnDocuments"> <a href="#" class="text-light">Documents</a> </li>
+                                <li class="btnRentAgreement"> <a href="#">Rental Agreement</a> </li>
+                                <li class="btnDocuments"> <a href="#">Documents</a> </li>
                             </ul>
                         </li>
                         <li class="btnHouseDetails"><a href="#" class="text-light"><i class="fas fa-home"></i>House Details </a></li>
@@ -80,10 +80,10 @@
             <div class="menu-sidebar__content js-scrollbar1 global-bg-primary">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list ClientMenu">
-                        <li class="btn_T_Dashboad text-light"><a href="#"> <i class="fas fa-border-all"></i>Dashboard</a></li>
-                        <li class="btnAllTransactions"> <a href="#"> <i class="fas fa-chart-bar"></i>All Transactions</a> </li>
+                        <li class="btn_T_Dashboad text-light"><a href="#" class="text-light"> <i class="fas fa-border-all"></i>Dashboard</a></li>
+                        <li class="btnAllTransactions"> <a href="#" class="text-light"> <i class="fas fa-chart-bar"></i>All Transactions</a> </li>
                         <li class="has-sub">
-                            <a class="js-arrow btnTenentDetails" href="#">
+                            <a class="js-arrow btnTenentDetails text-light" href="#">
                                 <i class="fas fa-table"></i>Tenant Details
                                 <i class="fas fa-angle-down dashboardAngle" style="float: right;"></i>
                             </a>
@@ -92,10 +92,10 @@
                                 <li class="btnDocuments"> <a href="#">Documents</a> </li>
                             </ul>
                         </li>
-                        <li class="btnHouseDetails"> <a href="#"> <i class="fas fa-home"></i>House Details </a> </li>
-                        <li class="btnEmcyContact"> <a href="#"> <i class="fas fa-calendar-alt"></i>Emergency Contact </a> </li>
-                        <li class="btnProximity"> <a href="#"> <i class="fas fa-map-marker-alt"></i>Proximity </a> </li>
-                        <li class="btnRaiseReq"> <a href="#"> <i class="far fa-comment"></i>Raise Request </a> </li>
+                        <li class="btnHouseDetails"> <a href="#" class="text-light"> <i class="fas fa-home"></i>House Details </a> </li>
+                        <li class="btnEmcyContact"> <a href="#" class="text-light"> <i class="fas fa-calendar-alt"></i>Emergency Contact </a> </li>
+                        <li class="btnProximity"> <a href="#" class="text-light"> <i class="fas fa-map-marker-alt"></i>Proximity </a> </li>
+                        <li class="btnRaiseReq"> <a href="#" class="text-light"> <i class="far fa-comment"></i>Raise Request </a> </li>
                     </ul>
                     <ul class="list-unstyled navbar__list AdminMenu">
                         <li class="btn_A_Dashboad"><a href="#" class="text-light"><i class="fas fa-border-all"></i>Dashboard</a></li>
@@ -133,14 +133,14 @@
                                 <div class="noti-wrap">
                                     <!-- Requests -->
                                     <div class="noti__item js-item-menu" id="requestTab">
-                                        <i class="far fa-bell global-text-primary"></i>
-                                        <span class="quantity" id="ReqQuantity"></span>
+                                        <i class="far fa-comment global-text-primary"></i>
+                                        <span class="quantity d-none" id="ReqQuantity"></span>
                                         <div class="mess-dropdown js-dropdown">
                                             <div class="notifi__title font-weight-bold">
                                                 <p id="RequestCount"></p>
                                             </div>
                                             <div id="listRequest"></div>
-                                            <div class="notifi__item">
+                                            @*<div class="notifi__item">
                                                 <div class="bg-c1 img-cir img-40">
                                                     <i class="zmdi zmdi-email-open"></i>
                                                 </div>
@@ -148,9 +148,9 @@
                                                     <p>You got a email notification</p>
                                                     <span class="date">April 12, 2018 06:50</span>
                                                 </div>
-                                            </div>
+                                            </div>*@
                                             <div class="notifi__footer text-center">
-                                                <button id="btnAllNotifn" class="btn btn-info" onclick="getAllRequest()">All Reuests</button>
+                                                <button id="btnAllNotifn" class="btn btn-info" onclick="getRaiseReqHTML()">All Reuests</button>
                                             </div>
                                         </div>
                                     </div>
@@ -159,7 +159,7 @@
                                     <div class="noti__item js-item-menu" id="notificationsTab">
                                         @*<i class="zmdi zmdi-comment-more"></i>*@
                                         <i class="far fa-bell global-text-primary"></i>
-                                        <span class="quantity" id="Notiquantity">3</span>
+                                        <span class="quantity d-none" id="Notiquantity"></span>
                                         <div class="mess-dropdown js-dropdown">
                                             <div class="notifi__title font-weight-bold">
                                                 <p id="NotiCount"></p>

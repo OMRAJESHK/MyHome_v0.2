@@ -8,6 +8,7 @@
 
 function getRaiseReqHTML(){
     var url = window.rootpath + "Tenent/_raiseRequest";
+    $('#ReqQuantity').hide();
     $.get(url, function (response) {
         RenderContent.html(response);
         RequestCall();
@@ -150,3 +151,4 @@ function createGraph (){
         }
     });
 }
+

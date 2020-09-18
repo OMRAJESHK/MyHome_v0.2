@@ -7,6 +7,7 @@ class ApiDictionary  {
     static gotoAdminLogin = () => "UserAccount/Login";
     static GetUserRole = () => path+"/api/account/GetUserRole";
     static GetTransactions = () => sessionStorage.getItem('path') + '/api/Transactions/GetTransaction';
+    static PostTransaction = () => sessionStorage.getItem('path') + '/api/Transactions/PostTransaction';
     static GetTenantAgreement = () => sessionStorage.getItem('path') + '/api/TenentAgreement/GetTenentAgreement';
     static GetTenentAgreementByID = () => path + '/api/TenentAgreement/GetTenentAgreementByID';
     static PutTenentAgreement = () => sessionStorage.getItem('path') + '/api/TenentAgreement/PutTenentAgreement';

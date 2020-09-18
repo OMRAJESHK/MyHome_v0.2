@@ -10,6 +10,7 @@
         let adminName = Mail.split('@');
         sessionStorage.setItem('UserName', adminName[0]);
         let postData = { username: Mail, password: Password, grant_type: 'password' }
+        
         ManageAjaxCalls.Post(ApiDictionary.token(), postData, getToken);
     });
     $('#loginLinkClose').click(() => {
@@ -26,6 +27,7 @@
 });
 
 function getCredentials(data) {
+    console.log('postData', data)
     if (data == '404') {
         console.log(data)
     } else {
@@ -52,6 +54,7 @@ function getCredentials(data) {
     }
 }
 function getToken(res) {
+
     sessionStorage.setItem('accessToken', res.access_token);
     window.location.href = window.rootpath + "Home/index";
 }

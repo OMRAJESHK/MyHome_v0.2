@@ -11,20 +11,41 @@
 .fontSize_50 { font-size: 50px !important; }
 .border-right-2 { border-right: 2px solid #a7a9ab; }
 .notifnLetter { font-size: 20px; color: white; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
-.checkBoxStyle_1 { width:30px; height:30px; }
 .checkBoxDisabled { opacity: 0.5; pointer-events: none; }
 .txtRounded { border-radius: 0.50rem !important; }
 .noRecords { background: #808080; color: #efefef; font-style: italic; text-align:center; }
-.chatBubble {
-    width: 300px;
-    padding: 5px;
-    border-radius: 10px;
-    color: #fff;
-    margin-bottom: 5px;
-    font-size: 14px;
+.chatBubble { width: 300px; padding: 5px; border-radius: 10px; color: #fff; margin-bottom: 5px; font-size: 14px; }
+.list-unstyled li a:hover { padding-left: 10px; }
+
+
+/*Customize CheckBox*/
+
+input[type=checkbox] {
+    margin-right: 10px;
+    margin-bottom: 23px;
+    cursor: pointer;
+    font-size: 15px;
+    width: 15px;
+    height: 18px;
+    position: relative;
 }
-.list-unstyled li a:hover {
-    padding-left: 10px;
+input[type=checkbox]:after {
+    position: absolute;
+    width: 25px;
+    height: 28px;
+    top: 0;
+    content: " ";
+    background-color: #fb8103 !important;
+    color: #fff;
+    display: inline-block;
+    visibility: visible;
+    padding: 0px 5px;
+    border-radius: 3px;
+}
+input[type=checkbox]:checked:after {
+    content: "✓";
+    font-size: 20px;
+    font-weight: bolder
 }
 
 

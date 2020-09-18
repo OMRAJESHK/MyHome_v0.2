@@ -1,9 +1,7 @@
 ﻿var NotificationRes = '';
 $(document).ready(() => {
+    (sessionStorage.getItem('RoleID') == 0) ? getNotifications() : null;
     $('#btnAllNotifn').prop('disabled', true);
-    $('#notificationsTab').click(() => {
-        getNotifications();
-    })
     function getNotifications() {
         ManageAjaxCalls.GetData(ApiDictionary.GetNotification() + `?AssetName=${sessionStorage.getItem('AssetID')}`, (res) => {
             let NotificationList = '';
@@ -13,23 +11,26 @@ $(document).ready(() => {
             res.map(row => {
                 if (row.Status == 0) {
                     NotificationList += `
-                <div class="notifi__item">
-                    <div class="bg-c3 img-cir img-40">
-                        <label class="notifnLetter">${NotificationLetter[row.NotificationType]}</label>
-                    </div>
-                    <div class="content">
-                         <p>${list[row.NotificationType].name}</p><span class="date">${row.NotificationDate}</span>
-                    </div>
-                </div>
-            `
+                    <div class="notifi__item">
+                        <div class="bg-c3 img-cir img-40">
+                            <label class="notifnLetter">${NotificationLetter[row.NotificationType]}</label>
+                        </div>
+                        <div class="content">
+                             <p>${list[row.NotificationType].name}</p><span class="date">${row.NotificationDate}</span>
+                        </div>
+                    </div>`
                 }
             });
+            let notiNum = (sessionStorage.getItem('RoleID') == 0) ?
+                NotificationRes.filter(x => x.Status === 1).length :
+                NotificationRes.filter(x => x.Status === 0).length;
             $('#listNotifications').html(NotificationList);
-            $('#NotiCount').text(`You have ${res.length} Notifications`);
-            $('#Notiquantity').text(res.length)
+            $('#NotiCount').text(`You have ${notiNum} Notifications`);
+            notiNum != 0 ? $('#Notiquantity').text(notiNum).removeClass('d-none') : $('#Notiquantity').addClass('d-none');
+            
         });
     }
-})
+});
 
 function getAllNotification() {
     var url = window.rootpath + "Tenent/_AllNotification";
@@ -102,7 +103,6 @@ function gotoSaveNotification() {
         options += NotificationList.map(x => {
             return `<option value=${x.value}>${x.name}</option>`;
         });
-        console.log('options', options)
         RenderContent.find('#ddlNotifications').html(options)
     });
 }

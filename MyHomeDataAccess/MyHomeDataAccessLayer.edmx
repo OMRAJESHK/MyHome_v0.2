@@ -172,6 +172,7 @@
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
           <Property Name="RequestDate" Type="date" Nullable="false" />
           <Property Name="Response" Type="nvarchar(max)" />
+          <Property Name="Status" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Transactions">
           <Key>
@@ -447,6 +448,7 @@
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="RequestDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Response" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Transaction">
           <Key>
@@ -692,6 +694,7 @@
           <EntitySetMapping Name="TenentRequests">
             <EntityTypeMapping TypeName="MyHomeDBModel.TenentRequest">
               <MappingFragment StoreEntitySet="TenentRequests">
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Response" ColumnName="Response" />
                 <ScalarProperty Name="TenentRequestId" ColumnName="TenentRequestId" />
                 <ScalarProperty Name="AssetName" ColumnName="AssetName" />

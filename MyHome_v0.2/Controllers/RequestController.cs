@@ -59,6 +59,7 @@ namespace MyHome_v0._2.Controllers
                     entity.Description = request.Description;
                     entity.RequestDate = request.RequestDate;
                     entity.Response = request.Response;
+                    entity.Status= request.Status;
                     entities.SaveChanges();
                      return Request.CreateResponse(HttpStatusCode.OK, entity);
                 }

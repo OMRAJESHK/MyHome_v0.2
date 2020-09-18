@@ -19,5 +19,6 @@ namespace MyHomeDataAccess
         public string Description { get; set; }
         public System.DateTime RequestDate { get; set; }
         public string Response { get; set; }
+        public int Status { get; set; }
     }
 }
