@@ -1,7 +1,14 @@
 ﻿/*Global CSS*/
+
+.lightmode { background-color: #fff !important; color: rgba(0, 0, 0, 0.2) !important; }
+.darkmode { background-color: #343a40 !important;color: #fff !important; }
+
 .global-bg-primary { background-color: #fb8103 !important; color:#fff!important }
 .global-bg-secondary { background-color: bisque !important;color: #fff !important }
 .global-text-primary { color: #fb8103 !important; }
+.global-text-dark {
+    color: #343a40 !important;
+}
 
 .global-text-secondary { color: bisque !important; }
 .minWidthFull { min-width:100%; }
@@ -16,11 +23,11 @@
 .noRecords { background: #808080; color: #efefef; font-style: italic; text-align:center; }
 .chatBubble { width: 300px; padding: 5px; border-radius: 10px; color: #fff; margin-bottom: 5px; font-size: 14px; }
 .list-unstyled li a:hover { padding-left: 10px; }
-
+.logoFill { height: 25px; width: 25px; border-radius: 50%; display: inline-block; margin: 10px 0px 0px 6px; }
 
 /*Customize CheckBox*/
 
-.ckeckBoxStyle{
+.ckeckBoxStyle, .ckeckBoxStyleDark {
     margin-right: 10px;
     margin-bottom: 23px;
     cursor: pointer;
@@ -29,39 +36,42 @@
     height: 18px;
     position: relative;
 }
-.ckeckBoxStyle:after {
+    .ckeckBoxStyle:after {
         position: absolute;
         width: 25px;
         height: 28px;
         top: 0;
         content: " ";
         background-color: #fb8103 !important;
-        color: #fff;
+        color: #eee;
+        display: inline-block;
+        visibility: visible;
+        padding: 0px 5px;
+        border-radius: 3px;
+    }
+    .ckeckBoxStyleDark:after {
+        position: absolute;
+        width: 25px;
+        height: 28px;
+        top: 0;
+        content: " ";
+        background-color: #343a40 !important;
+        color: #eee;
         display: inline-block;
         visibility: visible;
         padding: 0px 5px;
         border-radius: 3px;
     }
 .ckeckBoxStyle:checked:after { content: "✓"; font-size: 20px; font-weight: bolder }
+    .ckeckBoxStyleDark:checked:after {
+        content: "✓";
+        font-size: 20px;
+        font-weight: bolder
+    }
 
-.toggleSwitch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-}
+.toggleSwitch { position: relative; display: inline-block; width: 60px; height: 34px; }
 .toggleSwitch input { opacity: 0; width: 0; height: 0; }
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
-}
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;  background-color: #ccc; -webkit-transition: .4s; transition: .4s; }
 
 .slider:before {
      position: absolute;

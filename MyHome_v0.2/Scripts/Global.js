@@ -12,6 +12,7 @@
         var url = window.rootpath + TenantURLs.Dashboard;
         $.get(url, function (response) {
             RenderContent.html(response);
+            customizeUI();
             createGraph();
         });
     } else {
@@ -20,6 +21,7 @@
         var url = window.rootpath + "Admin/_AdminDashboard";
         $.get(url, function (response) {
             RenderContent.html(response);
+            customizeUI();
             callAssetModal();
         });
         mainContent.find('#btnAddNotifications').show();
@@ -35,18 +37,21 @@
         var url = window.rootpath + TenantURLs.Dashboard;
         $.get(url, function (response) {
             $('#RenderContent').html(response);
+            customizeUI();
             createGraph();
         });
     });
     $(".btnRentAgreement").click(() => {
         var url = window.rootpath + "Tenent/_tenentDetails";
         $.get(url, function (response) {
+            customizeUI();
             RenderContent.html(response);
         });
     });
     $(".btnDocuments").click(() => {
         var url = window.rootpath + "Tenent/_TenentDocuments";
         $.get(url, function (response) {
+            customizeUI();
             RenderContent.html(response);
         });
     });
@@ -54,6 +59,7 @@
         var url = window.rootpath + "Tenent/_houseDetails";
         $.get(url, function (response) {
             RenderContent.html(response);
+            customizeUI();
             getHouseDetails();
         });
     });
@@ -64,6 +70,7 @@
             (sessionStorage.getItem('RoleID') == '0') ?
                 mainContent.find('#btnAddProximities').hide() :
                 mainContent.find('#btnAddProximities').show();
+                customizeUI();
                 getProximities(Number(sessionStorage.getItem('AssetID')));
         });
     });
@@ -84,6 +91,7 @@
     $(".btn_A_Dashboad").click(() => {
         var url = window.rootpath + AdminURLs.Dashboard;
         $.get(url, function (response) {
+            customizeUI();
             RenderContent.html(response);
         });
     });
@@ -99,12 +107,14 @@
                 mainContent.find('#btnEditAgreement').show();
             RenderContent.html(response);
             getTenantAgreementLogs();
+            customizeUI();
         });
     });
 
     mainContent.find('#btnAddProximities').on('click', '#btnAddProximity', () => {
         var url = window.rootpath + "Admin/_SaveTransactions";
         $.get(url, function (response) {
+            customizeUI();
             RenderContent.html(response);
         });
     });
@@ -112,6 +122,7 @@
         var url = window.rootpath + AdminURLs.MailLogs;
         $.get(url, function (response) {
             RenderContent.html(response);
+            customizeUI();
             getMailLogs();
         });
     });
@@ -120,6 +131,7 @@
         var url = window.rootpath + AdminURLs.propertyTaxLogs;
         $.get(url, function (response) {
             RenderContent.html(response);
+            customizeUI();
             getPropertyTaxLogs();
         });
     });
@@ -134,6 +146,7 @@
                 mainContent.find('#btnAddTransactions').show();
             RenderContent.find("#trnFrom , #trnTo").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true }).datepicker('setDate', new Date());
             RenderContent.find('#ddlTransactionType').append(getTransactionList()).prop('selectedIndex', 0);
+            customizeUI();
             transactionCall();
         });
     });
@@ -141,6 +154,7 @@
         var url = window.rootpath + "Tenent/_emrcyContact";
         $.get(url, function (response) {
             RenderContent.html(response);
+            
         });
     });
     $('#btnLogOut').click(() => {
@@ -153,4 +167,13 @@
     $(".btnRaiseReq").click(() => {
         getRaiseReqHTML();
     });
+
+    $('#chktoggleSwitch').click(() => {
+        customizeUI();
+    });
+
+    $('span.logoFill').on('click', function() {
+        let colorChosen = '#' + $(this).data().color;
+        $('.menu-sidebar__content, .navbar-mobile__list').css('background-color', colorChosen).removeClass('global-bg-primary')
+    })
 });

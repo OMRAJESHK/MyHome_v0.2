@@ -30,7 +30,7 @@
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
                         <div class="logo">
-                            <label class="text-primary text-bold" style="font-size:22px">HOME SWEET HOME</label>
+                            <label class="global-bg-primary text-bold" style="font-size:22px">HOME SWEET HOME</label>
                         </div>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -40,7 +40,7 @@
                     </div>
                 </div>
             </div>
-            <nav class="navbar-mobile">
+            <nav class="navbar-mobile customizeUI">
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled ClientMenu global-bg-primary">
                         <li class="btn_T_Dashboad"><a href="#" class="text-light"> <i class="fas fa-border-all"></i>Dashboard</a></li>
@@ -76,9 +76,9 @@
         <!-- END HEADER MOBILE-->
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
-            <div class="logo"><label class="font-weight-bold text-light">HOME SWEET HOME</label></div>
+            <div class="logo global-bg-primary"><label class="font-weight-bold">HOME SWEET HOME</label></div>
             <div class="menu-sidebar__content js-scrollbar1 global-bg-primary">
-                <nav class="navbar-sidebar">
+                <nav class="navbar-sidebar customizeUI">
                     <ul class="list-unstyled navbar__list ClientMenu">
                         <li class="btn_T_Dashboad text-light"><a href="#" class="text-light"> <i class="fas fa-border-all"></i>Dashboard</a></li>
                         <li class="btnAllTransactions"> <a href="#" class="text-light"> <i class="fas fa-chart-bar"></i>All Transactions</a> </li>
@@ -114,7 +114,7 @@
         <!-- PAGE CONTAINER-->
         <div class="page-container">
             <!-- HEADER DESKTOP-->
-            <header class="header-desktop">
+            <header class="header-desktop global-bg-primary">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="header-wrap">
@@ -126,14 +126,14 @@
                                 </button>
                             </form>
                             <span>
-                                <i class="fas fa-home fontSize_20 global-text-primary"></i>
-                                <label class="font-weight-bold mb-2 mt-2 asset-title ml-1 global-text-primary" id="lblAssetNamehdr"></label>
+                                <i class="fas fa-home fontSize_20 text-light"></i>
+                                <label class="font-weight-bold mb-2 mt-2 asset-title ml-1 text-light" id="lblAssetNamehdr"></label>
                             </span>
                             <div class="header-button">
                                 <div class="noti-wrap">
                                     <!-- Requests -->
                                     <div class="noti__item js-item-menu" id="requestTab">
-                                        <i class="far fa-comment global-text-primary"></i>
+                                        <i class="far fa-comment text-light"></i>
                                         <span class="quantity d-none" id="ReqQuantity"></span>
                                         <div class="mess-dropdown js-dropdown">
                                             <div class="notifi__title font-weight-bold">
@@ -158,8 +158,8 @@
                                     <!-- Notification -->
                                     <div class="noti__item js-item-menu" id="notificationsTab">
                                         @*<i class="zmdi zmdi-comment-more"></i>*@
-                                        <i class="far fa-bell global-text-primary"></i>
-                                        <span class="quantity d-none" id="Notiquantity"></span>
+                                        <i class="far fa-bell text-light"></i>
+                                        <span class="quantity bg-light text-dark font-weight-bolder d-none" id="Notiquantity"></span>
                                         <div class="mess-dropdown js-dropdown">
                                             <div class="notifi__title font-weight-bold">
                                                 <p id="NotiCount"></p>
@@ -173,7 +173,7 @@
 
                                     <!-- Calculator -->
                                     <div class="noti__item js-item-menu">
-                                        <i class="fas fa-calculator global-text-primary"></i>
+                                        <i class="fas fa-calculator text-light"></i>
                                         <div class="notifi-dropdown js-dropdown">
                                             <div class="notifi__title font-weight-bold">
                                                 <p>Simple Calculator</p>
@@ -210,73 +210,120 @@
                                     </div>
                                     <!-- Settings -->
                                     <div class="noti__item js-item-menu">
-                                        <i class="fas fa-cog global-text-primary"></i>
+                                        <i class="fas fa-cog text-light"></i>
                                         @*<span class="quantity">1</span>*@
-                                    <div class="email-dropdown js-dropdown">
-                                        <div class="email__title font-weight-bold">
-                                            <p>Customize</p>
-                                        </div>
-                                        <div class="card">
-                                            <div class="card-header bg-primary text-white">Theme</div> 
+                                    <div class="email-dropdown js-dropdown pl-2 text-dark" >
+                                        <div style="overflow-y:scroll;height:580px">
+                                            <div class="email__title font-weight-bold">
+                                                <p>Customize</p>
+                                            </div>
+                                            <div class="h5">Theme</div>
                                             <div class="d-flex p-2 text-center">
-                                                <div class="flex-fill">Light</div>
-                                                <div class="flex-fill">
+                                                <div class="flex-fill border-right">Light</div>
+                                                <div class="flex-fill border-right">
                                                     <label class="toggleSwitch">
-                                                        <input type="checkbox" class="chkToggle">
+                                                        <input type="checkbox" class="chkToggle" id="chktoggleSwitch">
                                                         <span class="slider round"></span>
                                                     </label>
                                                 </div>
                                                 <div class="flex-fill">Dark</div>
                                             </div>
-                                        </div>
-                                        <label>Logo Backgrounds</label>
-                                        <div>Logo colors</div>
-                                        <label>Navbar Backgrounds( the top header )</label>
-                                        <div>Navbar colors</div>
-                                        <label>Navbar Backgrounds( the top header )</label>
-                                        <div>Navbar colors</div>
+                                            <div>
+                                                <div class="h5">Logo Backgrounds</div>
+                                                <span class="logoFill bg-light"></span>
+                                                <span class="logoFill global-bg-primary"></span>
+                                                <span class="logoFill bg-primary"></span>
+                                                <span class="logoFill bg-info"></span>
+                                                <span class="logoFill bg-warning"></span>
+                                                <span class="logoFill bg-danger"></span>
+                                                <span class="logoFill bg-success"></span>
+                                                <span class="logoFill bg-dark"></span>
+                                            </div>
+                                            <div class="h5">Navbar Backgrounds</div>
+                                            <div>
+                                                <span class="logoFill bg-light" data-color="f8f9fa"></span>
+                                                <span class="logoFill global-bg-primary" data-color="fb8103"></span>
+                                                <span class="logoFill bg-primary" data-color="007bff"></span>
+                                                <span class="logoFill bg-info" data-color="17a2b8"></span>
+                                                <span class="logoFill bg-warning" data-color="ffc107"></span>
+                                                <span class="logoFill bg-danger" data-color="dc3545"></span>
+                                                <span class="logoFill bg-success" data-color="28a745"></span>
+                                                <span class="logoFill bg-dark" data-color="343a40"></span>
+                                            </div>
+                                            <div class="h5">Navbar Colors</div>
+                                            <div>
+                                                <span class="logoFill bg-light"></span>
+                                                <span class="logoFill global-bg-primary"></span>
+                                                <span class="logoFill bg-primary"></span>
+                                                <span class="logoFill bg-info"></span>
+                                                <span class="logoFill bg-warning"></span>
+                                                <span class="logoFill bg-danger"></span>
+                                                <span class="logoFill bg-success"></span>
+                                                <span class="logoFill bg-dark"></span>
+                                            </div>
+                                            <div class="h5">Sidebar Background</div>
+                                            <div>
+                                                <span class="logoFill bg-light"></span>
+                                                <span class="logoFill global-bg-primary"></span>
+                                                <span class="logoFill bg-primary"></span>
+                                                <span class="logoFill bg-info"></span>
+                                                <span class="logoFill bg-warning"></span>
+                                                <span class="logoFill bg-danger"></span>
+                                                <span class="logoFill bg-success"></span>
+                                                <span class="logoFill bg-dark"></span>
+                                            </div>
+                                            <div class="h5">Sidebar Colors</div>
+                                            <div>
+                                                <span class="logoFill bg-light"></span>
+                                                <span class="logoFill global-bg-primary"></span>
+                                                <span class="logoFill bg-primary"></span>
+                                                <span class="logoFill bg-info"></span>
+                                                <span class="logoFill bg-warning"></span>
+                                                <span class="logoFill bg-danger"></span>
+                                                <span class="logoFill bg-success"></span>
+                                                <span class="logoFill bg-dark"></span>
+                                            </div>
 
-                                        <label>Sidebar</label>
-                                        <div>colors</div>
+                                            <label>Image Background</label>
+                                            <div>Images</div>
+                                            <label>Page Content</label>
+                                            <div>Page Content colors</div>
+                                            <div>Reset to Defaults</div>
 
-                                        <label>Image Background</label>
-                                        <div>Images</div>
-                                        <label>Page Content</label>
-                                        <div>Page Content colors</div>
-                                        <div>Reset to Defaults</div>
-
-                                        <div class="email__item">
-                                            <div class="image img-cir img-40">
-                                                <img src="~/Images/avatar-06.jpg" alt="Cynthia Harvey" />
+                                            <div class="email__item">
+                                                <div class="image img-cir img-40">
+                                                    <img src="~/Images/avatar-06.jpg" alt="Cynthia Harvey" />
+                                                </div>
+                                                <div class="content">
+                                                    <p>Meeting about new dashboard...</p>
+                                                    <span>Cynthia Harvey, 3 min ago</span>
+                                                </div>
                                             </div>
-                                            <div class="content">
-                                                <p>Meeting about new dashboard...</p>
-                                                <span>Cynthia Harvey, 3 min ago</span>
+                                            <div class="email__item">
+                                                <div class="image img-cir img-40">
+                                                    <img src="~/Images/avatar-05.jpg" alt="Cynthia Harvey" />
+                                                </div>
+                                                <div class="content">
+                                                    <p>Meeting about new dashboard...</p>
+                                                    <span>Cynthia Harvey, Yesterday</span>
+                                                </div>
                                             </div>
+                                            <div class="email__item">
+                                                <div class="image img-cir img-40">
+                                                    <img src="~/Images/avatar-04.jpg" alt="Cynthia Harvey" />
+                                                </div>
+                                                <div class="content">
+                                                    <p>Meeting about new dashboard...</p>
+                                                    <span>Cynthia Harvey, April 12,,2018</span>
+                                                </div>
+                                            </div>
+                                            <div class="email__footer"> <a href="#">See all emails</a> </div>
                                         </div>
-                                        <div class="email__item">
-                                            <div class="image img-cir img-40">
-                                                <img src="~/Images/avatar-05.jpg" alt="Cynthia Harvey" />
-                                            </div>
-                                            <div class="content">
-                                                <p>Meeting about new dashboard...</p>
-                                                <span>Cynthia Harvey, Yesterday</span>
-                                            </div>
-                                        </div>
-                                        <div class="email__item">
-                                            <div class="image img-cir img-40">
-                                                <img src="~/Images/avatar-04.jpg" alt="Cynthia Harvey" />
-                                            </div>
-                                            <div class="content">
-                                                <p>Meeting about new dashboard...</p>
-                                                <span>Cynthia Harvey, April 12,,2018</span>
-                                            </div>
-                                        </div>
-                                        <div class="email__footer"> <a href="#">See all emails</a> </div>
+                                       
                                     </div>
                                     </div>
                                     <div class="noti__item js-item-menu">
-                                        <i class="fas fa-compress global-text-primary"></i>
+                                        <i class="fas fa-compress text-light"></i>
                                     </div>
                                 </div>
                                 <div class="account-wrap">

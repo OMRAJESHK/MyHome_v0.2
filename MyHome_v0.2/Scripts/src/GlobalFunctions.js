@@ -29,3 +29,16 @@ function inWords(num) {
     str += (n[5] != 0) ? ((str != '') ? 'and ' : '') + (a[Number(n[5])] || b[n[5][0]] + ' ' + a[n[5][1]]) : '';
     return str;
 }
+
+function customizeUI() {
+    if ($('#chktoggleSwitch').is(":checked")) {
+        $('body').find('.global-bg-primary').addClass('darkmode').removeClass('global-bg-primary');
+        $('body').find('.ckeckBoxStyle').addClass('ckeckBoxStyleDark').removeClass('ckeckBoxStyle');  //change checkbox color
+        $('body').find('.global-text-primary').addClass('global-text-dark').removeClass('global-text-primary');
+
+    } else {
+        $('body').find('.darkmode').addClass('global-bg-primary').removeClass('darkmode');
+        $('body').find('.ckeckBoxStyleDark').addClass('ckeckBoxStyle').removeClass('ckeckBoxStyleDark');   //change checkbox color
+        $('body').find('.global-text-dark').addClass('global-text-primary').removeClass('global-text-dark');
+    }
+}

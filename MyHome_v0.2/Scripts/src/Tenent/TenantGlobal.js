@@ -11,6 +11,7 @@ function getRaiseReqHTML(){
     $('#ReqQuantity').hide();
     $.get(url, function (response) {
         RenderContent.html(response);
+        customizeUI();
         RequestCall();
     });
 }

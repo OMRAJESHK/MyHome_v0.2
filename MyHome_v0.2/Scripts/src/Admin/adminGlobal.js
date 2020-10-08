@@ -16,6 +16,7 @@ const callAssetModal = () => {
             $.get(url, function (response) {
                 let AssetListHtml = '';
                 RenderContent.append(response);
+                customizeUI();
                 $.each(AssetList, (key, value) => {
                     AssetListHtml += `
                     <div class="col" id=${key+1}>
