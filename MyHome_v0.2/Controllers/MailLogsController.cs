@@ -6,12 +6,14 @@ using System.Net.Http;
 using System.Web.Http;
 using MyHomeDataAccess;
 
+
 namespace MyHome_v0._2.Controllers
 {
     [Authorize]
     public class MailLogsController : ApiController{
          private MyHomeDBEntities entities = new MyHomeDBEntities();
 
+        //[EnableCors(origins: "http://mywebclient.azurewebsites.net", headers: "*", methods: "*")]
          [HttpGet]
          public HttpResponseMessage GetMailLogs(int AssetName) {
             string[] empty= new string[0]; 
