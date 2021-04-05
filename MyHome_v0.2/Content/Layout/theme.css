@@ -1521,7 +1521,10 @@ section {
     padding: 15px 25px;
     font-size: 14px;
 }
-.account-dropdown__item a:hover { background: #fb8103; color: #fff; }
+    .account-dropdown__item a:hover {
+        background: var(--primary);
+        color: #fff;
+    }
 .account-dropdown__item a i {
     line-height: 1;
     margin-right: 20px;
@@ -1532,7 +1535,10 @@ section {
 .account-dropdown__body { padding: 12px 0; }
 .account-dropdown__footer { border-top: 1px solid #f2f2f2; }
 .account-dropdown__footer a { display: block;color: #333;padding: 15px 25px;font-size: 14px; }
-.account-dropdown__footer a:hover {background: #fb8103;color: #fff; }
+    .account-dropdown__footer a:hover {
+        background: var(--primary);
+        color: #fff;
+    }
 .account-dropdown__footer a i {
      line-height: 1;
      margin-right: 20px;

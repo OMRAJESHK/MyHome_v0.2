@@ -55,7 +55,7 @@ function getAllNotification() {
                             </td>
                             <td>
                                 <div class="card mb-0">
-                                    <div class="d-flex justify-content-between card-header bg-primary">
+                                    <div class="d-flex justify-content-between card-header global-bg-primary">
                                         <h5 class="text-light">${NotifnArray.filter((x) => x.value == row.NotificationType)[0].name}</h5>
                                         <h5 class="text-light">${row.NotificationDate}</h5>
                                     </div>
@@ -69,6 +69,7 @@ function getAllNotification() {
                     `
         });
         $('#RenderContent #tblNotification tbody').html(rowItem);
+       
     });
 }
 
@@ -90,19 +91,11 @@ function saveNotifcation() {
     });
     let assetID = sessionStorage.getItem('AssetID');
     ManageAjaxCalls.Post(ApiDictionary.PostNotification(), notiToSave, () => {
-        console.log('Notification Added')
-    })        
-}
+        console.log('Notification Added');
+        //$("#toastBody").text();
+        //$("#toastHeader").text("Notification");
+        //$('#tstNotifyUser').toast('show');
 
-function gotoSaveNotification() {
-    let NotificationList = convertObjectArray(NotificationTypes);
-    var url = window.rootpath + AdminURLs.SaveNotification;
-    $.get(url, function (response) {
-        RenderContent.html(response);
-        let options = `<option value="0">--Select--</option>`;
-        options += NotificationList.map(x => {
-            return `<option value=${x.value}>${x.name}</option>`;
-        });
-        RenderContent.find('#ddlNotifications').html(options)
-    });
+        CustomeToast("Notification", "Saved Successfully","bg-success")
+    })        
 }

@@ -15,6 +15,18 @@ function getCurrentDate(){
 // Function to Trauncate Time From Date
 const getDateOnly = (date) => date.split("T")[0];
 
+function getDisplayDate(date) {
+    if (date != undefined && date != null && date != "N/A") {
+        date = String(date.slice(0, date.indexOf("T") ?? 9)).split("-");
+        return `${date[2]}-${date[1]}-${date[0]}`;
+    }
+    return date;
+}
+
+
+
+
+
 var a = ['', 'One ', 'Two ', 'Three ', 'Four ', 'Five ', 'Six ', 'Seven ', 'Eight ', 'Nine ', 'Ten ', 'Eleven ', 'Twelve ', 'Thirteen ', 'Fourteen ', 'Fifteen ', 'Sixteen ', 'Seventeen ', 'Eighteen ', 'Nineteen '];
 var b = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
 

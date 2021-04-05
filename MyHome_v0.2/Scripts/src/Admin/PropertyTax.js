@@ -12,7 +12,7 @@ function getPropertyTaxLogs() {
             propertyTaxList = res;
             $.each(res, function (key, row) {
                 rowItem += '<tr><td>' +
-                    row.TaxDate + '</td><td>' +
+                    getDisplayDate(row.TaxDate) + '</td><td>' +
                     row.TaxAmount + '</td><td>' +
                     StatusList.filter(x => x.value === row.Status)[0].name + '</td><td>' +
                     row.Remarks + '</td><td>'+

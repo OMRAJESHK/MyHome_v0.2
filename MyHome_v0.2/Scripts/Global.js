@@ -177,3 +177,9 @@
         $('.menu-sidebar__content, .navbar-mobile__list').css('background-color', colorChosen).removeClass('global-bg-primary')
     })
 });
+function CustomeToast(txthead, txtbody, cls) {
+    $("#toastHeader").text(txthead);
+    $("#toastBody").text(txtbody);
+    $('#tstNotifyUser').toast('show').addClass(cls);
+    setTimeout(function () { $('#tstNotifyUser').removeClass(cls); }, 5000)
+}

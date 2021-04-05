@@ -25,7 +25,7 @@ namespace MyHome_v0._2.Controllers
                  if (getValidData == null){
                     return Request.CreateResponse(HttpStatusCode.NotFound, empty);
                  }
-                 return Request.CreateResponse(HttpStatusCode.Created, getValidData);
+                 return Request.CreateResponse(HttpStatusCode.OK, getValidData);
              }catch(Exception ex){
                  return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
              } 
@@ -37,7 +37,7 @@ namespace MyHome_v0._2.Controllers
                  if (getValidData == null){
                     return Request.CreateResponse(HttpStatusCode.NotFound, getValidData);
                  }
-                 return Request.CreateResponse(HttpStatusCode.Created, getValidData);
+                 return Request.CreateResponse(HttpStatusCode.OK, getValidData);
              }catch(Exception ex){
                  return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
              } 

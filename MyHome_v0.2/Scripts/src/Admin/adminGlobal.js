@@ -1,6 +1,7 @@
 ﻿const RenderContent = $('#RenderContent');
 const mainContent = $('.main-content');
 var AssetList = [];
+let welcomeToast = true;
 sessionStorage.getItem('RoleID') == '0' ? $('#btnEmrcyContact').hide() : $('#btnEmrcyContact').show();
 
 const callAssetModal = () => {
@@ -43,7 +44,7 @@ const callAssetModal = () => {
             console.log('something went wrong with the POST...!!!');
         }
     });
-    //gotoAssetSave();
+    
     gotoAssetView();
 }
 const AssetEdit = (id) => {
@@ -69,9 +70,7 @@ const AssetEdit = (id) => {
             $("#ckbIsRent").attr('checked', Asset[0].IsRent == 1 ? true : false);
             $("#ckbIsSump").attr('checked', Asset[0].IsSump == 1 ? true : false);
             $('#txtAssetRegRemarks').val(Asset[0].Remarks);
-        });
-
-        
+        }); 
     }
     mainContent.find('#modSelectAsset').modal('hide');
 }
@@ -89,13 +88,11 @@ function GotoSaveTransaction() {
     });
 }
 
-$('div').on("click", '#RenderContent .crdAssets', function () {
-    mainContent.find('#modSelectAsset').modal('hide');
-    let id = $(this).attr("data-assetid");
-    sessionStorage.setItem('AssetID', id);
-    //let name = AssetList.filter(x => x.AssetId == id)[0].AssetName;
+function AssetDetails() {
+    let id = sessionStorage.getItem('AssetID');
     let Asset = AssetList.filter(data => data.AssetId == id);
-    //$('#lblAssetNamehdr').text(Asset[0].AssetName);
+    console.log("AssetListAssetListAssetList", AssetList, Asset)
+
     sessionStorage.setItem('AssetID', Asset[0].AssetId)
     $('#lblAssetName, #lblAssetNamehdr').text(Asset[0].AssetName);
     $('#lblRegDate').text(getDateOnly(Asset[0].RegisteredDate));
@@ -110,8 +107,18 @@ $('div').on("click", '#RenderContent .crdAssets', function () {
     $("#ckbIsRent").attr('checked', Asset[0].IsRent == 1 ? true : false);
     $("#ckbIsSump").attr('checked', Asset[0].IsSump == 1 ? true : false);
     $('#lblAssetRegRemarks').text(Asset[0].Remarks);
+}
+
+$('div').on("click", '#RenderContent .crdAssets', function () {
+    mainContent.find('#modSelectAsset').modal('hide');
+    let id = $(this).attr("data-assetid");
+    sessionStorage.setItem('AssetID', id);
+    AssetDetails();
+   
     getNotifications();
     getRequests();
+    welcomeToast && CustomeToast("Welcome Back", sessionStorage.getItem('UserName'), "bg-info");
+    welcomeToast = false;
 });
 function getNotifications() {
     ManageAjaxCalls.GetData(ApiDictionary.GetNotification() + `?AssetName=${sessionStorage.getItem('AssetID')}`, (res) => {
@@ -176,4 +183,24 @@ const gotoAssetView = () => {
         RenderContent.html(response);
         RenderContent.find("#txtRegDate").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true });
     });
+}
+
+// goto Add Notifications
+const GotoSaveNotifications = () => {
+    let NotificationList = convertObjectArray(NotificationTypes);
+    var url = window.rootpath + AdminURLs.SaveNotification;
+    $.get(url, function (response) {
+        RenderContent.html(response);
+        let options = `<option value="0">--Select--</option>`;
+        options += NotificationList.map(x => {
+            return `<option value=${x.value}>${x.name}</option>`;
+        });
+        RenderContent.find('#ddlNotifications').html(options)
+    });
+}
+
+const backToAssetView = () => {
+    gotoAssetView();
+    setTimeout(()=>AssetDetails(),500);
+  
 }

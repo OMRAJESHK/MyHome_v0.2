@@ -13,7 +13,7 @@ function tranRespose(transactions) {
     let TransactionsList = convertObjectArray(TransactionTypes);
     let TransactionModesList = convertObjectArray(ModeOFPayment);
     let StatusList = convertObjectArray(Status);
-
+    console.log("datdatadataa", transactions)
     $('#RenderContent #tblTransactions').DataTable({
         "bLengthChange": false,
         "bFilter": true,
@@ -28,6 +28,7 @@ function tranRespose(transactions) {
             {
                 data: 'TransactionType',
                 render: function (data) {
+                    
                     return '<div>' + TransactionsList.filter((x) => x.value == data)[0].name + '</div>';
                 }
             },

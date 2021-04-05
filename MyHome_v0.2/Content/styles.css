@@ -1,14 +1,18 @@
 ﻿/*Global CSS*/
 
-.lightmode { background-color: #fff !important; color: rgba(0, 0, 0, 0.2) !important; }
+:root {
+    --primary: rgb(28 85 93);
+    --white: #ffffff;
+    --lightmode: rgba(0, 0, 0, 0.2)
+}
+
+.lightmode { background-color: #fff !important;   color: var(--lightmode) !important; }
 .darkmode { background-color: #343a40 !important;color: #fff !important; }
 
-.global-bg-primary { background-color: #fb8103 !important; color:#fff!important }
+.global-bg-primary { background-color: var(--primary) !important; color: var(--white) !important }
 .global-bg-secondary { background-color: bisque !important;color: #fff !important }
-.global-text-primary { color: #fb8103 !important; }
-.global-text-dark {
-    color: #343a40 !important;
-}
+.global-text-primary { color: var(--primary) !important; }
+.global-text-dark { color: #343a40 !important; }
 
 .global-text-secondary { color: bisque !important; }
 .minWidthFull { min-width:100%; }
@@ -16,6 +20,8 @@
 .cursor-pointer { cursor:pointer !important; }
 .fontSize_20 { font-size: 20px !important; }
 .fontSize_50 { font-size: 50px !important; }
+.fontSize_60 { font-size: 60px !important; }
+.fontSize_70 { font-size: 70px !important; }
 .border-right-2 { border-right: 2px solid #a7a9ab; }
 .notifnLetter { font-size: 20px; color: white; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
 .checkBoxDisabled { opacity: 0.5; pointer-events: none; }
@@ -24,7 +30,9 @@
 .chatBubble { width: 300px; padding: 5px; border-radius: 10px; color: #fff; margin-bottom: 5px; font-size: 14px; }
 .list-unstyled li a:hover { padding-left: 10px; }
 .logoFill { height: 25px; width: 25px; border-radius: 50%; display: inline-block; margin: 10px 0px 0px 6px; }
-
+.toastopacity {
+    transition: opacity .35s linear;
+}
 /*Customize CheckBox*/
 
 .ckeckBoxStyle, .ckeckBoxStyleDark {
@@ -42,7 +50,7 @@
         height: 28px;
         top: 0;
         content: " ";
-        background-color: #fb8103 !important;
+        background-color: var(--primary) !important;
         color: #eee;
         display: inline-block;
         visibility: visible;
