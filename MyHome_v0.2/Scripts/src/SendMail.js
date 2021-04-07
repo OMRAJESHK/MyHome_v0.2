@@ -101,11 +101,7 @@ function getMailLogs() {
         let rowItem = '';
         if (res.length > 0) {
             $.each(res, function (key, row) {
-                rowItem += '<tr><td>' +
-                    row.MailTo + '</td><td>' +
-                    row.Subject + '</td><td>' +
-                    row.Body + '</td><td>' +
-                    row.MailDate + '</td></tr>';
+                rowItem += '<tr><td>' +row.MailTo + '</td><td>' + row.Subject + '</td><td>' + row.Body + '</td><td>' + getDisplayDate(row.MailDate) + '</td></tr>';
             });
         }
         else {

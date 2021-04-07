@@ -29,6 +29,15 @@ function getPropertyTaxLogs() {
     });
 }
 
+function gotoPropertyTax() {
+    var url = window.rootpath + AdminURLs.propertyTaxLogs;
+    $.get(url, function (response) {
+        RenderContent.html(response);
+        customizeUI();
+        getPropertyTaxLogs();
+    });
+}
+
 function gotoSavePropertyTax() {
     var url = window.rootpath + AdminURLs.SavePropertyTax;
     $.get(url, function (response) {

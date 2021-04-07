@@ -81,18 +81,20 @@
                     <div autocomplete="off" class="form" role="form">
                         <div class="form-group">
                             <label for="inputAddress" class="font-weight-bold">Address</label>
-                            <input class="form-control minWidthFull txtRounded" id="txtAssetAddress" placeholder="Address" type="text">
+                            @*<input class="form-control minWidthFull txtRounded" id="txtAssetAddress" placeholder="Address" type="text">*@
+
+                            <textarea class="form-control minWidthFull txtRounded" id="txtAssetAddress" placeholder="Address" rows="3"></textarea>
                         </div>
                         <div style="display:flex;margin-top:20px">
                             <div style="flex:1" className="text-right">
                                 <div class="form-check">
-                                    <input type="checkbox" id="ckbIsSump">
+                                    <input type="checkbox" id="ckbIsSump" class="ckeckBoxStyle">
                                     <label class="font-weight-bold" for="IsSump">Is Sump</label>
                                 </div>
                             </div>
                             <div style="flex:1">
                                 <div class="form-check">
-                                    <input type="checkbox" id="ckbIsRent">
+                                    <input type="checkbox" id="ckbIsRent" class="ckeckBoxStyle">
                                     <label class="font-weight-bold" for="IsRent">Is Rent</label>
                                 </div>
                             </div>
@@ -105,9 +107,15 @@
                 </div>
                 <div class="card-footer p-2">
                     <div class="d-flex justify-content-between">
-                        <button class="btn btn-danger w-25" type="button" onclick="backToAssetView()">Back</button>
+                        @*<button class="btn btn-danger w-25" type="button" onclick="backToAssetView()">Back</button>
                         <button class="btn btn-danger w-25" type="button" onclick="clearTextBoxes()">clear</button>
-                        <button class="btn btn-info w-25" type="button" id="btnSaveAsset" onclick="saveAsset()">Save</button>
+                        <button class="btn btn-info w-25" type="button" id="btnSaveAsset" onclick="saveAsset()">Save</button>*@
+
+
+                        <button title="Back" class="btn btn-secondary w-25" type="button" onclick="backToAssetView()"><i class="fas fa-arrow-circle-left"></i> </button>
+                        <button title="Clear" class="btn btn-clear w-25" onclick="clearTextBoxes()"><i class="fas fa-broom"></i> </button>
+                        <button title="Save" class="btn btn-success w-25" type="button" id="btnSaveAsset" onclick="saveAsset()"> <i class="fas fa-share"></i> </button>
+
                     </div>
                 </div>
             </div>

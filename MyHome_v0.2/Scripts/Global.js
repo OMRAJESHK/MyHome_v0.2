@@ -14,6 +14,7 @@
             RenderContent.html(response);
             customizeUI();
             createGraph();
+            CustomeToast("Welcome Back", sessionStorage.getItem('UserName'), "bg-info");
         });
     } else {
         $('.ClientMenu').hide();
@@ -89,26 +90,13 @@
         //------ADMIN BUTTONS-----------//
 
     $(".btn_A_Dashboad").click(() => {
-        var url = window.rootpath + AdminURLs.Dashboard;
-        $.get(url, function (response) {
-            customizeUI();
-            RenderContent.html(response);
-        });
+        gotoDashboard()
     });
     $(".btnAssetRegistration").click(() => {
-        callAssetModal();
-        
+        callAssetModal(); 
     });
     $(".btnTenantAgreement").click(() => {
-        var url = window.rootpath + TenantURLs.TenantDeedView;
-        $.get(url, function (response) {
-            (sessionStorage.getItem('RoleID') == '0') ?
-                mainContent.find('#btnEditAgreement').hide() :
-                mainContent.find('#btnEditAgreement').show();
-            RenderContent.html(response);
-            getTenantAgreementLogs();
-            customizeUI();
-        });
+        gotoTenantView();
     });
 
     mainContent.find('#btnAddProximities').on('click', '#btnAddProximity', () => {
@@ -119,36 +107,23 @@
         });
     });
     $(".btn_A_SendMail").click(() => {
-        var url = window.rootpath + AdminURLs.MailLogs;
-        $.get(url, function (response) {
-            RenderContent.html(response);
-            customizeUI();
-            getMailLogs();
-        });
+        gotoMailLogsView()
     });
 
     $(".btnPropertyTax").click(() => {
-        var url = window.rootpath + AdminURLs.propertyTaxLogs;
-        $.get(url, function (response) {
-            RenderContent.html(response);
-            customizeUI();
-            getPropertyTaxLogs();
-        });
+        //var url = window.rootpath + AdminURLs.propertyTaxLogs;
+        //$.get(url, function (response) {
+        //    RenderContent.html(response);
+        //    customizeUI();
+        //    getPropertyTaxLogs();
+        //});
+
+        gotoPropertyTax();
     });
         //------COMMON BUTTONS----------//
 
     $(".btn_A_AllTransactions, .btnAllTransactions").click(() => {
-        var url = window.rootpath + TenantURLs.Transactions;
-        $.get(url, function (response) {
-            RenderContent.html(response);
-            (sessionStorage.getItem('RoleID') == '0') ?
-                mainContent.find('#btnAddTransactions').hide() :
-                mainContent.find('#btnAddTransactions').show();
-            RenderContent.find("#trnFrom , #trnTo").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true }).datepicker('setDate', new Date());
-            RenderContent.find('#ddlTransactionType').append(getTransactionList()).prop('selectedIndex', 0);
-            customizeUI();
-            transactionCall();
-        });
+        gotoTransactionView()
     });
     $(".btnEmcyContact").click(() => {
         var url = window.rootpath + "Tenent/_emrcyContact";
@@ -177,9 +152,89 @@
         $('.menu-sidebar__content, .navbar-mobile__list').css('background-color', colorChosen).removeClass('global-bg-primary')
     })
 });
+
 function CustomeToast(txthead, txtbody, cls) {
-    $("#toastHeader").text(txthead);
-    $("#toastBody").text(txtbody);
-    $('#tstNotifyUser').toast('show').addClass(cls);
-    setTimeout(function () { $('#tstNotifyUser').removeClass(cls); }, 5000)
+    //$("#toastHeader").text(txthead);
+    //$("#toastBody").text(txtbody);
+    
+
+    let toastHTML = `<div class="fade border w-25 ${cls}" data-delay="2000" id="tstNotifyUser" style="position: absolute; top:8rem; right:20px;">
+                        <div class="toast-header">
+                            <strong class="mr-3" id="toastHeader">${txthead}</strong>
+                        </div>
+                        <div class="toast-body" id="toastBody">${txtbody}</div>
+                    </div>`
+    $("#forToast").html(toastHTML);
+    $(document).find('#forToast #tstNotifyUser').toast('show');
+    setTimeout(function () { $("#forToast").html(""); }, 5000)
+}
+
+$("#fullscreen").click(() => {
+    toggleFullScreen(document.body)
+})
+
+function toggleFullScreen(elem) {
+    // ## The below if statement seems to work better ## if ((document.fullScreenElement && document.fullScreenElement !== null) || (document.msfullscreenElement && document.msfullscreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen)) {
+    if ((document.fullScreenElement !== undefined && document.fullScreenElement === null) || (document.msFullscreenElement !== undefined && document.msFullscreenElement === null) || (document.mozFullScreen !== undefined && !document.mozFullScreen) || (document.webkitIsFullScreen !== undefined && !document.webkitIsFullScreen)) {
+        if (elem.requestFullScreen) {
+            elem.requestFullScreen();
+        } else if (elem.mozRequestFullScreen) {
+            elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullScreen) {
+            elem.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+        } else if (elem.msRequestFullscreen) {
+            elem.msRequestFullscreen();
+        }
+    } else {
+        if (document.cancelFullScreen) {
+            document.cancelFullScreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.webkitCancelFullScreen) {
+            document.webkitCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
+    }
+}
+
+const gotoDashboard = () => {
+    var url = window.rootpath + AdminURLs.Dashboard;
+    $.get(url, function (response) {
+        customizeUI();
+        RenderContent.html(response);
+    });
+}
+const gotoMailLogsView = () => {
+    var url = window.rootpath + AdminURLs.MailLogs;
+    $.get(url, function (response) {
+        RenderContent.html(response);
+        customizeUI();
+        getMailLogs();
+    });
+}
+const gotoTenantView = () => {
+    var url = window.rootpath + TenantURLs.TenantDeedView;
+    $.get(url, function (response) {
+        (sessionStorage.getItem('RoleID') == '0') ?
+            mainContent.find('#btnEditAgreement').hide() :
+            mainContent.find('#btnEditAgreement').show();
+        RenderContent.html(response);
+        getTenantAgreementLogs();
+        customizeUI();
+    });
+}
+
+const gotoTransactionView = () => {
+    var url = window.rootpath + TenantURLs.Transactions;
+    $.get(url, function (response) {
+        RenderContent.html(response);
+        (sessionStorage.getItem('RoleID') == '0') ?
+            mainContent.find('#btnAddTransactions').hide() :
+            mainContent.find('#btnAddTransactions').show();
+        RenderContent.find("#trnFrom , #trnTo").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true }).datepicker('setDate', new Date());
+        RenderContent.find('#ddlTransactionType').append(getTransactionList()).prop('selectedIndex', 0);
+        customizeUI();
+        transactionCall();
+    });
 }

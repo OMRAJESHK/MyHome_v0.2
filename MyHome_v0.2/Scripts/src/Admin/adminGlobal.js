@@ -23,14 +23,14 @@ const callAssetModal = () => {
                     <div class="col" id=${key+1}>
                         <div class="card shadow">
                             <div class="card-body cursor-pointer global-bg-primary crdAssets" data-assetid=${value.AssetId} style="height:220px">
-                                 <div class="h4 asset-title text-light font-weight-bold border-bottom">${value.AssetName}</div>
+                                 <div class="h4 asset-title text-light font-weight-bold border-bottom"><i class="fa fa-home" aria-hidden="true"></i> ${value.AssetName}</div>
                                  <div class="h5 text-light font-weight-bold mt-4 mb-4">${value.RegusteredTo}</div>
                                  <div class="h6 text-light text-right font-weight-bold">${value.Address}</div>
                             </div>
                             <div class="card-footer">
                                 <div class="d-flex justify-content-between">
-                                    <button class="btn btn-info" onclick="AssetEdit(${value.AssetId})">Modify</button>
-                                    <button class="btn btn-danger pull-right"onclick="deleteAsset(${value.AssetId})">Delete</button>
+                                    <button class="btn-outline-info"><i title="Modify" class="ml-1 fas fa-edit fontSize_20 p-2" onclick="AssetEdit(${value.AssetId})"></i></button>
+                                    <button class="btn-outline-danger"><i title="Delete" class="fas fa-trash-alt fontSize_20 text-danger" onclick="deleteAsset(${value.AssetId})"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -114,12 +114,12 @@ $('div').on("click", '#RenderContent .crdAssets', function () {
     let id = $(this).attr("data-assetid");
     sessionStorage.setItem('AssetID', id);
     AssetDetails();
-   
     getNotifications();
     getRequests();
-    welcomeToast && CustomeToast("Welcome Back", sessionStorage.getItem('UserName'), "bg-info");
+    welcomeToast && CustomeToast("Welcome Back", sessionStorage.getItem('UserName'), "bg-danger");
     welcomeToast = false;
 });
+
 function getNotifications() {
     ManageAjaxCalls.GetData(ApiDictionary.GetNotification() + `?AssetName=${sessionStorage.getItem('AssetID')}`, (res) => {
         let NotificationList = '';
@@ -146,6 +146,7 @@ function getNotifications() {
 
     });
 }
+
 function getRequests() {
     ManageAjaxCalls.GetData(ApiDictionary.GetRequest() + `?AssetName=${sessionStorage.getItem('AssetID')}`, (res) => {
         let RequestList = '';
@@ -170,6 +171,7 @@ function getRequests() {
 
     });
 }
+
 const gotoAssetSave=() => {
     var url = window.rootpath + AdminURLs.Asset;
     $.get(url, function (response) {
@@ -177,6 +179,7 @@ const gotoAssetSave=() => {
         RenderContent.find("#txtRegDate").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true });
     });
 }
+
 const gotoAssetView = () => {
     var url = window.rootpath + AdminURLs.AssetView;
     $.get(url, function (response) {
@@ -202,5 +205,4 @@ const GotoSaveNotifications = () => {
 const backToAssetView = () => {
     gotoAssetView();
     setTimeout(()=>AssetDetails(),500);
-  
 }

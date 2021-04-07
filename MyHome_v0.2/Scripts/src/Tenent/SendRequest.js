@@ -30,23 +30,24 @@ const ReqResponse = (res) => {
     $('#RenderContent #txtRequestBody').val('')
 }
 const clietResponseHTML = (row) => {
+    let userName = sessionStorage.getItem("UserName");
     return row.Response != "" ? `
-                <div class="bg-secondary chatBubble float-right" style="font-size: 14px;">
+                <div class="global-bg-primary chatBubble float-right" style="font-size: 14px;">
                     <div class="d-flex justify-content-between border-bottom">
-                        <div>User</div>
+                        <div>${userName}</div>
                         <div>${getDateOnly(row.RequestDate)}</div>
                     </div>
                     <label>${row.Description}</label>
                 </div>
-                <div class="bg-primary chatBubble float-left">
+                <div class="bg-secondary chatBubble float-left">
                     <div class="d-flex justify-content-between border-bottom">
                         <div>Admin </div>
                     </div>
                     <label>${row.Response}</label>
                 </div>`: `
-                <div class="bg-secondary chatBubble float-right" style="font-size: 14px;">
+                <div class="global-bg-primary chatBubble float-right" style="font-size: 14px;">
                     <div class="d-flex justify-content-between border-bottom">
-                        <div>User</div>
+                        <div>${userName}</div>
                         <div>${getDateOnly(row.RequestDate)}</div>
                     </div>
                     <label>${row.Description}</label>
@@ -54,18 +55,18 @@ const clietResponseHTML = (row) => {
 }
 const adminResponseHTML = (row) => {
     return row.Status != 0 && row.Response != "" ?
-        `<div class="bg-primary chatBubble float-left">
+        `<div class="bg-secondary chatBubble float-left">
                    <div class="d-flex justify-content-between border-bottom">
                         <div>User</div>
                         <div>${getDateOnly(row.RequestDate)}</div>
                     </div>
                     <label>${row.Description}</label>
                 </div>
-                <div class="bg-secondary chatBubble float-right" style="font-size: 14px;">
+                <div class="global-bg-primary chatBubble float-right" style="font-size: 14px;">
                     <div class="d-flex justify-content-between border-bottom"><div>Admin </div></div>
                     <label>${row.Response}</label>
                 </div>`: `
-                 <div class="bg-primary chatBubble float-left" style="font-size: 14px;">
+                 <div class="bg-secondary chatBubble float-left" style="font-size: 14px;">
                     <div class="d-flex justify-content-between border-bottom">
                         <div>User</div>
                         <div>${getDateOnly(row.RequestDate)}</div>
