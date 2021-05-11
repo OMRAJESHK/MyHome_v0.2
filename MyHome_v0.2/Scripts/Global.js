@@ -134,9 +134,11 @@
     });
     $('#btnLogOut').click(() => {
         sessionStorage.removeItem('accessToken'); 
-        sessionStorage.getItem('RoleID') == 0?
-            window.location.href = window.rootpath + ApiDictionary.gotoLogin() :
-            window.location.href = window.rootpath + ApiDictionary.gotoAdminLogin()
+        //sessionStorage.getItem('RoleID') == 0?
+        //    window.location.href = window.rootpath + ApiDictionary.gotoLogin() :
+        //    window.location.href = window.rootpath + ApiDictionary.gotoAdminLogin()
+
+        window.location.href = window.rootpath + ApiDictionary.gotoLandingPage()
     });
 
     $(".btnRaiseReq").click(() => {
@@ -154,10 +156,6 @@
 });
 
 function CustomeToast(txthead, txtbody, cls) {
-    //$("#toastHeader").text(txthead);
-    //$("#toastBody").text(txtbody);
-    
-
     let toastHTML = `<div class="fade border w-25 ${cls}" data-delay="2000" id="tstNotifyUser" style="position: absolute; top:8rem; right:20px;">
                         <div class="toast-header">
                             <strong class="mr-3" id="toastHeader">${txthead}</strong>

@@ -9,7 +9,7 @@ function getTenantAgreementLogs() {
         RenderContent.find('#lblAdvAmt').text(res["AdvanceAmount"]);
         RenderContent.find('#lblRentAmt').text(res["RentAmount"]);
         RenderContent.find('#lblPercInc').text(res["PercentageIncreased"]);
-        RenderContent.find('#lblJoiningDate').text(res["JoiningDate"]);
+        RenderContent.find('#lblJoiningDate').text(getDisplayDate(res["JoiningDate"]));
         RenderContent.find('#lblIdentityProofs').text(res["IdentityProofs"]);
         RenderContent.find('#lblTenantRemarks').text(res["Remarks"]);
     });

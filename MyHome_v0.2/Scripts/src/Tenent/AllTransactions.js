@@ -27,14 +27,11 @@ function tranRespose(transactions) {
             { data: 'Description', },
             {
                 data: 'TransactionType',
-                render: function (data) {
-                    
-                    return '<div>' + TransactionsList.filter((x) => x.value == data)[0].name + '</div>';
-                }
+                render: function (data) { return '<div>' + TransactionsList.filter((x) => x.value == data)[0].name + '</div>'; }
             },
 
             { data: 'Amount' },
-            { data: 'Date'   },
+            { data: 'Date', render: function (data) { return getDisplayDate(data) } },
             {
                 data: 'TransactionMode',
                 render: function (data) {

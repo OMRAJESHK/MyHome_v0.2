@@ -35,6 +35,15 @@
 .btn-clear { color: #fff; background-color: #009688; border-color: #078a7e; }
 .btn-clear:hover { color: #fff; background-color: #038074; border-color: #016f65; }
 .w-20 { width: 20% !important; }
+.w-30 { width: 30% !important; }
+.min-width-15 { min-width: 15em !important; }
+.max-width-26 { max-width: 26em !important; }
+.bottom { position: absolute; bottom: 0px; }
+.primary-font {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 12px;
+}
+w-90 { width: 90% !important; }
 
 .menu-arrow-right {
     width: 0;
@@ -43,7 +52,6 @@
     border-bottom: 10px solid transparent;
     border-left: 10px solid #fff;
     position: absolute;
-   
     right: 0px;
 }
 /*Customize CheckBox*/

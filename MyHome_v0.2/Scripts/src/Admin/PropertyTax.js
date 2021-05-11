@@ -7,25 +7,37 @@ function getPropertyTaxLogs() {
     let StatusList = convertObjectArray(Status);
     ManageAjaxCalls.GetData(ApiDictionary.GetPropertyTaxes() + `?AssetName=${assetID}`, (res) => {
         $('#tblPropertyTaxLogs tbody').empty();
-        let rowItem = '';
         if (res.length > 0) {
             propertyTaxList = res;
-            $.each(res, function (key, row) {
-                rowItem += '<tr><td>' +
-                    getDisplayDate(row.TaxDate) + '</td><td>' +
-                    row.TaxAmount + '</td><td>' +
-                    StatusList.filter(x => x.value === row.Status)[0].name + '</td><td>' +
-                    row.Remarks + '</td><td>'+
-                    '<div class="d-flex justify-content-center">'+
-                    '<button title="Edit" class="btn"><i class="fas fa-edit fontSize_20 text-info" onclick="propertyTaxEdit(' + row.PropertyID+')"></i></button>'+
-                    '<button title="Delete" class="btn"><i class="fas fa-trash-alt fontSize_20 text-danger" onclick="propertyTaxDelete(' + row.PropertyID +')"></i></button>'+
-                    '</div></td></tr > ';
+            $('#RenderContent #tblPropertyTaxLogs').DataTable({
+                "bLengthChange": false,
+                "bFilter": true,
+                "bInfo": true,
+                "bPaginate": true,
+                "bAutoWidth": false,
+                'bDestroy': true,
+                "bSort": true,
+                data: res,
+                columns: [
+                    { data: 'TaxDate', render: function (data) { return getDisplayDate(data); }  },
+                    { data: 'TaxAmount', },
+                    { data: 'Status', render: function (data) { return StatusList.filter(x => x.value === data)[0].name }}, 
+                    { data: 'Remarks', },
+                    {
+                        data: 'PropertyID', render: function (data) {;
+                            return `<div class="d-flex justify-content-center">
+                                <button title="Edit" class="btn"><i class="fas fa-edit fontSize_20 text-info" onclick="propertyTaxEdit(' + ${data}+')"></i></button>
+                                <button title="Delete" class="btn"><i class="fas fa-trash-alt fontSize_20 text-danger" onclick="propertyTaxDelete(' + ${data} +')"></i></button></div>`;
+                        }
+                    },
+                ],
+
             });
+
         }
         else {
             rowItem = `<tr><td colspan="9" class="noRecords">No Records</td></tr>`
         }
-        $('#RenderContent #tblPropertyTaxLogs tbody').html(rowItem);
     });
 }
 
