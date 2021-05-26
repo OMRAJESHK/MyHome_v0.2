@@ -17,6 +17,7 @@
 .global-text-secondary { color: bisque !important; }
 .minWidthFull { min-width:100%; }
 .asset-title { letter-spacing: 2px; text-transform: uppercase; }
+.fontSize_18 { font-size:18px !important; }
 .cursor-pointer { cursor:pointer !important; }
 .fontSize_20 { font-size: 20px !important; }
 .fontSize_30 { font-size: 30px !important; }
@@ -192,7 +193,9 @@ w-90 { width: 90% !important; }
 
 /* chartjs css */
 .doughnut { background-color: white; font-family: calibri; height: 230px; }
-.doughnutChartContainer { float: left; background-color: white; }
+.doughnutChartContainer {
+    height: 195px !important;
+}
 .doughnut .chart-legend {
     float: left;
     width: 180px;

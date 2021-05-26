@@ -201,6 +201,7 @@ const gotoDashboard = () => {
     $.get(url, function (response) {
         customizeUI();
         RenderContent.html(response);
+        getStatistics();
     });
 }
 const gotoMailLogsView = () => {

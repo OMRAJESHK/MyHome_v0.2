@@ -16,7 +16,8 @@ const ModeOFPayment = {
 
 const Status = {
     Paid: 1,
-    Unpaid: 2
+    Unpaid: 2,
+    Omit:3
 };
 
 const NotificationTypes = {

@@ -401,6 +401,7 @@
     <Content Include="Scripts\Layout\perfect-scrollbar\perfect-scrollbar.min.js" />
     <Content Include="Scripts\RestAPI\ApiDirectory.js" />
     <Content Include="Scripts\RestAPI\ManageAjax.js" />
+    <Content Include="Scripts\src\Admin\AdminDashboard.js" />
     <Content Include="Scripts\src\Admin\adminGlobal.js" />
     <Content Include="Scripts\src\Admin\AssetRegistration.js" />
     <Content Include="Scripts\src\Admin\PropertyTax.js" />

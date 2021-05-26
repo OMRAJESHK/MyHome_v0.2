@@ -28,5 +28,6 @@ namespace MyHomeDataAccess
         public string TenentEmailId { get; set; }
         public string TenentPassword { get; set; }
         public string Remarks { get; set; }
+        public int RentDueDate { get; set; }
     }
 }

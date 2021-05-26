@@ -81,10 +81,15 @@ const callAssetModal = () => {
                     AssetListHtml += `
                     <div class="col" id=${key + 1}>
                         <div class="card shadow max-width-26 min-width-15">
-                            <div class="card-body cursor-pointer global-bg-primary crdAssets" data-assetid=${value.AssetId} style="height:220px;position: relative;">
-                                 <div class="h5 asset-title text-light font-weight-bold border-bottom"><i class="fa fa-home" aria-hidden="true"></i> ${value.AssetName}</div>
-                                 <div class="h5 text-light font-weight-bold mt-4 mb-4">${value.RegusteredTo}<span class="primary-font" style="float:right;">${getDisplayDate(value.RegisteredDate)}</span></div>
-                                 <div class="h6 text-light text-right font-weight-bold bottom pr-1">${value.Address}</div>
+                            <div class="card-body cursor-pointer global-text-primary crdAssets" data-assetid=${value.AssetId} style="height:220px;position: relative;">
+                                        
+                                 <div class="h5 asset-title font-weight-bold border-bottom"><i class="fa fa-home" aria-hidden="true"></i> ${value.AssetName}</div>
+                                 <div class="mb-1" style="text-align: right;">
+                                   <i class="far fa-comment"></i><span class="quantity" id="">${key + 1}</span>
+                                   <i class="far fa-bell"></i><span class="quantity" id="">${key +3}</span>
+                                 </div>
+                                 <div class="h5 font-weight-bold my-4">${value.RegusteredTo}<span class="primary-font" style="float:right;">${getDisplayDate(value.RegisteredDate)}</span></div>
+                                 <div class="h6 text-right font-weight-bold bottom pr-1">${value.Address}</div>
                             </div>
                             <div class="card-footer">
                                 <div class="d-flex justify-content-between">

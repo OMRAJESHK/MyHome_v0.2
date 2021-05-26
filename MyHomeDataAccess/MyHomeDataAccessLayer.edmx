@@ -162,6 +162,7 @@
           <Property Name="TenentEmailId" Type="nvarchar" MaxLength="50" />
           <Property Name="TenentPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="50" />
+          <Property Name="RentDueDate" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TenentRequests">
           <Key>
@@ -438,6 +439,7 @@
           <Property Name="TenentEmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TenentPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RentDueDate" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="TenentRequest">
           <Key>
@@ -674,6 +676,7 @@
           <EntitySetMapping Name="TenentAgreements">
             <EntityTypeMapping TypeName="MyHomeDBModel.TenentAgreement">
               <MappingFragment StoreEntitySet="TenentAgreement">
+                <ScalarProperty Name="RentDueDate" ColumnName="RentDueDate" />
                 <ScalarProperty Name="AgreementId" ColumnName="AgreementId" />
                 <ScalarProperty Name="AssetName" ColumnName="AssetName" />
                 <ScalarProperty Name="ResidentsNumber" ColumnName="ResidentsNumber" />
