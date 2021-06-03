@@ -50,6 +50,7 @@ const assetDeleteResponse = (res) => {
 const clearTextBoxes = () => {
     $("#ckbIsRent, #ckbIsSump").prop('checked', false);
     $('.main-content').find('.form-control').val('');
+    $('.main-content').find('input[type="file"]').val('')
 }
 const getTransactionList = () => {
     let TransactionsList = convertObjectArray(TransactionTypes);

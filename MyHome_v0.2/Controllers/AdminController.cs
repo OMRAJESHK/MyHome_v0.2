@@ -44,5 +44,8 @@ namespace MyHome_v0._2.Controllers
         public ActionResult _AssetView() {
             return View();
         }
+         public ActionResult _AssetListView() {
+            return View();
+        }
     }
 }

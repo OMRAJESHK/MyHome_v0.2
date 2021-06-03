@@ -53,7 +53,8 @@ const AdminURLs = {
     SendMail: Admin + '_Sendmail',
     propertyTaxLogs: Admin + '_propertyTaxLogs',
     SavePropertyTax: Admin + '_SavePropertyTax',
-    AssetView: Admin + "_AssetView"
+    AssetView: Admin + "_AssetView",
+    AssetslistView: Admin + '_AssetListView',
 }
 
 const TenantURLs = {

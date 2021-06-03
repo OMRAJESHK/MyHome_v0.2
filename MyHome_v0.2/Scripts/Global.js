@@ -12,6 +12,7 @@
         var url = window.rootpath + TenantURLs.Dashboard;
         $.get(url, function (response) {
             RenderContent.html(response);
+            $("#lblAssetNamehdr").text(sessionStorage.getItem('AssetName'));
             customizeUI();
             createGraph();
             CustomeToast("Welcome Back", sessionStorage.getItem('UserName'), "bg-info");
@@ -19,14 +20,15 @@
     } else {
         $('.ClientMenu').hide();
         $('.AdminMenu').show();
-        var url = window.rootpath + "Admin/_AdminDashboard";
+        var url = window.rootpath + AdminURLs.AssetslistView;
         $.get(url, function (response) {
             RenderContent.html(response);
             customizeUI();
-            callAssetModal();
+            //callAssetModal();
         });
         mainContent.find('#btnAddNotifications').show();
     }
+
     //------TENANT BUTTONS-----------//
     $(".btnTenentDetails").click(() => {
         $('.dashboardAngle').hasClass('angleRotate180') ?
@@ -94,6 +96,7 @@
     });
     $(".btnAssetRegistration").click(() => {
         callAssetModal(); 
+        //gotoAssetView();
     });
     $(".btnTenantAgreement").click(() => {
         gotoTenantView();

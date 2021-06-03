@@ -512,6 +512,7 @@
     <Content Include="Views\Tenent\_TenantAgreementView.cshtml" />
     <Content Include="Views\Admin\_AssetView.cshtml" />
     <Content Include="Views\UserAccount\Main.cshtml" />
+    <Content Include="Views\Admin\_AssetListView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyHomeDataAccess\MyHomeDataAccess.csproj">

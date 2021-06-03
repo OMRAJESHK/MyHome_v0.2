@@ -2,15 +2,11 @@
     Layout = null;
 }
 <div class="container-fluid mt-3">
-    <div class="d-flex justify-content-between mb-1">
-        <h5 class="h2">Asset Registration</h5>
-    </div>
+    <div class="d-flex justify-content-between mb-1"><h5 class="h2">Asset Registration</h5></div>
     <div class="row">
         <div class="col-lg-3">
             <div class="card card-outline-secondary">
-                <div class="card-header global-bg-primary">
-                    <h3 class="mb-0 text-light">Primary</h3>
-                </div>
+                <div class="card-header global-bg-primary"><h3 class="mb-0 text-light">Primary</h3></div>
                 <div class="card-body">
                     <div autocomplete="off" class="form" role="form">
                         <div class="form-group">
@@ -24,8 +20,7 @@
                         <div class="form-group">
                             <label for="inputTranAmt" class="font-weight-bold">Registered To</label>
                             <input class="form-control minWidthFull txtRounded" id="txtRegTo" placeholder="Registered To..." type="text">
-                        </div>
-                        
+                        </div>    
                     </div>
                 </div>
             </div>
@@ -57,15 +52,15 @@
                 <div class="card-body card-body pb-4">
                     <div autocomplete="off" class="form" role="form">
                         <div class="form-group">
-                            <label for="inputNumberOfTaps" class="font-weight-bold">Number Of Taps</label>
+                            <label for="txtNumTaps" class="font-weight-bold">Number Of Taps</label>
                             <input class="form-control minWidthFull txtRounded" id="txtNumTaps" placeholder="Number Of Taps" type="number">
                         </div>
                         <div class="form-group">
-                            <label for="inputNumberOfBulbs" class="font-weight-bold">Number Of Bulbs</label>
+                            <label for="txtNumBulbs" class="font-weight-bold">Number Of Bulbs</label>
                             <input class="form-control minWidthFull txtRounded" id="txtNumBulbs" placeholder="Number Of Bulbs" type="number">
                         </div>
                         <div class="form-group">
-                            <label for="inputNumberOfBulbs" class="font-weight-bold">Number Of Fans</label>
+                            <label for="txtNumFans" class="font-weight-bold">Number Of Fans</label>
                             <input class="form-control minWidthFull txtRounded" id="txtNumFans" placeholder="Enter Number Of Fans" type="number">
                         </div>
                     </div>
@@ -80,9 +75,7 @@
                 <div class="card-body">
                     <div autocomplete="off" class="form" role="form">
                         <div class="form-group">
-                            <label for="inputAddress" class="font-weight-bold">Address</label>
-                            @*<input class="form-control minWidthFull txtRounded" id="txtAssetAddress" placeholder="Address" type="text">*@
-
+                            <label for="txtAssetAddress" class="font-weight-bold">Address</label>
                             <textarea class="form-control minWidthFull txtRounded" id="txtAssetAddress" placeholder="Address" rows="3"></textarea>
                         </div>
                         <div style="display:flex;margin-top:20px">
@@ -107,15 +100,16 @@
                 </div>
                 <div class="card-footer p-2">
                     <div class="d-flex justify-content-between">
-                        @*<button class="btn btn-danger w-25" type="button" onclick="backToAssetView()">Back</button>
-                        <button class="btn btn-danger w-25" type="button" onclick="clearTextBoxes()">clear</button>
-                        <button class="btn btn-info w-25" type="button" id="btnSaveAsset" onclick="saveAsset()">Save</button>*@
-
-
-                        <button title="Back to Asset View" class="btn btn-secondary w-25" type="button" onclick="backToAssetView()"><i class="fas fa-arrow-circle-left"></i> </button>
-                        <button title="Clear Fields" class="btn btn-clear w-25" onclick="clearTextBoxes()"><i class="fas fa-broom"></i> </button>
-                        <button title="Save Asset" class="btn btn-success w-25" type="button" id="btnSaveAsset" onclick="saveAsset()"> <i class="fas fa-share"></i> </button>
-
+                        <button aria-label="Go to Asset View" data-toggle="tooltip" data-placement="bottom" title="Back to Asset View" 
+                                class="btn btn-secondary w-25" type="button" onclick="backToAssetView()">
+                            <i aria-label="fa arrow-circle" class="fas fa-arrow-circle-left"></i> 
+                        </button>
+                        <button aria-label="Clear Fields" title="Clear Fields" class="btn btn-clear w-25" onclick="clearTextBoxes()">
+                            <i aria-label="fa broom" class="fas fa-broom"></i> 
+                        </button>
+                        <button aria-label="save Asset" title="Save Asset" class="btn btn-success w-25" type="button" id="btnSaveAsset" onclick="saveAsset()"> 
+                            <i class="fas fa-share" aria-label="fa share"></i> 
+                        </button>
                     </div>
                 </div>
             </div>

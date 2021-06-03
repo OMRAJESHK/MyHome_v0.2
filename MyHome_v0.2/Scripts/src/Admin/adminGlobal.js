@@ -4,7 +4,53 @@ var AssetList = [];
 let welcomeToast = true;
 sessionStorage.getItem('RoleID') == '0' ? $('#btnEmrcyContact').hide() : $('#btnEmrcyContact').show();
 
+const getAssetsList = () => {
+    $.ajax({
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        url: "/api/Asset/GetAsset",
+        headers: { 'Authorization': "Bearer " + sessionStorage.getItem('accessToken') },
+        dataType: "JSON",
+        success: function (data) {
+            AssetList = data;
+            let url = window.rootpath + AdminURLs.AssetslistView;
+            $.get(url, function (response) {
+                let AssetListHtml = '';
+                RenderContent.html(response);
+                customizeUI();
+                $.each(AssetList, (key, value) => {
+                    AssetListHtml += `
+                    <div class="col" id=${key + 1}>
+                        <div class="card shadow min-width-30">
+                            <div class="card-body cursor-pointer bg-primary crdAssets text-light" data-assetid=${value.AssetId} style="height:265px;position: relative;">
+                                 <div class="h5 asset-title font-weight-bold border-bottom"><i class="fa fa-home" aria-hidden="true"></i> ${value.AssetName}</div>
+                                 <div class="mb-1" style="text-align: right;">
+                                   <i class="far fa-comment"></i><span class="quantity" id="">${key + 1}</span>
+                                   <i class="far fa-bell"></i><span class="quantity" id="">${key + 3}</span>
+                                 </div>
+                                 <div class="h5 font-weight-bold my-4">${value.RegusteredTo}<span class="primary-font" style="float:right;">${getDisplayDate(value.RegisteredDate)}</span></div>
+                                 <div class="h6 text-right font-weight-bold bottom pr-1">${value.Address}</div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="d-flex justify-content-between">
+                                    <button class="btn btn-info"><i title="Modify Asset" class="ml-1 fas fa-edit fontSize_20 p-2" onclick="AssetEdit(${value.AssetId})"></i></button>
+                                    <button class="btn btn-danger">
+                                       <i title="Delete Asset" class="fas fa-trash-alt fontSize_20 p-2" data-toggle="modal" data-target="#exampleModalLong"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`
+                });
+                mainContent.find('#AssetsList').html(AssetListHtml);
 
+            });
+        },
+        error: (jqXHR) => {
+            console.error('Something went wrong with the POST...!!!');
+        }
+    });
+}
 
 
 function GotoSaveTransaction() {
