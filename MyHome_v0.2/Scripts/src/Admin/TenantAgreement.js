@@ -12,6 +12,9 @@ function getTenantAgreementLogs() {
         RenderContent.find('#lblJoiningDate').text(getDisplayDate(res["JoiningDate"]));
         RenderContent.find('#lblIdentityProofs').text(res["IdentityProofs"]);
         RenderContent.find('#lblTenantRemarks').text(res["Remarks"]);
+    }, () => {
+            //alert("No Tenant Available");
+            CustomeToast("", "No Tenant Available", "bg-danger");
     });
 }
 function gotoEditAgreement() {

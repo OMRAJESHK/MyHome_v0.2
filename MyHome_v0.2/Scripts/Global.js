@@ -17,15 +17,17 @@
             createGraph();
             CustomeToast("Welcome Back", sessionStorage.getItem('UserName'), "bg-info");
         });
-    } else {
+    } else if (sessionStorage.getItem('RoleID') == 1) {
         $('.ClientMenu').hide();
         $('.AdminMenu').show();
-        var url = window.rootpath + AdminURLs.AssetslistView;
-        $.get(url, function (response) {
-            RenderContent.html(response);
-            customizeUI();
-            //callAssetModal();
-        });
+        //var url = window.rootpath + AdminURLs.AssetslistView;
+        //$.get(url, function (response) {
+        //    RenderContent.html(response);
+        //    customizeUI();
+        //    //callAssetModal();
+        //});
+        getAssetsList();
+        customizeUI();
         mainContent.find('#btnAddNotifications').show();
     }
 
@@ -74,7 +76,7 @@
                 mainContent.find('#btnAddProximities').hide() :
                 mainContent.find('#btnAddProximities').show();
                 customizeUI();
-                getProximities(Number(sessionStorage.getItem('AssetID')));
+                getProximities();
         });
     });
     
@@ -95,8 +97,8 @@
         gotoDashboard()
     });
     $(".btnAssetRegistration").click(() => {
-        callAssetModal(); 
-        //gotoAssetView();
+        //callAssetModal(); 
+        gotoAssetView();
     });
     $(".btnTenantAgreement").click(() => {
         gotoTenantView();
@@ -159,12 +161,15 @@
 });
 
 function CustomeToast(txthead, txtbody, cls) {
-    let toastHTML = `<div class="fade border w-25 ${cls}" data-delay="2000" id="tstNotifyUser" style="position: absolute; top:8rem; right:20px;">
-                        <div class="toast-header">
-                            <strong class="mr-3" id="toastHeader">${txthead}</strong>
-                        </div>
+    let toastHTML = txthead.length > 0 ?
+                    `<div class="fade border w-25 ${cls}" data-delay="2000" id="tstNotifyUser" style="position: absolute; top:8rem; right:20px;">
+                        <div class="toast-header"><strong class="mr-3" id="toastHeader">${txthead}</strong></div>
                         <div class="toast-body" id="toastBody">${txtbody}</div>
-                    </div>`
+                    </div>`:
+                    `<div class="fade border w-25 ${cls}" data-delay="2000" id="tstNotifyUser" style="position: absolute; top:8rem; right:20px;">
+                        <div class="toast-body" id="toastBody">${txtbody}</div>
+                    </div>`;
+
     $("#forToast").html(toastHTML);
     $(document).find('#forToast #tstNotifyUser').toast('show');
     setTimeout(function () { $("#forToast").html(""); }, 5000)

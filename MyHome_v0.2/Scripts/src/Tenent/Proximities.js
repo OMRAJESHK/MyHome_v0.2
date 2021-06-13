@@ -1,5 +1,6 @@
-﻿ const getProximities = (assetId) => {
-     ManageAjaxCalls.GetData(ApiDictionary.GetProximity() + `?AssetName=${assetId}`, (res) => {
+﻿const getProximities = () => {
+    let assetID = sessionStorage.getItem('AssetID')
+    ManageAjaxCalls.GetData(ApiDictionary.GetProximity() + `?AssetName=${assetID}`, (res) => {
          $('#lblRailwayStation').text(res["RailwayStation"]);
          $('#lblBusStation').text(res["BusStation"]);
          $('#lblAirport').text(res["Airport"]);

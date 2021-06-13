@@ -1642,6 +1642,7 @@
 
     $(".started_button").click(() => {
         $("#getStarted").remove();
+        CustomeToast("Welcome Back", sessionStorage.getItem('UserName'), "bg-danger")
     });
     $("#lblAssetNamehdr").click(() => {
         sessionStorage.getItem("RoleID") == 1 && getAssetsList();

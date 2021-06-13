@@ -5,7 +5,7 @@ let selectedID = '';
 function getPropertyTaxLogs() {
     let assetID = sessionStorage.getItem('AssetID');
     let StatusList = convertObjectArray(Status);
-    ManageAjaxCalls.GetData(ApiDictionary.GetPropertyTaxes() + `?AssetName=${assetID}`, (res) => {
+    assetID && ManageAjaxCalls.GetData(ApiDictionary.GetPropertyTaxes() + `?AssetName=${assetID}`, (res) => {
         $('#tblPropertyTaxLogs tbody').empty();
         if (res.length > 0) {
             propertyTaxList = res;

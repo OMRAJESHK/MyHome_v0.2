@@ -39,6 +39,9 @@
 .w-30 { width: 30% !important; }
 .min-width-15 { min-width: 15em !important; }
 .max-width-26 { max-width: 26em !important; }
+.max-width-30 {
+    max-width: 30em !important;
+}
 .min-width-30 { min-width: 30em !important; }
 .bottom { position: absolute; bottom: 0px; }
 border-bottom-2 { border-bottom: 2px solid #dee2e6 !important; }
@@ -58,10 +61,18 @@ w-90 { width: 90% !important; }
     -webkit-transition: .4s ease-in-out;
     transition: .4s ease-in-out;
 }
-
+.assetCards { transition: box-shadow .3s; }
+.assetCards:hover {  box-shadow: 0 0 20px rgba(35,33,33,0.2); }
 /*Customize CheckBox*/
-
-.ckeckBoxStyle, .ckeckBoxStyleDark { margin-right: 10px; margin-bottom: 23px; cursor: pointer; font-size: 15px; width: 15px; height: 18px; position: relative; }
+.ckeckBoxStyle, .ckeckBoxStyleDark {
+    margin-right: 10px;
+    margin-bottom: 23px;
+    cursor: pointer;
+    font-size: 15px;
+    width: 15px;
+    height: 18px;
+    position: relative;
+}
 .ckeckBoxStyle:after { 
     position: absolute; width: 25px; height: 28px; top: 0; content: " "; background-color: var(--primary) !important; 
     color: #eee; display: inline-block; visibility: visible; padding: 0px 5px; border-radius: 3px;

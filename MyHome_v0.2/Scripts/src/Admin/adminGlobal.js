@@ -1,7 +1,6 @@
 ﻿const RenderContent = $('#RenderContent');
 const mainContent = $('.main-content');
 var AssetList = [];
-let welcomeToast = true;
 sessionStorage.getItem('RoleID') == '0' ? $('#btnEmrcyContact').hide() : $('#btnEmrcyContact').show();
 
 const getAssetsList = () => {
@@ -21,9 +20,9 @@ const getAssetsList = () => {
                 $.each(AssetList, (key, value) => {
                     AssetListHtml += `
                     <div class="col" id=${key + 1}>
-                        <div class="card shadow min-width-30">
-                            <div class="card-body cursor-pointer bg-primary crdAssets text-light" data-assetid=${value.AssetId} style="height:265px;position: relative;">
-                                 <div class="h5 asset-title font-weight-bold border-bottom"><i class="fa fa-home" aria-hidden="true"></i> ${value.AssetName}</div>
+                        <div class="card assetCards">
+                            <div class="card-body cursor-pointer crdAssets" data-assetid=${value.AssetId} style="height:270px;position: relative;">
+                                 <div class="h5 global-text-primary  asset-title font-weight-bold border-bottom"><i class="fa fa-home fontSize_50" aria-hidden="true"></i> ${value.AssetName}</div>
                                  <div class="mb-1" style="text-align: right;">
                                    <i class="far fa-comment"></i><span class="quantity" id="">${key + 1}</span>
                                    <i class="far fa-bell"></i><span class="quantity" id="">${key + 3}</span>
@@ -43,7 +42,6 @@ const getAssetsList = () => {
                     </div>`
                 });
                 mainContent.find('#AssetsList').html(AssetListHtml);
-
             });
         },
         error: (jqXHR) => {
@@ -71,7 +69,6 @@ function AssetDetails() {
     let Asset = AssetList.filter(data => data.AssetId == id);
     console.log("AssetListAssetListAssetList", AssetList, Asset)
 
-    sessionStorage.setItem('AssetID', Asset[0].AssetId)
     $('#lblAssetName, #lblAssetNamehdr').text(Asset[0].AssetName);
     $('#lblRegDate').text(getDateOnly(Asset[0].RegisteredDate));
     $('#lblRegTo').text(Asset[0].RegusteredTo);
@@ -87,15 +84,15 @@ function AssetDetails() {
     $('#lblAssetRegRemarks').text(Asset[0].Remarks);
 }
 
-$('div').on("click", '#RenderContent .crdAssets', function () {
+$('div#RenderContent').on("click", '.crdAssets', function () {
     mainContent.find('#modSelectAsset').modal('hide');
     let id = $(this).attr("data-assetid");
     sessionStorage.setItem('AssetID', id);
     AssetDetails();
     getNotifications();
     getRequests();
-    welcomeToast && CustomeToast("Welcome Back", sessionStorage.getItem('UserName'), "bg-danger");
-    welcomeToast = false;
+    let name = AssetList.filter(data => data.AssetId == id)[0].AssetName;
+    CustomeToast("Welcome To", name, "bg-primary");
 });
 
 function getNotifications() {
@@ -163,6 +160,7 @@ const gotoAssetView = () => {
     $.get(url, function (response) {
         RenderContent.html(response);
         RenderContent.find("#txtRegDate").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true });
+        AssetDetails();
     });
 }
 
@@ -190,7 +188,7 @@ const backToAssetView = () => {
         dataType: "JSON",
         success: function (data) {
             AssetList = data;
-            AssetDetails()
+           // AssetDetails()
         }
     });
 }

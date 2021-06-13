@@ -1,4 +1,4 @@
-﻿const path = sessionStorage.getItem('path');
+﻿const path = "https://localhost:44395";
 const Admin = 'Admin/';
 const Client = 'tenent/';
 class ApiDictionary  {
@@ -7,21 +7,21 @@ class ApiDictionary  {
     static gotoAdminLogin = () => "UserAccount/Login";
     static gotoLandingPage = () => "UserAccount/main";
     static GetUserRole = () => path+"/api/account/GetUserRole";
-    static GetTransactions = () => sessionStorage.getItem('path') + '/api/Transactions/GetTransaction';
-    static PostTransaction = () => sessionStorage.getItem('path') + '/api/Transactions/PostTransaction';
-    static GetTenantAgreement = () => sessionStorage.getItem('path') + '/api/TenentAgreement/GetTenentAgreement';
+    static GetTransactions = () => path + '/api/Transactions/GetTransaction';
+    static PostTransaction = () => path + '/api/Transactions/PostTransaction';
+    static GetTenantAgreement = () => path + '/api/TenentAgreement/GetTenentAgreement';
     static GetTenentAgreementByID = () => path + '/api/TenentAgreement/GetTenentAgreementByID';
-    static PutTenentAgreement = () => sessionStorage.getItem('path') + '/api/TenentAgreement/PutTenentAgreement';
-    static DeleteTenentAgreement = () => sessionStorage.getItem('path') + '/api/TenentAgreement/DeleteTenentAgreement';
-    static AssetPost = () => sessionStorage.getItem('path') + "/api/Asset/PostAssetDetails";
-    static AssetPut = () => sessionStorage.getItem('path') + "/api/Asset/PutAsset";
-    static DeleteAsset = () => sessionStorage.getItem('path') + "/api/Asset/DeleteAsset";
-    static GetAssetName = () => sessionStorage.getItem('path') + '/api/Asset/GetAssetName';
-    static GetProximity = () => sessionStorage.getItem('path') + '/api/Proximities/GetProximity';
-    static PostProximity = () => sessionStorage.getItem('path') + '/api/Proximities/PostProximity';
-    static PutProximity = () => sessionStorage.getItem('path') + '/api/Proximities/PutProximity';
-    static GetRequest = () => sessionStorage.getItem('path') + '/api/Request/GetRequestsByID';
-    static PostRequest = () => sessionStorage.getItem('path') + "/api/Request/PostRequest";
+    static PutTenentAgreement = () => path + '/api/TenentAgreement/PutTenentAgreement';
+    static DeleteTenentAgreement = () => path + '/api/TenentAgreement/DeleteTenentAgreement';
+    static AssetPost = () => path + "/api/Asset/PostAssetDetails";
+    static AssetPut = () => path + "/api/Asset/PutAsset";
+    static DeleteAsset = () => path + "/api/Asset/DeleteAsset";
+    static GetAssetName = () => path + '/api/Asset/GetAssetName';
+    static GetProximity = () => path + '/api/Proximities/GetProximity';
+    static PostProximity = () => path + '/api/Proximities/PostProximity';
+    static PutProximity = () => path + '/api/Proximities/PutProximity';
+    static GetRequest = () => path + '/api/Request/GetRequestsByID';
+    static PostRequest = () => path + "/api/Request/PostRequest";
     static PutRequest = () => path + "/api/Request/PutRequest";
 
     static GetNotification = () => path + "/api/Notifications/GetNotification";

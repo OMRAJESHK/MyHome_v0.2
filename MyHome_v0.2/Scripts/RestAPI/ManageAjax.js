@@ -10,7 +10,7 @@
             }
         });
     }
-    static GetData = (url, callBack) => {
+    static GetData = (url, callBack,errCallback) => {
         $.ajax({
             url: url,
             method: 'get',
@@ -18,10 +18,14 @@
                 'Authorization': "Bearer " + sessionStorage.getItem('accessToken')
             },
             success: (response) => { callBack(response) },
-            error: (jqXHR) => {
-                if (jqXHR.status == '401') {
+            error: (err) => {
+                if (err.status == '401') {
                     alert('Session Expired...!!!');
                     window.location.href = window.rootpath + "UserAccount/Login";
+                } else if (err.status == '400') {
+                    console.error("Bad Request");
+                } else if (err.status == '404') {
+                    errCallback()
                 }
                 console.log('something went wrong...I donno what');
             }

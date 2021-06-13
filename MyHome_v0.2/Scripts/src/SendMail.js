@@ -113,7 +113,7 @@ function gotoSendMail() {
 
 function getMailLogs() {
     let assetID = sessionStorage.getItem('AssetID');
-    ManageAjaxCalls.GetData(ApiDictionary.GetMailLogs() + `?AssetName=${assetID}`, (res) => {
+    assetID && ManageAjaxCalls.GetData(ApiDictionary.GetMailLogs() + `?AssetName=${assetID}`, (res) => {
         $('#tblMailLogs tbody').empty();
         let rowItem = '';
         if (res.length > 0) {

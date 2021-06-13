@@ -24,7 +24,7 @@ namespace MyHome_v0._2.Controllers
             TenentAgreementController customObj = new TenentAgreementController();
             var getValidData = entities.TenentAgreements.Where(x => x.AssetName == AssetName).SingleOrDefault();
             if (getValidData == null) {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest,"404");
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound,"404");
             }
             return Request.CreateResponse(HttpStatusCode.Created, getValidData);
         }
