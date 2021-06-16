@@ -160,20 +160,6 @@
     })
 });
 
-function CustomeToast(txthead, txtbody, cls) {
-    let toastHTML = txthead.length > 0 ?
-                    `<div class="fade border w-25 ${cls}" data-delay="2000" id="tstNotifyUser" style="position: absolute; top:8rem; right:20px;">
-                        <div class="toast-header"><strong class="mr-3" id="toastHeader">${txthead}</strong></div>
-                        <div class="toast-body" id="toastBody">${txtbody}</div>
-                    </div>`:
-                    `<div class="fade border w-25 ${cls}" data-delay="2000" id="tstNotifyUser" style="position: absolute; top:8rem; right:20px;">
-                        <div class="toast-body" id="toastBody">${txtbody}</div>
-                    </div>`;
-
-    $("#forToast").html(toastHTML);
-    $(document).find('#forToast #tstNotifyUser').toast('show');
-    setTimeout(function () { $("#forToast").html(""); }, 5000)
-}
 
 $("#fullscreen").click(() => {
     toggleFullScreen(document.body)

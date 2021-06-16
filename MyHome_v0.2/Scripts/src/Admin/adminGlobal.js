@@ -22,7 +22,7 @@ const getAssetsList = () => {
                     <div class="col" id=${key + 1}>
                         <div class="card assetCards">
                             <div class="card-body cursor-pointer crdAssets" data-assetid=${value.AssetId} style="height:270px;position: relative;">
-                                 <div class="h5 global-text-primary  asset-title font-weight-bold border-bottom"><i class="fa fa-home fontSize_50" aria-hidden="true"></i> ${value.AssetName}</div>
+                                 <div class="h6 global-text-primary  asset-title font-weight-bold border-bottom"><i class="fa fa-home fontSize_50" aria-hidden="true"></i> ${value.AssetName}</div>
                                  <div class="mb-1" style="text-align: right;">
                                    <i class="far fa-comment"></i><span class="quantity" id="">${key + 1}</span>
                                    <i class="far fa-bell"></i><span class="quantity" id="">${key + 3}</span>
