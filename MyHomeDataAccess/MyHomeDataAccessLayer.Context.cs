@@ -36,6 +36,7 @@ namespace MyHomeDataAccess
         public virtual DbSet<Notification> Notifications { get; set; }
         public virtual DbSet<PropertyTax> PropertyTaxes { get; set; }
         public virtual DbSet<Proximity> Proximities { get; set; }
+        public virtual DbSet<Registration> Registrations { get; set; }
         public virtual DbSet<TenentAgreement> TenentAgreements { get; set; }
         public virtual DbSet<TenentRequest> TenentRequests { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }

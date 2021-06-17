@@ -208,6 +208,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AssetController.cs" />
+    <Compile Include="Controllers\EmergencyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MailLogsController.cs" />
     <Compile Include="Controllers\NotificationsController.cs" />
@@ -417,6 +418,7 @@
     <Content Include="Scripts\src\Tenent\Notification.js" />
     <Content Include="Scripts\src\Tenent\Proximities.js" />
     <Content Include="Scripts\src\Tenent\SendRequest.js" />
+    <Content Include="Scripts\src\Tenent\TenantEmergency.js" />
     <Content Include="Scripts\src\Tenent\TenantGlobal.js" />
     <Content Include="test.html" />
     <Content Include="Web.config" />
@@ -495,7 +497,6 @@
     <Content Include="Views\Tenent\_emrcyContact.cshtml" />
     <Content Include="Views\Tenent\_raiseRequest.cshtml" />
     <Content Include="Views\Tenent\_proximity.cshtml" />
-    <Content Include="Views\Tenent\_TenentDocuments.cshtml" />
     <Content Include="Views\UserAccount\UserLogin.cshtml" />
     <Content Include="Views\Admin\_AssetRegistration.cshtml" />
     <Content Include="Views\Tenent\_AllNotification.cshtml" />

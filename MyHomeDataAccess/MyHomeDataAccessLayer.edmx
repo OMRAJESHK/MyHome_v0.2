@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MyHomeDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="MyHomeDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -93,7 +93,7 @@
           <Property Name="AssetName" Type="int" Nullable="false" />
           <Property Name="ContactName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ContactNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Profession" Type="nvarchar" MaxLength="50" />
+          <Property Name="Profession" Type="int" />
         </EntityType>
         <EntityType Name="MailLogs">
           <Key>
@@ -143,6 +143,15 @@
           <Property Name="Market" Type="nvarchar" MaxLength="50" />
           <Property Name="Temple" Type="nvarchar" MaxLength="50" />
           <Property Name="Hotel" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Registration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="TenentAgreement">
           <Key>
@@ -260,6 +269,7 @@
           <EntitySet Name="Notifications" EntityType="Self.Notifications" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PropertyTax" EntityType="Self.PropertyTax" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Proximities" EntityType="Self.Proximities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Registration" EntityType="Self.Registration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TenentAgreement" EntityType="Self.TenentAgreement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TenentRequests" EntityType="Self.TenentRequests" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
@@ -280,7 +290,8 @@
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MyHomeDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -370,7 +381,7 @@
           <Property Name="AssetName" Type="Int32" Nullable="false" />
           <Property Name="ContactName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ContactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Profession" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Profession" Type="Int32" />
         </EntityType>
         <EntityType Name="MailLog">
           <Key>
@@ -379,15 +390,15 @@
           <Property Name="MailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AssetName" Type="Int32" Nullable="false" />
           <Property Name="MailTo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="MailDate" Type="DateTime" Precision="0" Nullable="false" />
           <Property Name="Subject" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MailDate" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="Notification">
           <Key>
             <PropertyRef Name="NotificationId" />
           </Key>
-          <Property Name="NotificationId" Type="Int32" Nullable="false" />
+          <Property Name="NotificationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AssetName" Type="Int32" Nullable="false" />
           <Property Name="NotificationType" Type="Int32" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
@@ -420,6 +431,15 @@
           <Property Name="Market" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Temple" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Hotel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Registration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TenentAgreement">
           <Key>
@@ -512,6 +532,7 @@
           <EntitySet Name="Notifications" EntityType="Self.Notification" />
           <EntitySet Name="PropertyTaxes" EntityType="Self.PropertyTax" />
           <EntitySet Name="Proximities" EntityType="Self.Proximity" />
+          <EntitySet Name="Registrations" EntityType="Self.Registration" />
           <EntitySet Name="TenentAgreements" EntityType="Self.TenentAgreement" />
           <EntitySet Name="TenentRequests" EntityType="Self.TenentRequest" />
           <EntitySet Name="Transactions" EntityType="Self.Transaction" />
@@ -623,11 +644,11 @@
           <EntitySetMapping Name="MailLogs">
             <EntityTypeMapping TypeName="MyHomeDBModel.MailLog">
               <MappingFragment StoreEntitySet="MailLogs">
-                <ScalarProperty Name="Body" ColumnName="Body" />
-                <ScalarProperty Name="Subject" ColumnName="Subject" />
                 <ScalarProperty Name="MailId" ColumnName="MailId" />
                 <ScalarProperty Name="AssetName" ColumnName="AssetName" />
                 <ScalarProperty Name="MailTo" ColumnName="MailTo" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
                 <ScalarProperty Name="MailDate" ColumnName="MailDate" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -635,12 +656,12 @@
           <EntitySetMapping Name="Notifications">
             <EntityTypeMapping TypeName="MyHomeDBModel.Notification">
               <MappingFragment StoreEntitySet="Notifications">
-                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="NotificationId" ColumnName="NotificationId" />
                 <ScalarProperty Name="AssetName" ColumnName="AssetName" />
                 <ScalarProperty Name="NotificationType" ColumnName="NotificationType" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="NotificationDate" ColumnName="NotificationDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -673,10 +694,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Registrations">
+            <EntityTypeMapping TypeName="MyHomeDBModel.Registration">
+              <MappingFragment StoreEntitySet="Registration">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TenentAgreements">
             <EntityTypeMapping TypeName="MyHomeDBModel.TenentAgreement">
               <MappingFragment StoreEntitySet="TenentAgreement">
-                <ScalarProperty Name="RentDueDate" ColumnName="RentDueDate" />
                 <ScalarProperty Name="AgreementId" ColumnName="AgreementId" />
                 <ScalarProperty Name="AssetName" ColumnName="AssetName" />
                 <ScalarProperty Name="ResidentsNumber" ColumnName="ResidentsNumber" />
@@ -691,18 +721,19 @@
                 <ScalarProperty Name="TenentEmailId" ColumnName="TenentEmailId" />
                 <ScalarProperty Name="TenentPassword" ColumnName="TenentPassword" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="RentDueDate" ColumnName="RentDueDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TenentRequests">
             <EntityTypeMapping TypeName="MyHomeDBModel.TenentRequest">
               <MappingFragment StoreEntitySet="TenentRequests">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Response" ColumnName="Response" />
                 <ScalarProperty Name="TenentRequestId" ColumnName="TenentRequestId" />
                 <ScalarProperty Name="AssetName" ColumnName="AssetName" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
+                <ScalarProperty Name="Response" ColumnName="Response" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

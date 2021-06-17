@@ -8,19 +8,15 @@ using MyHomeDataAccess;
 
 namespace MyHome_v0._2.Controllers
 {
-    [Authorize]
-    public class TransactionsController : ApiController
+     [Authorize]
+    public class EmergencyController : ApiController
     {
-         private MyHomeDBEntities entities = new MyHomeDBEntities();
-        public IEnumerable<Transaction> GetTransactions() {
-            using (MyHomeDBEntities entities = new MyHomeDBEntities()) {
-                return entities.Transactions.ToList();
-            }
-        }
+        private readonly MyHomeDBEntities entities = new MyHomeDBEntities();
+
         [HttpGet]
-         public HttpResponseMessage GetTransaction(int AssetName,DateTime trnFrom, DateTime trnTo) {
+         public HttpResponseMessage GetEmergencyContacts(int AssetName) {
             string[] empty= new string[0]; 
-            var getValidData= entities.Transactions.Where(x => x.AssetName == AssetName && x.Date >= trnFrom && x.Date <= trnTo).ToList();
+            var getValidData= entities.EmergencyContacts.Where(x => x.AssetName == AssetName).ToList();
              try { 
                  if (getValidData == null){
                     return Request.CreateResponse(HttpStatusCode.NotFound, empty);
@@ -30,46 +26,44 @@ namespace MyHome_v0._2.Controllers
                  return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
              } 
          }
+
         [HttpGet]
-         public HttpResponseMessage GetTransactionByDate(DateTime From, DateTime To) {
-            var getValidData = entities.Transactions.Where(x => x.Date >= From && x.Date <= To).ToList();
+         public HttpResponseMessage GetEmergencyContactsByProfession(int AssetName, int profession) {
+            string[] empty = new string[0]; 
+            var getValidData = entities.EmergencyContacts.Where(x => x.AssetName == AssetName && x.Profession == profession).ToList();
              try { 
                  if (getValidData == null){
-                    return Request.CreateResponse(HttpStatusCode.NotFound, getValidData);
+                    return Request.CreateResponse(HttpStatusCode.NotFound, empty);
                  }
                  return Request.CreateResponse(HttpStatusCode.OK, getValidData);
              }catch(Exception ex){
                  return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
              } 
          }
+
         [HttpPost]
-         public HttpResponseMessage PostTransaction(Transaction transaction) {
+         public HttpResponseMessage PostEmergency(EmergencyContact emergency) {
              try { 
-                entities.Transactions.Add(transaction);
+                entities.EmergencyContacts.Add(emergency);
                 entities.SaveChanges();
-                var message=Request.CreateResponse(HttpStatusCode.Created, transaction);
+                var message=Request.CreateResponse(HttpStatusCode.Created, emergency);
                 return message;
              }catch(Exception ex){
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
              } 
          }
+
         [HttpPut]
-        public HttpResponseMessage PutTransaction(int id,[FromBody]Transaction transaction) {
+        public HttpResponseMessage PutEmergency(int id,[FromBody]EmergencyContact emergency) {
             try {
-                var entity = entities.Transactions.FirstOrDefault(x => x.TransactionId == id);
+                var entity = entities.EmergencyContacts.FirstOrDefault(x => x.EmcyContactId == id);
                 if (entity == null) {
                     return Request.CreateErrorResponse(HttpStatusCode.NotFound, id.ToString());
                 } else {
-                    entity.AssetName = transaction.AssetName;
-                    entity.Description = transaction.Description;
-                    entity.TransactionType = transaction.TransactionType;
-                    entity.Amount = transaction.Amount;
-                    entity.Date = transaction.Date;
-                    entity.TransactionMode = transaction.TransactionMode;
-                    entity.PaidBy = transaction.PaidBy;
-                    entity.PaidTo = transaction.PaidTo;
-                    entity.Status = transaction.Status;
-                    entity.Remarks = transaction.Remarks;
+                    entity.AssetName = emergency.AssetName;
+                    entity.ContactName = emergency.ContactName;
+                    entity.ContactNumber = emergency.ContactNumber;
+                    entity.Profession = emergency.Profession;
                     entities.SaveChanges();
                     return Request.CreateResponse(HttpStatusCode.OK, entity);
                 }
@@ -79,13 +73,13 @@ namespace MyHome_v0._2.Controllers
         }
 
         [HttpDelete]
-        public HttpResponseMessage DeleteTransaction(int id) {
+        public HttpResponseMessage DeleteEmergency(int id) {
             try {
-                var entity = entities.Transactions.FirstOrDefault(x => x.TransactionId == id);
+                var entity = entities.EmergencyContacts.FirstOrDefault(x => x.EmcyContactId == id);
                 if (entity == null) {
                     return Request.CreateErrorResponse(HttpStatusCode.NotFound,id.ToString()+" Not Found");
                 } else { 
-                    entities.Transactions.Remove(entity);
+                    entities.EmergencyContacts.Remove(entity);
                     entities.SaveChanges();
                     return Request.CreateResponse(HttpStatusCode.OK, id.ToString());
                 }

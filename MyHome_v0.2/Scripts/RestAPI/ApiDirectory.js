@@ -38,7 +38,12 @@ class ApiDictionary  {
     static PostPropertyTaxes = () => path + "/api/PropertyTax/PostPropertyTaxes";
     static PutPropertyTaxes = () => path + "/api/PropertyTax/PutPropertyTaxes";
     static DeletePropertyTaxes = () => path + "/api/PropertyTax/DeletePropertyTaxes";
-
+    static GetEmergencyContacts = () => path + "/api/Emergency/GetEmergencyContacts";
+    static GetEmergencyContactsByProfession = () => path + "/api/Emergency/GetEmergencyContactsByProfession";
+    static PostEmergency = () => path + "/api/Emergency/PostEmergency";
+    static PutEmergency = () => path + "/api/Emergency/PutEmergency";
+    static DeleteEmergency = () => path + "/api/Emergency/DeleteEmergency";
+    
 }
 
 const AdminURLs = {

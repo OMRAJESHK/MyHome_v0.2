@@ -97,7 +97,7 @@
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
                         <div class="logo">
-                            <label class="global-bg-primary text-bold" style="font-size:22px">HOME SWEET HOME</label>
+                            <label class="text-bold" style="font-size:22px">HOME SWEET HOME</label>
                         </div>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -112,16 +112,17 @@
                     <ul class="navbar-mobile__list list-unstyled ClientMenu global-bg-primary">
                         <li class="btn_T_Dashboad"><a href="#" class="text-light"> <i class="fas fa-border-all"></i>Dashboard</a></li>
                         <li class="btnAllTransactions"><a href="#" class="text-light"><i class="fas fa-chart-bar"></i>All Transactions</a></li>
-                        <li class="has-sub">
-                            <a class="js-arrow text-light btnTenentDetails" href="#">
-                                <i class="fas fa-table"></i>Tenent Details
+                        <li class="btnRentAgreement"> <a href="#" class="text-light"> <i class="fas fa-table"></i>Tenant Details</a> </li>
+                        @*<li class="has-sub">
+                            <a class="js-arrow btnTenentDetails text-light" href="#">
+                                <i class="fas fa-table"></i>Tenant Details
                                 <i class="fas fa-angle-down dashboardAngle" style="float: right;"></i>
                             </a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li class="btnRentAgreement"> <a href="#">Rental Agreement</a> </li>
                                 <li class="btnDocuments"> <a href="#">Documents</a> </li>
                             </ul>
-                        </li>
+                        </li>*@
                         <li class="btnHouseDetails"><a href="#" class="text-light"><i class="fas fa-home"></i>House Details </a></li>
                         <li class="btnEmcyContact"><a href="#" class="text-light"><i class="fas fa-calendar-alt"></i>Emergency Contact</a></li>
                         <li class="btnProximity"><a href="#" class="text-light"><i class="fas fa-map-marker-alt"></i>Proximity</a></li>
@@ -133,6 +134,7 @@
                         <li class="btnPropertyTax"><a href="#" class="text-light"><i class="fas fa-chart-bar"></i>Property Tax</a></li>
                         <li class="btnTenantAgreement"><a href="#" class="text-light"><i class="fas fa-home"></i>Tenant Agreement</a></li>
                         <li class="btn_A_AllTransactions"><a href="#" class="text-light"><i class="fas fa-chart-bar"></i>Transactions</a></li>
+                        <li class="btn_A_Emergency"><a href="#" class="text-light"><i class="fas fa-envelope"></i>Emergency Contact</a></li>
                         <li class="btn_A_Proximity"><a href="#" class="text-light"><i class="fas fa-map-marker-alt"></i>Proximities</a></li>
                         <li class="btn_A_SendMail"><a href="#" class="text-light"><i class="fas fa-envelope"></i>Send mail</a></li>
                         <li class="btnRaiseReq"><a href="#" class="text-light"><i class="far fa-comments"></i>Requests</a></li>
@@ -143,16 +145,17 @@
         <!-- END HEADER MOBILE-->
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
-            <div class="logo global-bg-primary"><label class="font-weight-bold">HOME SWEET HOME</label></div>
+            <div class="logo"><label class="font-weight-bold">HOME SWEET HOME</label></div>
             <div class="menu-sidebar__content js-scrollbar1 global-bg-primary">
                 <nav class="navbar-sidebar customizeUI">
                     <ul class="list-unstyled navbar__list ClientMenu">
                         <li class="btn_T_Dashboad text-light">
                             <a href="#" class="text-light"> <i class="fas fa-border-all"></i>Dashboard</a>
-                           
+
                         </li>
                         <li class="btnAllTransactions"> <a href="#" class="text-light"> <i class="fas fa-chart-bar"></i>All Transactions</a> </li>
-                        <li class="has-sub">
+                        <li class="btnRentAgreement"> <a href="#" class="text-light"> <i class="fas fa-table"></i>Tenant Details</a> </li>
+                        @*<li class="has-sub">
                             <a class="js-arrow btnTenentDetails text-light" href="#">
                                 <i class="fas fa-table"></i>Tenant Details
                                 <i class="fas fa-angle-down dashboardAngle" style="float: right;"></i>
@@ -161,7 +164,7 @@
                                 <li class="btnRentAgreement"> <a href="#">Rental Agreement</a> </li>
                                 <li class="btnDocuments"> <a href="#">Documents</a> </li>
                             </ul>
-                        </li>
+                        </li>*@
                         <li class="btnHouseDetails"> <a href="#" class="text-light"> <i class="fas fa-home"></i>House Details </a> </li>
                         <li class="btnEmcyContact"> <a href="#" class="text-light"> <i class="fas fa-calendar-alt"></i>Emergency Contact </a> </li>
                         <li class="btnProximity"> <a href="#" class="text-light"> <i class="fas fa-map-marker-alt"></i>Proximity </a> </li>
@@ -173,6 +176,7 @@
                         <li class="btnPropertyTax"><a href="#" class="text-light"><i class="fas fa-chart-bar"></i>Property Tax</a></li>
                         <li class="btnTenantAgreement"><a href="#" class="text-light"><i class="fas fa-home"></i>Tenant Agreement</a></li>
                         <li class="btn_A_AllTransactions"><a href="#" class="text-light"><i class="fas fa-chart-bar"></i>Transactions</a></li>
+                        <li class="btn_A_Emergency"><a href="#" class="text-light"><i class="fas fa-envelope"></i>Emergency Contact</a></li>
                         <li class="btn_A_Proximity"><a href="#" class="text-light"><i class="fas fa-map-marker-alt"></i>Proximities</a></li>
                         <li class="btn_A_SendMail"><a href="#" class="text-light"><i class="fas fa-envelope"></i>Send mail</a></li>
                         <li class="btnRaiseReq"><a href="#" class="text-light"><i class="far fa-comments"></i>Requests</a></li>
@@ -483,6 +487,7 @@
     <script src="~/Scripts/Assets/Chart.bundle.min.js"></script>
     <script src="~/Scripts/Assets/Chart.min.js"></script>
 
+    <script src="~/Scripts/src/Tenent/TenantEmergency.js"></script>
     <script src="~/Scripts/Assets/Calculator.js"></script>
     <script src="~/Scripts/RestAPI/ApiDirectory.js"></script>
     <script src="~/Scripts/RestAPI/ManageAjax.js"></script>

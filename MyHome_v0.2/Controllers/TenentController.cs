@@ -30,9 +30,6 @@ namespace MyHome_v0._2.Controllers
         public ActionResult _raiseRequest() {
             return View();
         }
-        public ActionResult _TenentDocuments() {
-            return View();
-        }
         public ActionResult _AllNotification() {
             return View();
         }

@@ -53,13 +53,7 @@
             RenderContent.html(response);
         });
     });
-    $(".btnDocuments").click(() => {
-        var url = window.rootpath + "Tenent/_TenentDocuments";
-        $.get(url, function (response) {
-            customizeUI();
-            RenderContent.html(response);
-        });
-    });
+
     $(".btnHouseDetails").click(() => {
         var url = window.rootpath + "Tenent/_houseDetails";
         $.get(url, function (response) {
@@ -134,7 +128,7 @@
         var url = window.rootpath + "Tenent/_emrcyContact";
         $.get(url, function (response) {
             RenderContent.html(response);
-            
+            getEmergencyContactList();
         });
     });
     $('#btnLogOut').click(() => {

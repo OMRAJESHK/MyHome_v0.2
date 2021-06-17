@@ -49,6 +49,17 @@ const NotificationLetter = {
     7: "M",
 }
 
+const Professions = {
+    1: "Electricean",
+    2: "Plumbing",
+    3: "Water Supply",
+    4: "Water Tank",
+    5: "House Builder",
+    6: "House Labour",
+    7: "Painter",
+    8: "Snake Catcher"
+}
+
 function convertObjectArray (object) {
     const result = [];
     var keys = Object.keys(object);

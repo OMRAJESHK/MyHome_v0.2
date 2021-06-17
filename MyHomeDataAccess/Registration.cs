@@ -12,13 +12,11 @@ namespace MyHomeDataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class MailLog
+    public partial class Registration
     {
-        public int MailId { get; set; }
-        public int AssetName { get; set; }
-        public string MailTo { get; set; }
-        public string Subject { get; set; }
-        public string Body { get; set; }
-        public System.DateTime MailDate { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public string Password { get; set; }
+        public string Email { get; set; }
     }
 }

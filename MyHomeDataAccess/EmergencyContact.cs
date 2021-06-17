@@ -18,6 +18,6 @@ namespace MyHomeDataAccess
         public int AssetName { get; set; }
         public string ContactName { get; set; }
         public string ContactNumber { get; set; }
-        public string Profession { get; set; }
+        public Nullable<int> Profession { get; set; }
     }
 }
