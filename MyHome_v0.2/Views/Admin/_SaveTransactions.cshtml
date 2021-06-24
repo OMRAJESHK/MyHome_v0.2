@@ -34,12 +34,12 @@
                 <div class="card-body">
                     <div autocomplete="off" class="form" role="form">
                         <div class="form-group">
-                            <label for="inputPaidFrom">Paid From</label>
-                            <input class="form-control minWidthFull" placeholder="Paid From..." type="text" id="txtpaidFrom">
+                            <label for="inputPaidFrom">Paid By</label>
+                            <input class="form-control minWidthFull" placeholder="Paid By..." type="text" id="txtpaidFrom">
                         </div>
                         <div class="form-group">
-                            <label for="inputPaidTo">Paid To</label>
-                            <input class="form-control minWidthFull" placeholder="Paid To..." type="text" id="txtpaidTo">
+                            <label for="inputPaidTo">Received By</label>
+                            <input class="form-control minWidthFull" placeholder="Received By..." type="text" id="txtpaidTo">
                         </div>
                         <div class="form-group">
                             <label for="inputTranMode">Mode Of Transaction</label>
@@ -58,7 +58,7 @@
                 <div class="card-header global-bg-primary"><h3 class="mb-0 text-light">Add Transaction</h3></div>
                 <div class="card-body card-body pb-4">
                     <div autocomplete="off" class="form" role="form">
-                        <div class="form-check">
+                        <div class="form-check p-0">
                             <input type="checkbox" id="ckbPaymentStatus" class="ckeckBoxStyle">
                             <label class="font-weight-bold" for="PaymentStatus">Payment Status</label>
                         </div>
@@ -70,12 +70,9 @@
                 </div>
                 <div class="card-footer p-2">
                     <div class="d-flex justify-content-between">
-                       
-
                         <button class="btn btn-secondary w-25" type="button" onclick="gotoTransactionView()"><i class="fas fa-arrow-circle-left"></i> Back</button>
                         <button class="btn btn-clear w-25" onclick="clearTextBoxes()"><i class="fas fa-broom"></i> Clear</button>
                         <button class="btn btn-success w-25" onclick="saveTransaction()">Save <i class="fas fa-share"></i> </button>
-
                     </div>
                 </div>
             </div>

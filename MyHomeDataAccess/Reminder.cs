@@ -12,13 +12,12 @@ namespace MyHomeDataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class EmergencyContact
+    public partial class Reminder
     {
-        public int EmcyContactId { get; set; }
-        public int AssetName { get; set; }
-        public string ContactName { get; set; }
-        public string ContactNumber { get; set; }
-        public Nullable<int> Profession { get; set; }
-        public int IsVisible { get; set; }
+        public int ReminderId { get; set; }
+        public Nullable<int> AssetName { get; set; }
+        public string Description { get; set; }
+        public string SetReminder { get; set; }
+        public System.DateTime CreatedDate { get; set; }
     }
 }

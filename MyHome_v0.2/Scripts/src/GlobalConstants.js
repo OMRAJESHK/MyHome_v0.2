@@ -1,17 +1,33 @@
 ﻿const TransactionTypes = {
-  Advance: 1,
-  Rent: 2,
-  'Water Bill': 3,
-  'Electricity Bill': 4,
-  'Motor Bill': 5,
-  'Plumbing': 6,
-  'Electric Households': 7,
-  'Water Tanks': 8
+  "Advance Received": 1,
+  "Rent Received": 2,
+  "Water Bill Received": 3,
+  'Electricity Bill Received': 4,
+  "Motor Bill Received":5,
+  'Water Tanks Amt Received': 6,
+  'Electric Appliances Amt Received': 7,
+  "Households Amt Received": 8,
+  "Fine Received": 9,
+  "Festival Amt Received":10,
+  "Miscellanious Amt Received":11,
+
+  "Advance Paid": 101,
+  "Rent Paid": 102,
+  "Water Bill Paid": 103,
+  'Electricity Bill Paid': 104,
+  "Motor Bill Paid":105,
+  'Water Tanks Amt Paid': 106,
+  'Electric Appliances Amt Paid': 107,
+  "Households Amt Paid": 108,
+  "Fine Paid": 109,
+  "Festival Amt Paid": 110,
+  "Miscellanious Amt Paid": 111,
 };
 
 const ModeOFPayment = {
     CASH: 1,
-    ONLINE:2
+    ONLINE: 2,
+    Other: 3
 };
 
 const Status = {

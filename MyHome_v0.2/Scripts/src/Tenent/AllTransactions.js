@@ -57,6 +57,7 @@ function Transactionsearch(val) {
     var date = new Date();
     var mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = date.getFullYear();
+    console.log("ysfyyy",yyyy);
 
     if (val == 0) {
         trnTo = trnFrom = getCurrentDate();

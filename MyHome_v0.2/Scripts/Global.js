@@ -39,12 +39,8 @@
     });
 
     $(".btn_T_Dashboad").click(() => {
-        var url = window.rootpath + TenantURLs.Dashboard;
-        $.get(url, function (response) {
-            $('#RenderContent').html(response);
-            customizeUI();
-            createGraph();
-        });
+        gotoDashboard();
+        
     });
     $(".btnRentAgreement").click(() => {
         var url = window.rootpath + "Tenent/_tenentDetails";
@@ -66,11 +62,9 @@
         var url = window.rootpath + "Tenent/_proximity";
         $.get(url, function (response) {
             RenderContent.html(response);
-            (sessionStorage.getItem('RoleID') == '0') ?
-                mainContent.find('#btnAddProximities').hide() :
-                mainContent.find('#btnAddProximities').show();
-                customizeUI();
-                getProximities();
+            isAdmin ? mainContent.find('#btnAddProximities').show() : mainContent.find('#btnAddProximities').hide()
+            customizeUI();
+            getProximities();
         });
     });
     
@@ -88,7 +82,7 @@
         //------ADMIN BUTTONS-----------//
 
     $(".btn_A_Dashboad").click(() => {
-        gotoDashboard()
+        gotoAdminDashboard()
     });
     $(".btnAssetRegistration").click(() => {
         //callAssetModal(); 
@@ -156,35 +150,10 @@
 
 
 $("#fullscreen").click(() => {
-    toggleFullScreen(document.body)
-})
+    toggleFullScreen();
+});
 
-function toggleFullScreen(elem) {
-    // ## The below if statement seems to work better ## if ((document.fullScreenElement && document.fullScreenElement !== null) || (document.msfullscreenElement && document.msfullscreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen)) {
-    if ((document.fullScreenElement !== undefined && document.fullScreenElement === null) || (document.msFullscreenElement !== undefined && document.msFullscreenElement === null) || (document.mozFullScreen !== undefined && !document.mozFullScreen) || (document.webkitIsFullScreen !== undefined && !document.webkitIsFullScreen)) {
-        if (elem.requestFullScreen) {
-            elem.requestFullScreen();
-        } else if (elem.mozRequestFullScreen) {
-            elem.mozRequestFullScreen();
-        } else if (elem.webkitRequestFullScreen) {
-            elem.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
-        } else if (elem.msRequestFullscreen) {
-            elem.msRequestFullscreen();
-        }
-    } else {
-        if (document.cancelFullScreen) {
-            document.cancelFullScreen();
-        } else if (document.mozCancelFullScreen) {
-            document.mozCancelFullScreen();
-        } else if (document.webkitCancelFullScreen) {
-            document.webkitCancelFullScreen();
-        } else if (document.msExitFullscreen) {
-            document.msExitFullscreen();
-        }
-    }
-}
-
-const gotoDashboard = () => {
+const gotoAdminDashboard = () => {
     var url = window.rootpath + AdminURLs.Dashboard;
     $.get(url, function (response) {
         customizeUI();
@@ -192,6 +161,17 @@ const gotoDashboard = () => {
         getStatistics();
     });
 }
+
+// Tenant Dashboard
+const gotoDashboard = () => {
+    var url = window.rootpath + TenantURLs.Dashboard;
+    $.get(url, function (response) {
+        $('#RenderContent').html(response);
+        customizeUI();
+        createGraph();
+    });
+}
+// Tenant a
 const gotoMailLogsView = () => {
     var url = window.rootpath + AdminURLs.MailLogs;
     $.get(url, function (response) {

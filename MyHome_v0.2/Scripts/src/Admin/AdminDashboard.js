@@ -1,50 +1,110 @@
 ﻿
 
 function getStatistics() {
-    // OverAll Income Graph
-    //var ctx = $(document).find("#yearIncomeChart")[0].getContext('2d');
-    // YEAR
-    let graphParams = {
-        id: "yearIncomeChart",
-        data: [1958, 1450, 1244, 1450],
-        labels: ["Rent", "Water", "Motor", "Misselleneous"],
-        borderColor: ['#2196f38c', '#f443368c', '#3f51b570', '#00968896'],
-        bgColor: ['#2196f38c', '#f443368c', '#3f51b570', '#00968896'],
-        borderWidth: 1
-    }
-    drawDoughnutGraph(graphParams);
 
-    // OverAll Expense Graph
+    let assetID = sessionStorage.getItem('AssetID');
 
-    graphParams = {
-        id: "yearExpenseChart",
-        data: [1858, 1550, 1144, 1300],
-        labels: ["Rent", "Water", "Motor", "Misselleneous"],
-        borderColor: ['#2196f38c', '#f443368c', '#3f51b570', '#00968896'],
-        bgColor: ['#2196f38c', '#f443368c', '#3f51b570', '#00968896'],
-        borderWidth: 1
-    }
-    drawDoughnutGraph(graphParams);
+    var date = new Date();
+    var year = date.getFullYear();
 
-    // MONTH
-    graphParams = {
-        id: "monthIncomeChart",
-        data: [800, 550, 150, 350],
-        labels: ["Rent", "Water", "Motor", "Misselleneous"],
-        borderColor: ['#2196f38c', '#f443368c', '#3f51b570', '#00968896'],
-        bgColor: ['#2196f38c', '#f443368c', '#3f51b570', '#00968896'],
-        borderWidth: 1
-    }
-    drawDoughnutGraph(graphParams);
-    graphParams = {
-        id: "monthExpenseChart",
-        data: [858, 550, 144, 300],
-        labels: ["Rent", "Water", "Motor", "Misselleneous"],
-        borderColor: ['#2196f38c', '#f443368c', '#3f51b570', '#00968896'],
-        bgColor: ['#2196f38c', '#f443368c', '#3f51b570', '#00968896'],
-        borderWidth: 1
-    }
-    drawDoughnutGraph(graphParams);
+    var trnFrom = dateFormat('01/01/' + year);
+    var trnTo = dateFormat('31/12/' + year);
+    ManageAjaxCalls.GetData(ApiDictionary.GetTransactions() + `?AssetName=${assetID}&trnFrom=${trnFrom}&trnTo=${trnTo}`, (res) => {
+        console.log("For graphs", res);
+        let yearlyIncome = {
+            rent: 0,
+            water: 0,
+            electricity: 0,
+            motor: 0,
+            misselleneous: 0
+        }
+        let yearlyExpense = {
+            rent: 0,
+            water: 0,
+            electricity: 0,
+            motor: 0,
+            misselleneous: 0
+        }
+        res && res.length > 0 && res.map(trn => {
+            if (trn.TransactionType < 100) {
+                switch (Number(trn.TransactionType)) {
+                    case 2: yearlyIncome.rent += trn.Amount;
+                        break;
+                    case 3: yearlyIncome.water += trn.Amount;
+                        break;
+                    case 4: yearlyIncome.electricity += trn.Amount;
+                        break;
+                    case 5: yearlyIncome.motor += trn.Amount;
+                        break;
+                    default: yearlyIncome.misselleneous += trn.Amount;
+                        break;
+                }
+            } else {
+                switch (Number(trn.TransactionType)) {
+                    case 2: yearlyExpense.rent += trn.Amount;
+                        break;
+                    case 3: yearlyExpense.water += trn.Amount;
+                        break;
+                    case 4: yearlyExpense.electricity += trn.Amount;
+                        break;
+                    case 5: yearlyExpense.motor += trn.Amount;
+                        break;
+                    default: yearlyExpense.misselleneous += trn.Amount; break;
+                }
+            }
+        });
+        console.log("OverAll-",yearlyIncome, yearlyExpense)
+        // OverAll Income Graph
+        //var ctx = $(document).find("#yearIncomeChart")[0].getContext('2d');
+        // YEAR
+        let graphParams = {
+            id: "yearIncomeChart",
+            data: [yearlyIncome.rent, yearlyIncome.water, yearlyIncome.electricity, yearlyIncome.motor, yearlyIncome.misselleneous],
+            labels: ["Rent", "Water", "Electricity", "Motor", "Misselleneous"],
+            borderColor: ['#2196f38c', '#00961234', '#f443368c', '#3f51b570', '#00968896'],
+            bgColor: ['#2196f38c', '#00961345', '#f443368c', '#3f51b570', '#00968896'],
+            borderWidth: 1
+        }
+        drawDoughnutGraph(graphParams);
+
+        // OverAll Expense Graph
+
+        graphParams = {
+            id: "yearExpenseChart",
+            data: [yearlyExpense.rent, yearlyExpense.water, yearlyExpense.electricity, yearlyExpense.motor, yearlyExpense.misselleneous],
+            labels: ["Rent", "Water", "Electricity", "Motor", "Misselleneous"],
+            borderColor: ['#2196f38c', '#00961234', '#f443368c', '#3f51b570', '#00968896'],
+            bgColor: ['#2196f38c', '#00961345', '#f443368c', '#3f51b570', '#00968896'],
+            borderWidth: 1
+        }
+        drawDoughnutGraph(graphParams);
+
+        // MONTH
+        graphParams = {
+            id: "monthIncomeChart",
+            data: [800, 550, 150, 350],
+            labels: ["Rent", "Water", "Motor", "Misselleneous"],
+            borderColor: ['#2196f38c', '#f443368c', '#3f51b570', '#00968896'],
+            bgColor: ['#2196f38c', '#f443368c', '#3f51b570', '#00968896'],
+            borderWidth: 1
+        }
+        drawDoughnutGraph(graphParams);
+        graphParams = {
+            id: "monthExpenseChart",
+            data: [858, 550, 144, 300],
+            labels: ["Rent", "Water", "Motor", "Misselleneous"],
+            borderColor: ['#2196f38c', '#f443368c', '#3f51b570', '#00968896'],
+            bgColor: ['#2196f38c', '#f443368c', '#3f51b570', '#00968896'],
+            borderWidth: 1
+        }
+        drawDoughnutGraph(graphParams);
+    });
+
+
+
+
+
+
 }
 
 const drawDoughnutGraph = (graphParams) => {

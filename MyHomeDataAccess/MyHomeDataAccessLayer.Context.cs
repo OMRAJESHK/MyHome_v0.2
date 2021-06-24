@@ -40,5 +40,6 @@ namespace MyHomeDataAccess
         public virtual DbSet<TenentAgreement> TenentAgreements { get; set; }
         public virtual DbSet<TenentRequest> TenentRequests { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
+        public virtual DbSet<Reminder> Reminders { get; set; }
     }
 }

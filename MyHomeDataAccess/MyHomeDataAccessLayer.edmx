@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MyHomeDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MyHomeDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -94,6 +94,7 @@
           <Property Name="ContactName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ContactNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Profession" Type="int" />
+          <Property Name="IsVisible" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="MailLogs">
           <Key>
@@ -152,6 +153,16 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Reminders">
+          <Key>
+            <PropertyRef Name="ReminderId" />
+          </Key>
+          <Property Name="ReminderId" Type="int" Nullable="false" />
+          <Property Name="AssetName" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SetReminder" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="CreatedDate" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="TenentAgreement">
           <Key>
@@ -270,6 +281,7 @@
           <EntitySet Name="PropertyTax" EntityType="Self.PropertyTax" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Proximities" EntityType="Self.Proximities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Registration" EntityType="Self.Registration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reminders" EntityType="Self.Reminders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TenentAgreement" EntityType="Self.TenentAgreement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TenentRequests" EntityType="Self.TenentRequests" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
@@ -290,8 +302,7 @@
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MyHomeDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -382,6 +393,7 @@
           <Property Name="ContactName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ContactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Profession" Type="Int32" />
+          <Property Name="IsVisible" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="MailLog">
           <Key>
@@ -548,7 +560,18 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="Reminders" EntityType="MyHomeDBModel.Reminder" />
         </EntityContainer>
+        <EntityType Name="Reminder">
+          <Key>
+            <PropertyRef Name="ReminderId" />
+          </Key>
+          <Property Name="ReminderId" Type="Int32" Nullable="false" />
+          <Property Name="AssetName" Type="Int32" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SetReminder" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -633,6 +656,7 @@
           <EntitySetMapping Name="EmergencyContacts">
             <EntityTypeMapping TypeName="MyHomeDBModel.EmergencyContact">
               <MappingFragment StoreEntitySet="EmergencyContact">
+                <ScalarProperty Name="IsVisible" ColumnName="IsVisible" />
                 <ScalarProperty Name="EmcyContactId" ColumnName="EmcyContactId" />
                 <ScalarProperty Name="AssetName" ColumnName="AssetName" />
                 <ScalarProperty Name="ContactName" ColumnName="ContactName" />
@@ -762,6 +786,17 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Reminders">
+            <EntityTypeMapping TypeName="MyHomeDBModel.Reminder">
+              <MappingFragment StoreEntitySet="Reminders">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="SetReminder" ColumnName="SetReminder" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="AssetName" ColumnName="AssetName" />
+                <ScalarProperty Name="ReminderId" ColumnName="ReminderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

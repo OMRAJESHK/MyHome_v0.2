@@ -14,8 +14,9 @@ const EmergencyContactRes = (res) => {
         RenderContent.html(response);
         let emergencyHTML = "";
         emcyConResData?.map(itm => {
-            emergencyHTML += `<div class="card-header global-bg-primary">
-                <h3 class="mb-0 text-light">${Professions[itm.Profession]} Details</h3>
+            emergencyHTML += 
+                `<div class="card-header global-bg-primary">
+                    <h3 class="mb-0 text-light">${Professions[itm.Profession]} Details</h3>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -34,8 +35,8 @@ const EmergencyContactRes = (res) => {
                             </div>
                         </div>               
                     </div>
-                </div>`
+                </div>`;
         })
-            RenderContent.find(`#emergencyNumbersList`).html(emergencyHTML)
+        RenderContent.find(`#emergencyNumbersList`).html(emergencyHTML);
     });
 }

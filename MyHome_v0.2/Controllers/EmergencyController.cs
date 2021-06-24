@@ -30,7 +30,7 @@ namespace MyHome_v0._2.Controllers
         [HttpGet]
          public HttpResponseMessage GetEmergencyContactsByProfession(int AssetName, int profession) {
             string[] empty = new string[0]; 
-            var getValidData = entities.EmergencyContacts.Where(x => x.AssetName == AssetName && x.Profession == profession).ToList();
+            var getValidData = entities.EmergencyContacts.Where(x => x.AssetName == AssetName && x.Profession == profession && x.IsVisible == 1).ToList();
              try { 
                  if (getValidData == null){
                     return Request.CreateResponse(HttpStatusCode.NotFound, empty);
@@ -64,6 +64,8 @@ namespace MyHome_v0._2.Controllers
                     entity.ContactName = emergency.ContactName;
                     entity.ContactNumber = emergency.ContactNumber;
                     entity.Profession = emergency.Profession;
+                    entity.IsVisible = emergency.IsVisible;
+                    
                     entities.SaveChanges();
                     return Request.CreateResponse(HttpStatusCode.OK, entity);
                 }

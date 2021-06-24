@@ -23,6 +23,7 @@
         <AssociationConnector Association="MyHomeDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="MyHomeDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="MyHomeDBModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MyHomeDBModel.Reminder" Width="1.5" PointX="7.375" PointY="10.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

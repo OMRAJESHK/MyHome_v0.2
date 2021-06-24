@@ -102,6 +102,9 @@
     <Compile Include="Registration.cs">
       <DependentUpon>MyHomeDataAccessLayer.tt</DependentUpon>
     </Compile>
+    <Compile Include="Reminder.cs">
+      <DependentUpon>MyHomeDataAccessLayer.tt</DependentUpon>
+    </Compile>
     <Compile Include="TenentAgreement.cs">
       <DependentUpon>MyHomeDataAccessLayer.tt</DependentUpon>
     </Compile>
