@@ -12,7 +12,7 @@ namespace MyHome_v0._2.Controllers
      [Authorize]
     public class AssetController : ApiController
     {
-         private MyHomeDBEntities entities = new MyHomeDBEntities();
+         private readonly MyHomeDBEntities entities = new MyHomeDBEntities();
          
         [HttpGet]
          public HttpResponseMessage GetAsset() {

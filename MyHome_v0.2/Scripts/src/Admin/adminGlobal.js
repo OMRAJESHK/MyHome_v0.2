@@ -61,7 +61,7 @@ function GotoSaveTransaction() {
         options += TransactionsList.map(x => {
             return `<option value=${x.value}>${x.name}</option>`;
         });
-        RenderContent.find('#ddlTransactionType').html(options)
+        RenderContent.find('#ddlTransactionType').html(options);
     });
 }
 

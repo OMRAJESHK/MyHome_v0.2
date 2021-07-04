@@ -47,6 +47,7 @@
         $.get(url, function (response) {
             customizeUI();
             RenderContent.html(response);
+            getRentalData();
         });
     });
 
@@ -62,7 +63,7 @@
         var url = window.rootpath + "Tenent/_proximity";
         $.get(url, function (response) {
             RenderContent.html(response);
-            isAdmin ? mainContent.find('#btnAddProximities').show() : mainContent.find('#btnAddProximities').hide()
+            isAdmin() ? mainContent.find('#btnAddProximities').show() : mainContent.find('#btnAddProximities').hide()
             customizeUI();
             getProximities();
         });
@@ -142,10 +143,14 @@
         customizeUI();
     });
 
-    $('span.logoFill').on('click', function() {
+    $('span.logoFill').on('click', function () {
         let colorChosen = '#' + $(this).data().color;
         $('.menu-sidebar__content, .navbar-mobile__list').css('background-color', colorChosen).removeClass('global-bg-primary')
-    })
+    });
+
+    $("#div_setReminder").on("click", () => {
+        gotoSetReminder();
+    });
 });
 
 
@@ -204,4 +209,19 @@ const gotoTransactionView = () => {
         customizeUI();
         isAdmin() ?AlltransactionsGet():transactionCall();
     });
+}
+
+
+const getRentalData = () => {
+    let assetId = sessionStorage.getItem("AssetID");
+    $.when(
+        GetAjax(ApiDictionary.GetTenentAgreementByID() + `?AssetName=${assetId}`),
+        GetAjax(ApiDictionary.GetAssetName(), { AssetName: Number(sessionStorage.getItem('AssetID')) })).done(function (tenantData, AssetData) {
+            console.log("resolve all", tenantData, AssetData);
+            $("#tenants").text(tenantData[0]["ResidentsNames"]);
+            let tenantsamt = `${tenantData[0]["RentAmount"]}/- (${inWords(tenantData[0]["RentAmount"])})`
+            $(".rentamt").text(tenantsamt);
+            $("#joiningDate").text(getDisplayDate(tenantData[0]["JoiningDate"]));
+            $("#rentAddress").text(AssetData[0]["Address"])
+        });
 }

@@ -131,22 +131,30 @@ function Transactionsearch(val) {
     var date = new Date();
     var mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = date.getFullYear();
-    console.log("ysfyyy",yyyy);
 
     if (val == 0) {
         trnTo = trnFrom = getCurrentDate();
     } else if (val == 1) {
         var currdate = String(date.getDate()).padStart(2, '0');
         var currday = date.getDay();
+        let last12 = new Date(date.getFullYear(), date.getMonth(), 0);
+        let lastDay = String(last12.getDate()).padStart(2, '0');
+
         let diffVal = currday == 1 ? 0 : currday == 2 ? 1 : currday == 3 ? 2 : currday == 4 ? 3 : currday == 5 ? 4 : currday == 6 ? 5 : 6;
+
         let prevDate = currdate - diffVal;
-        trnFrom = dateFormat(prevDate + '/' + mm + '/' + yyyy);
+        if (prevDate < 0) {
+            trnFrom = dateFormat(`${lastDay - Math.abs(prevDate)}/${mm - 1}/${yyyy}`);
+        } else {
+            trnFrom = dateFormat(prevDate + '/' + mm + '/' + yyyy);
+        }      
         trnTo = dateFormat(currdate + '/' + mm + '/' + yyyy);
     } else if (val == 2) {
         let first = new Date(date.getFullYear(), date.getMonth(), 1);
         let last = new Date(date.getFullYear(), date.getMonth() + 1, 0);
         let firstDay = String(first.getDate()).padStart(2, '0');
         let lastDay = String(last.getDate()).padStart(2, '0');
+
         trnFrom = dateFormat(firstDay + '/' + mm + '/' + yyyy);
         trnTo = dateFormat(lastDay + '/' + mm + '/' + yyyy);
     } else if (val == 3) {

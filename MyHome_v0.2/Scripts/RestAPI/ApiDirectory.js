@@ -46,7 +46,12 @@ class ApiDictionary  {
     static PostEmergency = () => path + "/api/Emergency/PostEmergency";
     static PutEmergency = () => path + "/api/Emergency/PutEmergency";
     static DeleteEmergency = () => path + "/api/Emergency/DeleteEmergency";
-    
+    static GetReminders = () => path + "/api/SetReminder/GetReminders";
+    static GetRemindersByRole = () => path + "/api/SetReminder/GetRemindersByRole";
+    static PostReminders = () => path + "/api/SetReminder/PostReminders";
+    static PutReminders = () => path + "/api/SetReminder/PutReminders";
+    static DeleteReminders = () => path + "/api/SetReminder/DeleteReminders";
+
 }
 
 const AdminURLs = {
@@ -70,5 +75,5 @@ const TenantURLs = {
     Dashboard: Client + '_tenentDashboard',
     Transactions: Client + '_allTransactions',
     TenantDeedView: Client + '_TenantAgreementView',
-
+    SetReminder: Client +"_SetReminder"
 }

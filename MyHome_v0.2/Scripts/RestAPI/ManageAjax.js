@@ -71,3 +71,13 @@
     }
     
 }
+const GetAjax = (url, param = {}) => {
+    return $.ajax({
+        url: url,
+        method: 'get',
+        data: param,
+        headers: {
+            'Authorization': "Bearer " + sessionStorage.getItem('accessToken')
+        }
+    });
+}

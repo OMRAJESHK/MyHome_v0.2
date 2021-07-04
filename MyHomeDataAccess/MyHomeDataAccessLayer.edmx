@@ -158,11 +158,13 @@
           <Key>
             <PropertyRef Name="ReminderId" />
           </Key>
-          <Property Name="ReminderId" Type="int" Nullable="false" />
+          <Property Name="ReminderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AssetName" Type="int" />
           <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="SetReminder" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="CreatedDate" Type="date" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TenentAgreement">
           <Key>
@@ -571,6 +573,8 @@
           <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SetReminder" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -789,6 +793,8 @@
           <EntitySetMapping Name="Reminders">
             <EntityTypeMapping TypeName="MyHomeDBModel.Reminder">
               <MappingFragment StoreEntitySet="Reminders">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="SetReminder" ColumnName="SetReminder" />
                 <ScalarProperty Name="Description" ColumnName="Description" />

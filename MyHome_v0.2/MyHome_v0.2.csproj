@@ -216,6 +216,7 @@
     <Compile Include="Controllers\ProximitiesController.cs" />
     <Compile Include="Controllers\RequestController.cs" />
     <Compile Include="Controllers\SendMailController.cs" />
+    <Compile Include="Controllers\SetReminderController.cs" />
     <Compile Include="Controllers\TenentAgreementController.cs" />
     <Compile Include="Controllers\TenentController.cs" />
     <Compile Include="Controllers\TransactionsController.cs" />
@@ -418,6 +419,7 @@
     <Content Include="Scripts\src\Tenent\Notification.js" />
     <Content Include="Scripts\src\Tenent\Proximities.js" />
     <Content Include="Scripts\src\Tenent\SendRequest.js" />
+    <Content Include="Scripts\src\Tenent\SetReminder.js" />
     <Content Include="Scripts\src\Tenent\TenantEmergency.js" />
     <Content Include="Scripts\src\Tenent\TenantGlobal.js" />
     <Content Include="test.html" />
@@ -515,6 +517,7 @@
     <Content Include="Views\UserAccount\Main.cshtml" />
     <Content Include="Views\Admin\_AssetListView.cshtml" />
     <Content Include="Views\Admin\_SaveEmergancyContact.cshtml" />
+    <Content Include="Views\Tenent\_SetReminder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyHomeDataAccess\MyHomeDataAccess.csproj">

@@ -55,14 +55,7 @@ const NotificationTypes = {
 };
 
 const NotificationLetter = {
-    0:"A",
-    1:"R",
-    2:"E",
-    3:'W',
-    4:"PH",
-    5:"EH",
-    6:"F",
-    7: "M",
+    0:"A", 1:"R", 2:"E",  3:'W', 4:"PH", 5:"EH", 6:"F", 7: "M",
 }
 
 const Professions = {
@@ -77,14 +70,9 @@ const Professions = {
     9: "Snake Catcher"
 }
 
-function convertObjectArray (object) {
-    const result = [];
-    var keys = Object.keys(object);
-    var values = Object.values(object);
-    for (let index = 0; index < keys.length; index++) {
-        result.push({ name: keys[index], value: values[index] });
-    }
-    return result;
-};
+const Months = { "1": "Jan", "2": "Feb", "3": "Mar", "4": "Apl", "5": "May", "6": "Jun", "7": "Jul", "8": "Aug", "9": "Sep", "10": "Oct", "11": "Nov", "12": "Dec" }
 
-const Months = { "1": "Jan", "2": "Feb", "3": "Mar", "4": "Apl", "5": "May", "6": "Jun", "7":"Jul", "8": "Aug", "9": "Sep", "10": "Oct", "11": "Nov", "12": "Dec" }
+const ReminderTypes = {
+    //"Every Minute": 1, "Every Hour": 2,
+    "Every Day": 3, "Every Week": 4, "Every Month": 5, "Every Year": 6
+}

@@ -216,14 +216,14 @@
                                             </div>
                                             <div id="listRequest"></div>
                                             @*<div class="notifi__item">
-                                                    <div class="bg-c1 img-cir img-40">
-                                                        <i class="zmdi zmdi-email-open"></i>
-                                                    </div>
-                                                    <div class="content">
-                                                        <p>You got a email notification</p>
-                                                        <span class="date">April 12, 2018 06:50</span>
-                                                    </div>
-                                                </div>*@
+                                                <div class="bg-c1 img-cir img-40">
+                                                    <i class="zmdi zmdi-email-open"></i>
+                                                </div>
+                                                <div class="content">
+                                                    <p>You got a email notification</p>
+                                                    <span class="date">April 12, 2018 06:50</span>
+                                                </div>
+                                            </div>*@
                                             <div class="notifi__footer text-center">
                                                 <button id="btnAllNotifn" class="btn btn-info" onclick="getRaiseReqHTML()">All Reuests</button>
                                             </div>
@@ -425,6 +425,9 @@
                                                 <div class="account-dropdown__item">
                                                     <a href="#"> <i class="zmdi zmdi-account"></i>Account </a>
                                                 </div>
+                                                <div class="account-dropdown__item" id="div_setReminder">
+                                                    <a href="#"> <i class="zmdi zmdi-account"></i>Set Reminder</a>
+                                                </div>
                                                 <div class="account-dropdown__item">
                                                     <a href="#"> <i class="zmdi zmdi-settings"></i>Setting </a>
                                                 </div>
@@ -457,20 +460,19 @@
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalTitle">Modal title</h5>
+                        <h5 class="modal-title"></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body" id="modalBody">teehee</div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                        <button type="button" class="btn btn-danger">Yes</button>
+                    <div class="modal-body text-center">
+                        Are You Sure You want to Delete
                     </div>
+                    <div class="modal-footer p-1"></div>
                 </div>
             </div>
         </div>
@@ -504,7 +506,7 @@
     <script src="~/Scripts/src/Admin/PropertyTax.js"></script>
     <script src="~/Scripts/src/Admin/TenantAgreement.js"></script>
     <script src="~/Scripts/Layout/LayoutMain.js"></script>
-
+    <script src="~/Scripts/src/Tenent/SetReminder.js"></script>
     @Scripts.Render("~/bundles/Mainjs")
     @Scripts.Render("~/bundles/Assetjs")
     <script src="~/Scripts/src/Admin/AdminDashboard.js"></script>

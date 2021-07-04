@@ -36,5 +36,8 @@ namespace MyHome_v0._2.Controllers
         public ActionResult _TenantAgreementView() {
             return View();
         }
+        public ActionResult _SetReminder() {
+            return View();
+        }
     }
 }

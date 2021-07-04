@@ -40,6 +40,18 @@ function inWords(num) {
     return str;
 }
 
+
+function convertObjectArray(object) {
+    const result = [];
+    var keys = Object.keys(object);
+    var values = Object.values(object);
+    for (let index = 0; index < keys.length; index++) {
+        result.push({ name: keys[index], value: values[index] });
+    }
+    return result;
+};
+
+
 function customizeUI() {
     if ($('#chktoggleSwitch').is(":checked")) {
         $('body').find('.global-bg-primary').addClass('darkmode').removeClass('global-bg-primary');
@@ -98,4 +110,12 @@ function toggleFullScreen() {
             document.msExitFullscreen();
         }
     }
+}
+
+const generateOptions = (List,ddl) => {
+    let options = `<option value="0">--Select--</option>`;
+    options += List.map(x => {
+        return `<option value=${x.value}>${x.name}</option>`;
+    });
+    RenderContent.find(ddl).html(options)
 }

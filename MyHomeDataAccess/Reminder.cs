@@ -19,5 +19,7 @@ namespace MyHomeDataAccess
         public string Description { get; set; }
         public string SetReminder { get; set; }
         public System.DateTime CreatedDate { get; set; }
+        public int RoleId { get; set; }
+        public int Type { get; set; }
     }
 }
