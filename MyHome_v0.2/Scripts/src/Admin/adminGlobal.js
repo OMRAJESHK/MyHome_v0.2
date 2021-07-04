@@ -56,6 +56,7 @@ function GotoSaveTransaction() {
     let TransactionsList = convertObjectArray(TransactionTypes);
     $.get(url, function (response) {
         RenderContent.html(response);
+        RenderContent.find("#trnDate").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true }).datepicker("setDate",new Date())
         let options = `<option value="0">--Select--</option>`;
         options += TransactionsList.map(x => {
             return `<option value=${x.value}>${x.name}</option>`;
@@ -68,7 +69,6 @@ function AssetDetails() {
     let id = sessionStorage.getItem('AssetID');
     let Asset = AssetList.filter(data => data.AssetId == id);
     console.log("AssetListAssetListAssetList", AssetList, Asset)
-
     $('#lblAssetName, #lblAssetNamehdr').text(Asset[0].AssetName);
     $('#lblRegDate').text(getDateOnly(Asset[0].RegisteredDate));
     $('#lblRegTo').text(Asset[0].RegusteredTo);

@@ -66,14 +66,15 @@ const NotificationLetter = {
 }
 
 const Professions = {
-    1: "Electricean",
-    2: "Plumbing",
-    3: "Water Supply",
-    4: "Water Tank",
-    5: "House Builder",
-    6: "House Labour",
-    7: "Painter",
-    8: "Snake Catcher"
+    1: "Owner",
+    2: "Electricean",
+    3: "Plumbing",
+    4: "Water Supply",
+    5: "Water Tank",
+    6: "House Builder",
+    7: "House Labour",
+    8: "Painter",
+    9: "Snake Catcher"
 }
 
 function convertObjectArray (object) {
@@ -85,3 +86,5 @@ function convertObjectArray (object) {
     }
     return result;
 };
+
+const Months = { "1": "Jan", "2": "Feb", "3": "Mar", "4": "Apl", "5": "May", "6": "Jun", "7":"Jul", "8": "Aug", "9": "Sep", "10": "Oct", "11": "Nov", "12": "Dec" }

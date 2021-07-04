@@ -1,0 +1,45 @@
+﻿@{
+    Layout = null;
+}
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-lg-4 offset-lg-4">
+            <div class="card card-outline-secondary">
+                <div class="card-header global-bg-primary">
+                    <h3 class="mb-0 text-light">Save Emergancy Contacts</h3>
+                </div>
+                <div class="card-body">
+                    <div autocomplete="off" class="form" role="form">
+                        <div class="form-group">
+                            <label for="inputSendTo">Name</label>
+                            <input class="form-control minWidthFull txtRounded" id="txtemcyContactName" placeholder="Type Contact Name Here..." type="text">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputSendTo">Contact Number</label>
+                            <input class="form-control minWidthFull txtRounded" id="txtemcyContactNumber" placeholder="Type Contact Number Here..." type="text">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputSendTo">Occupation / Profession</label> 
+                            <select class="form-control minWidthFull txtRounded" id="ddlemcyProfessions"></select>
+                        </div>
+                        <div style="flex:1">
+                            <div class="form-check pl-0">
+                                <input type="checkbox" id="ckbemcyIsVisible" class="ckeckBoxStyle">
+                                <label class="font-weight-bold" for="IsVisible">Is Visible</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer p-2">
+                    <div class="form-group">
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-secondary w-25" type="button" onclick="getEmergencyContacts()"><i class="fas fa-arrow-circle-left"></i> Back</button>
+                            <button class="btn btn-clear w-25" onclick="clearTextBoxes()"><i class="fas fa-broom"></i> Clear</button>
+                            <button class="btn btn-success w-25" type="submit" onclick="saveEmergancyContactsDetails()">Save <i class="fas fa-share"></i> </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

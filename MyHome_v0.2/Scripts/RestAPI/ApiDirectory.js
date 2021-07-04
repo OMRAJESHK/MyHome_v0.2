@@ -9,6 +9,9 @@ class ApiDictionary  {
     static GetUserRole = () => path+"/api/account/GetUserRole";
     static GetTransactions = () => path + '/api/Transactions/GetTransaction';
     static PostTransaction = () => path + '/api/Transactions/PostTransaction';
+    static PutTransaction = () => path + '/api/Transactions/PutTransaction';
+    static DeleteTransaction = () => path + '/api/Transactions/DeleteTransaction';
+
     static GetTenantAgreement = () => path + '/api/TenentAgreement/GetTenentAgreement';
     static GetTenentAgreementByID = () => path + '/api/TenentAgreement/GetTenentAgreementByID';
     static PutTenentAgreement = () => path + '/api/TenentAgreement/PutTenentAgreement';
@@ -39,7 +42,7 @@ class ApiDictionary  {
     static PutPropertyTaxes = () => path + "/api/PropertyTax/PutPropertyTaxes";
     static DeletePropertyTaxes = () => path + "/api/PropertyTax/DeletePropertyTaxes";
     static GetEmergencyContacts = () => path + "/api/Emergency/GetEmergencyContacts";
-    static GetEmergencyContactsByProfession = () => path + "/api/Emergency/GetEmergencyContactsByProfession";
+    static GetEmergencyContactsByAsset = () => path + "/api/Emergency/GetEmergencyContactsByAsset";
     static PostEmergency = () => path + "/api/Emergency/PostEmergency";
     static PutEmergency = () => path + "/api/Emergency/PutEmergency";
     static DeleteEmergency = () => path + "/api/Emergency/DeleteEmergency";
@@ -60,6 +63,7 @@ const AdminURLs = {
     SavePropertyTax: Admin + '_SavePropertyTax',
     AssetView: Admin + "_AssetView",
     AssetslistView: Admin + '_AssetListView',
+    SaveEmergancyContact: Admin +"_SaveEmergancyContact"
 }
 
 const TenantURLs = {

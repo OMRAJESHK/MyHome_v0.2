@@ -14,7 +14,7 @@
             RenderContent.html(response);
             $("#lblAssetNamehdr").text(sessionStorage.getItem('AssetName'));
             customizeUI();
-            createGraph();
+            //createGraph();
             CustomeToast("Welcome Back", sessionStorage.getItem('UserName'), "bg-info");
         });
     } else if (sessionStorage.getItem('RoleID') == 1) {
@@ -118,11 +118,11 @@
     $(".btn_A_AllTransactions, .btnAllTransactions").click(() => {
         gotoTransactionView()
     });
-    $(".btnEmcyContact").click(() => {
+    $(".btnEmcyContact,.btn_A_EmcyContact").click(() => {
         var url = window.rootpath + "Tenent/_emrcyContact";
         $.get(url, function (response) {
             RenderContent.html(response);
-            getEmergencyContactList();
+            isAdmin() ? getEmergencyContacts() : getEmergencyContactList() ;
         });
     });
     $('#btnLogOut').click(() => {
@@ -168,7 +168,7 @@ const gotoDashboard = () => {
     $.get(url, function (response) {
         $('#RenderContent').html(response);
         customizeUI();
-        createGraph();
+        //createGraph();
     });
 }
 // Tenant a
@@ -196,12 +196,12 @@ const gotoTransactionView = () => {
     var url = window.rootpath + TenantURLs.Transactions;
     $.get(url, function (response) {
         RenderContent.html(response);
-        (sessionStorage.getItem('RoleID') == '0') ?
-            mainContent.find('#btnAddTransactions').hide() :
-            mainContent.find('#btnAddTransactions').show();
+        isAdmin() ?
+            mainContent.find('#btnAddTransactions').show():
+            mainContent.find('#btnAddTransactions').hide();
         RenderContent.find("#trnFrom , #trnTo").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true }).datepicker('setDate', new Date());
         RenderContent.find('#ddlTransactionType').append(getTransactionList()).prop('selectedIndex', 0);
         customizeUI();
-        transactionCall();
+        isAdmin() ?AlltransactionsGet():transactionCall();
     });
 }

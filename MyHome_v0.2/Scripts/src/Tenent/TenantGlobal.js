@@ -129,26 +129,5 @@ function createGraph (){
     //var legend = doughnutChart.generateLegend();
     //var legendHolder = document.getElementById("legend");
     //legendHolder.innerHTML = legend + '<div style="font-size: smaller">Total : <strong>' + 1703 + '</strong></div>';
-
-
-    var ctx = document.getElementById("doughnutChart").getContext('2d');
-
-    var myChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ["Electricity", "Water", "Motor", "Othres"],
-            datasets: [{
-                data: [758, 450, 244, 400], // Specify the data values array
-
-                borderColor: ['#2196f38c', '#f443368c', '#3f51b570', '#00968896'], // Add custom color border 
-                backgroundColor: ['#2196f38c', '#f443368c', '#3f51b570', '#00968896'], // Add custom color background (Points and Fill)
-                borderWidth: 1 // Specify bar border width
-            }]
-        },
-        options: {
-            responsive: true, // Instruct chart js to respond nicely.
-            maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
-        }
-    });
 }
 

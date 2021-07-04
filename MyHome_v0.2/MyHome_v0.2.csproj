@@ -514,6 +514,7 @@
     <Content Include="Views\Admin\_AssetView.cshtml" />
     <Content Include="Views\UserAccount\Main.cshtml" />
     <Content Include="Views\Admin\_AssetListView.cshtml" />
+    <Content Include="Views\Admin\_SaveEmergancyContact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyHomeDataAccess\MyHomeDataAccess.csproj">

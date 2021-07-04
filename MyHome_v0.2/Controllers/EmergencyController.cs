@@ -28,9 +28,9 @@ namespace MyHome_v0._2.Controllers
          }
 
         [HttpGet]
-         public HttpResponseMessage GetEmergencyContactsByProfession(int AssetName, int profession) {
+         public HttpResponseMessage GetEmergencyContactsByAsset(int AssetName,int IsVisible) {
             string[] empty = new string[0]; 
-            var getValidData = entities.EmergencyContacts.Where(x => x.AssetName == AssetName && x.Profession == profession && x.IsVisible == 1).ToList();
+            var getValidData = entities.EmergencyContacts.Where(x => x.AssetName == AssetName && x.IsVisible == IsVisible).ToList();
              try { 
                  if (getValidData == null){
                     return Request.CreateResponse(HttpStatusCode.NotFound, empty);

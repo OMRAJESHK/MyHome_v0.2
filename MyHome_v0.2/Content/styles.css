@@ -1,7 +1,7 @@
 ﻿/*Global CSS*/
 
 :root {
-    --primary: rgb(28 85 93);
+    --primary: rgb(31 97 141);
     --white: #ffffff;
     --lightmode: rgba(0, 0, 0, 0.2)
 }
@@ -17,6 +17,10 @@
 .global-text-secondary { color: bisque !important; }
 .minWidthFull { min-width:100%; }
 .asset-title { letter-spacing: 2px; text-transform: uppercase; }
+.fontSize_16 {font-size: 16px !important;}
+.height_5 { height: 5rem !important }
+.height_6 { height: 6rem !important}
+
 .fontSize_18 { font-size:18px !important; }
 .cursor-pointer { cursor:pointer !important; }
 .fontSize_20 { font-size: 20px !important; }

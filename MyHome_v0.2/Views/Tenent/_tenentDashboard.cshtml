@@ -3,14 +3,25 @@
 }
 <div class="section__content section__content--p30">
     <div class="container-fluid">
-        <div class="row mb-4 mt-4">
-            <div class="col-md-12">
-                <div class="overview-wrap global-bg-primary card-header">
-                    <h2 class="title-1 text-light">Dashboard</h2>
-                    <h4 class="text-light">Joined On 10<sup>th</sup>May 2010 </h4>
+        <div class="card shadow-sm">
+            <div class="card-header global-bg-primary">
+                <div class="d-flex bd-highlight">
+                    <div class="display-6 p-2 flex-grow-1 text-center h4">WELCOME TO <span id="homeName">TENANT DASHBOARD</span></div>
+                    <div title="425 Days"><label>since 1Year 2months</label></div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="d-flex bd-highlight">
+                    <div class="p-2 flex-fill bd-highlight">Owner : <span id="OwnerName">Prakash</span></div>
+                    <div class="p-2 flex-fill bd-highlight text-right">Rented To: <span id="TenantName">Ramesh Kumar</span></div>
+                </div>
+                <div class="d-flex bd-highlight">
+
+                    <div class="p-2 flex-fill bd-highlight text-right">Joining Date : <span id="joinDate">12 Mar 2012</span></div>
                 </div>
             </div>
         </div>
+
         @*<div class="row m-t-25">
             <div class="col-sm-6 col-lg-3">
                 <div class="overview-item overview-item--c1">
@@ -60,102 +71,104 @@
             </div>
         </div>*@
     <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header global-bg-primary">
-                    <h5 class="text-light">OverView - Payment </h5>
+        <div class="col-sm-12 col-lg-3">
+            <div class="card shadow-sm">
+                <div class="d-flex justify-content-between card-header" style="background-color: #f44336; color: #fff">
+                    <span class="font-weight-bold">Rent Amount</span>
+                    <span class="px-2 font-weight-bold text-success fontSize_16" id="ckbTenantIsRent"
+                          style="border-radius: 15px; border: 1px solid; background: #fff;">Paid &#10003;</span>
                 </div>
-                <div class="card-body">
-                    <div class="d-flex justify-content-between card-header pb-0">
-                        <h4 class="global-text-primary">Current Month June Rent of Rs.6000</h4>
-                        <div class="form-check">
-                            <label class="font-weight-bold" for="IsRent">
-                                <input type="checkbox" class="ckeckBoxStyle" title="paid" id="ckbTenantIsRent" disabled>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-between card-header pb-0">
-                        <h4 class="global-text-primary">Electricity Bill of Rs.6000 of Month June </h4>
-                        <div class="form-check">
-                            <label class="font-weight-bold" for="IsRent">
-                                <input type="checkbox" class="ckeckBoxStyle" id="ckbTenantIsRent" disabled>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-between card-header  pb-0">
-                        <h4 class="global-text-primary">Water/Motor Bill of Rs.180 of Month June </h4>
-                        <div class="form-check">
-                            <label class="font-weight-bold" for="IsRent">
-                                <input type="checkbox" class="ckeckBoxStyle" id="ckbTenantIsRent" disabled>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-between card-header pb-0">
-                        <h4 class="global-text-primary">Other Miscellaneous Amount of Rs.600 of Month June </h4>
-                        <div class="form-check">
-                            <label class="font-weight-bold" for="IsRent">
-                                <input type="checkbox" disabled class="ckeckBoxStyle" id="ckbTenantIsRent">
-                            </label>
-                        </div>
-                    </div>
+                <div class="card-body height_5">
+                    <div class="global-text-primary">June Month - Rent of Rs. 6000</div>
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="d-flex justify-content-between card-header global-bg-primary">
-                    <h5 class="text-light">Overall Expenses</h5>
-                    <h5 class="text-light">&#8377; 31,900</h5>
+        <div class="col-sm-12 col-lg-3">
+            <div class="card shadow-sm">
+                <div class="d-flex justify-content-between card-header" style="background-color: #03a9f4;color: #fff">
+                    <span class="font-weight-bold">Water Bill</span>
+                    <span class="px-2 font-weight-bold text-success fontSize_16" id="ckbTenantIsRent"
+                          style="border-radius: 15px; border: 1px solid; background: #fff;">
+                        Paid &#10003;
+                    </span>
                 </div>
-                <div class="card-body">
-                    <div class="doughnut">
-                        <div class="doughnutChartContainer"><canvas id="doughnutChart" height="230"></canvas></div>
-                        <div id="legend" class="chart-legend"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row ">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="d-flex justify-content-between card-header global-bg-primary">
-                    <h5 class="text-light">Electricity Bill</h5>
-                    <h5 class="text-light">&#8377; 20,000</h5>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <div> <canvas id="elecBill"></canvas> </div>
+                <div class="card-body height_5">
+                    <div class="global-text-primary">June Month - Water Bill of Rs. 600</div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="d-flex justify-content-between card-header global-bg-primary">
-                    <h5 class="text-light">Water Motor Bill</h5>
-                    <h5 class="text-light">&#8377; 1,900</h5>
+        <div class="col-sm-12 col-lg-3">
+            <div class="card shadow-sm">
+                <div class="d-flex justify-content-between card-header" style="background-color: #f57801;color: #fff">
+                    <span class="font-weight-bold">Electricity Bill</span>
+                    <span class="px-2 font-weight-bold text-danger fontSize_16" id="ckbTenantIsRent"
+                          style="border-radius: 15px; border: 1px solid; background: #fff;">
+                        Not Paid &#128473;
+                    </span>
                 </div>
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <div><canvas id="waterMotorBill"></canvas></div>
+
+                <div class="card-body height_5">
+                    <div class="global-text-primary">June Month - Electricity Bill of Rs. 450</div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="d-flex justify-content-between card-header global-bg-primary">
-                    <h5 class="text-light">Miscellenious Bill</h5>
-                    <h5 class="text-light">&#8377; 1,900</h5>
+
+        <div class="col-sm-12 col-lg-3">
+            <div class="card shadow-sm">
+                <div class="d-flex justify-content-between card-header" style="background-color: #ea1843;color: #fff">
+                    <span class="font-weight-bold">Motor Bill</span>
+                    <span class="px-2 font-weight-bold text-success fontSize_16" id="ckbTenantIsRent"
+                          style="border-radius: 15px; border: 1px solid; background: #fff;">
+                        Paid &#10003;
+                    </span>
                 </div>
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <div><canvas id="MiscelleniousBill"></canvas></div>
+                <div class="card-body height_5">
+                    <div class="global-text-primary">June Month - Motor Bill of Rs. 60</div>
                 </div>
             </div>
         </div>
     </div>
+        
+        @*<div class="row ">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="d-flex justify-content-between card-header global-bg-primary">
+                        <h5 class="text-light">Electricity Bill</h5>
+                        <h5 class="text-light">&#8377; 20,000</h5>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <div> <canvas id="elecBill"></canvas> </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="d-flex justify-content-between card-header global-bg-primary">
+                        <h5 class="text-light">Water Motor Bill</h5>
+                        <h5 class="text-light">&#8377; 1,900</h5>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <div><canvas id="waterMotorBill"></canvas></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="d-flex justify-content-between card-header global-bg-primary">
+                        <h5 class="text-light">Miscellenious Bill</h5>
+                        <h5 class="text-light">&#8377; 1,900</h5>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <div><canvas id="MiscelleniousBill"></canvas></div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
     </div>
-</div>
+    </div>

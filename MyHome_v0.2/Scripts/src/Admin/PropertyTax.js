@@ -56,6 +56,8 @@ function gotoSavePropertyTax() {
         RenderContent.html(response);
     });
 }
+
+// SAVE Property Contacts
 function savePropertyDetails() {
     let PropertyTaxToSave = JSON.stringify({
         AssetName: sessionStorage.getItem('AssetID'),
