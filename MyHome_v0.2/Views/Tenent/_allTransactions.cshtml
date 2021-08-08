@@ -6,10 +6,10 @@
          <h5 class="h2">All Transactions</h5>
     </div>
     <div class="row mb-1">
-        <div class="col-lg-3">
+        <div class="col-lg-3 zi-1">
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text global-bg-primary">Request in</span>
+                    <span class="input-group-text global-bg-primary">Search By</span>
                 </div>
                 <select class="form-control" id="ddlTransactionChange" name="Request" onchange="Transactionsearch(this.value)">
                     <option value="0">Today</option>
@@ -20,31 +20,35 @@
                 </select>
             </div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-3 zi-1 betweenDatesSection">
             <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text global-bg-primary">From</span>
-                </div>
+                <div class="input-group-prepend"><span class="input-group-text global-bg-primary" style="width: 100px;">From</span></div>
                 <input type="text" class="form-control" placeholder="" id="trnFrom">
             </div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-3 zi-1 betweenDatesSection">
             <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text global-bg-primary">To</span>
-                </div>
+                <div class="input-group-prepend"><span class="input-group-text global-bg-primary" style="width: 100px;">To</span></div>
                 <input type="text" class="form-control" placeholder="" id="trnTo">
             </div>
         </div>
-        <div class="col-lg-1">
-            <input type="button" class="btn global-bg-primary" onclick="transactionCall()" value="GET" />
-        </div>
-        <div class="col-lg-2">
-            <button class="btn global-bg-primary" id="btnAddTransactions" onclick="GotoSaveTransaction()">Add New</button>
+        <div class="col-lg-1" title="Get">
+            <div style="display:flex" >
+                <span class="betweenDatesSection mr-2">
+                    <button class="btn bg-info text-light" id="btnAddTransactions" onclick="transactionCall()">
+                        <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                    </button>
+                </span>
+                <span class="zi-1" title="Add New">
+                    <button class="btn bg-success text-light" id="btnAddTransactions" onclick="GotoSaveTransaction()">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                    </button>
+                </span>          
+            </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12 zi-0 table-responsive">
             <table class="table table table-bordered table-hover table-striped" id="tblTransactions">
                 <thead></thead>
                 <tbody></tbody>

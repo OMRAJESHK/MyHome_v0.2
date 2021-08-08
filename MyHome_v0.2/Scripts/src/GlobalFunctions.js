@@ -1,6 +1,11 @@
 ﻿const dateFormat = (date) => {
-    if (date != undefined) {
-        let newDate = date.split("/");
+    if (date) {
+        let newDate =[]
+        if (date.includes("/")) {
+            newDate = date.split("/");
+        } else if (date.includes("-")){
+            newDate = date.split("-");
+        }
         return `${newDate[2]}-${newDate[1]}-${newDate[0]}`
     }
     return 'N/A'
@@ -22,7 +27,6 @@ function getDisplayDate(date) {
     }
     return date;
 }
-
 
 // 
 var a = ['', 'One ', 'Two ', 'Three ', 'Four ', 'Five ', 'Six ', 'Seven ', 'Eight ', 'Nine ', 'Ten ', 'Eleven ', 'Twelve ', 'Thirteen ', 'Fourteen ', 'Fifteen ', 'Sixteen ', 'Seventeen ', 'Eighteen ', 'Nineteen '];
@@ -118,4 +122,12 @@ const generateOptions = (List,ddl) => {
         return `<option value=${x.value}>${x.name}</option>`;
     });
     RenderContent.find(ddl).html(options)
+}
+
+// REQUIRED TO RETURN FLOATING NUMBER WITH COMMA
+function formatNumber(number) {
+    if (number) {
+        return number.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+    }
+    return "";
 }

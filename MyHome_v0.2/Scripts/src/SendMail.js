@@ -125,5 +125,15 @@ function getMailLogs() {
             rowItem = `<tr><td colspan="9" class="noRecords">No Records</td></tr>`
         }
         $('#RenderContent #tblMailLogs tbody').html(rowItem);
+        $('#RenderContent #tblMailLogs').DataTable({
+            "bLengthChange": false,
+            "bFilter": true,
+            "bInfo": true,
+            "bPaginate": true,
+            "bAutoWidth": false,
+            'bDestroy': true,
+            "bSort": true,
+            language: { search: `` },
+        });
     });
 }

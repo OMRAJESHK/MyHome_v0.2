@@ -4,8 +4,10 @@
     <div class="container-fluid">
         <div class="d-flex justify-content-between mb-1">
             <h5 class="h4">Tenant Deed Registration</h5>
-            @*<button class="btn global-bg-primary float-right">Edit</button>*@
-            <button class="btn btn-info" id="btnEditAgreement" onclick="gotoEditAgreement()"><i title="Modify" class="ml-1 fas fa-edit fontSize_20"></i> Modify </button>
+            <div>
+                <button title="Delete" class="btn btn-danger"><i title="Delete" class="fas fa-trash-alt fontSize_20" onclick="SetTenantAgreementDeleteModal()"></i> </button>
+                <button class="btn btn-info" id="btnEditAgreement" onclick="gotoEditAgreement()"><i title="Modify" class="ml-1 fas fa-edit fontSize_20"></i> Modify </button>
+            </div>
         </div>
         <div class="card card-outline-secondary shadow mb-3">
             <div class="card-header global-bg-primary">

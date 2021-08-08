@@ -1,7 +1,8 @@
 ﻿var NotificationRes = '';
 $(document).ready(() => {
-    (sessionStorage.getItem('RoleID') == 0) ? getNotifications() : null;
+        if(isAdmin() == false) getNotifications();
     $('#btnAllNotifn').prop('disabled', true);
+
     function getNotifications() {
         ManageAjaxCalls.GetData(ApiDictionary.GetNotification() + `?AssetName=${sessionStorage.getItem('AssetID')}`, (res) => {
             let NotificationList = '';
@@ -10,13 +11,14 @@ $(document).ready(() => {
             let list = convertObjectArray(NotificationTypes);
             res.map(row => {
                 if (row.Status == 0) {
+                    let date = dateFormat(getDateOnly(row.NotificationDate));
                     NotificationList += `
                     <div class="notifi__item">
                         <div class="bg-c3 img-cir img-40">
                             <label class="notifnLetter">${NotificationLetter[row.NotificationType]}</label>
                         </div>
                         <div class="content">
-                             <p>${list[row.NotificationType].name}</p><span class="date">${row.NotificationDate}</span>
+                             <p>${list[row.NotificationType].name}</p><span class="date">${date}</span>
                         </div>
                     </div>`
                 }
@@ -32,8 +34,10 @@ $(document).ready(() => {
     }
 });
 
-function getAllNotification() {
-    var url = window.rootpath + "Tenent/_AllNotification";
+async function getAllNotification() {
+    var url = window.rootpath + TenantURLs.AllNotification;
+    let notiData = await GetAjax(ApiDictionary.GetNotification() + `?AssetName=${sessionStorage.getItem('AssetID')}`);
+
     $.get(url, function (response) {
         RenderContent.html(response);
         $('#notificationsTab').removeClass('show-dropdown');
@@ -41,34 +45,40 @@ function getAllNotification() {
             mainContent.find('#btnAddNotifications').hide() :
             mainContent.find('#btnAddNotifications').show();
         let NotifnArray = convertObjectArray(NotificationTypes);
+        let thead = isAdmin() ? ` <tr><th>Notification Type</th><th>Date</th><th>Description</th><th>Action</th></tr>`
+                              : ` <tr><th>Notification Type</th><th>Date</th><th>Description</th></tr>`;
+        $('#tblNotification thead').html(thead);
         $('#tblNotification tbody').empty();
         let rowItem = '';
-        $.each(NotificationRes, function (key, row) {
-            rowItem += `
-                        <tr>
+        $.each(notiData, function (key, row) {
+            let date = dateFormat(getDateOnly(row.NotificationDate));
+            rowItem +=
+                isAdmin() ?
+                        `<tr>
+                            <td>${NotifnArray.filter((x) => x.value == row.NotificationType)[0].name}</td>
+                            <td>${date}</td>
+                            <td>${row.Description}</td>
                             <td>
-                                <div class="card mb-0" style="height: 108px;">
-                                    <div class="card-body vertical-align-middle">
-                                        <div class="h5 text-center">${NotificationLetter[row.NotificationType]}</div>
-                                    </div>
-                                </div>
+                                <div class="text-center">
+                                    <button title="Delete" class="btn">
+                                         <i class="fas fa-trash-alt fontSize_20 text-danger" onclick="SetNotificationDeleteModal(${row.NotificationId})"></i>
+                                    </button>
+                                <div>
                             </td>
-                            <td>
-                                <div class="card mb-0">
-                                    <div class="d-flex justify-content-between card-header global-bg-primary">
-                                        <h5 class="text-light">${NotifnArray.filter((x) => x.value == row.NotificationType)[0].name}</h5>
-                                        <h5 class="text-light">${row.NotificationDate}</h5>
-                                    </div>
-                                    <div class="d-flex justify-content-between card-header">
-                                        <p>${row.Description} </p>
-                                        <div><button class="btn btn-danger" onclick="deleteNotification(${row.NotificationId})">Delete</button></div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    `
+                        </tr>`: `<tr>
+                            <td>${NotifnArray.filter((x) => x.value == row.NotificationType)[0].name}</td>
+                            <td>${date}</td>
+                            <td>${row.Description}</td>
+                        </tr>`
         });
+        console.log("rowItem", rowItem)
         $('#RenderContent #tblNotification tbody').html(rowItem);
+        rowItem = ``;
+        $('#RenderContent #tblNotification').DataTable({
+            "bLengthChange": false,"bFilter": true,"bInfo": true,
+            "bPaginate": true,"bAutoWidth": false,'bDestroy': true,"bSort": true,
+            language: { search: `` },
+        });
        
     });
 }
@@ -79,8 +89,19 @@ function deleteNotification(id) {
         console.log(res);
         getNotifications();
         getAllNotification();
+        CustomeToast("Notification", "Deleted Successfully", "bg-danger");
     });
 }
+
+// DELETE Confirmation Modal
+function SetNotificationDeleteModal(id) {
+    let deleteButtons = `<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="deleteNotification(${id})">Delete</button>`;
+    $('#deleteModal .modal-title').text("Set Reminder")
+    $('#deleteModal .modal-footer').html(deleteButtons);
+    $('#deleteModal').modal('show');
+}
+
 function saveNotifcation() {
     let notiToSave = JSON.stringify({
         AssetName: sessionStorage.getItem('AssetID'),

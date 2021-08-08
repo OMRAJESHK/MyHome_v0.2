@@ -17,9 +17,14 @@
 .global-text-secondary { color: bisque !important; }
 .minWidthFull { min-width:100%; }
 .asset-title { letter-spacing: 2px; text-transform: uppercase; }
+.fontSize_15 {font-size: 15px !important;}
+
 .fontSize_16 {font-size: 16px !important;}
 .height_5 { height: 5rem !important }
 .height_6 { height: 6rem !important}
+.zi-0 { z-index: 0 !important }
+.zi-1 { z-index: 1 !important }
+.zi-2 { z-index:2 !important  }
 
 .fontSize_18 { font-size:18px !important; }
 .cursor-pointer { cursor:pointer !important; }
@@ -199,3 +204,7 @@ w-90 { width: 90% !important; }
 
 /* Button Ripple Effect */
 
+
+
+/* DataTables */
+.dataTables_filter{ float:left !important}

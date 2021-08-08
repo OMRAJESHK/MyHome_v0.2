@@ -75,5 +75,6 @@ const TenantURLs = {
     Dashboard: Client + '_tenentDashboard',
     Transactions: Client + '_allTransactions',
     TenantDeedView: Client + '_TenantAgreementView',
-    SetReminder: Client +"_SetReminder"
+    SetReminder: Client + "_SetReminder",
+    AllNotification: Client +"_AllNotification"
 }

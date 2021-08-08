@@ -6,7 +6,7 @@ let trnselectedID = '';
 function transactionCall() {
     let assetID = sessionStorage.getItem('AssetID');
     trnFrom = dateFormat($('#RenderContent').find('#trnFrom').val());
-    trnTo = dateFormat($('#RenderContent').find('#trnTo').val());
+    trnTo = dateFormat($('#RenderContent').find('#trnTo').val()); 
     ManageAjaxCalls.GetData(ApiDictionary.GetTransactions() + `?AssetName=${assetID}&trnFrom=${trnFrom}&trnTo=${trnTo}`, tranRespose)
 }
 function tranRespose(transactions) {
@@ -86,6 +86,8 @@ function tranResponseGet(transactions) {
         "bAutoWidth": false,
         'bDestroy': true,
         "bSort": true,
+        //language: { search: `<span><i class="fa fa-filter global-text-primary" aria-hidden="true"></i></span>` },
+        language: { search: `` },
         data: transactions,
         columns: [
             { data: 'Description', },
@@ -112,10 +114,9 @@ function tranResponseGet(transactions) {
             { data: 'Remarks' },
             {
                 data: 'TransactionId', render: function (data) {
-                    ;
                     return `<div class="d-flex justify-content-center">
                                 <button title="Edit" class="btn"><i class="fas fa-edit fontSize_20 text-info" onclick="TransactionEdit(${data})"></i></button>
-                                <button title="Delete" class="btn"><i class="fas fa-trash-alt fontSize_20 text-danger" onclick="TransactionDelete(${data})"></i></button></div>`;
+                                <button title="Delete" class="btn"><i class="fas fa-trash-alt fontSize_20 text-danger" onclick="SetTransactionDeleteModal(${data})"></i></button></div>`;
                 }
             },
         ],
@@ -131,7 +132,7 @@ function Transactionsearch(val) {
     var date = new Date();
     var mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = date.getFullYear();
-
+    $("#RenderContent .betweenDatesSection").css("display", val == 4 ? "block" : "none");
     if (val == 0) {
         trnTo = trnFrom = getCurrentDate();
     } else if (val == 1) {
@@ -228,4 +229,13 @@ function TransactionDelete(id) {
     ManageAjaxCalls.Delete(ApiDictionary.DeleteTransaction() + '?id=' + id, (res) => {
         CustomeToast("Transaction", 'Deleted Successfully', "bg-danger");
     });
+}
+
+// DELETE Confirmation Modal
+function SetTransactionDeleteModal(id) {
+    let deleteButtons = `<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="TransactionDelete(${id})">Delete</button>`;
+    $('#deleteModal .modal-title').text("Asset");
+    $('#deleteModal .modal-footer').html(deleteButtons);
+    $('#deleteModal').modal('show');
 }

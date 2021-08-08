@@ -336,7 +336,7 @@ namespace MyHome_v0._2.Controllers
         [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {
-            var entity = entities.TenentAgreements.FirstOrDefault(x => x.ContactNumbers==model.PhoneNumber);
+            var entity = entities.TenentAgreements.FirstOrDefault(x => x.ContactNumbers == model.PhoneNumber);
             if (entity == null) {
                 return BadRequest("Please Enter Number that you Provided to Owner At the Beginning...!!!");
             } else { 

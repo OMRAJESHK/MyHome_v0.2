@@ -245,8 +245,6 @@ function yearlyDdlChange() {
     let year = $('select#yearlyDdl option:selected').val();
 
     let assetID = sessionStorage.getItem('AssetID');
-    console.log("ererererer", year);
-
     var trnFrom = dateFormat('01/01/' + year);
     var trnTo = dateFormat('31/12/' + year);
     ManageAjaxCalls.GetData(ApiDictionary.GetTransactions() + `?AssetName=${assetID}&trnFrom=${trnFrom}&trnTo=${trnTo}`, TransactionsRes);

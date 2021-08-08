@@ -17,6 +17,7 @@ const getValue = (field) => {
 }
 function GotosaveProximities() {
     var url = window.rootpath + AdminURLs.SaveProximity;
+
     $.get(url, function (response) {
         RenderContent.html(response);
         let assetId = Number(sessionStorage.getItem('AssetID'));
@@ -51,5 +52,23 @@ function saveProximity() {
     console.log(ApiDictionary.PutProximity() + `?id=${addetID}`, ProximityToSave)
     ManageAjaxCalls.Put(ApiDictionary.PutProximity() + `?id=${addetID}`, ProximityToSave, (res) => {
         console.log('Proximity Saved', res)
+    });
+}
+
+// DELETE Confirmation Modal
+function SetProximityDeleteModal(id) {
+    let deleteButtons = `<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="ProximityDelete(${id})">Delete</button>`;
+    $('#deleteModal .modal-title').text("Asset");
+    $('#deleteModal .modal-footer').html(deleteButtons);
+    $('#deleteModal').modal('show');
+}
+
+// DELETE PROPERTY TAX
+function ProximityDelete() {
+    let id = sessionStorage.getItem("AssetID")
+    ManageAjaxCalls.Delete(ApiDictionary.ProximityDelete() + '?id=' + id, (res) => {
+        console.log('Deleted Successfully', res);
+        CustomeToast("Tenant Agreement", "Proximity Deleted Successfully", "bg-danger");
     });
 }

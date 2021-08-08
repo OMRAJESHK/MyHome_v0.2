@@ -14,8 +14,7 @@
             RenderContent.html(response);
             $("#lblAssetNamehdr").text(sessionStorage.getItem('AssetName'));
             customizeUI();
-            //createGraph();
-            CustomeToast("Welcome Back", sessionStorage.getItem('UserName'), "bg-info");
+            getDashboardData();
         });
     } else if (sessionStorage.getItem('RoleID') == 1) {
         $('.ClientMenu').hide();
@@ -24,7 +23,6 @@
         //$.get(url, function (response) {
         //    RenderContent.html(response);
         //    customizeUI();
-        //    //callAssetModal();
         //});
         getAssetsList();
         customizeUI();
@@ -86,7 +84,6 @@
         gotoAdminDashboard()
     });
     $(".btnAssetRegistration").click(() => {
-        //callAssetModal(); 
         gotoAssetView();
     });
     $(".btnTenantAgreement").click(() => {
@@ -173,7 +170,7 @@ const gotoDashboard = () => {
     $.get(url, function (response) {
         $('#RenderContent').html(response);
         customizeUI();
-        //createGraph();
+        getDashboardData();
     });
 }
 // Tenant a
@@ -188,9 +185,9 @@ const gotoMailLogsView = () => {
 const gotoTenantView = () => {
     var url = window.rootpath + TenantURLs.TenantDeedView;
     $.get(url, function (response) {
-        (sessionStorage.getItem('RoleID') == '0') ?
-            mainContent.find('#btnEditAgreement').hide() :
-            mainContent.find('#btnEditAgreement').show();
+        isAdmin() ?
+            mainContent.find('#btnEditAgreement').show() :
+            mainContent.find('#btnEditAgreement').hide();
         RenderContent.html(response);
         getTenantAgreementLogs();
         customizeUI();
@@ -206,6 +203,7 @@ const gotoTransactionView = () => {
             mainContent.find('#btnAddTransactions').hide();
         RenderContent.find("#trnFrom , #trnTo").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true }).datepicker('setDate', new Date());
         RenderContent.find('#ddlTransactionType').append(getTransactionList()).prop('selectedIndex', 0);
+        $("#RenderContent .betweenDatesSection").css("display", "none");
         customizeUI();
         isAdmin() ?AlltransactionsGet():transactionCall();
     });

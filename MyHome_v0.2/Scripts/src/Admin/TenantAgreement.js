@@ -56,3 +56,21 @@ function saveTenantAgreement() {
 }
 
 
+// DELETE Confirmation Modal
+function SetTenantAgreementDeleteModal() {
+    let deleteButtons = `<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="TenantAgreementDelete()">Delete</button>`;
+    $('#deleteModal .modal-title').text("Asset");
+    $('#deleteModal .modal-footer').html(deleteButtons);
+    $('#deleteModal').modal('show');
+}
+
+// DELETE PROPERTY TAX
+function TenantAgreementDelete() {
+    let id = sessionStorage.getItem("AssetID")
+    ManageAjaxCalls.Delete(ApiDictionary.DeleteTenentAgreement() + '?id=' + id, (res) => {
+        console.log('DEleted Successfully', res);
+        CustomeToast("Tenant Agreement", "Tenant Agreement Deleted Successfully", "bg-danger");
+
+    });
+}

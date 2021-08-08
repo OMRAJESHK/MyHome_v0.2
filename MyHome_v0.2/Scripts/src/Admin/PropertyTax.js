@@ -17,6 +17,7 @@ function getPropertyTaxLogs() {
                 "bAutoWidth": false,
                 'bDestroy': true,
                 "bSort": true,
+                language: { search: `` },
                 data: res,
                 columns: [
                     { data: 'TaxDate', render: function (data) { return getDisplayDate(data); }  },
@@ -27,7 +28,7 @@ function getPropertyTaxLogs() {
                         data: 'PropertyID', render: function (data) {;
                             return `<div class="d-flex justify-content-center">
                                 <button title="Edit" class="btn"><i class="fas fa-edit fontSize_20 text-info" onclick="propertyTaxEdit(' + ${data}+')"></i></button>
-                                <button title="Delete" class="btn"><i class="fas fa-trash-alt fontSize_20 text-danger" onclick="propertyTaxDelete(' + ${data} +')"></i></button></div>`;
+                                <button title="Delete" class="btn"><i class="fas fa-trash-alt fontSize_20 text-danger" onclick="SetPropertyTaxDeleteModal(' + ${data} +')"></i></button></div>`;
                         }
                     },
                 ],
@@ -40,6 +41,16 @@ function getPropertyTaxLogs() {
         }
     });
 }
+
+// DELETE Confirmation Modal
+function SetPropertyTaxDeleteModal(id) {
+    let deleteButtons = `<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="propertyTaxDelete(${id})">Delete</button>`;
+    $('#deleteModal .modal-title').text("Asset");
+    $('#deleteModal .modal-footer').html(deleteButtons);
+    $('#deleteModal').modal('show');
+}
+
 
 function gotoPropertyTax() {
     var url = window.rootpath + AdminURLs.propertyTaxLogs;

@@ -4,6 +4,9 @@
 //    $("#lblAssetName").text(sessionStorage.getItem('AssetName'))
 //    sessionStorage.setItem('AssetID', res.AssetId);
 //}
+var date = new Date();
+var mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
+var yyyy = date.getFullYear();
 
 function getRaiseReqHTML(){
     var url = window.rootpath + "Tenent/_raiseRequest";
@@ -131,3 +134,68 @@ function createGraph (){
     //legendHolder.innerHTML = legend + '<div style="font-size: smaller">Total : <strong>' + 1703 + '</strong></div>';
 }
 
+const getDashboardData = () => {
+    let assetID = sessionStorage.getItem('AssetID');
+
+    let first = new Date(date.getFullYear(), date.getMonth(), 1);
+    let last = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+    let firstDay = String(first.getDate()).padStart(2, '0');
+    let lastDay = String(last.getDate()).padStart(2, '0');
+
+    trnFrom = dateFormat(firstDay + '/' + mm + '/' + yyyy);
+    trnTo = dateFormat(lastDay + '/' + mm + '/' + yyyy);
+
+    let assetId = sessionStorage.getItem("AssetID");
+    $.when(
+        GetAjax(ApiDictionary.GetTransactions(), { AssetName: assetID, trnFrom: trnFrom, trnTo: trnTo }),
+        GetAjax(ApiDictionary.GetTenentAgreementByID() + `?AssetName=${assetId}`),
+    ).done(function (trnData, tenentData) {
+        if (trnData[0] && trnData[0].length > 0) {
+            console.log("trnData", trnData[0])
+               // Rent Description
+            let rentData = trnData[0].filter(row => row.TransactionType == 2);
+               let desc = `${Months[Number(mm)]} Month - Rent of Rs. ${formatNumber(rentData?.[0]?.["Amount"]) ?? "0.00"}/-`
+               $("#rentDescription").text(desc);
+               let rentHeader = `<span class="px-2 font-weight-bold ${rentData?.[0]?.["Status"] == 1 ? "text-success" : "text-danger"} fontSize_16" id="ckbTenantIsRent"
+                             style="border-radius: 15px; border: 1px solid; background: #fff;">
+                             ${rentData?.[0]?.["Status"] == 1 ? `Paid &#10003;` : `Not Paid &#128473;`}
+                        </span>`;
+               $("#rentHeader").append(rentHeader);
+
+               // Water Description
+            let waterData = trnData[0].filter(row => row.TransactionType == 3);
+               desc = `${Months[Number(mm)]} Month - Water Bill of Rs. ${formatNumber(waterData?.[0]?.["Amount"]) ?? "0.00"}/-`;
+               $("#waterDescription").text(desc);
+               let WaterHeader = `<span class="px-2 font-weight-bold ${waterData?.[0]?.["Status"] == 1 ? "text-success" : "text-danger"} fontSize_16" id="ckbTenantIsRent"
+                             style="border-radius: 15px; border: 1px solid; background: #fff;">
+                             ${waterData?.[0]?.["Status"] == 1 ? `Paid &#10003;` : `Not Paid &#128473;`}
+                        </span>`;
+               $("#WaterHeader").append(WaterHeader);
+
+
+               // Electricity Description
+            let elecData = trnData[0].filter(row => row.TransactionType == 4);
+               desc = `${Months[Number(mm)]} Month - Electricity Bill of Rs. ${formatNumber(elecData)?.[0]?.["Amount"] ?? "0.00"}/-`;
+               $("#electricityDescription").text(desc);
+               let ElecHeader = `<span class="px-2 font-weight-bold ${elecData?.[0]?.["Status"] == 1 ? "text-success" : "text-danger"} fontSize_16" id="ckbTenantIsRent"
+                             style="border-radius: 15px; border: 1px solid; background: #fff;">
+                             ${elecData?.[0]?.["Status"] == 1 ? `Paid &#10003;` : `Not Paid &#128473;`}
+                        </span>`;
+               $("#ElecHeader").append(ElecHeader);
+
+               // Motor Description
+            let motorData = trnData[0].filter(row => row.TransactionType == 5);
+               desc = `${Months[Number(mm)]} Month - Motor Bill of Rs. ${formatNumber(motorData)?.[0]?.["Amount"] ?? "0.00"}/-`;
+               $("#MotorDescription").text(desc);
+               let MotorHeader = `<span class="px-2 font-weight-bold ${motorData?.[0]?.["Status"] == 1 ? "text-success" : "text-danger"} fontSize_16" id="ckbTenantIsRent"
+                             style="border-radius: 15px; border: 1px solid; background: #fff;">
+                             ${motorData?.[0]?.["Status"] == 1 ? `Paid &#10003;` : `Not Paid &#128473;`}
+                        </span>`;
+               $("#MotorHeader").append(MotorHeader);
+        }
+        console.log("tenentData", tenentData)
+
+    });
+
+
+}

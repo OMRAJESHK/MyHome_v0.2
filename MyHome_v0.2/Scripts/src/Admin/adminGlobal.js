@@ -23,17 +23,13 @@ const getAssetsList = () => {
                         <div class="card assetCards">
                             <div class="card-body cursor-pointer crdAssets" data-assetid=${value.AssetId} style="height:270px;position: relative;">
                                  <div class="h6 global-text-primary  asset-title font-weight-bold border-bottom"><i class="fa fa-home fontSize_50" aria-hidden="true"></i> ${value.AssetName}</div>
-                                 <div class="mb-1" style="text-align: right;">
-                                   <i class="far fa-comment"></i><span class="quantity" id="">${key + 1}</span>
-                                   <i class="far fa-bell"></i><span class="quantity" id="">${key + 3}</span>
-                                 </div>
                                  <div class="h5 font-weight-bold my-4">${value.RegusteredTo}<span class="primary-font" style="float:right;">${getDisplayDate(value.RegisteredDate)}</span></div>
-                                 <div class="h6 text-right font-weight-bold bottom pr-1">${value.Address}</div>
+                                 <div class="fontSize_15 text-right font-weight-bold bottom pr-1">${value.Address}</div>
                             </div>
                             <div class="card-footer">
                                 <div class="d-flex justify-content-between">
-                                    <button class="btn btn-info"><i title="Modify Asset" class="ml-1 fas fa-edit fontSize_20 p-2" onclick="AssetEdit(${value.AssetId})"></i></button>
-                                    <button class="btn btn-danger">
+                                    <button class="btn btn-info" onclick="AssetEdit(${value.AssetId})"><i title="Modify Asset" class="ml-1 fas fa-edit fontSize_20 p-2"></i></button>
+                                    <button class="btn btn-danger" onclick="SetAssetDeleteModal(${value.AssetId})">
                                        <i title="Delete Asset" class="fas fa-trash-alt fontSize_20 p-2" data-toggle="modal" data-target="#exampleModalLong"></i>
                                     </button>
                                 </div>
@@ -48,6 +44,15 @@ const getAssetsList = () => {
             console.error('Something went wrong with the POST...!!!');
         }
     });
+}
+
+// DELETE Confirmation Modal
+function SetAssetDeleteModal(id) {
+    let deleteButtons = `<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="deleteAsset(${id})">Delete</button>`;
+    $('#deleteModal .modal-title').text("Asset");
+    $('#deleteModal .modal-footer').html(deleteButtons);
+    $('#deleteModal').modal('show');
 }
 
 
@@ -103,13 +108,14 @@ function getNotifications() {
         let list = convertObjectArray(NotificationTypes);
         res.map(row => {
             if (row.Status == 0) {
+                let date = dateFormat(getDateOnly(row.NotificationDate));
                 NotificationList += `
                     <div class="notifi__item">
                         <div class="bg-c3 img-cir img-40">
                             <label class="notifnLetter">${NotificationLetter[row.NotificationType]}</label>
                         </div>
                         <div class="content">
-                             <p>${list[row.NotificationType].name}</p><span class="date">${row.NotificationDate}</span>
+                             <p>${list[row.NotificationType].name}</p><span class="date">${date}</span>
                         </div>
                     </div>`
             }

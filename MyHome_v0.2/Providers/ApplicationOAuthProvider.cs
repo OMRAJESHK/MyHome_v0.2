@@ -32,14 +32,14 @@ namespace MyHome_v0._2.Providers
             var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
 
             ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
-            var rolename = user.Roles.FirstOrDefault();
-    //return rolename;
+            
+            //return rolename;
             if (user == null)
             {
                 context.SetError("invalid_grant", "The user name or password is incorrect.");
                 return;
             }
-
+            var rolename = user.Roles.FirstOrDefault();
             ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
                OAuthDefaults.AuthenticationType);
             ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
