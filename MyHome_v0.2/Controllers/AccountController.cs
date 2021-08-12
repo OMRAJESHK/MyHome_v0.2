@@ -25,7 +25,7 @@ namespace MyHome_v0._2.Controllers
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
-        private MyHomeDBEntities entities = new MyHomeDBEntities();
+        private readonly MyHomeDBEntities entities = new MyHomeDBEntities();
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
 
@@ -65,7 +65,7 @@ namespace MyHome_v0._2.Controllers
             {
                 Email = User.Identity.GetUserName(),
                 HasRegistered = externalLogin == null,
-                LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
+                LoginProvider = externalLogin != null ? externalLogin?.LoginProvider : null
             };
         }
 
@@ -337,21 +337,20 @@ namespace MyHome_v0._2.Controllers
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {
             var entity = entities.TenentAgreements.FirstOrDefault(x => x.ContactNumbers == model.PhoneNumber);
+            //var entity1 = entities.AspNetUsers.FirstOrDefault
+
             if (entity == null) {
                 return BadRequest("Please Enter Number that you Provided to Owner At the Beginning...!!!");
             } else { 
             if (!ModelState.IsValid){
                 return BadRequest(ModelState);
             }
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email,PhoneNumber = model.PhoneNumber};
+            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email,PhoneNumber = model.PhoneNumber,AssetName = entity.AssetName};
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
             UserManager.AddToRole(user.Id, "client");
             if (!result.Succeeded){
                 return GetErrorResult(result);
             }
-            entity.TenentEmailId = model.Email;
-            entity.TenentPassword = model.Password;
-            entities.SaveChanges();
             return Ok("Registration Completed.");
             }
         }

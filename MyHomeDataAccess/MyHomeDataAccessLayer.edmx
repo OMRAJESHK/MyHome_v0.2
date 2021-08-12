@@ -65,6 +65,7 @@
           <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="AssetName" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="AssetRegistration">
           <Key>
@@ -182,7 +183,6 @@
           <Property Name="PercentageIncreased" Type="int" Nullable="false" />
           <Property Name="ContactNumbers" Type="nvarchar" MaxLength="50" />
           <Property Name="TenentEmailId" Type="nvarchar" MaxLength="50" />
-          <Property Name="TenentPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="50" />
           <Property Name="RentDueDate" Type="int" Nullable="false" />
         </EntityType>
@@ -366,6 +366,7 @@
           <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+          <Property Name="AssetName" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="AssetRegistration">
           <Key>
@@ -471,7 +472,6 @@
           <Property Name="PercentageIncreased" Type="Int32" Nullable="false" />
           <Property Name="ContactNumbers" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TenentEmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TenentPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="RentDueDate" Type="Int32" Nullable="false" />
         </EntityType>
@@ -622,6 +622,7 @@
           <EntitySetMapping Name="AspNetUsers">
             <EntityTypeMapping TypeName="MyHomeDBModel.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="AssetName" ColumnName="AssetName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
@@ -747,7 +748,6 @@
                 <ScalarProperty Name="PercentageIncreased" ColumnName="PercentageIncreased" />
                 <ScalarProperty Name="ContactNumbers" ColumnName="ContactNumbers" />
                 <ScalarProperty Name="TenentEmailId" ColumnName="TenentEmailId" />
-                <ScalarProperty Name="TenentPassword" ColumnName="TenentPassword" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="RentDueDate" ColumnName="RentDueDate" />
               </MappingFragment>

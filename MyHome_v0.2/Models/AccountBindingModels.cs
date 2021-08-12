@@ -49,9 +49,11 @@ namespace MyHome_v0._2.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
        
-        [Required]
+        //[Required]
         [Display(Name = "PhoneNumber")]
         public string PhoneNumber { get; set; }
+        public int AssetName { get; set; }
+
     }
 
     public class RegisterExternalBindingModel
@@ -84,6 +86,5 @@ namespace MyHome_v0._2.Models
         [Display(Name = "Confirm new password")]
         [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-
     }
 }

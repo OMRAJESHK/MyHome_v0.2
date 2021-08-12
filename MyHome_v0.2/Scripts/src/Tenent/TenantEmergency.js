@@ -2,7 +2,7 @@
 let emcyIsEdit = false;
 let emcySelectedID = '';
 let emcyConResData = [];
-let assetID = Number(sessionStorage.getItem('AssetID'));
+
 // Get Emergency Contact Details - Tenants
 const getEmergencyContactList = () => {
     let assetID = Number(sessionStorage.getItem('AssetID'));
@@ -41,6 +41,7 @@ const EmergencyContactRes = (res) => {
 
 // Get Emergency Contact Details - Admins
 const getEmergencyContacts = () => {
+    let assetID = Number(sessionStorage.getItem('AssetID'));
     ManageAjaxCalls.GetData(ApiDictionary.GetEmergencyContacts() + `?AssetName=${assetID}`, EmergencyContactResponse);
 }
 
@@ -54,7 +55,7 @@ const EmergencyContactResponse = (res) => {
         $('#tblEmergancyContact thead').html(`
                     <tr class="global-bg-primary">
                         <th>Name</th> <th>Contact Number</th><th>Profession</th> 
-                        <th>IsVisible</th><th>Action</th>
+                        <th>Is Visible to Tenant</th><th>Action</th>
                     </tr>`);
         $('#RenderContent #tblEmergancyContact').DataTable({
             "bLengthChange": false, "bFilter": true, "bInfo": true, "bPaginate": true, "bAutoWidth": false, 'bDestroy': true, "bSort": true,
@@ -74,7 +75,7 @@ const EmergencyContactResponse = (res) => {
                         ;
                         return `<div class="d-flex justify-content-center">
                                 <button title="Edit" class="btn"><i class="fas fa-edit fontSize_20 text-info" onclick="emergancyTaxEdit(${data})"></i></button>
-                                <button title="Delete" class="btn"><i class="fas fa-trash-alt fontSize_20 text-danger" onclick="emergancyDelete(${data})"></i></button></div>`;
+                                <button title="Delete" class="btn"><i class="fas fa-trash-alt fontSize_20 text-danger" onclick="SetEmergancyDeleteModal(${data})"></i></button></div>`;
                     }
                 },
             ],
@@ -109,7 +110,7 @@ const saveEmergancyContactsDetails = () => {
     let emcyNumber = RenderContent.find("#txtemcyContactNumber").val();
     let emcyProjession = Number(RenderContent.find("#ddlemcyProfessions option:selected ").val());
     let isVisible = RenderContent.find("#ckbemcyIsVisible").is(':checked') ? 1 : 0;
-
+    let assetID = Number(sessionStorage.getItem('AssetID'));
     let EmcyContactToSave = JSON.stringify({
         AssetName: assetID,
         ContactName: emcyName,  
@@ -122,9 +123,11 @@ const saveEmergancyContactsDetails = () => {
     emcyIsEdit ?
         ManageAjaxCalls.Put(ApiDictionary.PutEmergency() + '?id=' + selectedID, EmcyContactToSave, (res) => {
             console.log('modified', res)
+            CustomeToast("Contact Details", "Contact Details Modified", "bg-warning");
         }) :
         ManageAjaxCalls.Post(ApiDictionary.PostEmergency(), EmcyContactToSave, (res) => {
             console.log('res', res)
+            CustomeToast("Contact Details", "Contact Details Added", "bg-success");
         });
     emcyIsEdit = false;
     selectedID = '';
@@ -155,6 +158,17 @@ function emergancyTaxEdit(id) {
 // DELETE Emergancy Contact TAX
 function emergancyDelete(id) {
     ManageAjaxCalls.Delete(ApiDictionary.DeleteEmergency() + '?id=' + id, (res) => {
-        console.log('DEleted Successfully', res)
+        console.log('DEleted Successfully', res);
+        CustomeToast("Contact Details", "Contact Deleted Successfully", "bg-danger");
+        isAdmin() ? getEmergencyContacts() : getEmergencyContactList();
     });
+}
+
+// DELETE Confirmation Modal
+function SetEmergancyDeleteModal(id) {
+    let deleteButtons = `<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="emergancyDelete(${id})">Delete</button>`;
+    $('#deleteModal .modal-title').text("Asset");
+    $('#deleteModal .modal-footer').html(deleteButtons);
+    $('#deleteModal').modal('show');
 }

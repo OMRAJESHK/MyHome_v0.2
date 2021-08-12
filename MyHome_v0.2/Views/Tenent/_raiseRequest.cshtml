@@ -24,7 +24,15 @@
                     </div>
                 </div>
             </div>
-            <button class="btn btn-secondary w-25" type="button" onclick="gotoDashboard()"><i class="fas fa-arrow-circle-left"></i> Back</button>
+            <div style="display:flex;">
+                <span style="width:50%;"><button class="btn btn-secondary" type="button" onclick="gotoDashboard()"><i class="fas fa-arrow-circle-left"></i> Back</button></span>
+                <span style="width: 50%;text-align: right;">
+                    <button title="Delete" class="btn btn-danger" onclick="SetRequestDeleteModal()" id="btnRequestDelete">
+                        <i title="Delete" class="fas fa-trash-alt fontSize_20"></i> Delete All
+                    </button>
+                </span>
+            </div>
+            
         </div>
     </div>
     

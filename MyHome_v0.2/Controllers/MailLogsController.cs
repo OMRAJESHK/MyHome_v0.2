@@ -11,7 +11,7 @@ namespace MyHome_v0._2.Controllers
 {
     [Authorize]
     public class MailLogsController : ApiController{
-         private MyHomeDBEntities entities = new MyHomeDBEntities();
+         private readonly MyHomeDBEntities entities = new MyHomeDBEntities();
 
         //[EnableCors(origins: "http://mywebclient.azurewebsites.net", headers: "*", methods: "*")]
          [HttpGet]

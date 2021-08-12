@@ -18,43 +18,38 @@
     });
 
     $('#btnUserLogin').click(() => {
-        let postData = {
-            phoneNumber: $('#txtLoginPhoneNumber').val(),
-            password: $('#txtLoginPassword').val()
-        }
-        ManageAjaxCalls.Get(ApiDictionary.GetTenantAgreement(), postData, getCredentials);
+        let phoneNumber = $('#txtLoginPhoneNumber').val();
+        ManageAjaxCalls.Get(ApiDictionary.GetClientMailId(), { phoneNumber: phoneNumber}, getCredentials);
     })
 });
 
-function getCredentials(data) {
-    console.log('postData', data)
-    if (data == '404') {
-        console.log(data)
+function getCredentials(response) {
+    console.log('postData', response)
+    if (response == '404') {
+        console.log(response)
     } else {
         sessionStorage.setItem('RoleID', 0);
+        let password = $('#txtLoginPassword').val();
         let postData = {
-            username: data.TenentEmailId,
-            password: data.TenentPassword,
+            username: response.mailId,
+            password: password,
             grant_type: 'password'
         }
-        sessionStorage.setItem('UserName', data.ResidentsNames);
-        $.isNumeric(data.AssetName) ?
-            ManageAjaxCalls.Get(ApiDictionary.GetAssetName(), { AssetName: Number(data.AssetName) }, (res) => {
-                var name = '';
-                var id = '';
-                if (res != undefined) {
-                    name = res.AssetName;
-                    id = res.AssetId;
-                } else { name = id = 'N/A' }
-                sessionStorage.setItem('AssetName', name);
-                sessionStorage.setItem('AssetID', id);
-                ManageAjaxCalls.Post(ApiDictionary.token(), postData, getToken);
-            }) :
-            null;
+        sessionStorage.setItem('UserName', response.names);
+        ManageAjaxCalls.Get(ApiDictionary.GetAssetName(), { AssetName: Number(response.assetname) }, (res) => {
+            var name = '';
+            var id = '';
+            if (res) {
+                name = res.AssetName;
+                id = res.AssetId;
+            } else { name = id = 'N/A' }
+            sessionStorage.setItem('AssetName', name);
+            sessionStorage.setItem('AssetID', id);
+            ManageAjaxCalls.Post(ApiDictionary.token(), postData, getToken);
+        });
     }
 }
 function getToken(res) {
-
     sessionStorage.setItem('accessToken', res.access_token);
     window.location.href = window.rootpath + "Home/index";
 }

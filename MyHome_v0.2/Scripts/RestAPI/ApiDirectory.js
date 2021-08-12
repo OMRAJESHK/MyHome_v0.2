@@ -12,8 +12,9 @@ class ApiDictionary  {
     static PutTransaction = () => path + '/api/Transactions/PutTransaction';
     static DeleteTransaction = () => path + '/api/Transactions/DeleteTransaction';
 
-    static GetTenantAgreement = () => path + '/api/TenentAgreement/GetTenentAgreement';
+    static GetClientMailId = () => path + '/api/TenentAgreement/GetClientMailId';
     static GetTenentAgreementByID = () => path + '/api/TenentAgreement/GetTenentAgreementByID';
+    static PostTenentAgreement = () => path + '/api/TenentAgreement/PostTenentAgreement';
     static PutTenentAgreement = () => path + '/api/TenentAgreement/PutTenentAgreement';
     static DeleteTenentAgreement = () => path + '/api/TenentAgreement/DeleteTenentAgreement';
     static AssetPost = () => path + "/api/Asset/PostAssetDetails";
@@ -26,7 +27,8 @@ class ApiDictionary  {
     static GetRequest = () => path + '/api/Request/GetRequestsByID';
     static PostRequest = () => path + "/api/Request/PostRequest";
     static PutRequest = () => path + "/api/Request/PutRequest";
-
+    static DeleteRequest = () => path + "/api/Request/DeleteRequest";
+    
     static GetNotification = () => path + "/api/Notifications/GetNotification";
     static PostNotification = () => path + "/api/Notifications/PostNotification";
     static PutNotification = () => path + "/api/Notifications/PutNotification";

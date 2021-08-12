@@ -6,23 +6,28 @@ function RequestCall() {
     let assetID = sessionStorage.getItem('AssetID');
     ManageAjaxCalls.GetData(ApiDictionary.GetRequest() + '?assetID=' + assetID, (res) => {
         request = res;
-        let rowItem = `<div class="text-center mb-2 d-none" id="divLoadMore">
+        if (res?.length > 0) {
+            let rowItem = `<div class="text-center mb-2 d-none" id="divLoadMore">
             <button class="btn btn-info">Load More</button></div >`;
-        $.each(res, function (key, row) {
-            rowItem += (sessionStorage.getItem('RoleID') == 0) ? clietResponseHTML(row) : adminResponseHTML(row)
-        });
-        $('#RenderContent #divChatBody').html(rowItem); 
-        let id = request[request.length - 1].TenentRequestId;
-        let saveObj = {
-            AssetName: assetID,
-            Description: request[request.length - 1].Description,
-            RequestDate: request[request.length - 1].RequestDate,
-            Response: request[request.length - 1].Response,
-            Status: 2
+            $.each(res, function (key, row) {
+                rowItem += isAdmin() ? clietResponseHTML(row) : adminResponseHTML(row)
+            });
+            $('#RenderContent #divChatBody').html(rowItem);
+            //let id = request[request.length - 1].TenentRequestId;
+            //let saveObj = {
+            //    AssetName: assetID,
+            //    Description: request[request.length - 1].Description,
+            //    RequestDate: request[request.length - 1].RequestDate,
+            //    Response: request[request.length - 1].Response,
+            //    Status: 2
+            //}
+            //ManageAjaxCalls.Put(ApiDictionary.PutRequest() + '?id=' + id, JSON.stringify(saveObj), () => {
+            //    console.log('status - 2')
+            //});
+        } else {
+            $('#RenderContent #divChatBody').html("");
         }
-        ManageAjaxCalls.Put(ApiDictionary.PutRequest() + '?id=' + id, JSON.stringify(saveObj), () => {
-            console.log('status - 2')
-        });
+        
     });
 }
 const ReqResponse = (res) => {
@@ -105,26 +110,31 @@ function saveRequest() {
     today = yyyy + '-' + mm + '-' + dd;
     let description = $('#RenderContent #txtRequestBody').val();
     let assetID = sessionStorage.getItem('AssetID');
-    if (sessionStorage.getItem('RoleID') == 1) {
-        let id = request[request.length - 1].TenentRequestId;
-        let saveObj = {
-            AssetName: assetID,
-            Description:request[request.length - 1].Description ,
-            RequestDate: today,
-            Response: description,
-            Status:1
-        }
-        ManageAjaxCalls.Put(ApiDictionary.PutRequest()+'?id='+id, JSON.stringify(saveObj), ReqResponse);
-    } else {
-        let saveObj = {
-            AssetName: assetID,
-            Description: description,
-            RequestDate: today,
-            Response: '',
-            Status:0
-        } 
-        ManageAjaxCalls.Post(ApiDictionary.PostRequest(), JSON.stringify(saveObj), ReqResponse);
+    let saveObj = {
+        AssetName: assetID,
+        Description: description,
+        RequestDate: today,
+        Response: '',
+        Status: 0
     }
+    ManageAjaxCalls.Post(ApiDictionary.PostRequest(), JSON.stringify(saveObj), ReqResponse);
 }
 
 
+// DELETE Request TAX
+function RequestDelete(id) {
+    ManageAjaxCalls.Delete(ApiDictionary.DeleteRequest(), (res) => {
+        console.log('DEleted Successfully', res);
+        request = [];
+        RequestCall();
+    });
+}
+
+// DELETE Confirmation Modal
+function SetRequestDeleteModal() {
+    let deleteButtons = `<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="RequestDelete()">Delete</button>`;
+    $('#deleteModal .modal-title').text("Request");
+    $('#deleteModal .modal-footer').html(deleteButtons);
+    $('#deleteModal').modal('show');
+}

@@ -1,4 +1,6 @@
-﻿var tenantAgreement=[]
+﻿var tenantAgreement = [];
+let agreemntIsEdit = false;
+let agreemntSelectedID = '';
 function getTenantAgreementLogs() {
     let assetId = Number(sessionStorage.getItem('AssetID'));
     ManageAjaxCalls.GetData(ApiDictionary.GetTenentAgreementByID() + `?AssetName=${assetId}`, (res) => {
@@ -31,8 +33,19 @@ function gotoEditAgreement() {
         RenderContent.find('#txtJoiningDate').val(tenantAgreement["JoiningDate"]);
         RenderContent.find('#txtIdentityProofs').val(tenantAgreement["IdentityProofs"]);
         RenderContent.find('#txtTenantRemarks').val(tenantAgreement["Remarks"]);
+        agreemntIsEdit = true;
     });
 }
+function gotoAddAgreement() {
+    var url = window.rootpath + AdminURLs.TenantDeed;
+    $.get(url, function (response) {
+        RenderContent.html(response);
+        RenderContent.find("#txtJoiningDate").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true }).datepicker('setDate', new Date());
+        agreemntIsEdit = false;
+
+    });
+}
+
 function saveTenantAgreement() {
     let tenantAgmntToSave = JSON.stringify({
         AssetName: sessionStorage.getItem('AssetID'),
@@ -46,12 +59,27 @@ function saveTenantAgreement() {
         PercentageIncreased: getValue('#txtPercInc'),
         ContactNumbers: getValue('#txtResidentContactNumber'),
         Remarks: getValue('#txtTenantRemarks'),
-
     });
     let id = tenantAgreement.AgreementId;
-    console.log(ApiDictionary.PutProximity() + `?id=${id}`, tenantAgmntToSave)
-    ManageAjaxCalls.Put(ApiDictionary.PutTenentAgreement() + `?id=${id}`, tenantAgmntToSave, (res) => {
-        console.log('tenantAgmnt Saved', res)
+    console.log(`?id=${id}`, {
+        AssetName: sessionStorage.getItem('AssetID'),
+        ResidentsNumber: getValue('#txtNumOfRecidents'),
+        JoiningDate: dateFormat(getValue('#txtJoiningDate')),
+        LeavingDate: dateFormat(getValue('#txtJoiningDate')),
+        ResidentsNames: getValue('#txtResidentsNames'),
+        IdentityProofs: getValue('#txtIdentityProofs'),
+        AdvanceAmount: getValue('#txtAdvAmt'),
+        RentAmount: getValue('#txtRentAmt'),
+        PercentageIncreased: getValue('#txtPercInc'),
+        ContactNumbers: getValue('#txtResidentContactNumber'),
+        Remarks: getValue('#txtTenantRemarks'),
+    })
+    agreemntIsEdit ? ManageAjaxCalls.Put(ApiDictionary.PutTenentAgreement() + `?id=${id}`, tenantAgmntToSave, (res) => {
+        console.log('tenantAgmnt Modified', res)
+    }):
+    ManageAjaxCalls.Post(ApiDictionary.PostTenentAgreement(), tenantAgmntToSave, (res) => {
+        console.log('tenantAgmnt Saved', res);
+        CustomeToast("Tenant Agreement", "Tenant Agreement Saved", "bg-success");
     });
 }
 
@@ -71,6 +99,5 @@ function TenantAgreementDelete() {
     ManageAjaxCalls.Delete(ApiDictionary.DeleteTenentAgreement() + '?id=' + id, (res) => {
         console.log('DEleted Successfully', res);
         CustomeToast("Tenant Agreement", "Tenant Agreement Deleted Successfully", "bg-danger");
-
     });
 }

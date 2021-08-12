@@ -11,7 +11,7 @@ namespace MyHome_v0._2.Controllers
     [Authorize]
     public class RequestController : ApiController
     {
-        private MyHomeDBEntities entities = new MyHomeDBEntities();
+        private readonly MyHomeDBEntities entities = new MyHomeDBEntities();
 
         [HttpGet]
          public HttpResponseMessage GetRequests() {
@@ -68,16 +68,13 @@ namespace MyHome_v0._2.Controllers
             }
         }
         [HttpDelete]
-        public HttpResponseMessage DeleteAsset(int id) {
+        public HttpResponseMessage DeleteRequest() {
             try {
-                var entity = entities.TenentRequests.FirstOrDefault(x => x.TenentRequestId == id);
-                if (entity == null) {
-                    return Request.CreateErrorResponse(HttpStatusCode.NotFound,id.ToString()+" Not Found");
-                } else { 
-                    entities.TenentRequests.Remove(entity);
+               var rows = entities.TenentRequests.ToList();
+                    foreach (var row in rows)
+                        entities.TenentRequests.Remove(row);
                     entities.SaveChanges();
-                    return Request.CreateResponse(HttpStatusCode.OK, id.ToString());
-                }                
+                    return Request.CreateResponse(HttpStatusCode.OK);         
             } catch (Exception ex) {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }

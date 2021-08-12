@@ -64,7 +64,7 @@ function SetProximityDeleteModal(id) {
     $('#deleteModal').modal('show');
 }
 
-// DELETE PROPERTY TAX
+// DELETE Proximity TAX
 function ProximityDelete() {
     let id = sessionStorage.getItem("AssetID")
     ManageAjaxCalls.Delete(ApiDictionary.ProximityDelete() + '?id=' + id, (res) => {

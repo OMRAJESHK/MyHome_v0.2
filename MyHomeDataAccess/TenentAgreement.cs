@@ -26,7 +26,6 @@ namespace MyHomeDataAccess
         public int PercentageIncreased { get; set; }
         public string ContactNumbers { get; set; }
         public string TenentEmailId { get; set; }
-        public string TenentPassword { get; set; }
         public string Remarks { get; set; }
         public int RentDueDate { get; set; }
     }

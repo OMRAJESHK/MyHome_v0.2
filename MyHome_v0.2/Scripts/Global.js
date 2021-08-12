@@ -24,6 +24,7 @@
         //    RenderContent.html(response);
         //    customizeUI();
         //});
+        $("#Notiquantity").css("display", "none");
         getAssetsList();
         customizeUI();
         mainContent.find('#btnAddNotifications').show();

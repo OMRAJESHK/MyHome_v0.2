@@ -1,5 +1,5 @@
 ﻿class ManageAjaxCalls {
-    static Get = (url,param,callBack) => {
+    static Get = (url, param = {},callBack) => {
         $.ajax({
             url: url,
             method: 'get',
@@ -40,7 +40,7 @@
             data: data,
             success: (response) => { callBack(response) },
             error: (jqXHR) => {
-                console.log('something went wrong...I donno what')
+                console.log('something went wrong...I donno what', jqXHR)
             }
         });
     }

@@ -115,16 +115,6 @@ function getMailLogs() {
     let assetID = sessionStorage.getItem('AssetID');
     assetID && ManageAjaxCalls.GetData(ApiDictionary.GetMailLogs() + `?AssetName=${assetID}`, (res) => {
         $('#tblMailLogs tbody').empty();
-        let rowItem = '';
-        if (res.length > 0) {
-            $.each(res, function (key, row) {
-                rowItem += '<tr><td>' +row.MailTo + '</td><td>' + row.Subject + '</td><td>' + row.Body + '</td><td>' + getDisplayDate(row.MailDate) + '</td></tr>';
-            });
-        }
-        else {
-            rowItem = `<tr><td colspan="9" class="noRecords">No Records</td></tr>`
-        }
-        $('#RenderContent #tblMailLogs tbody').html(rowItem);
         $('#RenderContent #tblMailLogs').DataTable({
             "bLengthChange": false,
             "bFilter": true,
@@ -133,7 +123,39 @@ function getMailLogs() {
             "bAutoWidth": false,
             'bDestroy': true,
             "bSort": true,
+            "pageLength": 10,
             language: { search: `` },
+            data: res,
+            columns: [
+                { data: 'MailTo' },
+                { data: 'Subject' },
+                { data: 'Body' },
+                { data: 'MailDate', render: function (data) { return getDisplayDate(data) }},
+                {
+                    data: 'MailId', render: function (data) {
+                        return `<div class="d-flex justify-content-center">
+                                <button title="Delete" class="btn"><i class="fas fa-trash-alt fontSize_20 text-danger" onclick="SetMailLogDeleteModal(${data})"></i></button></div>`;
+                    }
+                },
+            ],
+
         });
     });
+}
+
+// DELETE MailLog TAX
+function MailLogTaxDelete(id) {
+    ManageAjaxCalls.Delete(ApiDictionary.DeleteMailLogs() + '?id=' + id, (res) => {
+        console.log('DEleted Successfully', res);
+        getMailLogs()
+    });
+}
+
+// DELETE Confirmation Modal
+function SetMailLogDeleteModal(id) {
+    let deleteButtons = `<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="MailLogTaxDelete(${id})">Delete</button>`;
+    $('#deleteModal .modal-title').text("Mail Logs");
+    $('#deleteModal .modal-footer').html(deleteButtons);
+    $('#deleteModal').modal('show');
 }

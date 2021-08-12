@@ -37,7 +37,6 @@ $(document).ready(() => {
 async function getAllNotification() {
     var url = window.rootpath + TenantURLs.AllNotification;
     let notiData = await GetAjax(ApiDictionary.GetNotification() + `?AssetName=${sessionStorage.getItem('AssetID')}`);
-
     $.get(url, function (response) {
         RenderContent.html(response);
         $('#notificationsTab').removeClass('show-dropdown');
@@ -71,15 +70,13 @@ async function getAllNotification() {
                             <td>${row.Description}</td>
                         </tr>`
         });
-        console.log("rowItem", rowItem)
         $('#RenderContent #tblNotification tbody').html(rowItem);
         rowItem = ``;
         $('#RenderContent #tblNotification').DataTable({
             "bLengthChange": false,"bFilter": true,"bInfo": true,
             "bPaginate": true,"bAutoWidth": false,'bDestroy': true,"bSort": true,
             language: { search: `` },
-        });
-       
+        }); 
     });
 }
 
@@ -113,10 +110,6 @@ function saveNotifcation() {
     let assetID = sessionStorage.getItem('AssetID');
     ManageAjaxCalls.Post(ApiDictionary.PostNotification(), notiToSave, () => {
         console.log('Notification Added');
-        //$("#toastBody").text();
-        //$("#toastHeader").text("Notification");
-        //$('#tstNotifyUser').toast('show');
-
-        CustomeToast("Notification", "Saved Successfully","bg-success")
-    })        
+        CustomeToast("Notification", "Saved Successfully", "bg-success")
+    });  
 }

@@ -42,16 +42,6 @@ function getPropertyTaxLogs() {
     });
 }
 
-// DELETE Confirmation Modal
-function SetPropertyTaxDeleteModal(id) {
-    let deleteButtons = `<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="propertyTaxDelete(${id})">Delete</button>`;
-    $('#deleteModal .modal-title').text("Asset");
-    $('#deleteModal .modal-footer').html(deleteButtons);
-    $('#deleteModal').modal('show');
-}
-
-
 function gotoPropertyTax() {
     var url = window.rootpath + AdminURLs.propertyTaxLogs;
     $.get(url, function (response) {
@@ -105,4 +95,13 @@ function propertyTaxDelete(id) {
     ManageAjaxCalls.Delete(ApiDictionary.DeletePropertyTaxes() + '?id=' +id, (res) => {
         console.log('DEleted Successfully', res)
     });
+}
+
+// DELETE Confirmation Modal
+function SetPropertyTaxDeleteModal(id) {
+    let deleteButtons = `<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="propertyTaxDelete(${id})">Delete</button>`;
+    $('#deleteModal .modal-title').text("Asset");
+    $('#deleteModal .modal-footer').html(deleteButtons);
+    $('#deleteModal').modal('show');
 }
