@@ -1,6 +1,18 @@
 ﻿const getProximities = () => {
     let assetID = sessionStorage.getItem('AssetID')
     ManageAjaxCalls.GetData(ApiDictionary.GetProximity() + `?AssetName=${assetID}`, (res) => {
+        if (isAdmin()) {
+            debugger
+            if (res.constructor === Object) {
+                mainContent.find('#btnEditProximities').show();
+                mainContent.find('#btnAddAgreement').hide()
+            } else {
+                mainContent.find('#btnEditProximities').hide();
+                mainContent.find('#btnAddAgreement').show()
+            }
+        } else {
+            mainContent.find('#btnEditProximities').hide()
+        }
          $('#lblRailwayStation').text(res["RailwayStation"]);
          $('#lblBusStation').text(res["BusStation"]);
          $('#lblAirport').text(res["Airport"]);
@@ -17,7 +29,6 @@ const getValue = (field) => {
 }
 function GotosaveProximities() {
     var url = window.rootpath + AdminURLs.SaveProximity;
-
     $.get(url, function (response) {
         RenderContent.html(response);
         let assetId = Number(sessionStorage.getItem('AssetID'));

@@ -117,7 +117,7 @@ function toggleFullScreen() {
 }
 
 const generateOptions = (List,ddl) => {
-    let options = `<option value="0">--Select--</option>`;
+    let options = `<option value="">None</option>`;
     options += List.map(x => {
         return `<option value=${x.value}>${x.name}</option>`;
     });

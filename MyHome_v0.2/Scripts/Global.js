@@ -62,7 +62,6 @@
         var url = window.rootpath + "Tenent/_proximity";
         $.get(url, function (response) {
             RenderContent.html(response);
-            isAdmin() ? mainContent.find('#btnAddProximities').show() : mainContent.find('#btnAddProximities').hide()
             customizeUI();
             getProximities();
         });
@@ -186,9 +185,6 @@ const gotoMailLogsView = () => {
 const gotoTenantView = () => {
     var url = window.rootpath + TenantURLs.TenantDeedView;
     $.get(url, function (response) {
-        isAdmin() ?
-            mainContent.find('#btnEditAgreement').show() :
-            mainContent.find('#btnEditAgreement').hide();
         RenderContent.html(response);
         getTenantAgreementLogs();
         customizeUI();

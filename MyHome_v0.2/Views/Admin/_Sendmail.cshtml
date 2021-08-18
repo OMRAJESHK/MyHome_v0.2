@@ -1,42 +1,45 @@
 ﻿@{
     Layout = null;
 }
-<div class="container-fluid mt-3">
-    <div class="row">
-         <div class="col-lg-4 offset-lg-4">
-              <div class="card card-outline-secondary">
-                   <div class="card-header global-bg-primary">
-                         <h3 class="mb-0 text-light"><i class="fas fa-envelope-open-text"></i> Send mail</h3>
-                   </div>
-                   <div class="card-body">
+<form onsubmit="sendmail();return false">
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <div class="col-lg-4 offset-lg-4">
+                <div class="card card-outline-secondary">
+                    <div class="card-header global-bg-primary">
+                        <h3 class="mb-0 text-light"><i class="fas fa-envelope-open-text"></i> Send mail</h3>
+                    </div>
+                    <div class="card-body">
                         <div autocomplete="off" class="form" role="form">
                             <div class="form-group">
-                                  <label for="inputSendTo">Send To</label>
-                                  <input class="form-control minWidthFull" id="txtMailTo" placeholder="Send To..." type="text">
+                                <label for="inputSendTo">Send To</label>
+                                <input class="form-control minWidthFull" id="txtMailTo" placeholder="Send To..." type="text" required>
                             </div>
                             <div class="form-group">
-                                  <label for="inputSubject">Subject</label>
-                                  <input class="form-control minWidthFull" id="txtSubject" placeholder="Subject..." type="text">
+                                <label for="inputSubject">Subject</label>
+                                <input class="form-control minWidthFull" id="txtSubject" placeholder="Subject..." type="text" required>
                             </div>
                             <div class="form-group">
                                 <label for="inputBody">Body</label>
                                 <textarea class="form-control minWidthFull" id="txtBody" placeholder="Body..." rows="5"></textarea>
                             </div>
-                            <div class="input-group"> <input type="file" id="imageBrowse"/></div>
+                            <div class="input-group"> <input type="file" id="imageBrowse" /></div>
                         </div>
-                   </div>
-              </div>
-              <div class="card-footer p-2">
-                   <div class="form-group">
-                       <div class="d-flex justify-content-between">
+                    </div>
+                </div>
+                <div class="card-footer p-2">
+                    <div class="form-group">
+                        <div class="d-flex justify-content-between">
                             <button class="btn btn-secondary w-25" type="button" onclick="gotoMailLogsView()"><i class="fas fa-arrow-circle-left"></i> Back</button>
                             <button class="btn btn-clear w-25" onclick="clearTextBoxes()"><i class="fas fa-broom"></i> Clear</button>
-                            <button class="btn btn-success w-25" type="submit" onclick="sendmail()" value="send" id="btnSandMail">
+                            <button class="btn btn-success w-25" type="submit" value="send" id="btnSandMail">
                                 Send <i id="icnSandMail" class="fas fa-share"></i> <i class="fa fa-spinner fa-spin" aria-hidden="true" hidden></i>
-                            </button> 
-                       </div>
-                   </div>
-              </div>
-         </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</form>
+

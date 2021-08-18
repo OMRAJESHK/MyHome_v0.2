@@ -5,10 +5,15 @@
         <div class="d-flex justify-content-between">
             <h5 class="h4 font-weight-bold">All Proximities</h5>
             <div>
-                <button title="Delete" class="btn btn-danger"><i title="Delete" class="fas fa-trash-alt fontSize_20" onclick="SetProximityDeleteModal()"></i> </button>
-                <button class="btn global-bg-primary" id="btnAddProximities" onclick="GotosaveProximities()">Modify</button>
+                <button title="Delete" class="btn btn-danger">
+                    <i title="Delete" class="fas fa-trash-alt fontSize_20" onclick="SetProximityDeleteModal()"></i>
+                </button>
+                <button class="btn global-bg-primary" id="btnEditProximities" onclick="GotosaveProximities()">Modify</button>
+                <button class="btn btn-success" id="btnAddProximities" onclick="GotosaveProximities()">
+                    <i title="Add" class="ml-1 fas fa-edit fontSize_20"></i> Add 
+                </button>
             </div>
-           
+            
         </div>
         <div class="card card-outline-secondary shadow mb-3">
             <div class="card-header global-bg-primary">

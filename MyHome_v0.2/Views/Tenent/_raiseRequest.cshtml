@@ -2,41 +2,44 @@
 @{
     Layout = null;
 }
-<div class="container-fluid mt-2">
-    <div class="row mb-1">
-        <div class="offset-lg-4 col-lg-4 border p-2">
-            <div class="card">
-                <div class="card-header text-left global-bg-primary">
-                    <div class="account-item clearfix js-item-menu">
-                        <div class="image">
-                            <img src="~/Images/Profile.jpg" class="img-thumbnail rounded-circle global-text-primary" alt="John Doe" style="border:1px solid;" />
+<form onsubmit="saveRequest();return false">
+    <div class="container-fluid mt-2">
+        <div class="row mb-1">
+            <div class="offset-lg-4 col-lg-4 border p-2">
+                <div class="card">
+                    <div class="card-header text-left global-bg-primary">
+                        <div class="account-item clearfix js-item-menu">
+                            <div class="image">
+                                <img src="~/Images/Profile.jpg" class="img-thumbnail rounded-circle global-text-primary" alt="John Doe" style="border:1px solid;" />
+                            </div>
+                            <div class="content">
+                                <p class="font-weight-bold">Owner</p>
+                            </div>
                         </div>
-                        <div class="content">
-                            <p class="font-weight-bold">Owner</p>
+                    </div>
+                    <div class="card-body" id="divChatBody" style="height: 530px;overflow-y: scroll;"></div>
+                    <div class="card-footer text-muted">
+                        <div style="display:flex;">
+                            <input class="form-control minWidthFull" id="txtRequestBody" placeholder="Type here..." style="flex:1;min-width: 85%;" required/>
+                            <button class="btn global-bg-primary w-25 ml-1" type="submit">Send</button>
                         </div>
                     </div>
                 </div>
-                <div class="card-body" id="divChatBody" style="height: 530px;overflow-y: scroll;"></div>
-                <div class="card-footer text-muted">
-                    <div style="display:flex;">
-                        <input class="form-control minWidthFull" id="txtRequestBody" placeholder="Type here..." style="flex:1;min-width: 85%;" />
-                        <button class="btn global-bg-primary w-25 ml-1" type="button" onclick="saveRequest()">Send</button>
-                    </div>
+                <div style="display:flex;">
+                    <span style="width:50%;"><button class="btn btn-secondary" type="button" onclick="gotoDashboard()"><i class="fas fa-arrow-circle-left"></i> Back</button></span>
+                    <span style="width: 50%;text-align: right;">
+                        <button title="Delete" class="btn btn-danger" onclick="SetRequestDeleteModal()" id="btnRequestDelete">
+                            <i title="Delete" class="fas fa-trash-alt fontSize_20"></i> Delete All
+                        </button>
+                    </span>
                 </div>
+
             </div>
-            <div style="display:flex;">
-                <span style="width:50%;"><button class="btn btn-secondary" type="button" onclick="gotoDashboard()"><i class="fas fa-arrow-circle-left"></i> Back</button></span>
-                <span style="width: 50%;text-align: right;">
-                    <button title="Delete" class="btn btn-danger" onclick="SetRequestDeleteModal()" id="btnRequestDelete">
-                        <i title="Delete" class="fas fa-trash-alt fontSize_20"></i> Delete All
-                    </button>
-                </span>
-            </div>
-            
         </div>
+
     </div>
-    
-</div>
+</form>
+
 <script>
      $(document).find("div#RenderContent #divChatBody").scroll(function () {
         var scrollValue = $(this).scrollTop();

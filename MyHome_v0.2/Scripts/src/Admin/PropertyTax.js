@@ -28,16 +28,13 @@ function getPropertyTaxLogs() {
                         data: 'PropertyID', render: function (data) {;
                             return `<div class="d-flex justify-content-center">
                                 <button title="Edit" class="btn"><i class="fas fa-edit fontSize_20 text-info" onclick="propertyTaxEdit(' + ${data}+')"></i></button>
-                                <button title="Delete" class="btn"><i class="fas fa-trash-alt fontSize_20 text-danger" onclick="SetPropertyTaxDeleteModal(' + ${data} +')"></i></button></div>`;
+                                <button title="Delete" class="btn"><i class="fas fa-trash-alt fontSize_20 text-danger" onclick="SetPropertyTaxDeleteModal(${data})"></i></button></div>`;
                         }
                     },
                 ],
 
             });
 
-        }
-        else {
-            rowItem = `<tr><td colspan="9" class="noRecords">No Records</td></tr>`
         }
     });
 }
@@ -93,7 +90,8 @@ function propertyTaxEdit(id) {
 // DELETE PROPERTY TAX
 function propertyTaxDelete(id) {
     ManageAjaxCalls.Delete(ApiDictionary.DeletePropertyTaxes() + '?id=' +id, (res) => {
-        console.log('DEleted Successfully', res)
+        console.log('DEleted Successfully', res);
+        getPropertyTaxLogs();
     });
 }
 

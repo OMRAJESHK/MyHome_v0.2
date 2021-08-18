@@ -1,118 +1,121 @@
 ﻿@{
     Layout = null;
 }
-<div class="container-fluid mt-3">
-    <div class="d-flex justify-content-between mb-1"><h5 class="h2">Asset Registration</h5></div>
-    <div class="row">
-        <div class="col-lg-3">
-            <div class="card card-outline-secondary">
-                <div class="card-header global-bg-primary"><h3 class="mb-0 text-light">Primary</h3></div>
-                <div class="card-body">
-                    <div autocomplete="off" class="form" role="form">
-                        <div class="form-group">
-                            <label for="inputAssetName" class="font-weight-bold">Asset Name</label>
-                            <input class="form-control minWidthFull txtRounded" id="txtAssetName" placeholder="Asset Name..." type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputAssetName" class="font-weight-bold">Registration Date</label>
-                            <input class="form-control minWidthFull txtRounded" id="txtRegDate" placeholder="Registration Date..." type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputTranAmt" class="font-weight-bold">Registered To</label>
-                            <input class="form-control minWidthFull txtRounded" id="txtRegTo" placeholder="Registered To..." type="text">
-                        </div>    
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="card card-outline-secondary">
-                <div class="card-header global-bg-primary"><h3 class="mb-0 text-light">Secondary</h3></div>
-                <div class="card-body card-body pb-4">
-                    <div autocomplete="off" class="form" role="form">
-                        <div class="form-group">
-                            <label for="inputLandTax" class="font-weight-bold">Land Tax Amount</label>
-                            <input class="form-control minWidthFull txtRounded" id="txtRegTaxAmt" placeholder="Land Tax Amount" type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputNumberOfDoors" class="font-weight-bold">Number Of Doors</label>
-                            <input class="form-control minWidthFull txtRounded" id="txtNumDoors" placeholder="Number Of Doors" type="number">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputNumberOfWindows" class="font-weight-bold">Number Of Windows</label>
-                            <input class="form-control minWidthFull txtRounded" id="txtNumWindows" placeholder="Number Of Windows" type="number">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="card card-outline-secondary">
-                <div class="card-header global-bg-primary"><h3 class="mb-0 text-light">Secondary</h3></div>
-                <div class="card-body card-body pb-4">
-                    <div autocomplete="off" class="form" role="form">
-                        <div class="form-group">
-                            <label for="txtNumTaps" class="font-weight-bold">Number Of Taps</label>
-                            <input class="form-control minWidthFull txtRounded" id="txtNumTaps" placeholder="Number Of Taps" type="number">
-                        </div>
-                        <div class="form-group">
-                            <label for="txtNumBulbs" class="font-weight-bold">Number Of Bulbs</label>
-                            <input class="form-control minWidthFull txtRounded" id="txtNumBulbs" placeholder="Number Of Bulbs" type="number">
-                        </div>
-                        <div class="form-group">
-                            <label for="txtNumFans" class="font-weight-bold">Number Of Fans</label>
-                            <input class="form-control minWidthFull txtRounded" id="txtNumFans" placeholder="Enter Number Of Fans" type="number">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="card card-outline-secondary">
-                <div class="card-header global-bg-primary">
-                    <h3 class="mb-0 text-light">Tertiary</h3>
-                </div>
-                <div class="card-body">
-                    <div autocomplete="off" class="form" role="form">
-                        <div class="form-group">
-                            <label for="txtAssetAddress" class="font-weight-bold">Address</label>
-                            <textarea class="form-control minWidthFull txtRounded" id="txtAssetAddress" placeholder="Address" rows="3"></textarea>
-                        </div>
-                        <div style="display:flex;margin-top:20px">
-                            <div style="flex:1" className="text-right">
-                                <div class="form-check">
-                                    <input type="checkbox" id="ckbIsSump" class="ckeckBoxStyle">
-                                    <label class="font-weight-bold" for="IsSump">Is Sump</label>
-                                </div>
+<form action="" onsubmit=" saveAsset();return false" name="frmAssetSave">
+    <div class="container-fluid mt-3">
+        <div class="d-flex justify-content-between mb-1"><h5 class="h2">Asset Registration</h5></div>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="card card-outline-secondary">
+                    <div class="card-header global-bg-primary"><h3 class="mb-0 text-light">Primary</h3></div>
+                    <div class="card-body">
+                        <div autocomplete="off" class="form" role="form">
+                            <div class="form-group">
+                                <label for="inputAssetName" class="font-weight-bold">Asset Name</label>
+                                <input name="astName" class="form-control minWidthFull txtRounded" id="txtAssetName" placeholder="please enter asset name" type="text" required>
                             </div>
-                            <div style="flex:1">
-                                <div class="form-check">
-                                    <input type="checkbox" id="ckbIsRent" class="ckeckBoxStyle">
-                                    <label class="font-weight-bold" for="IsRent">Is Rent</label>
-                                </div>
+                            <div class="form-group">
+                                <label for="inputAssetName" class="font-weight-bold">Registration Date</label>
+                                <input name="astRegDate" class="form-control minWidthFull txtRounded" id="txtRegDate" placeholder="please enter registration date" type="text" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputTranAmt" class="font-weight-bold">Registered To</label>
+                                <input name="astRegTo" class="form-control minWidthFull txtRounded" id="txtRegTo" placeholder="please enter registered to" type="text" required>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="inputRemarks" class="font-weight-bold">Remarks</label>
-                            <textarea class="form-control minWidthFull txtRounded" id="txtAssetRegRemarks" placeholder="Enter Remarks Here" rows="3"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="card card-outline-secondary">
+                    <div class="card-header global-bg-primary"><h3 class="mb-0 text-light">Secondary</h3></div>
+                    <div class="card-body card-body pb-4">
+                        <div autocomplete="off" class="form" role="form">
+                            <div class="form-group">
+                                <label for="inputLandTax" class="font-weight-bold">Land Tax Amount</label>
+                                <input name="astRegTaxAmt" class="form-control minWidthFull txtRounded" id="txtRegTaxAmt" placeholder="please enter Land Tax Amount" type="number" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputNumberOfDoors" class="font-weight-bold">Number Of Doors</label>
+                                <input name="astNumDoors" class="form-control minWidthFull txtRounded" id="txtNumDoors" placeholder="please enter Number Of Doors" type="number" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputNumberOfWindows" class="font-weight-bold">Number Of Windows</label>
+                                <input name="astNumWindows" class="form-control minWidthFull txtRounded" id="txtNumWindows" placeholder="please enter Number Of Windows" type="number" required>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="card-footer p-2">
-                    <div class="d-flex justify-content-between">
-                        <button aria-label="Go to Asset View" data-toggle="tooltip" data-placement="bottom" title="Back to Asset View" 
-                                class="btn btn-secondary w-25" type="button" onclick="backToAssetView()">
-                            <i aria-label="fa arrow-circle" class="fas fa-arrow-circle-left"></i> 
-                        </button>
-                        <button aria-label="Clear Fields" title="Clear Fields" class="btn btn-clear w-25" onclick="clearTextBoxes()">
-                            <i aria-label="fa broom" class="fas fa-broom"></i> 
-                        </button>
-                        <button aria-label="save Asset" title="Save Asset" class="btn btn-success w-25" type="button" id="btnSaveAsset" onclick="saveAsset()"> 
-                            <i class="fas fa-share" aria-label="fa share"></i> 
-                        </button>
+            </div>
+            <div class="col-lg-3">
+                <div class="card card-outline-secondary">
+                    <div class="card-header global-bg-primary"><h3 class="mb-0 text-light">Secondary</h3></div>
+                    <div class="card-body card-body pb-4">
+                        <div autocomplete="off" class="form" role="form">
+                            <div class="form-group">
+                                <label for="txtNumTaps" class="font-weight-bold">Number Of Taps</label>
+                                <input name="astNumTaps" class="form-control minWidthFull txtRounded" id="txtNumTaps" placeholder="please enter Number Of Taps" type="number" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtNumBulbs" class="font-weight-bold">Number Of Bulbs</label>
+                                <input name="astNumBulbs" class="form-control minWidthFull txtRounded" id="txtNumBulbs" placeholder="please enter Number Of Bulbs" type="number" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtNumFans" class="font-weight-bold">Number Of Fans</label>
+                                <input name="astNumFans" class="form-control minWidthFull txtRounded" id="txtNumFans" placeholder="please enter Enter Number Of Fans" type="number" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="card card-outline-secondary">
+                    <div class="card-header global-bg-primary">
+                        <h3 class="mb-0 text-light">Tertiary</h3>
+                    </div>
+                    <div class="card-body">
+                        <div autocomplete="off" class="form" role="form">
+                            <div class="form-group">
+                                <label for="txtAssetAddress" class="font-weight-bold">Address</label>
+                                <textarea class="form-control minWidthFull txtRounded" id="txtAssetAddress" placeholder="Address" rows="3"></textarea>
+                            </div>
+                            <div style="display:flex;margin-top:20px">
+                                <div style="flex:1" className="text-right">
+                                    <div class="form-check">
+                                        <input type="checkbox" id="ckbIsSump" class="ckeckBoxStyle">
+                                        <label class="font-weight-bold" for="IsSump">Is Sump</label>
+                                    </div>
+                                </div>
+                                <div style="flex:1">
+                                    <div class="form-check">
+                                        <input type="checkbox" id="ckbIsRent" class="ckeckBoxStyle">
+                                        <label class="font-weight-bold" for="IsRent">Is Rent</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputRemarks" class="font-weight-bold">Remarks</label>
+                                <textarea class="form-control minWidthFull txtRounded" id="txtAssetRegRemarks" placeholder="Enter Remarks Here" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer p-2">
+                        <div class="d-flex justify-content-between">
+                            <button aria-label="Go to Asset View" data-toggle="tooltip" data-placement="bottom" title="Back to Asset View"
+                                    class="btn btn-secondary w-25" type="button" onclick="backToAssetView()">
+                                <i aria-label="fa arrow-circle" class="fas fa-arrow-circle-left"></i>
+                            </button>
+                            <button aria-label="Clear Fields" title="Clear Fields" class="btn btn-clear w-25" onclick="clearTextBoxes()">
+                                <i aria-label="fa broom" class="fas fa-broom"></i>
+                            </button>
+                            <button type="submit" aria-label="save Asset" title="Save Asset" class="btn btn-success w-25" id="btnSaveAsset">
+                                <i class="fas fa-share" aria-label="fa share"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</form>
+    

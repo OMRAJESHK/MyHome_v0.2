@@ -62,7 +62,7 @@ function GotoSaveTransaction() {
     $.get(url, function (response) {
         RenderContent.html(response);
         RenderContent.find("#trnDate").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true }).datepicker("setDate",new Date())
-        let options = `<option value="0">--Select--</option>`;
+        let options = `<option value="">None</option>`;
         options += TransactionsList.map(x => {
             return `<option value=${x.value}>${x.name}</option>`;
         });
@@ -176,7 +176,7 @@ const GotoSaveNotifications = () => {
     var url = window.rootpath + AdminURLs.SaveNotification;
     $.get(url, function (response) {
         RenderContent.html(response);
-        let options = `<option value="0">--Select--</option>`;
+        let options = `<option value="">None</option>`;
         options += NotificationList.map(x => {
             return `<option value=${x.value}>${x.name}</option>`;
         });

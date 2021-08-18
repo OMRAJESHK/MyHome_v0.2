@@ -1,78 +1,81 @@
 ﻿@{
     Layout = null;
 }
-<div class="container-fluid">
-    <div class="h2 mb-2">Tenant Deed Registration</div>
-    <div class="row">
-        <div class="col-lg-4">
-            <div class="card card-outline-secondary">
-                <div class="card-header global-bg-primary"><h3 class="mb-0 text-light">Sign Up</h3></div>
-                <div class="card-body">
-                    <div autocomplete="off" class="form" role="form">
-                        <div class="form-group">
-                            <label for="inputName">Number Of Residents</label>
-                            <input class="form-control minWidthFull" placeholder="Full name" id="txtNumOfRecidents"type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputJoiningDate">Joining Date</label>
-                            <input class="form-control minWidthFull" placeholder="Joining Date" required="" id="txtJoiningDate"type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputVerify3">Residents Name</label>
-                            <input class="form-control minWidthFull" placeholder="Residents Names" id="txtResidentsNames" required="" type="text">
-                        </div>
-                    </div>
-                </div>
-            </div><!-- /form card register -->
-        </div>
-        <div class="col-lg-4">
-            <div class="card card-outline-secondary">
-                <div class="card-header global-bg-primary"><h3 class="mb-0 text-light">Residents Details</h3></div>
-                <div class="card-body">
-                    <div autocomplete="off" class="form" role="form">
-                        <div class="form-group">
-                            <label for="inputMobileNumber">Residents Contact Number</label>
-                            <input class="form-control minWidthFull" placeholder="Mobile Number" id="txtResidentContactNumber"type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputIdentityProofs">Identity Proofs</label>
-                            <input class="form-control minWidthFull" placeholder="Identity Proofs" required=""id="txtIdentityProofs" type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputTenantRemarks">Remarks</label>
-                            <input class="form-control minWidthFull" placeholder="Remarks" id="txtTenantRemarks"type="text">
+<form onsubmit="saveTenantAgreement(); return false">
+    <div class="container-fluid">
+        <div class="h2 mb-2">Tenant Deed Registration</div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card card-outline-secondary">
+                    <div class="card-header global-bg-primary"><h3 class="mb-0 text-light">Sign Up</h3></div>
+                    <div class="card-body">
+                        <div autocomplete="off" class="form" role="form">
+                            <div class="form-group">
+                                <label for="inputName">Number Of Residents</label>
+                                <input class="form-control minWidthFull" placeholder="Please Enter Number Of Residents" id="txtNumOfRecidents" type="text" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputJoiningDate">Joining Date</label>
+                                <input class="form-control minWidthFull" placeholder="Joining Date" id="txtJoiningDate" type="text" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputVerify3">Residents Name</label>
+                                <input class="form-control minWidthFull" placeholder="Residents Names" id="txtResidentsNames" type="text" required>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div><!-- /form card register -->
-        </div>
-        <div class="col-lg-4">
-            <div class="card card-outline-secondary">
-                <div class="card-header global-bg-primary"><h3 class="mb-0 text-light">Home Details</h3></div>
-                <div class="card-body">
-                    <div autocomplete="off" class="form" role="form">
-                        <div class="form-group">
-                            <label for="inputAdvAmt">Advance Amount</label>
-                            <input class="form-control minWidthFull" placeholder="Full Name" id="txtAdvAmt" type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputRentAmt">Rent Amount</label>
-                            <input class="form-control minWidthFull" placeholder="Rent Amount" required="" id="txtRentAmt" type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputPercInc">Percentage increase</label>
-                            <input class="form-control minWidthFull" placeholder="Percentage increase" required="" id="txtPercInc" type="text">
+                </div><!-- /form card register -->
+            </div>
+            <div class="col-lg-4">
+                <div class="card card-outline-secondary">
+                    <div class="card-header global-bg-primary"><h3 class="mb-0 text-light">Residents Details</h3></div>
+                    <div class="card-body">
+                        <div autocomplete="off" class="form" role="form">
+                            <div class="form-group">
+                                <label for="inputMobileNumber">Mobile Number</label>
+                                <input class="form-control minWidthFull" placeholder="Please Enter Tenant Contact Number" id="txtResidentContactNumber" type="number" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputIdentityProofs">Identity Proofs</label>
+                                <input class="form-control minWidthFull" placeholder="Identity Proofs" id="txtIdentityProofs" type="text">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputTenantRemarks">Remarks</label>
+                                <input class="form-control minWidthFull" placeholder="Remarks" id="txtTenantRemarks" type="text">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="card-footer p-2">
-                    <div class="form-group d-flex justify-content-between">
-                        <button title="Back" class="btn btn-secondary w-20" type="button" onclick=" gotoTenantView()"><i class="fas fa-arrow-circle-left"></i> </button>
-                        <button title="Clear"class="btn btn-clear w-20" onclick="clearTextBoxes()"><i class="fas fa-broom"></i> </button>
-                        <button title="Send"class="btn btn-success w-20" type="submit" onclick="saveTenantAgreement()"> <i class="fas fa-share"></i> </button>
+                </div><!-- /form card register -->
+            </div>
+            <div class="col-lg-4">
+                <div class="card card-outline-secondary">
+                    <div class="card-header global-bg-primary"><h3 class="mb-0 text-light">Home Details</h3></div>
+                    <div class="card-body">
+                        <div autocomplete="off" class="form" role="form">
+                            <div class="form-group">
+                                <label for="inputAdvAmt">Advance Amount</label>
+                                <input class="form-control minWidthFull" placeholder="Please Enter Advance Amount" id="txtAdvAmt" type="number" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputRentAmt">Rent Amount</label>
+                                <input class="form-control minWidthFull" placeholder="Rent Amount" id="txtRentAmt" type="number" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPercInc">Percentage increase</label>
+                                <input class="form-control minWidthFull" placeholder="Percentage increase" id="txtPercInc" type="number" required>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div><!-- /form card register -->
+                    <div class="card-footer p-2">
+                        <div class="form-group d-flex justify-content-between">
+                            <button title="Back" class="btn btn-secondary w-20" type="button" onclick=" gotoTenantView()"><i class="fas fa-arrow-circle-left"></i> </button>
+                            <button title="Clear" class="btn btn-clear w-20" onclick="clearTextBoxes()"><i class="fas fa-broom"></i> </button>
+                            <button title="Send" class="btn btn-success w-20" type="submit"> <i class="fas fa-share"></i> </button>
+                        </div>
+                    </div>
+                </div><!-- /form card register -->
+            </div>
         </div>
     </div>
-</div>
+</form>
+

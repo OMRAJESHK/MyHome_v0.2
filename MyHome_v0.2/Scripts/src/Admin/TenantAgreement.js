@@ -5,6 +5,15 @@ function getTenantAgreementLogs() {
     let assetId = Number(sessionStorage.getItem('AssetID'));
     ManageAjaxCalls.GetData(ApiDictionary.GetTenentAgreementByID() + `?AssetName=${assetId}`, (res) => {
         tenantAgreement = res;
+        if (isAdmin()) {
+            if (res.constructor === Object) {
+                mainContent.find('#btnEditAgreement').show();
+                mainContent.find('#btnAddAgreement').hide()
+            } 
+        } else {
+            mainContent.find('#btnEditAgreement').hide();
+        }
+
         RenderContent.find('#lblNumOfRecidents').text(res["ResidentsNumber"]);
         RenderContent.find('#lblResidentsNames').text(res["ResidentsNames"]);
         RenderContent.find('#lblResidentContactNumber').text(res["ContactNumbers"]);
@@ -16,6 +25,8 @@ function getTenantAgreementLogs() {
         RenderContent.find('#lblTenantRemarks').text(res["Remarks"]);
     }, () => {
             //alert("No Tenant Available");
+            mainContent.find('#btnEditAgreement').hide();
+            mainContent.find('#btnAddAgreement').show()
             CustomeToast("", "No Tenant Available", "bg-danger");
     });
 }

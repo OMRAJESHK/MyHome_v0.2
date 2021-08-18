@@ -1,5 +1,5 @@
 ﻿$(document).ready(() => {
-    getClientRequests();
+    !isAdmin() && getClientRequests();
 })
 let request = [];
 function RequestCall() {

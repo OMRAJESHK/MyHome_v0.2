@@ -1,94 +1,97 @@
 ﻿@{
     Layout = null;
 }
-<div class="container-fluid mt-3">
-    <div class="row">
-        <div class="col-lg-4">
-            <div class="card card-outline-secondary shadow">
-                <div class="card-header global-bg-primary">
-                    <h3 class="mb-0 text-light">Transaction</h3>
-                </div>
-                <div class="card-body">
-                    <div autocomplete="off" class="form" role="form">
-                        <div class="form-group">
-                            <label for="inputName">Transaction Type</label>
-                            <select class="form-control minWidthFull" id="ddlTransactionType"></select>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputTranDesc">Transaction Description</label>
-                            <input class="form-control minWidthFull" placeholder="Description..." id="txtDescription" type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputTranAmt">Transaction Amount</label>
-                            <input class="form-control minWidthFull" placeholder="Amount..." type="text" id="txtAmt">
-                        </div>
+<form onsubmit="saveTransaction();return false">
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card card-outline-secondary shadow">
+                    <div class="card-header global-bg-primary">
+                        <h3 class="mb-0 text-light">Transaction</h3>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="card card-outline-secondary shadow">
-                <div class="card-header global-bg-primary">
-                    <h3 class="mb-0 text-light">Payment Details</h3>
-                </div>
-                <div class="card-body">
-                    <div autocomplete="off" class="form" role="form">
-                        <div class="form-group">
-                            <label for="inputPaidFrom">Paid By</label>
-                            <input class="form-control minWidthFull" placeholder="Paid By..." type="text" id="txtpaidFrom">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputPaidTo">Received By</label>
-                            <input class="form-control minWidthFull" placeholder="Received By..." type="text" id="txtpaidTo">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputTranMode">Mode Of Transaction</label>
-                            <select class="form-control minWidthFull" id="ddlTranMode">
-                                <option value="0">--Select--</option>
-                                <option value="1">CASH</option>
-                                <option value="2">Online</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="card card-outline-secondary shadow">
-                <div class="card-header global-bg-primary"><h3 class="mb-0 text-light">Add Transaction</h3></div>
-                <div class="card-body card-body pb-4">
-                    <div autocomplete="off" class="form" role="form">
-                        <div style="display:flex;margin-top:20px">
-                            <div style="flex:1" className="text-right">
-                                <div class="form-check p-0">
-                                    <input type="checkbox" id="ckbPaymentStatus" class="ckeckBoxStyle">
-                                    <label class="font-weight-bold" for="PaymentStatus">Payment Status</label>
-                                </div>
+                    <div class="card-body">
+                        <div autocomplete="off" class="form" role="form">
+                            <div class="form-group">
+                                <label for="inputName">Transaction Type</label>
+                                <select class="form-control minWidthFull" id="ddlTransactionType" required></select>
                             </div>
-                            <div style="flex:1">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text global-bg-primary">Date</span>
+                            <div class="form-group">
+                                <label for="inputTranDesc">Transaction Description</label>
+                                <input class="form-control minWidthFull" placeholder="Description..." id="txtDescription" type="text" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputTranAmt">Transaction Amount</label>
+                                <input class="form-control minWidthFull" placeholder="Amount..." type="number" id="txtAmt" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card card-outline-secondary shadow">
+                    <div class="card-header global-bg-primary">
+                        <h3 class="mb-0 text-light">Payment Details</h3>
+                    </div>
+                    <div class="card-body">
+                        <div autocomplete="off" class="form" role="form">
+                            <div class="form-group">
+                                <label for="inputPaidFrom">Paid By</label>
+                                <input class="form-control minWidthFull" placeholder="Paid By..." type="text" id="txtpaidFrom" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPaidTo">Received By</label>
+                                <input class="form-control minWidthFull" placeholder="Received By..." type="text" id="txtpaidTo" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputTranMode">Mode Of Transaction</label>
+                                <select class="form-control minWidthFull" id="ddlTranMode" required>
+                                    <option value="">None</option>
+                                    <option value="1">CASH</option>
+                                    <option value="2">Online</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card card-outline-secondary shadow">
+                    <div class="card-header global-bg-primary"><h3 class="mb-0 text-light">Add Transaction</h3></div>
+                    <div class="card-body card-body pb-4">
+                        <div autocomplete="off" class="form" role="form">
+                            <div style="display:flex;margin-top:20px">
+                                <div style="flex:1" className="text-right">
+                                    <div class="form-check p-0">
+                                        <input type="checkbox" id="ckbPaymentStatus" class="ckeckBoxStyle">
+                                        <label class="font-weight-bold" for="PaymentStatus">Payment Status</label>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="" id="trnDate">
+                                </div>
+                                <div style="flex:1">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text global-bg-primary">Date</span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="please enter transaction date" id="trnDate" required>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="inputRemarks">Remarks</label>
-                            <textarea class="form-control minWidthFull" id="txtRemarks" placeholder="Remarks..." rows="4"></textarea>
+
+                            <div class="form-group">
+                                <label for="inputRemarks">Remarks</label>
+                                <textarea class="form-control minWidthFull" id="txtRemarks" placeholder="Remarks..." rows="4"></textarea>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="card-footer p-2">
-                    <div class="d-flex justify-content-between">
-                        <button class="btn btn-secondary w-25" type="button" onclick="gotoTransactionView()"><i class="fas fa-arrow-circle-left"></i> Back</button>
-                        <button class="btn btn-clear w-25" onclick="clearTextBoxes()"><i class="fas fa-broom"></i> Clear</button>
-                        <button class="btn btn-success w-25" onclick="saveTransaction()">Save <i class="fas fa-share"></i> </button>
+                    <div class="card-footer p-2">
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-secondary w-25" type="button" onclick="gotoTransactionView()"><i class="fas fa-arrow-circle-left"></i> Back</button>
+                            <button class="btn btn-clear w-25" onclick="clearTextBoxes()"><i class="fas fa-broom"></i> Clear</button>
+                            <button class="btn btn-success w-25" type="submit">Save <i class="fas fa-share"></i> </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</form>
+

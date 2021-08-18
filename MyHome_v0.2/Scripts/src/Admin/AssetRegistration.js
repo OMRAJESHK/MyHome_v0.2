@@ -2,6 +2,57 @@
 let assetIsEdit = false;
 let assetSelectedID = '';
 
+
+// Wait for the DOM to be ready
+$(function () {
+    // Initialize form validation on the registration form.
+    // It has the name attribute "registration"
+    //$("form[name='frmAssetSave']").validate({
+                
+    //    // Specify validation rules
+    //    rules: {
+    //        // The key name on the left side is the name attribute
+    //        // of an input field. Validation rules are defined
+    //        // on the right side   
+    //        astName: "required",
+    //        astRegTo: "required",
+    //        astRegDate: "required",
+    //        astRegTaxAmt: "required",
+    //        astNumDoors: "required",
+    //        astNumWindows: "required",
+    //        astNumTaps: "required",
+    //        astNumBulbs: "required",
+    //        astNumFans: "required",
+    //    },
+    //    // Specify validation error messages
+    //    messages: {
+    //        astName: "Please enter your Asset Name",
+    //        astRegTo: "Please enter Registered to Name",
+    //        astRegDate: "Please enter Date of Registration",
+    //        astRegTaxAmt: "Please enter Tax Amount of Registration",
+    //        astNumDoors: "Please enter number of Doors",
+    //        astNumWindows: "Please enter number of Windows",
+    //        astNumTaps: "Please enter number of Taps",
+    //        astNumBulbs: "Please enter number of Bulbs",
+    //        astNumFans: "Please enter number of Fans",
+    //        //firstname: "Please enter your firstname",
+    //        //lastname: "Please enter your lastname",
+    //        //password: {
+    //        //    required: "Please provide a password",
+    //        //    minlength: "Your password must be at least 5 characters long"
+    //        //},
+    //        //email: "Please enter a valid email address"
+    //    },
+    //    // Make sure the form is submitted to the destination defined
+    //    // in the "action" attribute of the form when valid
+    //    submitHandler: function (form) {
+    //        console.log("formdsf",form)
+    //        form.submit();
+    //        //alert("success")
+    //    }
+    //});
+});
+
 function btngotoSaveAsset() {
     sessionStorage.removeItem("AssetID");
     mainContent.find('#modSelectAsset').modal('hide');

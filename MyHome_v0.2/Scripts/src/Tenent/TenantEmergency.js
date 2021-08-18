@@ -94,7 +94,7 @@ const gotoSaveEmergancyContact = () => {
 
     $.get(url, function (response) {
         RenderContent.html(response);
-        let options = `<option value="0">--Select--</option>`;
+        let options = `<option value="">None</option>`;
         options += ProfessionsList.map(x => {
             return `<option value=${x.name}>${x.value}</option>`;
         });
