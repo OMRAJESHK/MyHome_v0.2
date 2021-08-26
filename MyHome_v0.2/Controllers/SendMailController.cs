@@ -71,7 +71,7 @@ namespace MyHome_v0._2.Controllers
             if (Request.Form.Count > 0){
                 var body = "<p>Dear Sir/Ma'am,</p><p>{0}</p>";
                 var message = new MailMessage();
-                message.From = new MailAddress(formCollection["From"]);  // replace with valid value
+                message.From = new MailAddress("omrajeshk6021@gmail.com");  // replace with valid value
                 message.Subject = formCollection["Subject"];
                 message.Body = string.Format(body, formCollection["Message"]);
                 message.IsBodyHtml = true;
@@ -100,13 +100,12 @@ namespace MyHome_v0._2.Controllers
                         message.Attachments.Add(att);
                     }
                 }
-              
-                using (var smtp = new SmtpClient()){
-                    var credential = new NetworkCredential
-                        {
-                            UserName = "omrajeshk6021@gmail.com",  // replace with valid value
-                            Password = "lakshminarasimha"          // replace with valid value
-                        };
+
+                using (var smtp = new SmtpClient()) {
+                    var credential = new NetworkCredential {
+                        UserName = "omrajeshk6021@gmail.com",  // replace with valid value
+                        Password = "lakshminarasimha"          // replace with valid value
+                    };
                     smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                     smtp.Credentials = credential;
                     smtp.Host = formCollection["Host"];
@@ -115,6 +114,13 @@ namespace MyHome_v0._2.Controllers
                     await smtp.SendMailAsync(message);
                     return Json("Mail sended successfully");
                 }
+
+                //using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                //{
+                //    smtp.Credentials = new NetworkCredential("omrajeshk6021@gmail.com", "lakshminarasimha");
+                //    smtp.EnableSsl = true;
+                //    smtp.Send(message);
+                //}
             }
             return Json("", JsonRequestBehavior.AllowGet);
         }

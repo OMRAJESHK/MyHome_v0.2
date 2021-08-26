@@ -19,8 +19,8 @@ function sendmail() {
     formData.append('Bcc_Ids', $('#txtMailTo').val());
     formData.append('Subject', subject);
     formData.append('Message', body);
-    formData.append('From', "omrajeshk6021@gmail.com");
-    formData.append('Password', "lakshminarasimha");
+    //formData.append('From', "omrajeshk6021@gmail.com");
+    //formData.append('Password', "lakshminarasimha");
     formData.append('Host', "smtp.gmail.com");
     formData.append('IsSSl', true);
     formData.append('PortNo', 587);

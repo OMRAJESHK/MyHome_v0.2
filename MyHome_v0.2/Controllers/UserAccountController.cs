@@ -29,6 +29,17 @@ namespace MyHome_v0._2.Controllers
         {
             return View();
         }
-
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+        public ActionResult ResetPassword()
+        {
+            return View();
+        }
+        public ActionResult SetPassword()
+        {
+            return View();
+        }
     }
 }

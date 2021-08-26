@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
+using System.Net.Mail;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
+using System.Web.Http.Routing;
+//using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -137,6 +141,7 @@ namespace MyHome_v0._2.Controllers
             return Ok();
         }
 
+        [AllowAnonymous]
         // POST api/Account/SetPassword
         [Route("SetPassword")]
         public async Task<IHttpActionResult> SetPassword(SetPasswordBindingModel model)
@@ -145,8 +150,9 @@ namespace MyHome_v0._2.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            IdentityResult result = await UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
+            var user = await UserManager.FindByEmailAsync(model.Email);
+            string id = UserManager.FindByEmail(model.Email).Id;
+            IdentityResult result = await UserManager.AddPasswordAsync(id, model.NewPassword);
 
             if (!result.Succeeded)
             {
@@ -196,6 +202,7 @@ namespace MyHome_v0._2.Controllers
 
         [AllowAnonymous]
         public IHttpActionResult GetUserRole(string Email){
+            var user = UserManager.FindByEmailAsync(Email);
             string id = UserManager.FindByEmail(Email).Id;
             IList<string> roleNames=UserManager.GetRoles(id);
             var roleID = (roleNames[0] == "admin") ? "1" : "0";
@@ -533,5 +540,79 @@ namespace MyHome_v0._2.Controllers
         }
 
         #endregion
+        //POST: /Account/ForgotPassword
+        [HttpPost]
+        [AllowAnonymous]
+        [System.Web.Mvc.ValidateAntiForgeryToken]
+        public async Task<IHttpActionResult> ForgotPassword(ForgotPasswordViewModel model) {
+            if (ModelState.IsValid) {
+                var user = await UserManager.FindByEmailAsync(model.Email);
+                //var test = await UserManager.IsEmailConfirmedAsync(user.Id);
+                if (user == null ) {
+                    // Don't reveal that the user does not exist or is not confirmed
+                    return Ok(user);
+                }
+                
+                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+                // Send an email with this link
+                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+               // var callbackUrl = Url.Action("ResetPassword", "UserAccount", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                var callbackUrl = Url.Content("~/UserAccount/ResetPassword?" + "userId="+user.Id+"&code="+code);
+                
+                await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                var mail_message = "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>";
+
+                var body = "<p>Dear Sir/Ma'am,</p><p>{0}</p>";
+                var message = new MailMessage();
+                message.From = new MailAddress("omrajeshk6021@gmail.com");  // replace with valid value
+                message.Subject = "Reset Password";
+                message.Body = string.Format(body,mail_message);
+                message.IsBodyHtml = true;
+                string[] To_MultiId = model.Email.Split(',');
+                if (To_MultiId != null && To_MultiId.Length != 0){
+                    foreach (string ids in To_MultiId){
+                        if (ids != "") { message.To.Add(new MailAddress(ids)); }  // adding multiple mail id 
+                    }
+                }
+                using (var smtp = new SmtpClient()){
+                    var credential = new NetworkCredential
+                        {
+                            UserName = "omrajeshk6021@gmail.com",  // replace with valid value
+                            Password = "lakshminarasimha"          // replace with valid value
+                        };
+                    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    smtp.Credentials = credential;
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.Port = 587;
+                    smtp.EnableSsl = true;
+                    await smtp.SendMailAsync(message);
+                    return Json(code);
+                }                 
+            }
+            // If we got this far, something failed, redisplay form
+            return Ok();
+        }
+
+        // POST: /Account/ResetPassword
+        [HttpPost]
+        [AllowAnonymous]
+        [System.Web.Mvc.ValidateAntiForgeryToken]
+        public async Task<IHttpActionResult> ResetPassword(ResetPasswordViewModel model) {
+            if (ModelState.IsValid) {
+                 var user = await UserManager.FindByIdAsync(model.Id);
+
+                if (user == null) {
+                    // Don't reveal that the user does not exist
+                    return Ok("reset Failure");
+                }
+                var result = await UserManager.ResetPasswordAsync(model.Id, model.Code, model.Password);
+                if (result.Succeeded) {
+                    return Ok("success");
+                }
+                return NotFound();
+            }
+            return BadRequest();
+        }
     }
 }
