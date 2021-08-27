@@ -114,15 +114,15 @@
                         <li class="btnAllTransactions"><a href="#" class="text-light"><i class="fas fa-chart-bar"></i>All Transactions</a></li>
                         <li class="btnRentAgreement"> <a href="#" class="text-light"> <i class="fas fa-table"></i>Tenant Details</a> </li>
                         @*<li class="has-sub">
-                                <a class="js-arrow btnTenentDetails text-light" href="#">
-                                    <i class="fas fa-table"></i>Tenant Details
-                                    <i class="fas fa-angle-down dashboardAngle" style="float: right;"></i>
-                                </a>
-                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                    <li class="btnRentAgreement"> <a href="#">Rental Agreement</a> </li>
-                                    <li class="btnDocuments"> <a href="#">Documents</a> </li>
-                                </ul>
-                            </li>*@
+                            <a class="js-arrow btnTenentDetails text-light" href="#">
+                                <i class="fas fa-table"></i>Tenant Details
+                                <i class="fas fa-angle-down dashboardAngle" style="float: right;"></i>
+                            </a>
+                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <li class="btnRentAgreement"> <a href="#">Rental Agreement</a> </li>
+                                <li class="btnDocuments"> <a href="#">Documents</a> </li>
+                            </ul>
+                        </li>*@
                         <li class="btnHouseDetails"><a href="#" class="text-light"><i class="fas fa-home"></i>House Details </a></li>
                         <li class="btnEmcyContact"><a href="#" class="text-light"><i class="fas fa-calendar-alt"></i>Emergency Contact</a></li>
                         <li class="btnProximity"><a href="#" class="text-light"><i class="fas fa-map-marker-alt"></i>Proximity</a></li>
@@ -156,15 +156,15 @@
                         <li class="btnAllTransactions"> <a href="#" class="text-light"> <i class="fas fa-chart-bar"></i>All Transactions</a> </li>
                         <li class="btnRentAgreement"> <a href="#" class="text-light"> <i class="fas fa-table"></i>Tenant Details</a> </li>
                         @*<li class="has-sub">
-                                <a class="js-arrow btnTenentDetails text-light" href="#">
-                                    <i class="fas fa-table"></i>Tenant Details
-                                    <i class="fas fa-angle-down dashboardAngle" style="float: right;"></i>
-                                </a>
-                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                    <li class="btnRentAgreement"> <a href="#">Rental Agreement</a> </li>
-                                    <li class="btnDocuments"> <a href="#">Documents</a> </li>
-                                </ul>
-                            </li>*@
+                            <a class="js-arrow btnTenentDetails text-light" href="#">
+                                <i class="fas fa-table"></i>Tenant Details
+                                <i class="fas fa-angle-down dashboardAngle" style="float: right;"></i>
+                            </a>
+                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <li class="btnRentAgreement"> <a href="#">Rental Agreement</a> </li>
+                                <li class="btnDocuments"> <a href="#">Documents</a> </li>
+                            </ul>
+                        </li>*@
                         <li class="btnHouseDetails"> <a href="#" class="text-light"> <i class="fas fa-home"></i>House Details </a> </li>
                         <li class="btnEmcyContact"> <a href="#" class="text-light"> <i class="fas fa-calendar-alt"></i>Emergency Contact </a> </li>
                         <li class="btnProximity"> <a href="#" class="text-light"> <i class="fas fa-map-marker-alt"></i>Proximity </a> </li>
@@ -216,14 +216,14 @@
                                             </div>
                                             <div id="listRequest"></div>
                                             @*<div class="notifi__item">
-                                                    <div class="bg-c1 img-cir img-40">
-                                                        <i class="zmdi zmdi-email-open"></i>
-                                                    </div>
-                                                    <div class="content">
-                                                        <p>You got a email notification</p>
-                                                        <span class="date">April 12, 2018 06:50</span>
-                                                    </div>
-                                                </div>*@
+                                                <div class="bg-c1 img-cir img-40">
+                                                    <i class="zmdi zmdi-email-open"></i>
+                                                </div>
+                                                <div class="content">
+                                                    <p>You got a email notification</p>
+                                                    <span class="date">April 12, 2018 06:50</span>
+                                                </div>
+                                            </div>*@
                                             <div class="notifi__footer text-center">
                                                 <button id="btnAllNotifn" class="btn btn-info" onclick="getRaiseReqHTML()">See All</button>
                                             </div>
@@ -452,10 +452,22 @@
             <!-- END MAIN CONTENT-->
             <!-- END PAGE CONTAINER-->
         </div>
-        <div class="offset-md-3 col-md-9 text-center font-bold mt-2">
-            <div><p>Copyright © @DateTime.Now.Year HOME SWEET HOME. All Rights Reserved.</p></div>
-        </div>
-
+        <!-- ======= Footer ======= -->
+        <footer id="footer">
+            <div class="container py-4">
+                <div class="copyright">
+                    &copy; Copyright © @DateTime.Now.Year <strong><span>Expense Calculator</span></strong>. All Rights Reserved
+                </div>
+                <div class="credits">
+                    <!-- All the links in the footer should remain intact. -->
+                    <!-- You can delete the links only if you purchased the pro version. -->
+                    <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/free-bootstrap-app-landing-page-template/ -->
+                    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                </div>
+            </div>
+        </footer>
+        <!-- End Footer -->
         <!-- Modal -->
         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
