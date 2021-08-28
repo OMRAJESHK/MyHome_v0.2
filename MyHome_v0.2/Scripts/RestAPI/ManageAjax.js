@@ -1,23 +1,24 @@
 ﻿class ManageAjaxCalls {
-    static Get = (url, param = {},callBack) => {
+    static Get = (url, param = {},callBack,errCallback) => {
         $.ajax({
             url: url,
             method: 'get',
             data: param,
             success: (response) => { callBack(response) },
             error: (jqXHR) => {
-                console.log('something went wrong...I donno what')
+                console.log('something went wrong...', jqXHR);
+                errCallback(jqXHR?.responseJSON?.Message)
             }
         });
     }
-    static GetData = (url, callBack,errCallback) => {
+    static GetData = (url, callBack, errCallback) => {
         $.ajax({
             url: url,
             method: 'get',
             headers: {
                 'Authorization': "Bearer " + sessionStorage.getItem('accessToken')
             },
-            success: (response) => { callBack(response) },
+            success: (response) => { callBack && callBack(response) },
             error: (err) => {
                 if (err.status == '401') {
                     alert('Session Expired...!!!');
@@ -25,7 +26,7 @@
                 } else if (err.status == '400') {
                     console.error("Bad Request");
                 } else if (err.status == '404') {
-                    errCallback()
+                    errCallback && errCallback()
                 }
                 console.log('something went wrong...I donno what');
             }

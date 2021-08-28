@@ -71,11 +71,11 @@ function customizeUI() {
 
 function CustomeToast(txthead, txtbody, cls) {
     let toastHTML = txthead.length > 0 ?
-        `<div class="fade border w-25 ${cls}" data-delay="2000" id="tstNotifyUser" style="position: absolute; top:8rem; right:20px;">
+        `<div class="fade border ${cls} customToast" data-delay="2000" id="tstNotifyUser">
                         <div class="toast-header"><strong class="mr-3" id="toastHeader">${txthead}</strong></div>
                         <div class="toast-body" id="toastBody"><div class="font-weight-bold">${txtbody}</div></div>
                     </div>`:
-        `<div class="fade border w-25 ${cls}" data-delay="2000" id="tstNotifyUser" style="position: absolute; top:8rem; right:20px;">
+        `<div class="fade border ${cls} customToast" data-delay="2000" id="tstNotifyUser">
                         <div class="toast-body" id="toastBody"><div class="font-weight-bold">${txtbody}</div></div>
                     </div>`;
 
@@ -83,6 +83,8 @@ function CustomeToast(txthead, txtbody, cls) {
     $(document).find('#forToast #tstNotifyUser').toast('show');
     setTimeout(function () { $("#forToast").html(""); }, 5000)
 }
+
+
 
 const isAdmin = () => {
     return sessionStorage.getItem('RoleID') == 1;
@@ -124,10 +126,60 @@ const generateOptions = (List,ddl) => {
     RenderContent.find(ddl).html(options)
 }
 
-// REQUIRED TO RETURN FLOATING NUMBER WITH COMMA
+// REQUIRED TO RETURN FLOATING NUMBER WITH COMMA AND DECIMAL PLACES
 function formatNumber(number) {
     if (number) {
         return number.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
     }
     return "";
+}
+
+// VALIDATIONS
+/* validation for email */
+const EmailValidtion = async (value, name) => {
+    if (value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
+        return { [name]: { error: false } };
+    } else {
+        return { [name]: { error: true, message: "enter a valid email" } };
+    }
+};
+
+/* validaiton for empty */
+const FieldRequiredValidation = (name, value) => {
+    const TrimmedValue = value.trim();
+    if (TrimmedValue.length === 0) {
+        return {
+            [name]: { error: true, message: "required" }
+        };
+    } else {
+        return {
+            [name]: { error: false }
+        };
+    }
+};
+
+/* validation for Form */
+const FormValidation = event => {
+    const { name, value } = event.target;
+    console.log(name, value);
+    return FieldRequiredValidation(name, value);
+};
+
+/* validation for DateFormate */
+function CheckDateFormate(value) {
+    var reg = /^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$/g;
+    if (reg.test(value)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/* validation for Phone Number */
+function PhoneNumberValidate(number) {
+    alert()
+    if (number) {
+        var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+        return (number.value.match(phoneno)) ? true : false;
+    }
 }

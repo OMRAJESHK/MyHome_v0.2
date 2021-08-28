@@ -115,12 +115,18 @@ w-90 { width: 90% !important; }
 .custom-file-input { white-space: nowrap; }
 
 
+.customToast { position: absolute; top: 4rem; right: 20px; z-index: 1; width: 18rem; }
+
 /*Calculator CSS*/
 /* Using box shadows to create 3D effects */
 #calculator {
-    width: 325px;height: auto;padding: 20px 20px 9px;
-    background: #9dd2ea;background: linear-gradient(#9dd2ea, #007bff);
-    border-radius: 3px;box-shadow: 0px 4px #009de4, 0px 10px 15px rgba(0, 0, 0, 0.2);
+    width: 325px;
+    height: auto;
+    padding: 20px 20px 9px;
+    background: #9dd2ea;
+    background: linear-gradient(#9dd2ea, #007bff);
+    border-radius: 3px;
+    box-shadow: 0px 4px #009de4, 0px 10px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Top portion */
@@ -208,3 +214,21 @@ w-90 { width: 90% !important; }
 
 /* DataTables */
 .dataTables_filter{ float:left !important}
+
+/* Validation CSS*/
+
+.errorinput {
+    border: 1px solid red;
+}
+.errorExclamation {
+    display:none;
+    height: 25px;
+    width: 25px;
+    color: red;
+    border-radius: 50%;
+    border: 2px solid;
+    font-size: 22px;
+    font-weight: 800;
+    margin: 3px 0px 0px -30px;
+    padding: 0px 10px 27px 8px;
+}

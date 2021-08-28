@@ -4,26 +4,41 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container pt-3">
+<div class="container pt-3 mt-5">
     <div class="row justify-content-sm-center">
-        <div class="col-sm-10 col-md-8">
-            <div class="card border-info">
-                <div class="card-header">Sign in to continue</div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-4 text-center">
-                            <img src="https://placeimg.com/128/128/tech/sepia">
-                            <div class="text-center h5">Expense Calculator</div>
+        <div class="col-sm-10 col-md-10 col-lg-10 col-xl-10">
+            <div class="card border-info shadow">
+                <div class="card-body p-0">
+                    <div class="row" style="justify-content: center;">
+                        <div class="col col-sm-4 col-md-6 col-xl-6 text-center">
+                            <img class="img-fluid w-100 bg-info" src="~/Content/AssetsCSS/images/loginimg.png" />
                         </div>
-                        <div class="col-md-8">
-                            <form class="form-signin">
-                                <input type="email" class="form-control mb-2" placeholder="Enter email" id="txtLoginEmail" required autofocus>
-
-                                <input type="password" class="form-control mb-2" placeholder="Enter Password" id="txtLoginPassword" required>
-
-                                <button type="button" id="btnLogin" class="btn btn-lg btn-primary btn-block mb-1">Sign in</button>
-                                <label class="checkbox float-left"> <input type="checkbox" value="remember-me"> Remember me </label>
-                                <a href="#" class="float-right">Forgot Password?</a>
+                        <div class="col-sm-7 col-md-6 col-xl-6 pt-3">
+                            <div class="text-info mt-2" style="letter-spacing: 5px;">
+                                <div class="h6 text-center mb-3">Welcome To</div>
+                                <div class="h5 font-weight-bold text-center mb-3">Expense Calculator</div>
+                            </div>
+                            <form class="form-signin px-2" onsubmit="handleLogin();return false">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text font-weight-bold text-info" id="inputGroup-sizing-default"
+                                              style="width: 6.5em;background: transparent;">Email</span>
+                                    </div>
+                                    <input aria-describedby="inputGroup-sizing-default" type="email" class="form-control" placeholder="Enter email" id="txtLoginEmail" required autofocus>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text font-weight-bold text-info" id="inputGroup-sizing-default" style="background: transparent;">Password</span>
+                                    </div>
+                                    <input aria-describedby="inputGroup-sizing-default" type="password" class="form-control" placeholder="Enter Password" id="txtLoginPassword" required>
+                                </div>
+                                <div class="flex mb-3 justify-content-between" style="font-size:12px">
+                                    <a href="#">Not a member ? Register </a>
+                                    <a href="#" class="float-right">Forgot Password ?</a>
+                                </div>
+                                <div class="input-group text-center btn-block justify-content-center mb-3">
+                                    <button type="submit" class="btn btn w-75 btn-info mb-1">Sign in</button>
+                                </div>
                             </form>
                             <div id="UserloginErrMsgDiv" class="alert alert-danger collapse">
                                 <a id="UserloginLinkClose" class="close" href="#">&times;</a>
@@ -33,7 +48,7 @@
                     </div>
                 </div>
             </div>
-            <a href="#" class="float-right">Create an account </a>
+            
         </div>
     </div>
 </div>

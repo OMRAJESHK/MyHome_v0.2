@@ -20,13 +20,13 @@ namespace MyHome_v0._2.Controllers
             TenentAgreementController customObj = new TenentAgreementController();
             var getValidData = entities.TenentAgreements.Where(x => x.ContactNumbers == phoneNumber).SingleOrDefault();
             var validRow = entities.AspNetUsers.Where(x => x.PhoneNumber == phoneNumber).SingleOrDefault();
-            if (validRow == null) {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest,"404");
+            if (validRow == null||getValidData==null) {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound,"Incorrect Number or Password");
             }
             LoginDetails logindetails = new LoginDetails();
             logindetails.mailId = validRow.UserName;
             logindetails.names = getValidData.ResidentsNames;
-            logindetails.assetname = getValidData.AssetName;
+            logindetails.assetname = validRow.AssetName;
             return Request.CreateResponse(HttpStatusCode.OK, logindetails);
         }
 
