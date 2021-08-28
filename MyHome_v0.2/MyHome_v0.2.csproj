@@ -246,7 +246,6 @@
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\AssetsCSS\Chart.min.css" />
-    <Content Include="Content\AssetsCSS\images\loginimg.png" />
     <Content Include="Content\AssetsCSS\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\AssetsCSS\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\AssetsCSS\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -341,6 +340,7 @@
     <Content Include="Images\avatar-06.jpg" />
     <Content Include="Images\avatar-big-01.jpg" />
     <Content Include="Images\favicon.png" />
+    <Content Include="Images\loginimg.png" />
     <Content Include="Images\logo-blue.png" />
     <Content Include="Images\logo-mini.png" />
     <Content Include="Images\logo-white.png" />
