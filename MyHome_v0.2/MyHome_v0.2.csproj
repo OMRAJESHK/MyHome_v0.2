@@ -508,13 +508,13 @@
     <Content Include="Views\Admin\_SavePropertyTax.cshtml" />
     <Content Include="Views\Tenent\_TenantAgreementView.cshtml" />
     <Content Include="Views\Admin\_AssetView.cshtml" />
-    <Content Include="Views\UserAccount\Main.cshtml" />
     <Content Include="Views\Admin\_AssetListView.cshtml" />
     <Content Include="Views\Admin\_SaveEmergancyContact.cshtml" />
     <Content Include="Views\Tenent\_SetReminder.cshtml" />
     <Content Include="Views\UserAccount\ForgotPassword.cshtml" />
     <Content Include="Views\UserAccount\ResetPassword.cshtml" />
     <Content Include="Views\UserAccount\SetPassword.cshtml" />
+    <Content Include="Views\UserAccount\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyHomeDataAccess\MyHomeDataAccess.csproj">

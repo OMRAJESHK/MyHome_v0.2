@@ -5,7 +5,9 @@ class ApiDictionary  {
     static token = () => '/token'; 
     static gotoLogin = () => "UserAccount/UserLogin";
     static gotoAdminLogin = () => "UserAccount/Login";
-    static gotoLandingPage = () => "UserAccount/main";
+    static gotoLogout = () => "Account/Logout";
+    
+    static gotoLandingPage = () => "UserAccount/index";
     static GetUserRole = () => path+"/api/account/GetUserRole";
     static GetTransactions = () => path + '/api/Transactions/GetTransaction';
     static PostTransaction = () => path + '/api/Transactions/PostTransaction';

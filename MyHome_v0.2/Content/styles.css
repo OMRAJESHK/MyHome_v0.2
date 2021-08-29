@@ -17,6 +17,8 @@
 .global-text-secondary { color: bisque !important; }
 .minWidthFull { min-width:100%; }
 .asset-title { letter-spacing: 2px; text-transform: uppercase; }
+.fontSize_12 { font-size: 12px !important;}
+
 .fontSize_15 {font-size: 15px !important;}
 
 .fontSize_16 {font-size: 16px !important;}

@@ -13,7 +13,7 @@ namespace MyHome_v0._2 {
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "UserAccount", action = "main", id = UrlParameter.Optional }
+                defaults: new { controller = "UserAccount", action = "index", id = UrlParameter.Optional }
             );
         }
     }

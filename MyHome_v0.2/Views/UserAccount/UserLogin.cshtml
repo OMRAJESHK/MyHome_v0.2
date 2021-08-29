@@ -9,10 +9,10 @@
             <div class="card border-info shadow">
                 <div class="card-body p-0">
                     <div class="row" style="justify-content: center;">
-                        <div class="col col-sm-4 col-md-6 col-xl-6 text-center">
-                            <img class="img-fluid w-100 bg-info" src="~/Images/loginimg.png" />
+                        <div class="col-sm-12 col-md-6 col-xl-6 text-center d-none d-md-block">
+                            <img class="img-fluid w-100 bg-info" src="~/Images/loginimg.png" style="height:100%"/>
                         </div>
-                        <div class="col-sm-7 col-md-6 col-xl-6 pt-3">
+                        <div class="col-sm-12 col-md-6 col-xl-6 pt-3">
                             <div class="text-info mt-2" style="letter-spacing: 5px;">
                                 <div class="h6 text-center mb-3">Welcome To</div>
                                 <div class="h5 font-weight-bold text-center mb-3">Expense Calculator</div>
@@ -23,7 +23,7 @@
                                         <span class="input-group-text font-weight-bold text-info" id="inputGroup-sizing-default"
                                               style="width: 100px; background: transparent;">Number</span>
                                     </div>
-                                    <input aria-describedby="inputGroup-sizing-default" type="text" class="form-control" placeholder="Enter Phone Number" id="txtLoginPhoneNumber" required autofocus>
+                                    <input aria-describedby="inputGroup-sizing-default" type="number" class="form-control" placeholder="Enter Phone Number" id="txtLoginPhoneNumber" required autofocus autocomplete="off">
                                     <span title="Invalid Number" class="errorExclamation">&#33;</span>
                                     <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
                                 </div>
@@ -51,6 +51,16 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+</div>
+<div class="body-content mt-5" style="position:absolute;bottom:0;width:100%">
+    <hr />
+    <div>
+        <div class="col-sm-12 col-md-12 text-center font-bold">
+            <div>
+                <p>Copyright © @DateTime.Now.Year <strong><span class="text-info">Expense Calculator</span></strong>. All Rights Reserved.</p>
+            </div>
         </div>
     </div>
 </div>

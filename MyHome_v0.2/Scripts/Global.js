@@ -128,8 +128,10 @@
         //sessionStorage.getItem('RoleID') == 0?
         //    window.location.href = window.rootpath + ApiDictionary.gotoLogin() :
         //    window.location.href = window.rootpath + ApiDictionary.gotoAdminLogin()
-
-        window.location.href = window.rootpath + ApiDictionary.gotoLandingPage()
+        ManageAjaxCalls.Post(ApiDictionary.gotoLogout, {}, () => {
+            console.log("Logged Out ")
+        })
+        window.location.href = window.rootpath 
     });
 
     $(".btnRaiseReq").click(() => {

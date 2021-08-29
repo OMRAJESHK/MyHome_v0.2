@@ -17,10 +17,6 @@ namespace MyHome_v0._2.Controllers
         {
             return View();
         }
-        public ActionResult Main()
-        {
-            return View();
-        }
         public ActionResult Login()
         {
             return View();
@@ -38,6 +34,10 @@ namespace MyHome_v0._2.Controllers
             return View();
         }
         public ActionResult SetPassword()
+        {
+            return View();
+        }
+        public ActionResult Index()
         {
             return View();
         }

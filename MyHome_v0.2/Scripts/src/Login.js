@@ -8,6 +8,11 @@
     });
 });
 
+
+function toclientLogin() {
+    window.location.href = "userLogin";
+}
+
 function handleUserLogin() {
     if (!PhoneNumberValidate(Number($("#txtLoginPhoneNumber").val()))) {
         $("#txtLoginPhoneNumber").addClass("errorinput");
