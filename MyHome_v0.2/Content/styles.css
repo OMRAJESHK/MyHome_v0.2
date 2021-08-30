@@ -74,6 +74,11 @@ w-90 { width: 90% !important; }
 }
 .assetCards { transition: box-shadow .3s; }
 .assetCards:hover {  box-shadow: 0 0 20px rgba(35,33,33,0.2); }
+
+
+.pl-6, .px-6 { padding-left: 5rem !important; }
+.pr-6, .px-6 { padding-right: 5rem !important; }
+
 /*Customize CheckBox*/
 .ckeckBoxStyle, .ckeckBoxStyleDark {
     margin-right: 10px;
