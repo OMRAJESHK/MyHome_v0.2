@@ -6,6 +6,11 @@
     $('#loginLinkClose').click(() => {
         $('#loginErrMsgDiv').hide('fade');
     });
+    $(document).keypress(() => {
+        var storage = window.sessionStorage;
+        if (event.shiftKey && event.keyCode == 76 && storage.length == 1) window.location.href = "Login";
+    })
+    
 });
 
 
@@ -17,9 +22,9 @@ function handleUserLogin() {
     if (!PhoneNumberValidate(Number($("#txtLoginPhoneNumber").val()))) {
         $("#txtLoginPhoneNumber").addClass("errorinput");
         $("#txtLoginPhoneNumber").focus();
-        $(".errorExclamation").css("display","block")
+        $(".errorExclamation").css("display", "block");
     } else {
-        $(".errorExclamation").css("display", "none")
+        $(".errorExclamation").css("display", "none");
         $("#txtLoginPhoneNumber").removeClass("errorinput");
         let phoneNumber = $('#txtLoginPhoneNumber').val();
         ManageAjaxCalls.Get(ApiDictionary.GetClientMailId(), { phoneNumber: phoneNumber }, getCredentials, (err) => {
@@ -41,7 +46,7 @@ function loginCustomeToast(txthead, txtbody, cls) {
 
     $("#loginToast").html(toastHTML);
     $(document).find('#loginToast #tstNotifyUser').toast('show');
-    //setTimeout(function () { $("#loginToast").html(""); }, 5000)
+    setTimeout(function () { $("#loginToast").html(""); }, 5000)
 }
 
 function handleLogin() {
@@ -70,6 +75,7 @@ function getCredentials(response) {
         }
         sessionStorage.setItem('UserName', response.names);
         ManageAjaxCalls.Get(ApiDictionary.GetAssetName(), { AssetName: Number(response.assetname) }, (res) => {
+            console.log("resresres", res)
             var name = '';
             var id = '';
             if (res) {

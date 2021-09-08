@@ -23,8 +23,8 @@ const getAssetsList = () => {
                         <div class="card assetCards">
                             <div class="card-body cursor-pointer crdAssets" data-assetid=${value.AssetId} style="height:270px;position: relative;">
                                  <div class="h6 global-text-primary  asset-title font-weight-bold border-bottom"><i class="fa fa-home fontSize_50" aria-hidden="true"></i> ${value.AssetName}</div>
-                                 <div class="h5 font-weight-bold my-4">${value.RegusteredTo}<span class="primary-font" style="float:right;">${getDisplayDate(value.RegisteredDate)}</span></div>
-                                 <div class="fontSize_15 text-right font-weight-bold bottom pr-1">${value.Address}</div>
+                                 <div class="h5 font-weight-bold my-5">${value.RegusteredTo}<span class="primary-font" style="float:right;">${getDisplayDate(value.RegisteredDate)}</span></div>
+                                 <div class="fontSize_15 text-right font-weight-bold pr-1">${value.Address}</div>
                             </div>
                             <div class="card-footer">
                                 <div class="d-flex justify-content-between">

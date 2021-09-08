@@ -204,7 +204,7 @@ const gotoTransactionView = () => {
         RenderContent.find('#ddlTransactionType').append(getTransactionList()).prop('selectedIndex', 0);
         $("#RenderContent .betweenDatesSection").css("display", "none");
         customizeUI();
-        isAdmin() ?AlltransactionsGet():transactionCall();
+        isAdmin() ? AlltransactionsGet():transactionCall();
     });
 }
 
@@ -216,7 +216,7 @@ const getRentalData = () => {
         GetAjax(ApiDictionary.GetAssetName(), { AssetName: Number(sessionStorage.getItem('AssetID')) })).done(function (tenantData, AssetData) {
             console.log("resolve all", tenantData, AssetData);
             $("#tenants").text(tenantData[0]["ResidentsNames"]);
-            let tenantsamt = `${tenantData[0]["RentAmount"]}/- (${inWords(tenantData[0]["RentAmount"])})`
+            let tenantsamt = `${tenantData[0]["RentAmount"]}/- (${inWords(tenantData[0]["RentAmount"])})`;
             $(".rentamt").text(tenantsamt);
             $("#joiningDate").text(getDisplayDate(tenantData[0]["JoiningDate"]));
             $("#rentAddress").text(AssetData[0]["Address"])

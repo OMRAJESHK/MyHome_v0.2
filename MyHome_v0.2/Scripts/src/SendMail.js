@@ -1,12 +1,9 @@
 ﻿var Render_Content = $('#RenderContent');
 var Fileurl = '';
 
-function sendmail() {
-    let loadclass = "fa fa-spinner fa-spin";
-    let defaultbtnclass = "fas fa-share";
-    
+function sendmail() {    
     Render_Content.find('#btnSandMail').attr("disabled", true);
-    Render_Content.find('#icnSandMail').removeClass(defaultbtnclass).addClass(loadclass)
+    Render_Content.find('#icnSandMail').removeClass(defaultbtnclass).addClass(loadbtnclass);
     let mailTo = Render_Content.find('#txtMailTo').val();
     let subject = Render_Content.find('#txtSubject').val();
     let body = Render_Content.find('#txtBody').val();
@@ -50,7 +47,7 @@ function sendmail() {
                 console.log(res, 'MailLog saved Successfully');
                 Render_Content.find('#btnSandMail').attr("disabled", false);
                 CustomeToast("Response", "Mail Sent Successfully", "bg-success");
-                Render_Content.find('#icnSandMail').removeClass(loadclass).addClass(defaultbtnclass);
+                Render_Content.find('#icnSandMail').removeClass(loadbtnclass).addClass(defaultbtnclass);
                 clearTextBoxes();
                 Render_Content.find("#imageBrowse").val('');
             });

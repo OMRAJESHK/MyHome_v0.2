@@ -21,6 +21,7 @@ namespace MyHome_v0._2.Controllers
          public HttpResponseMessage GetTransaction(int AssetName,DateTime trnFrom, DateTime trnTo) {
             string[] empty= new string[0]; 
             var getValidData= entities.Transactions.Where(x => x.AssetName == AssetName && x.Date >= trnFrom && x.Date <= trnTo).ToList();
+
              try { 
                  if (getValidData == null){
                     return Request.CreateResponse(HttpStatusCode.NotFound, empty);
@@ -44,11 +45,35 @@ namespace MyHome_v0._2.Controllers
          }
         [HttpPost]
          public HttpResponseMessage PostTransaction(Transaction transaction) {
-             try { 
-                entities.Transactions.Add(transaction);
-                entities.SaveChanges();
-                var message=Request.CreateResponse(HttpStatusCode.Created, transaction);
-                return message;
+             try {
+                if (transaction.TransactionType == 2) {
+                    var currdate = transaction.Date.ToString().Substring(3, 7);         
+                    var getRow = entities.Transactions.Where(x => x.TransactionType == transaction.TransactionType && x.AssetName == transaction.AssetName).FirstOrDefault();
+                    if (getRow == null) { 
+                        entities.Transactions.Add(transaction);
+                        entities.SaveChanges();
+                        entities.Transactions.Add(transaction);
+                        var message=Request.CreateResponse(HttpStatusCode.Created, transaction);
+                        return message;
+                    } else {
+                        var dbdate = getRow.Date.ToString().Substring(3, 7);
+                        if (dbdate == currdate) {
+                            return Request.CreateResponse(HttpStatusCode.MethodNotAllowed, "Current Month Rent Transaction already Exists");
+                        } else {
+                            entities.Transactions.Add(transaction);
+                            entities.SaveChanges();
+                            entities.Transactions.Add(transaction);
+                            var message=Request.CreateResponse(HttpStatusCode.Created, transaction);
+                            return message;
+                        }
+                    }
+                } else { 
+                    entities.Transactions.Add(transaction);
+                    entities.SaveChanges();
+                    var message=Request.CreateResponse(HttpStatusCode.Created, transaction);
+                    return message;
+                }
+                
              }catch(Exception ex){
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
              } 

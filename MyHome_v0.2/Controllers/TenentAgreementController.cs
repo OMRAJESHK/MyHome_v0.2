@@ -13,48 +13,49 @@ namespace MyHome_v0._2.Controllers
         private readonly MyHomeDBEntities entities = new MyHomeDBEntities();
          public class LoginDetails { 
             public string mailId;
-            public string names;//data member(also instance variable)   
+            public string names;
             public int assetname;
          }
         public HttpResponseMessage GetClientMailId(string phoneNumber) {
             TenentAgreementController customObj = new TenentAgreementController();
-            var getValidData = entities.TenentAgreements.Where(x => x.ContactNumbers == phoneNumber).SingleOrDefault();
-            var validRow = entities.AspNetUsers.Where(x => x.PhoneNumber == phoneNumber).SingleOrDefault();
-            if (validRow == null||getValidData==null) {
+            var tenantData = entities.TenentAgreements.Where(x => x.ContactNumbers == phoneNumber).SingleOrDefault();
+            var assetData = entities.AspNetUsers.Where(x => x.PhoneNumber == phoneNumber).SingleOrDefault();
+            if (assetData == null || tenantData == null) 
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound,"Incorrect Number or Password");
-            }
             LoginDetails logindetails = new LoginDetails();
-            logindetails.mailId = validRow.UserName;
-            logindetails.names = getValidData.ResidentsNames;
-            logindetails.assetname = validRow.AssetName;
+            logindetails.mailId = assetData.UserName;
+            logindetails.names = tenantData.ResidentsNames;
+            logindetails.assetname = assetData.AssetName;
             return Request.CreateResponse(HttpStatusCode.OK, logindetails);
         }
 
         [Authorize]
         public HttpResponseMessage GetTenentAgreementByID(int AssetName) {
             TenentAgreementController customObj = new TenentAgreementController();
-            var getValidData = entities.TenentAgreements.Where(x => x.AssetName == AssetName).SingleOrDefault();
-            if (getValidData == null) {
+            var tenantData = entities.TenentAgreements.Where(x => x.AssetName == AssetName).SingleOrDefault();
+            if (tenantData == null)
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound,"404");
-            }
-            return Request.CreateResponse(HttpStatusCode.Created, getValidData);
+            return Request.CreateResponse(HttpStatusCode.Created, tenantData);
         }
+
         [Authorize]
+        [HttpPost]
         public HttpResponseMessage PostTenentAgreement([FromBody]TenentAgreement tenentagreement) {
             try { 
-                 entities.TenentAgreements.Add(tenentagreement);
-                 entities.SaveChanges();
-                 var message = Request.CreateResponse(HttpStatusCode.Created, tenentagreement);
-                 return message;
+                entities.TenentAgreements.Add(tenentagreement);
+                entities.SaveChanges();
+                var message = Request.CreateResponse(HttpStatusCode.Created, tenentagreement);
+                return message;      
             } catch (Exception ex) {
-                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
+
         [Authorize]
         [HttpPut]
         public HttpResponseMessage PutTenentAgreement(int id,[FromBody]TenentAgreement tenentagreement) {
             try {
-                var entity = entities.TenentAgreements.FirstOrDefault(x=>x.AgreementId==id);
+                var entity = entities.TenentAgreements.FirstOrDefault(x => x.AgreementId == id);
                 if (entity == null) {
                     return Request.CreateErrorResponse(HttpStatusCode.NotFound, id.ToString());
                 } else {
@@ -77,6 +78,7 @@ namespace MyHome_v0._2.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
+
         [HttpDelete]
         public HttpResponseMessage DeleteTenentAgreement(int id) {
             try {

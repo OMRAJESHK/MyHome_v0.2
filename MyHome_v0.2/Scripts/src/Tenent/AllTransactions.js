@@ -67,6 +67,7 @@ function AlltransactionsGet() {
     ManageAjaxCalls.GetData(ApiDictionary.GetTransactions() + `?AssetName=${assetID}&trnFrom=${trnFrom}&trnTo=${trnTo}`, tranResponseGet)
 }
 function tranResponseGet(transactions) {
+    setScreenLoader(true)
     $('#tblTransactions tbody').empty();
     $('#tblTransactions thead').html(`
                    <tr class="global-bg-primary">
@@ -120,7 +121,15 @@ function tranResponseGet(transactions) {
                 }
             },
         ],
-
+        //"drawCallback": function (settings) {
+            
+        //    $("#scrLoaderModal").modal("hide");
+        //},
+        "initComplete": function () {
+            setTimeout(() => {
+                setScreenLoader(false)
+            }, 500)
+        }
     });
 
 };
@@ -190,10 +199,45 @@ function saveTransaction() {
     trnisEdit ?
         ManageAjaxCalls.Put(ApiDictionary.PutTransaction() + `?id=${trnselectedID}`, TransactionToSave, () => { console.log("Transaction Updated.") }) :
         ManageAjaxCalls.Post(ApiDictionary.PostTransaction(), TransactionToSave, (res) => {
+            console.log(res)
+            if (res.status == 201) {
+                CustomeToast("Transaction", 'Saved Successfully', "bg-success");
+            } else if (res.status == 405) {
+                CustomeToast("Transaction", res.responseJSON, "bg-danger");
+            }
         })
     trnisEdit = false;
     trnselectedID = '';    
 }
+
+
+// Transaction 
+function saveTransactionregularly() {
+    let trnDate = trnFrom = DateFormating(new Date);
+    let PaymentStatus = 2 ;
+    let assetID = sessionStorage.getItem('AssetID');
+    let TransactionToSave = JSON.stringify({
+        AssetName: assetID,
+        Description: "Rent For the Month",
+        TransactionType: 2,
+        Amount: 5000,
+        Date: trnDate,
+        TransactionMode: 1,
+        PaidBy: "Tenant",
+        PaidTo: "Owner",
+        Status: PaymentStatus,
+        Remarks: "Current Month Rent Pending.",
+    });
+    ManageAjaxCalls.Post(ApiDictionary.PostTransaction(), TransactionToSave, (res) => {
+        console.log(res)
+        if (res.status == 201) {
+            CustomeToast("Transaction", 'Saved Successfully', "bg-success");
+        } else if (res.status == 405) {
+            CustomeToast("Transaction", res.responseJSON, "bg-danger");
+        }
+    })
+}
+
 
 // EDIT Transaction
 function TransactionEdit(id) {

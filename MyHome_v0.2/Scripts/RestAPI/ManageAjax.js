@@ -41,7 +41,7 @@
             data: data,
             success: (response) => { callBack(response) },
             error: (jqXHR) => {
-                console.log('something went wrong...I donno what', jqXHR)
+                callBack(jqXHR)
             }
         });
     }

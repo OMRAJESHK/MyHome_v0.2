@@ -134,6 +134,25 @@ function formatNumber(number) {
     return "";
 }
 
+
+const DateFormating = (date) => {
+    if (date) {
+        let newdate = `${
+            `${date.getDate()}`.length == 1
+                ? `0${date.getDate()}`
+                : `${date.getDate()}`
+            }-${
+            `${date.getMonth() + 1}`.length == 1
+                ? `0${date.getMonth() + 1}`
+                : `${date.getMonth() + 1}`
+            }-${date.getFullYear()}`;
+        return `${newdate.split("-")[2]}-${newdate.split("-")[1]}-${
+            newdate.split("-")[0]
+            }`;
+    }
+    return date;
+};
+
 // VALIDATIONS
 /* validation for email */
 const EmailValidtion = async (value, name) => {
@@ -177,9 +196,13 @@ function CheckDateFormate(value) {
 
 /* validation for Phone Number */
 function PhoneNumberValidate(number) {
-    alert()
     if (number) {
         var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
         return (number.value.match(phoneno)) ? true : false;
     }
+}
+
+// Trigger Loader
+function setScreenLoader(loader) {
+    loader && loader? $("#scrLoaderModal").modal({ show: true, backdrop: "static" }) : $("#scrLoaderModal").modal("hide");
 }

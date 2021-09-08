@@ -13,28 +13,36 @@ namespace MyHome_v0._2.Controllers
     public class AssetController : ApiController
     {
          private readonly MyHomeDBEntities entities = new MyHomeDBEntities();
-         
+         public class AssetDetails { 
+            public string OwnerName;
+            public string AssetAddress;
+            public string AssetName;
+         }
         [HttpGet]
          public HttpResponseMessage GetAsset() {
              var getValidData = entities.AssetRegistrations.ToList();
              try { 
-                 if (getValidData == null){
+                 if (getValidData == null)
                     return Request.CreateResponse(HttpStatusCode.NotFound, getValidData);
-                 }
                  return Request.CreateResponse(HttpStatusCode.Created, getValidData);
              }catch(Exception ex){
                  return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
              } 
          }
+
         [AllowAnonymous]
-        public IHttpActionResult GetAssetName(int AssetName)
-        {
-            var getAssetName = entities.AssetRegistrations.Where(x => x.AssetId == AssetName).SingleOrDefault();
-            if (getAssetName == null){
+        public IHttpActionResult GetAssetName(int AssetName){
+            AssetDetails assetdetails = new AssetDetails();
+            var AssetData = entities.AssetRegistrations.Where(x => x.AssetId == AssetName).SingleOrDefault();
+            assetdetails.OwnerName = AssetData.RegusteredTo;
+            assetdetails.AssetName = AssetData.AssetName;
+            assetdetails.AssetAddress = AssetData.Address;
+            
+            if (AssetData == null)
                 return Ok("404");
-            }
-            return Ok(getAssetName);
+            return Ok(assetdetails);
         }
+
         [HttpPost]
          public HttpResponseMessage PostAssetDetails(AssetRegistration asset) {
              try { 
@@ -46,6 +54,7 @@ namespace MyHome_v0._2.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
              } 
          }
+
         [HttpPut]
         public HttpResponseMessage PutAsset(int id,[FromBody]AssetRegistration asset) {
             try {
@@ -67,7 +76,7 @@ namespace MyHome_v0._2.Controllers
                     entity.IsRent = asset.IsRent;
                     entity.Remarks = asset.Remarks;
                     entities.SaveChanges();
-                     return Request.CreateResponse(HttpStatusCode.OK, entity);
+                    return Request.CreateResponse(HttpStatusCode.OK, entity);
                 }
             } catch (Exception ex) {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);

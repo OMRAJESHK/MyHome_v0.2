@@ -1,4 +1,7 @@
-﻿const TransactionTypes = {
+﻿let loadbtnclass = "fa fa-spinner fa-spin";
+let defaultbtnclass = "fas fa-share";
+
+const TransactionTypes = {
   "Advance Received": 1,
   "Rent Received": 2,
   "Water Bill Received": 3,

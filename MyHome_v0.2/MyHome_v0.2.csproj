@@ -347,6 +347,7 @@
     <Content Include="Images\logo.png" />
     <Content Include="Images\Profile.jpg" />
     <Content Include="Images\Untitled-1.jpg" />
+    <Content Include="Images\welcomehome.png" />
     <Content Include="Scripts\Assets\Calculator.js" />
     <Content Include="Scripts\Assets\Chart.bundle.min.js" />
     <Content Include="Scripts\Assets\Chart.min.js" />
