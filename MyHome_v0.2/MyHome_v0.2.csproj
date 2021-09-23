@@ -208,6 +208,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AssetController.cs" />
+    <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\EmergencyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MailLogsController.cs" />
@@ -514,8 +515,9 @@
     <Content Include="Views\Tenent\_SetReminder.cshtml" />
     <Content Include="Views\UserAccount\ForgotPassword.cshtml" />
     <Content Include="Views\UserAccount\ResetPassword.cshtml" />
-    <Content Include="Views\UserAccount\SetPassword.cshtml" />
+    <Content Include="Views\UserAccount\ChangePassword.cshtml" />
     <Content Include="Views\UserAccount\Index.cshtml" />
+    <Content Include="Views\UserAccount\DucumentView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyHomeDataAccess\MyHomeDataAccess.csproj">

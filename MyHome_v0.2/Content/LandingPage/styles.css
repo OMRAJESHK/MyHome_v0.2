@@ -369,7 +369,7 @@ h1, h2, h3, h4, h5, h6 {
         width: 250%;
         height: 200%;
         z-index: -1;
-        background-color: #e8ecf5;
+        background-color: #aaaba8;
         transform: skewY(135deg);
     }
 

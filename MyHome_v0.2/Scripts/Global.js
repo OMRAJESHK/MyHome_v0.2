@@ -150,12 +150,29 @@
     $("#div_setReminder").on("click", () => {
         gotoSetReminder();
     });
+    $(".btnDocument").on("click", () => {
+        gotoDucumentView()
+    });
 });
 
 
 $("#fullscreen").click(() => {
     toggleFullScreen();
 });
+
+function gotoChnagePassword() {
+    var url = window.rootpath + "UserAccount/ChangePassword";
+    $.get(url, function (response) {
+        RenderContent.html(response);
+    });
+}
+function gotoDucumentView() {
+    var url = window.rootpath + "UserAccount/DucumentView";
+    $.get(url, function (response) {
+        RenderContent.html(response);
+
+    });
+}
 
 const gotoAdminDashboard = () => {
     var url = window.rootpath + AdminURLs.Dashboard;
@@ -221,4 +238,31 @@ const getRentalData = () => {
             $("#joiningDate").text(getDisplayDate(tenantData[0]["JoiningDate"]));
             $("#rentAddress").text(AssetData[0]["Address"])
         });
+}
+
+function handleChangePassword() {
+    let oldPassword = $("#RenderContent #txtOldPassword").val();
+    let NewPassword = $("#RenderContent #txtNewPassword").val();
+    let AffirmPassword = $("#RenderContent #txtAffirmPassword").val();
+
+    $.ajax({
+        url: '/api/Account/ChangePassword',
+        method: 'post',
+        data: {
+            OldPassword: oldPassword,
+            NewPassword: NewPassword,
+            ConfirmPassword: AffirmPassword,
+        },
+        headers: {
+            'Authorization': "Bearer " + sessionStorage.getItem('accessToken')
+        },
+        success: (data) => {
+            CustomeToast("Change Password", "Password Changed Successfully...!", "bg-success");
+            $('#errMsgDiv').hide('fade');
+        },
+        error: (jqXHR) => {
+            $('#errTxt').text(jqXHR.responseText);
+            $('#errMsgDiv').show('fade');
+        }
+    });
 }

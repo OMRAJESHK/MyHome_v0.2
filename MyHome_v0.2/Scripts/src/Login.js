@@ -38,10 +38,10 @@ function loginCustomeToast(txthead, txtbody, cls) {
     let toastHTML = txthead.length > 0 ?
         `<div class="fade border ${cls} customToast" data-delay="2000" id="tstNotifyUser">
                         <div class="toast-header"><strong class="mr-3" id="toastHeader">${txthead}</strong></div>
-                        <div class="toast-body" id="toastBody"><div class="font-weight-bold">${txtbody}</div></div>
+                        <div class="toast-body" id="toastBody"><div class="font-weight-bold text-light">${txtbody}</div></div>
                     </div>`:
         `<div class="fade border ${cls} customToast" data-delay="2000" id="tstNotifyUser">
-                        <div class="toast-body" id="toastBody"><div class="font-weight-bold">${txtbody}</div></div>
+                        <div class="toast-body" id="toastBody"><div class="font-weight-bold text-light">${txtbody}</div></div>
                     </div>`;
 
     $("#loginToast").html(toastHTML);
@@ -89,6 +89,11 @@ function getCredentials(response) {
     }
 }
 function getToken(res) {
+    console.log("dfhgdsfhsfhsfhgsfs",res)
+    if (res?.responseJSON?.error_description) {
+        loginCustomeToast("Login Failed", res.responseJSON.error_description, "bg-danger text-light");
+        return false
+    }  
     sessionStorage.setItem('accessToken', res.access_token);
     window.location.href = window.rootpath + "Home/index";
 }

@@ -33,11 +33,15 @@ namespace MyHome_v0._2.Controllers
         {
             return View();
         }
-        public ActionResult SetPassword()
+        public ActionResult ChangePassword()
         {
             return View();
         }
         public ActionResult Index()
+        {
+            return View();
+        }
+        public ActionResult DucumentView()
         {
             return View();
         }

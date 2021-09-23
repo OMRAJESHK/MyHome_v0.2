@@ -52,6 +52,8 @@ function handleRegistration() {
             $('#errMsgDiv').hide('fade');
         },
         error: (jqXHR) => {
+            console.log(jqXHR);
+            loginCustomeToast("Registration", jqXHR.responseJSON.Message, "bg-danger");
             $('#errTxt').text(jqXHR.responseText);
             $('#errMsgDiv').show('fade');
         }

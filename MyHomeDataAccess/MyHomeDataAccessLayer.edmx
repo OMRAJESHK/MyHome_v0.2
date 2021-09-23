@@ -86,6 +86,17 @@
           <Property Name="IsRent" Type="int" Nullable="false" />
           <Property Name="Remarks" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="Documents">
+          <Key>
+            <PropertyRef Name="ImgID" />
+          </Key>
+          <Property Name="ImgID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImgTitle" Type="int" Nullable="false" />
+          <Property Name="ImgEncode" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ImgDescription" Type="nvarchar" MaxLength="50" />
+          <Property Name="ImgDate" Type="date" Nullable="false" />
+          <Property Name="AssetName" Type="int" />
+        </EntityType>
         <EntityType Name="EmergencyContact">
           <Key>
             <PropertyRef Name="EmcyContactId" />
@@ -277,6 +288,7 @@
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AssetRegistration" EntityType="Self.AssetRegistration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Documents" EntityType="Self.Documents" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmergencyContact" EntityType="Self.EmergencyContact" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MailLogs" EntityType="Self.MailLogs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Notifications" EntityType="Self.Notifications" Schema="dbo" store:Type="Tables" />
@@ -563,6 +575,7 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
           <EntitySet Name="Reminders" EntityType="MyHomeDBModel.Reminder" />
+          <EntitySet Name="Documents" EntityType="MyHomeDBModel.Document" />
         </EntityContainer>
         <EntityType Name="Reminder">
           <Key>
@@ -575,6 +588,17 @@
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="RoleId" Type="Int32" Nullable="false" />
           <Property Name="Type" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="ImgID" />
+          </Key>
+          <Property Name="ImgID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImgTitle" Type="Int32" Nullable="false" />
+          <Property Name="ImgEncode" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ImgDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ImgDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="AssetName" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -800,6 +824,18 @@
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="AssetName" ColumnName="AssetName" />
                 <ScalarProperty Name="ReminderId" ColumnName="ReminderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Documents">
+            <EntityTypeMapping TypeName="MyHomeDBModel.Document">
+              <MappingFragment StoreEntitySet="Documents">
+                <ScalarProperty Name="AssetName" ColumnName="AssetName" />
+                <ScalarProperty Name="ImgDate" ColumnName="ImgDate" />
+                <ScalarProperty Name="ImgDescription" ColumnName="ImgDescription" />
+                <ScalarProperty Name="ImgEncode" ColumnName="ImgEncode" />
+                <ScalarProperty Name="ImgTitle" ColumnName="ImgTitle" />
+                <ScalarProperty Name="ImgID" ColumnName="ImgID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

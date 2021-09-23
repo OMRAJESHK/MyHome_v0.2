@@ -68,6 +68,9 @@
     <Compile Include="C__MigrationHistory.cs">
       <DependentUpon>MyHomeDataAccessLayer.tt</DependentUpon>
     </Compile>
+    <Compile Include="Document.cs">
+      <DependentUpon>MyHomeDataAccessLayer.tt</DependentUpon>
+    </Compile>
     <Compile Include="EmergencyContact.cs">
       <DependentUpon>MyHomeDataAccessLayer.tt</DependentUpon>
     </Compile>
