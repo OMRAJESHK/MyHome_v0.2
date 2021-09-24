@@ -402,6 +402,7 @@
     <Content Include="Scripts\src\Admin\AdminDashboard.js" />
     <Content Include="Scripts\src\Admin\adminGlobal.js" />
     <Content Include="Scripts\src\Admin\AssetRegistration.js" />
+    <Content Include="Scripts\src\Admin\Document.js" />
     <Content Include="Scripts\src\Admin\PropertyTax.js" />
     <Content Include="Scripts\src\Admin\TenantAgreement.js" />
     <Content Include="Scripts\src\Admin\Transaction.js" />
@@ -518,6 +519,7 @@
     <Content Include="Views\UserAccount\ChangePassword.cshtml" />
     <Content Include="Views\UserAccount\Index.cshtml" />
     <Content Include="Views\UserAccount\DucumentView.cshtml" />
+    <Content Include="Views\Admin\_SaveDocument.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyHomeDataAccess\MyHomeDataAccess.csproj">

@@ -89,7 +89,6 @@ function getCredentials(response) {
     }
 }
 function getToken(res) {
-    console.log("dfhgdsfhsfhsfhgsfs",res)
     if (res?.responseJSON?.error_description) {
         loginCustomeToast("Login Failed", res.responseJSON.error_description, "bg-danger text-light");
         return false
@@ -115,8 +114,8 @@ function resetPassword() {
         return results[1] || 0;
     }
 
-    console.log("params", $.urlParam('code'))
-    console.log("paramsuserId", $.urlParam('userId'))
+    console.log("params", $.urlParam('code'));
+    console.log("paramsuserId", $.urlParam('userId'));
 
     let pass = $('#reset_txtPassword').val();
     let email = $("#reset_txtEmail").val();

@@ -56,6 +56,10 @@ class ApiDictionary  {
     static PutReminders = () => path + "/api/SetReminder/PutReminders";
     static DeleteReminders = () => path + "/api/SetReminder/DeleteReminders";
 
+    static GetDocument = () => path + "/api/Document/GetDocument";
+    static PostDocument = () => path + "/api/Document/PostDocument";
+    static PutDocument = () => path + "/api/Document/PutDocument";
+    static DeleteDocument = () => path + "/api/Document/DeleteDocument";
 }
 
 const AdminURLs = {
@@ -72,7 +76,8 @@ const AdminURLs = {
     SavePropertyTax: Admin + '_SavePropertyTax',
     AssetView: Admin + "_AssetView",
     AssetslistView: Admin + '_AssetListView',
-    SaveEmergancyContact: Admin +"_SaveEmergancyContact"
+    SaveEmergancyContact: Admin + "_SaveEmergancyContact",
+    SaveDocument: Admin +"_SaveDocument"
 }
 
 const TenantURLs = {

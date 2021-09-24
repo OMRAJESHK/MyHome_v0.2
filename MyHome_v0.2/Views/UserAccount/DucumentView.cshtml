@@ -8,48 +8,11 @@
                 <div class="card-header">
                     <div class="d-flex justify-content-between mb-1">
                         <div class="h4 font-weight-bold">Documents</div>
-                        <button class="btn global-bg-primary" onclick="gotoAssetSave()">Add New</button>
+                        <button class="btn global-bg-primary" onclick="gotoSaveDocument()">Add New</button>
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="row" id="AssetsList">
-                        <div class="col">
-                            <div class="card assetCards">
-                                <div class="card-body cursor-pointer crdAssets" style="height:200px;position: relative;">
-                                    <div class="h6 global-text-primary font-weight-bold border-bottom " style="white-space:nowrap">
-                                        <i class="fas fa-image fontSize_18" aria-hidden="true"></i> Tenant Deed Agreement
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card assetCards">
-                                <div class="card-body cursor-pointer crdAssets" style="height:200px;position: relative;">
-                                    <div class="h6 global-text-primary font-weight-bold border-bottom" style="white-space:nowrap">
-                                        <i class="fas fa-image fontSize_18" aria-hidden="true"></i> Water Bill
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card assetCards">
-                                <div class="card-body cursor-pointer crdAssets" style="height:200px;position: relative;">
-                                    <div class="h6 global-text-primary font-weight-bold border-bottom"style="white-space:nowrap">
-                                        <i class="fas fa-image fontSize_18" aria-hidden="true"></i> Motor Bill
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card assetCards">
-                                <div class="card-body cursor-pointer crdAssets" style="height:200px;position: relative;">
-                                    <div class="h6 global-text-primary  font-weight-bold border-bottom"style="white-space:nowrap">
-                                        <i class="fas fa-image fontSize_18" aria-hidden="true"></i> Electricity Bill
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="row" id="DocumentList"></div>
                 </div>
             </div>
         </div>
@@ -57,22 +20,26 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between mb-1">
-                        <div class="h4 font-weight-bold">Preview</div>
+                        <div class="h4 font-weight-bold"><i class="fas fa-image fontSize_18 mr-2" aria-hidden="true"></i>Preview</div>
                     </div>
                 </div>
-                <div class="card-body">
-
+                <div class="card-body" style="height: 500px; overflow-y: scroll;" id="DocContainer">
+                    <div class="col-sm-12 col-md-12 col-xl-12 text-center">
+                        <img class="img-fluid w-100" src="" id="documentView" />
+                        @*<div class="card-img-overlay text-white d-flex justify-content-center align-items-end">
+                    <p>More sheep.</p>
+                </div>*@
+                        <span id="NoDoc_Text"></span>
+                    </div>
                 </div>
                 <div class="card-footer">
                     <div class="d-flex justify-content-between">
-                        <button class="btn btn-info" >Download</button>
-                        
+                        <a class="btn btn-info" href="/images/myw3schoolsimage.jpg" download="raja.jpg" id="downloadDoc">
+                            Download
+                        </a>
                     </div>
                 </div>
-            </div>
-
+            </div>    
         </div>
     </div>
-   
-    
 </div>

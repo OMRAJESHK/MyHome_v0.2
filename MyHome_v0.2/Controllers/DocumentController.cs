@@ -10,16 +10,16 @@ namespace MyHome_v0._2.Controllers
 {
     public class DocumentController : ApiController
     {
-        private MyHomeDBEntities entities = new MyHomeDBEntities();
+        private readonly MyHomeDBEntities entities = new MyHomeDBEntities();
         [HttpGet]
          public HttpResponseMessage GetDocument(int AssetName) {
             string[] empty= new string[0]; 
-            var getValidData = entities.Documents.Where(x => x.AssetName == AssetName).FirstOrDefault();
+            var getDocuments = entities.Documents.Where(x => x.AssetName == AssetName).ToList();
              try { 
-                 if (getValidData == null){
+                 if (getDocuments == null){
                     return Request.CreateResponse(HttpStatusCode.NotFound, empty);
                  }
-                 return Request.CreateResponse(HttpStatusCode.Created, getValidData);
+                 return Request.CreateResponse(HttpStatusCode.OK, getDocuments);
              }catch(Exception ex){
                  return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
              } 

@@ -50,5 +50,8 @@ namespace MyHome_v0._2.Controllers
         public ActionResult _SaveEmergancyContact() {
             return View();
         }
+        public ActionResult _SaveDocument() {
+            return View();
+        }
     }
 }

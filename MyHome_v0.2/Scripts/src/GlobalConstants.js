@@ -57,6 +57,17 @@ const NotificationTypes = {
     'Miscellanious Paid': 15,
 };
 
+const DocumentTypes = {
+    "Tenant Deed Agreement": 1,
+    "Electricity Bill": 2,
+    'Water Bill': 3,
+    'Motor Bill': 4,
+    'College ID': 5,
+    'Aadhar Card': 6,
+    'Drivers License': 7,
+    "Miscellanious":8
+};
+
 const NotificationLetter = {
     0:"A", 1:"R", 2:"E",  3:'W', 4:"PH", 5:"EH", 6:"F", 7: "M",
 }

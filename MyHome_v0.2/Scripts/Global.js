@@ -170,7 +170,7 @@ function gotoDucumentView() {
     var url = window.rootpath + "UserAccount/DucumentView";
     $.get(url, function (response) {
         RenderContent.html(response);
-
+        getDocuments();
     });
 }
 
@@ -224,7 +224,6 @@ const gotoTransactionView = () => {
         isAdmin() ? AlltransactionsGet():transactionCall();
     });
 }
-
 
 const getRentalData = () => {
     let assetId = sessionStorage.getItem("AssetID");

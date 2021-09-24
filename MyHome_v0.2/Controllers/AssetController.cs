@@ -17,6 +17,7 @@ namespace MyHome_v0._2.Controllers
             public string OwnerName;
             public string AssetAddress;
             public string AssetName;
+            public int AssetId;  
          }
         [HttpGet]
          public HttpResponseMessage GetAsset() {
@@ -37,6 +38,7 @@ namespace MyHome_v0._2.Controllers
             assetdetails.OwnerName = AssetData.RegusteredTo;
             assetdetails.AssetName = AssetData.AssetName;
             assetdetails.AssetAddress = AssetData.Address;
+            assetdetails.AssetId = AssetData.AssetId;
             
             if (AssetData == null)
                 return Ok("404");

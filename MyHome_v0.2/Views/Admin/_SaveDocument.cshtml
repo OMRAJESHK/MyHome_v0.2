@@ -1,0 +1,69 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="container-fluid p-4">
+    <div class="row">
+        <div class="col-lg-5">
+            <form onsubmit="saveDocument();return false">
+                <div class="card card-outline-secondary">
+                    <div class="card-header global-bg-primary">
+                        <h3 class="mb-0 text-light">Add Document</h3>
+                    </div>
+                    <div class="card-body">
+                        <div autocomplete="off" class="form" role="form">
+                            <div class="form-group">
+                                <label for="inputSendTo">Document Title</label>
+                                <select class="form-control minWidthFull txtRounded" id="ddlDocumentTitle" required></select>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputSendTo">Document Description</label>
+                                <input class="form-control minWidthFull txtRounded" id="txtDocumentDescription"
+                                       placeholder="please enter Document Description..." type="text">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputDocDate">Document Date</label>
+                                <input type="text" class="form-control minWidthFull txtRounded" placeholder="please enter Document Date" id="txtDocumentDate" required>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <div class="form-group"> <input type="file" id="documentBrowse" onchange="getDocSrc(this);" required /></div>
+                                <button class="btn btn-clear w-25" type="button" onclick="clearPreview()"><i class="fas fa-broom"></i> Clear</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer p-2">
+                        <div class="form-group">
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-clear w-25" type="button" onclick="clearTextBoxes()"><i class="fas fa-broom"></i> Clear</button>
+                                <button class="btn btn-success w-25" type="submit">Save <i class="fas fa-share"></i> </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-7">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between mb-1">
+                        <div class="h4 font-weight-bold"><i class="fas fa-image fontSize_20 mr-2" aria-hidden="true"></i>Preview</div>
+                    </div>
+                </div>
+                <div class="card-body" style="height: 500px; overflow-y: scroll;">
+                    <div class="col-sm-12 col-md-12 col-xl-12 text-center">
+                        <img class="img-fluid w-100" src="" id="documentPreview" />
+                        @*<div class="card-img-overlay text-white d-flex justify-content-center align-items-end">
+                            <p>More sheep.</p>
+                        </div>*@
+                        <div id="NoDoc_Text"></div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-info">Download</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
