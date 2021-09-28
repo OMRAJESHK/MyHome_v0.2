@@ -118,12 +118,12 @@ function toggleFullScreen() {
     }
 }
 
-const generateOptions = (List,ddl) => {
+const generateOptions = (List, ddl) => {
     let options = `<option value="">None</option>`;
     options += List.map(x => {
         return `<option value=${x.value}>${x.name}</option>`;
     });
-    RenderContent.find(ddl).html(options)
+    RenderContent.find(`#${ddl}`).html(options)
 }
 
 // REQUIRED TO RETURN FLOATING NUMBER WITH COMMA AND DECIMAL PLACES

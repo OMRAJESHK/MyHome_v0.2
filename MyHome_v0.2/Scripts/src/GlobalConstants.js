@@ -58,15 +58,19 @@ const NotificationTypes = {
 };
 
 const DocumentTypes = {
-    "Tenant Deed Agreement": 1,
-    "Electricity Bill": 2,
-    'Water Bill': 3,
-    'Motor Bill': 4,
-    'College ID': 5,
-    'Aadhar Card': 6,
-    'Drivers License': 7,
-    "Miscellanious":8
+    "Profile Pic": 1,
+    "Tenant Deed Agreement": 2,
+    "Electricity Bill": 3,
+    'Water Bill': 4,
+    'Motor Bill': 5,
+    'College ID': 6,
+    'Aadhar Card': 7,
+    "Drivers License": 8,
+    "Signature":9,
+    "Miscellanious":10
 };
+
+const Distance = { 0:0, 1:1, 2:2, 3:3, 4:4, 5:5, 6:6, 7:7, 8:8, 9:9, 10:10 }
 
 const NotificationLetter = {
     0:"A", 1:"R", 2:"E",  3:'W', 4:"PH", 5:"EH", 6:"F", 7: "M",

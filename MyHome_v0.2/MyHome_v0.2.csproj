@@ -520,6 +520,7 @@
     <Content Include="Views\UserAccount\Index.cshtml" />
     <Content Include="Views\UserAccount\DucumentView.cshtml" />
     <Content Include="Views\Admin\_SaveDocument.cshtml" />
+    <Content Include="Views\UserAccount\AccountDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyHomeDataAccess\MyHomeDataAccess.csproj">

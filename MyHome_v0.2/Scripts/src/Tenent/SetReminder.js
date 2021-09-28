@@ -6,9 +6,8 @@ const gotoSetReminder = () => {
     var url = window.rootpath + TenantURLs.SetReminder;
     $.get(url, function (response) {
         RenderContent.html(response);
-        customizeUI();
-        
-        generateOptions(ReminderTypesList, "#ddlReminderType");
+        customizeUI();  
+        generateOptions(ReminderTypesList, "ddlReminderType");
         getReminderData();
     });
 }

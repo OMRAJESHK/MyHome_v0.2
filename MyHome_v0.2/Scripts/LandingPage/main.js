@@ -190,9 +190,4 @@
         aos_init();
     });
 
-    $("#signIn").click(() => {
-        window.location.href = window.rootpath + ApiDictionary.gotoLogin()
-    })
-
-
 })(jQuery);

@@ -8,12 +8,11 @@
                 <button title="Delete" class="btn btn-danger">
                     <i title="Delete" class="fas fa-trash-alt fontSize_20" onclick="SetProximityDeleteModal()"></i>
                 </button>
-                <button class="btn global-bg-primary" id="btnEditProximities" onclick="GotosaveProximities()">Modify</button>
-                <button class="btn btn-success" id="btnAddProximities" onclick="GotosaveProximities()">
+                <button class="btn global-bg-primary" id="btnEditProximities" onclick="GotosaveProximities(true)">Modify</button>
+                <button class="btn btn-success" id="btnAddProximities" onclick="GotosaveProximities(false)">
                     <i title="Add" class="ml-1 fas fa-edit fontSize_20"></i> Add 
                 </button>
             </div>
-            
         </div>
         <div class="card card-outline-secondary shadow mb-3">
             <div class="card-header global-bg-primary">
@@ -25,28 +24,28 @@
                         <div class="form-group text-center border-right-2">
                             <div><i class="fas fa-plane fontSize_50 global-text-primary"></i></div>
                             <label for="inputAirport" class="font-weight-bold mt-2">NearBy Airport</label>
-                            <div><label for="inputAirport" id="lblAirport"></label></div>
+                            <div><label for="inputAirport" id="lblAirport"></label><span id="airportDistance" class="fontSize_12"></span></div>
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="form-group text-center border-right-2">
                             <div><i class="fa fa-subway fontSize_50 global-text-primary"></i></div>
                             <label for="inputRailwayStation" class="font-weight-bold mt-2">NearBy Railway Station</label>
-                            <div><label for="inputRailwayStation" id="lblRailwayStation"></label></div>
+                            <div><label for="inputRailwayStation" id="lblRailwayStation"></label><span id="RailwayStationDistance" class="fontSize_12"></span></div>
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="form-group text-center border-right-2">
                             <div><i class="fas fa-bus fontSize_50 global-text-primary"></i></div>
                             <label for="inputBusStation" class="font-weight-bold mt-2">NearBy Bus Station</label>
-                            <div><label for="inputBusStation" id="lblBusStation"></label></div>
+                            <div><label for="inputBusStation" id="lblBusStation"></label><span id="BusStationDistance" class="fontSize_12"></span></div>
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="form-group text-center">
                             <div><i class="fas fa-train fontSize_50 global-text-primary"></i></div>
                             <label for="inputMetro" class="font-weight-bold mt-2">NearBy Metro Station</label>
-                            <div><label for="inputMetro" id="lblMetroStation"></label></div>
+                            <div><label for="inputMetro" id="lblMetroStation"></label><span id="MetroDistance" class="fontSize_12"></span></div>
                         </div>
                     </div>
 
@@ -63,21 +62,21 @@
                         <div class="form-group text-center border-right-2">
                             <div><i class="far fa-hospital fontSize_50 global-text-primary"></i></div>
                             <label for="inputHospital" class="font-weight-bold mt-2"> NearBy Hospital</label>
-                            <div><label for="inputHospital" id="lblHospital"></label></div>
+                            <div><label for="inputHospital" id="lblHospital"></label><span id="HospitalDistance" class="fontSize_12"></span></div>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="form-group text-center border-right-2">
                             <div><i class="fas fa-university fontSize_50 global-text-primary"></i></div>
                             <label for="inputSchoolCollege" class="font-weight-bold mt-2"> NearBy School/College</label>
-                            <div><label for="inputSchoolCollege" id="lblSchoolorCollege"></label></div>
+                            <div><label for="inputSchoolCollege" id="lblSchoolorCollege"></label><span id="SchoolCollegeDistance" class="fontSize_12"></span></div>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="form-group flex-fill text-center">
                             <div><i class="fas fa-shopping-cart fontSize_50 global-text-primary"></i></div>
                             <label for="inputMarket" class="font-weight-bold mt-2"> NearBy Market</label>
-                            <div><label for="inputMarket" id="lblMarket"></label></div>
+                            <div><label for="inputMarket" id="lblMarket"></label><span id="MarketDistance" class="fontSize_12"></span></div>
                         </div>
                     </div>
                 </div>
@@ -93,14 +92,14 @@
                         <div class="form-group flex-fill text-center border-right-2">
                             <div><i class="fas fa-utensils fontSize_50 global-text-primary"></i></div>
                             <label for="inputHotel" class="font-weight-bold mt-2"> NearBy Hotel</label>
-                            <div><label for="inputHotel" id="lblHotel"></label></div>
+                            <div><label for="inputHotel" id="lblHotel"></label><span id="HotelDistance" class="fontSize_12"></span></div>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group flex-fill text-center">
                             <div><i class="fas fa-gopuram fontSize_50 global-text-primary"></i></div>
                             <label for="inputTemple" class="font-weight-bold mt-2"> NearBy Temple</label>
-                            <div><label for="inputTemple" id="lblTemple"></label></div>
+                            <div><label for="inputTemple" id="lblTemple"></label><span id="TempleDistance" class="fontSize_12"></span></div>
                         </div>
                     </div>
                 </div>

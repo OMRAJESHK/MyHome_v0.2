@@ -23,9 +23,12 @@ class ApiDictionary  {
     static AssetPut = () => path + "/api/Asset/PutAsset";
     static DeleteAsset = () => path + "/api/Asset/DeleteAsset";
     static GetAssetName = () => path + '/api/Asset/GetAssetName';
+
     static GetProximity = () => path + '/api/Proximities/GetProximity';
     static PostProximity = () => path + '/api/Proximities/PostProximity';
     static PutProximity = () => path + '/api/Proximities/PutProximity';
+    static ProximityDelete = () => path + '/api/Proximities/ProximityDelete';
+    
     static GetRequest = () => path + '/api/Request/GetRequestsByID';
     static PostRequest = () => path + "/api/Request/PostRequest";
     static PutRequest = () => path + "/api/Request/PutRequest";

@@ -153,6 +153,9 @@
     $(".btnDocument").on("click", () => {
         gotoDucumentView()
     });
+    $(".btnDocument").on("click", () => {
+        gotoAccountDetails()
+    });
 });
 
 
@@ -171,6 +174,14 @@ function gotoDucumentView() {
     $.get(url, function (response) {
         RenderContent.html(response);
         getDocuments();
+    });
+}
+
+function gotoAccountDetails() {
+    var url = window.rootpath + "UserAccount/AccountDetails";
+    $.get(url, function (response) {
+        RenderContent.html(response);
+        $("#divHouseName").text(sessionStorage.getItem("AssetName"))
     });
 }
 

@@ -7,7 +7,7 @@ const gotoSaveDocument = () => {
         RenderContent.html(response);
         $('#documentPreview').attr('src', "").hide();
         $('#NoDoc_Text').text("No Preview");
-        generateOptions(convertObjectArray(DocumentTypes), "#ddlDocumentTitle");
+        generateOptions(convertObjectArray(DocumentTypes), "ddlDocumentTitle");
         RenderContent.find("#txtDocumentDate").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true }).datepicker("setDate", new Date())
     });
 }
@@ -28,6 +28,9 @@ function getDocSrc(input) {
 
 function clearPreview() {
     document.getElementById("documentBrowse").value = "";
+    document.getElementById("imageBrowse").value = "";
+    document.getElementById("profileBrowse").value = "";
+
     $('#documentPreview').attr('src', "").hide();
     $('#NoDoc_Text').text("No Preview");
 }
@@ -78,7 +81,6 @@ function DocumentDelete(id) {
         console.log('Deleted Successfully', res);
         CustomeToast("Document", 'Deleted Successfully', "bg-danger");
         getDocuments();
-        
     });
 }
 
@@ -116,7 +118,6 @@ function handleDocClick(ID) {
     document.getElementById('downloadDoc').setAttribute('download', docTypes.filter(x => x.value == row[0].ImgTitle)[0].name + ".jpg");
     $('#documentPreview').show();
     $('#NoDoc_Text').text("");
-
 }
 
 // Alternative
@@ -124,7 +125,6 @@ function getBase64Image(img) {
     var canvas = document.createElement("canvas");
     canvas.width = img.width;
     canvas.height = img.height;
-
     var ctx = canvas.getContext("2d");
     ctx.drawImage(img, 0, 0);
     var dataURL = canvas.toDataURL("image/png");

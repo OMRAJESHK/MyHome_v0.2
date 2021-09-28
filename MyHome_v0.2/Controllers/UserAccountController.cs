@@ -45,5 +45,9 @@ namespace MyHome_v0._2.Controllers
         {
             return View();
         }
+        public ActionResult AccountDetails()
+        {
+            return View();
+        }
     }
 }

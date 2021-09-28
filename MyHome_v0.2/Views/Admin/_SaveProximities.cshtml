@@ -1,82 +1,156 @@
 ﻿@{
     Layout = null;
 }
-<form onsubmit="saveProximity();return false"></form>
-<div class="container-fluid mt-3">
-    <div class="row">
-        <div class="col-lg-4">
-            <div class="card card-outline-secondary shadow">
-                <div class="card-header bg-primary">
-                    <h3 class="mb-0 text-light">Transaction</h3>
-                </div>
-                <div class="card-body">
-                    <div autocomplete="off" class="form" role="form">
-                        <div class="form-group">
-                            <label for="inputAirport">NearBy Airport</label>
-                            <input class="form-control minWidthFull" placeholder="Airport..." type="text" id="txtAirport">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputRailwayStation">NearBy Railway Station</label>
-                            <input class="form-control minWidthFull" placeholder="Railway Station..." type="text" id="txtRailwayStation">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputBusStation">NearBy Bus Station</label>
-                            <input class="form-control minWidthFull" placeholder="Bus Station..." type="text" id="txtBusStation">
+<form onsubmit="saveProximity();return false">
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card card-outline-secondary shadow">
+                    <div class="card-header bg-primary">
+                        <h3 class="mb-0 text-light">Transaction</h3>
+                    </div>
+                    <div class="card-body">
+                        <div autocomplete="off" class="form" role="form">
+                            <div class="form-group">
+                                <div class="d-flex">
+                                    <div style="width:80%">
+                                        <label for="inputAirport">NearBy Airport</label>
+                                        <input class="form-control minWidthFull" placeholder="Airport..." type="text" id="txtAirport">
+                                    </div>
+                                    <div style="width:20%">
+                                        <label class="white-space-nowrap" for="inputddlAirport">Distance <span class="fontSize_12"><i>(KM)</i></span></label>
+                                        <select class="form-control minWidthFull" id="ddlAirportDistance"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="d-flex">
+                                    <div style="width:80%">
+                                        <label for="inputRailwayStation">NearBy Railway Station</label>
+                                        <input class="form-control minWidthFull" placeholder="Railway Station..." type="text" id="txtRailwayStation">
+                                    </div>
+                                    <div style="width:20%">
+                                        <label class="white-space-nowrap" for="inputddlRailwayStation">Distance <span class="fontSize_12"><i>(KM)</i></span></label>
+                                        <select class="form-control minWidthFull" id="ddlRailwayStationDistance"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="d-flex">
+                                    <div style="width:80%">
+                                        <label for="inputBusStation">NearBy Bus Station</label>
+                                        <input class="form-control minWidthFull" placeholder="Bus Station..." type="text" id="txtBusStation">
+                                    </div>
+                                    <div style="width:20%">
+                                        <label class="white-space-nowrap" for="inputddlBusStation">Distance <span class="fontSize_12"><i>(KM)</i></span></label>
+                                        <select class="form-control minWidthFull" id="ddlBusStationDistance"></select>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="card card-outline-secondary shadow">
-                <div class="card-header bg-primary">
-                    <h3 class="mb-0 text-light">Payment Details</h3>
-                </div>
-                <div class="card-body">
-                    <div autocomplete="off" class="form" role="form">
-                        <div class="form-group">
-                            <label for="inputMetro">NearBy Metro Station</label>
-                            <input class="form-control minWidthFull" placeholder="Metro Station..." type="text" id="txtMetroStation">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputSchoolCollege">NearBy School/College</label>
-                            <input class="form-control minWidthFull" placeholder="School/College..." type="text" id="txtSchoolorCollege">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputHospital">NearBy Hospital</label>
-                            <input class="form-control minWidthFull" placeholder="Hospital..." type="text" id="txtHospital">
+            <div class="col-lg-4">
+                <div class="card card-outline-secondary shadow">
+                    <div class="card-header bg-primary">
+                        <h3 class="mb-0 text-light">Payment Details</h3>
+                    </div>
+                    <div class="card-body">
+                        <div autocomplete="off" class="form" role="form">
+                            <div class="form-group">
+                                <div class="d-flex">
+                                    <div style="width:80%">
+                                        <label for="inputMetro">NearBy Metro Station</label>
+                                        <input class="form-control minWidthFull" placeholder="Metro Station..." type="text" id="txtMetroStation">
+                                    </div>
+                                    <div style="width:20%">
+                                        <label class="white-space-nowrap" for="inputddlMetroStation">Distance <span class="fontSize_12"><i>(KM)</i></span></label>
+                                        <select class="form-control minWidthFull" id="ddlMetroStationDistance"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="d-flex">
+                                    <div style="width:80%">
+                                        <label for="inputSchoolCollege">NearBy School/College</label>
+                                        <input class="form-control minWidthFull" placeholder="School/College..." type="text" id="txtSchoolorCollege">
+                                    </div>
+                                    <div style="width:20%">
+                                        <label class="white-space-nowrap" for="inputddlSchoolCollege">Distance <span class="fontSize_12"><i>(KM)</i></span></label>
+                                        <select class="form-control minWidthFull" id="ddlSchoolCollegeDistance"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="d-flex">
+                                    <div style="width:80%">
+                                        <label for="inputHospital">NearBy Hospital</label>
+                                        <input class="form-control minWidthFull" placeholder="Hospital..." type="text" id="txtHospital">
+                                    </div>
+                                    <div style="width:20%">
+                                        <label class="white-space-nowrap" for="inputddlHospital">Distance <span class="fontSize_12"><i>(KM)</i></span></label>
+                                        <select class="form-control minWidthFull" id="ddlHospitalDistance"></select>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="card card-outline-secondary shadow">
-                <div class="card-header bg-primary"><h3 class="mb-0 text-light">Add Transaction</h3></div>
-                <div class="card-body card-body pb-4">
-                    <div autocomplete="off" class="form" role="form">
-                        <div class="form-group">
-                            <label for="inputMarket">NearBy Market</label>
-                            <input class="form-control minWidthFull" placeholder="Market..." type="text" id="txtMarket">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputHotel">NearBy Hotel</label>
-                            <input class="form-control minWidthFull" placeholder="Hotel..." type="text" id="txtHotel">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputTemple">NearBy Temple</label>
-                            <input class="form-control minWidthFull" placeholder="Temple..." type="text" id="txtTemple">
+            <div class="col-lg-4">
+                <div class="card card-outline-secondary shadow">
+                    <div class="card-header bg-primary"><h3 class="mb-0 text-light">Add Transaction</h3></div>
+                    <div class="card-body card-body pb-4">
+                        <div autocomplete="off" class="form" role="form">
+                            <div class="form-group">
+
+                                <div class="d-flex">
+                                    <div style="width:80%">
+                                        <label for="inputMarket">NearBy Market</label>
+                                        <input class="form-control minWidthFull" placeholder="Market..." type="text" id="txtMarket">
+                                    </div>
+                                    <div style="width:20%">
+                                        <label class="white-space-nowrap" for="inputddlMarket">Distance <span class="fontSize_12"><i>(KM)</i></span></label>
+                                        <select class="form-control minWidthFull" id="ddlMarketDistance"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="d-flex">
+                                    <div style="width:80%">
+                                        <label for="inputHotel">NearBy Hotel</label>
+                                        <input class="form-control minWidthFull" placeholder="Hotel..." type="text" id="txtHotel">
+                                    </div>
+                                    <div style="width:20%">
+                                        <label class="white-space-nowrap" for="inputddlHotel">Distance <span class="fontSize_12"><i>(KM)</i></span></label>
+                                        <select class="form-control minWidthFull" id="ddlHotelDistance"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="d-flex">
+                                    <div style="width:80%">
+                                        <label for="inputTemple">NearBy Temple</label>
+                                        <input class="form-control minWidthFull" placeholder="Temple..." type="text" id="txtTemple">
+                                    </div>
+                                    <div style="width:20%">
+                                        <label class="white-space-nowrap" for="inputddlTemple">Distance <span class="fontSize_12"><i>(KM)</i></span></label>
+                                        <select class="form-control minWidthFull" id="ddlTempleDistance"></select>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="card-footer p-2">
-                    <div class="d-flex justify-content-between">
-                        <button class="btn btn-info w-25" type="button">Back</button>
-                        <button class="btn btn-danger w-25" type="submit">clear</button>
-                        <button class="btn btn-info w-25" type="submit">Save</button>
+                    <div class="card-footer p-2">
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-info w-25" type="button">Back</button>
+                            <button class="btn btn-danger w-25" type="submit">clear</button>
+                            <button class="btn btn-info w-25" type="submit">Save</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</form>
