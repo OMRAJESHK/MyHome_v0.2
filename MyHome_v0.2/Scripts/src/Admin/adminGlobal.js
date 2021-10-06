@@ -19,7 +19,7 @@ const getAssetsList = () => {
                 customizeUI();
                 $.each(AssetList, (key, value) => {
                     AssetListHtml += `
-                    <div class="col" id=${key + 1}>
+                    <div class="col" id=${key + 1} onclick="handleCardClick(${value.AssetId})">
                         <div class="card assetCards">
                             <div class="card-body cursor-pointer crdAssets" data-assetid=${value.AssetId} style="height:270px;position: relative;">
                                  <div class="h6 global-text-primary  asset-title font-weight-bold border-bottom"><i class="fa fa-home fontSize_50" aria-hidden="true"></i> ${value.AssetName}</div>
@@ -57,16 +57,18 @@ function SetAssetDeleteModal(id) {
 
 
 function GotoSaveTransaction() {
-    var url = window.rootpath + AdminURLs.SaveTransaction;
+    var url = window.rootpath + AdminURLs.SaveTransaction;   
     let TransactionsList = convertObjectArray(TransactionTypes);
     $.get(url, function (response) {
         RenderContent.html(response);
-        RenderContent.find("#trnDate").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true }).datepicker("setDate",new Date())
+        RenderContent.find("#trnDate").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true }).datepicker("setDate", new Date())
         let options = `<option value="">None</option>`;
         options += TransactionsList.map(x => {
             return `<option value=${x.value}>${x.name}</option>`;
         });
         RenderContent.find('#ddlTransactionType').html(options);
+    }).catch(err => {
+        console.log(err)
     });
 }
 
@@ -89,16 +91,17 @@ function AssetDetails() {
     $('#lblAssetRegRemarks').text(Asset[0].Remarks);
 }
 
-$('div#RenderContent').on("click", '.crdAssets', function () {
+function handleCardClick(id) {
+    $(".menuCover").remove();
     mainContent.find('#modSelectAsset').modal('hide');
-    let id = $(this).attr("data-assetid");
     sessionStorage.setItem('AssetID', id);
     AssetDetails();
     getNotifications();
     getRequests();
     let name = AssetList.filter(data => data.AssetId == id)[0].AssetName;
     CustomeToast("Welcome To", name, "bg-primary");
-});
+    AdminDashboardFunction(id);
+}
 
 function getNotifications() {
     ManageAjaxCalls.GetData(ApiDictionary.GetNotification() + `?AssetName=${sessionStorage.getItem('AssetID')}`, (res) => {

@@ -135,6 +135,11 @@ function getMailLogs() {
                     }
                 },
             ],
+            "initComplete": function () {
+                setTimeout(() => {
+                    setScreenLoader(false)
+                }, 500);
+            }
 
         });
     });
@@ -144,6 +149,7 @@ function getMailLogs() {
 function MailLogTaxDelete(id) {
     ManageAjaxCalls.Delete(ApiDictionary.DeleteMailLogs() + '?id=' + id, (res) => {
         console.log('DEleted Successfully', res);
+        setScreenLoader(true);
         getMailLogs()
     });
 }

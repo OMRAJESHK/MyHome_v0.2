@@ -8,29 +8,37 @@
                 <div class="card-body p-0">
                     <div class="row">
                         <div class="col-sm-12 col-md-6 col-xl-6 text-center d-none d-md-block">
-                            <img class="img-fluid w-50" src="~/Images/loginimg.png" id="profilePreview" />
-                            <div class="d-flex p-1">
-                                <div class="form-group"><input type="file" id="profileBrowse" onchange="getDocSrc(this);" required /></div>
-                                <button class="btn btn-clear w-25" type="button" onclick="clearPreview()"><i class="fas fa-broom"></i> Clear</button>
+                            <div style="height:80%;" class="pb-2">
+                                <img class="img-fluid w-100 p-2 m-2" src="" id="profilePreview" style="border-radius:10px;border:2px solid #efefef" />
+                                <div id="NoPreview_Text"></div>
                             </div>
+                            <div class="form-group"><input type="file" id="profileBrowse" onchange="getProPicSrc(this,'profilePreview');" required /></div>
+                            <button class="btn btn-sm global-bg-primary" onclick="clearProfilePreview()"><i class="fas fa-broom"></i>Clear</button>
+                            <button class="btn btn-sm global-bg-primary" onclick="SaveProfilePicture()"><i class="fas fa-broom"></i>SAVE</button>
                         </div>
                         <div class="col-sm-12 col-md-6 col-xl-6 pt-3">
-                            <div class="h2 font-weight-bold text-center" id="divHouseName">Suresh Nilaya</div>
+                            
+                            <div class="form-group">
+                                <div class="d-flex border-bottom pb-4">
+                                    <div class="w-25 mt-2"><i class="fa fa-home fontSize_50 global-text-primary"></i></div>
+                                    <div class="h3 font-weight-bold text-center mt-3" id="divHouseName">Asset Name</div>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <div class="d-flex">
                                     <div class="w-25 mt-2"><i class="fa fa-envelope fontSize_50 global-text-primary "></i></div>
                                     <div>
                                         <label for="inputEmail" class="font-weight-bold mt-2 fontSize_16">User Email</label>
-                                        <div id="userEmail" class="fontSize_13">YohanSingh@gmail.com</div>
+                                        <div id="UserMail" class="fontSize_13 "></div>
                                     </div>
-                                </div> 
+                                </div>
                             </div>
                             <div class="form-group">
                                 <div class="d-flex">
                                     <div class="w-25 mt-2"><i class="fas fa-user fontSize_50 global-text-primary"></i></div>
                                     <div>
                                         <label for="inputName" class="font-weight-bold mt-2">User Name</label>
-                                        <div id="userName" class="fontSize_13">qwert</div>
+                                        <div id="userName" class="fontSize_13"></div>
                                     </div>
                                 </div>
                             </div>
@@ -39,9 +47,9 @@
                                     <div class="w-25 mt-2"><i class="fa fa-phone fontSize_50 global-text-primary"></i></div>
                                     <div>
                                         <label for="inputMobileNumber" class="font-weight-bold mt-2">Mobile Number</label>
-                                        <div id="userMobileNumber" class="fontSize_13">wertyu</div>
+                                        <div id="UserNumber" class="fontSize_13"></div>
                                     </div>
-                                </div>                                
+                                </div>
                             </div>
                             <div id="UserloginErrMsgDiv" class="alert alert-danger collapse">
                                 <a id="UserloginLinkClose" class="close" href="#">&times;</a>

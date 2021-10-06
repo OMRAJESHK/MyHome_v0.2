@@ -407,6 +407,7 @@
     <Content Include="Scripts\src\Admin\TenantAgreement.js" />
     <Content Include="Scripts\src\Admin\Transaction.js" />
     <Content Include="Scripts\src\GlobalFunctions.js" />
+    <Content Include="Scripts\src\GlobalState.js" />
     <Content Include="Scripts\src\SendMail.js" />
     <Content Include="Scripts\src\Tenent\AllTransactions.js" />
     <Content Include="Scripts\src\GlobalConstants.js" />

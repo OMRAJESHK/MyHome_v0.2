@@ -46,7 +46,7 @@ namespace MyHome_v0._2.Controllers
         [HttpPost]
          public HttpResponseMessage PostTransaction(Transaction transaction) {
              try {
-                if (transaction.TransactionType == 2) {
+                if (transaction.TransactionType == 2 || transaction.TransactionType == 102) {
                     var currdate = transaction.Date.ToString().Substring(3, 7);         
                     var getRow = entities.Transactions.Where(x => x.TransactionType == transaction.TransactionType && x.AssetName == transaction.AssetName).FirstOrDefault();
                     if (getRow == null) { 
@@ -90,6 +90,7 @@ namespace MyHome_v0._2.Controllers
                     entity.TransactionType = transaction.TransactionType;
                     entity.Amount = transaction.Amount;
                     entity.Date = transaction.Date;
+                    entity.CutOffDate = transaction.CutOffDate;
                     entity.TransactionMode = transaction.TransactionMode;
                     entity.PaidBy = transaction.PaidBy;
                     entity.PaidTo = transaction.PaidTo;

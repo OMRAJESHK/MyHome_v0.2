@@ -96,6 +96,7 @@
           <Property Name="ImgDescription" Type="nvarchar" MaxLength="50" />
           <Property Name="ImgDate" Type="date" Nullable="false" />
           <Property Name="AssetName" Type="int" />
+          <Property Name="isAdmin" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="EmergencyContact">
           <Key>
@@ -218,6 +219,7 @@
           <Property Name="TransactionType" Type="int" Nullable="false" />
           <Property Name="Amount" Type="int" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="CutOffDate" Type="datetime" />
           <Property Name="TransactionMode" Type="int" Nullable="false" />
           <Property Name="PaidBy" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="PaidTo" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -513,6 +515,7 @@
           <Property Name="PaidTo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Status" Type="Int32" Nullable="false" />
           <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CutOffDate" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -599,6 +602,7 @@
           <Property Name="ImgDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ImgDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="AssetName" Type="Int32" />
+          <Property Name="isAdmin" Type="Boolean" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -792,6 +796,7 @@
           <EntitySetMapping Name="Transactions">
             <EntityTypeMapping TypeName="MyHomeDBModel.Transaction">
               <MappingFragment StoreEntitySet="Transactions">
+                <ScalarProperty Name="CutOffDate" ColumnName="CutOffDate" />
                 <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
                 <ScalarProperty Name="AssetName" ColumnName="AssetName" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -830,6 +835,7 @@
           <EntitySetMapping Name="Documents">
             <EntityTypeMapping TypeName="MyHomeDBModel.Document">
               <MappingFragment StoreEntitySet="Documents">
+                <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
                 <ScalarProperty Name="AssetName" ColumnName="AssetName" />
                 <ScalarProperty Name="ImgDate" ColumnName="ImgDate" />
                 <ScalarProperty Name="ImgDescription" ColumnName="ImgDescription" />

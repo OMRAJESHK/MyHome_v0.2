@@ -32,6 +32,11 @@ function getPropertyTaxLogs() {
                         }
                     },
                 ],
+                "initComplete": function () {
+                    setTimeout(() => {
+                        setScreenLoader(false)
+                    }, 500);
+                }
 
             });
 
@@ -44,6 +49,7 @@ function gotoPropertyTax() {
     $.get(url, function (response) {
         RenderContent.html(response);
         customizeUI();
+        setScreenLoader(true);
         getPropertyTaxLogs();
     });
 }

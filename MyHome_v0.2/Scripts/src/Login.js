@@ -28,7 +28,6 @@ function handleUserLogin() {
         $("#txtLoginPhoneNumber").removeClass("errorinput");
         let phoneNumber = $('#txtLoginPhoneNumber').val();
         ManageAjaxCalls.Get(ApiDictionary.GetClientMailId(), { phoneNumber: phoneNumber }, getCredentials, (err) => {
-            console.log("dsfdfdgfdg",err)
             loginCustomeToast("Login Failed", err, "bg-danger text-light")
         });
     }
@@ -73,7 +72,9 @@ function getCredentials(response) {
             password: password,
             grant_type: 'password'
         }
+        sessionStorage.setItem('UserMail', response.mailId);
         sessionStorage.setItem('UserName', response.names);
+        sessionStorage.setItem('UserNumber', $('#txtLoginPhoneNumber').val());
         ManageAjaxCalls.Get(ApiDictionary.GetAssetName(), { AssetName: Number(response.assetname) }, (res) => {
             console.log("resresres", res)
             var name = '';
@@ -92,7 +93,7 @@ function getToken(res) {
     if (res?.responseJSON?.error_description) {
         loginCustomeToast("Login Failed", res.responseJSON.error_description, "bg-danger text-light");
         return false
-    }  
+    }
     sessionStorage.setItem('accessToken', res.access_token);
     window.location.href = window.rootpath + "Home/index";
 }

@@ -157,9 +157,9 @@ const getDashboardData = () => {
                let desc = `${Months[Number(mm)]} Month - Rent of Rs. ${formatNumber(rentData?.[0]?.["Amount"]) ?? "0.00"}/-`
                $("#rentDescription").text(desc);
                let rentHeader = `<span class="px-2 font-weight-bold ${rentData?.[0]?.["Status"] == 1 ? "text-success" : "text-danger"} fontSize_16" id="ckbTenantIsRent"
-                             style="border-radius: 15px; border: 1px solid; background: #fff;">
-                             ${rentData?.[0]?.["Status"] == 1 ? `Paid &#10003;` : `Not Paid &#128473;`}
-                        </span>`;
+                                     style="border-radius: 15px; border: 1px solid; background: #fff;">
+                                     ${rentData?.[0]?.["Status"] == 1 ? `Paid &#10003;` : `Not Paid &#128473;`}
+                                </span>`;
                $("#rentHeader").append(rentHeader);
 
                // Water Description
@@ -167,9 +167,9 @@ const getDashboardData = () => {
                desc = `${Months[Number(mm)]} Month - Water Bill of Rs. ${formatNumber(waterData?.[0]?.["Amount"]) ?? "0.00"}/-`;
                $("#waterDescription").text(desc);
                let WaterHeader = `<span class="px-2 font-weight-bold ${waterData?.[0]?.["Status"] == 1 ? "text-success" : "text-danger"} fontSize_16" id="ckbTenantIsRent"
-                             style="border-radius: 15px; border: 1px solid; background: #fff;">
-                             ${waterData?.[0]?.["Status"] == 1 ? `Paid &#10003;` : `Not Paid &#128473;`}
-                        </span>`;
+                                     style="border-radius: 15px; border: 1px solid; background: #fff;">
+                                     ${waterData?.[0]?.["Status"] == 1 ? `Paid &#10003;` : `Not Paid &#128473;`}
+                                </span>`;
                $("#WaterHeader").append(WaterHeader);
 
 
@@ -178,9 +178,9 @@ const getDashboardData = () => {
                desc = `${Months[Number(mm)]} Month - Electricity Bill of Rs. ${formatNumber(elecData)?.[0]?.["Amount"] ?? "0.00"}/-`;
                $("#electricityDescription").text(desc);
                let ElecHeader = `<span class="px-2 font-weight-bold ${elecData?.[0]?.["Status"] == 1 ? "text-success" : "text-danger"} fontSize_16" id="ckbTenantIsRent"
-                             style="border-radius: 15px; border: 1px solid; background: #fff;">
-                             ${elecData?.[0]?.["Status"] == 1 ? `Paid &#10003;` : `Not Paid &#128473;`}
-                        </span>`;
+                                     style="border-radius: 15px; border: 1px solid; background: #fff;">
+                                     ${elecData?.[0]?.["Status"] == 1 ? `Paid &#10003;` : `Not Paid &#128473;`}
+                                </span>`;
                $("#ElecHeader").append(ElecHeader);
 
                // Motor Description
@@ -188,9 +188,9 @@ const getDashboardData = () => {
                desc = `${Months[Number(mm)]} Month - Motor Bill of Rs. ${formatNumber(motorData)?.[0]?.["Amount"] ?? "0.00"}/-`;
                $("#MotorDescription").text(desc);
                let MotorHeader = `<span class="px-2 font-weight-bold ${motorData?.[0]?.["Status"] == 1 ? "text-success" : "text-danger"} fontSize_16" id="ckbTenantIsRent"
-                             style="border-radius: 15px; border: 1px solid; background: #fff;">
-                             ${motorData?.[0]?.["Status"] == 1 ? `Paid &#10003;` : `Not Paid &#128473;`}
-                        </span>`;
+                                     style="border-radius: 15px; border: 1px solid; background: #fff;">
+                                     ${motorData?.[0]?.["Status"] == 1 ? `Paid &#10003;` : `Not Paid &#128473;`}
+                                </span>`;
                $("#MotorHeader").append(MotorHeader);
         }
         console.log("tenentData", tenentData)

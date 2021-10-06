@@ -19,6 +19,7 @@ class ApiDictionary  {
     static PostTenentAgreement = () => path + '/api/TenentAgreement/PostTenentAgreement';
     static PutTenentAgreement = () => path + '/api/TenentAgreement/PutTenentAgreement';
     static DeleteTenentAgreement = () => path + '/api/TenentAgreement/DeleteTenentAgreement';
+    static GetAssetList = () => path + "/api/Asset/GetAsset";
     static AssetPost = () => path + "/api/Asset/PostAssetDetails";
     static AssetPut = () => path + "/api/Asset/PutAsset";
     static DeleteAsset = () => path + "/api/Asset/DeleteAsset";
@@ -63,6 +64,11 @@ class ApiDictionary  {
     static PostDocument = () => path + "/api/Document/PostDocument";
     static PutDocument = () => path + "/api/Document/PutDocument";
     static DeleteDocument = () => path + "/api/Document/DeleteDocument";
+
+    static GetAdminProfilePicture = () => path + "/api/Document/GetAdminProfilePicture";
+    static GetProfilePicture = () => path + "/api/Document/GetProfilePicture";
+    
+    
 }
 
 const AdminURLs = {

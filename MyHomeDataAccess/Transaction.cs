@@ -25,5 +25,6 @@ namespace MyHomeDataAccess
         public string PaidTo { get; set; }
         public int Status { get; set; }
         public string Remarks { get; set; }
+        public Nullable<System.DateTime> CutOffDate { get; set; }
     }
 }

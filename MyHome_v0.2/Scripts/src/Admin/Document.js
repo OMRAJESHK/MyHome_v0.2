@@ -1,6 +1,6 @@
 ﻿let documentsData = [];
 let docTypes = convertObjectArray(DocumentTypes);
-
+let docBase64 = "";
 const gotoSaveDocument = () => {
     var url = window.rootpath + AdminURLs.SaveDocument;
     $.get(url, function (response) {
@@ -11,25 +11,24 @@ const gotoSaveDocument = () => {
         RenderContent.find("#txtDocumentDate").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true }).datepicker("setDate", new Date())
     });
 }
-let docBase64 = "";
-function getDocSrc(input) {
+
+function getDocSrc(input, imgContainer) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
             console.log("endocestuff", e.target.result);
-            $('#documentPreview').attr('src', e.target.result);
+            $('#' + imgContainer).attr('src', e.target.result);
             docBase64 = e.target.result.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
         };
         reader.readAsDataURL(input.files[0]);
         $('#NoDoc_Text').text("");
-        $('#documentPreview').show();
+        $('#' + imgContainer).show();
     }
 }
 
 function clearPreview() {
     document.getElementById("documentBrowse").value = "";
     document.getElementById("imageBrowse").value = "";
-    document.getElementById("profileBrowse").value = "";
 
     $('#documentPreview').attr('src', "").hide();
     $('#NoDoc_Text').text("No Preview");
@@ -90,8 +89,7 @@ function saveDocument() {
     let docDate = dateFormat($('#RenderContent').find('#txtDocumentDate').val())
     //var docBase64 = getBase64Image(document.getElementById("documentPreview"));
     //console.log("docBase64", docBase64);
-    //let assetID = sessionStorage.getItem('AssetID');
-    let assetID = 3;
+    let assetID = sessionStorage.getItem('AssetID');
 
     let DocumentToSave = JSON.stringify({
         ImgTitle: docTitle,
@@ -99,6 +97,7 @@ function saveDocument() {
         ImgDescription: docDesc,
         ImgDate: docDate,
         AssetName: assetID,
+        isAdmin:0             // 0 - Tenant , 1 - Admin
     });
     ManageAjaxCalls.Post(ApiDictionary.PostDocument(), DocumentToSave, (res) => {
         console.log(res)
@@ -108,7 +107,6 @@ function saveDocument() {
             CustomeToast("Document", res.responseJSON, "bg-danger");
         }
     })
-
 }
 
 function handleDocClick(ID) {

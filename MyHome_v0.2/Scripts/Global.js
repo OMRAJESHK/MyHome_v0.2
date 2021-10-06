@@ -9,6 +9,7 @@
     if (sessionStorage.getItem('RoleID') == 0) {
         $('.AdminMenu').hide();
         $('.ClientMenu').show();
+        $(".menuCover").remove();
         var url = window.rootpath + TenantURLs.Dashboard;
         $.get(url, function (response) {
             RenderContent.html(response);
@@ -19,17 +20,14 @@
     } else if (sessionStorage.getItem('RoleID') == 1) {
         $('.ClientMenu').hide();
         $('.AdminMenu').show();
-        //var url = window.rootpath + AdminURLs.AssetslistView;
-        //$.get(url, function (response) {
-        //    RenderContent.html(response);
-        //    customizeUI();
-        //});
+
         $("#Notiquantity").css("display", "none");
         getAssetsList();
         customizeUI();
         mainContent.find('#btnAddNotifications').show();
+        //saveRentTransactionMonthly();
     }
-
+    getProfilePicture();
     //------TENANT BUTTONS-----------//
     $(".btnTenentDetails").click(() => {
         $('.dashboardAngle').hasClass('angleRotate180') ?
@@ -39,7 +37,6 @@
 
     $(".btn_T_Dashboad").click(() => {
         gotoDashboard();
-        
     });
     $(".btnRentAgreement").click(() => {
         var url = window.rootpath + "Tenent/_tenentDetails";
@@ -63,6 +60,7 @@
         $.get(url, function (response) {
             RenderContent.html(response);
             customizeUI();
+            setScreenLoader(true)
             getProximities();
         });
     });
@@ -177,12 +175,29 @@ function gotoDucumentView() {
     });
 }
 
-function gotoAccountDetails() {
-    var url = window.rootpath + "UserAccount/AccountDetails";
-    $.get(url, function (response) {
-        RenderContent.html(response);
-        $("#divHouseName").text(sessionStorage.getItem("AssetName"))
+function saveRentTransactionMonthly() {
+    let assetID = sessionStorage.getItem('AssetID');
+
+    let TransactionToSave = JSON.stringify({
+        AssetName: assetID,
+        Description: "Rent For the Month",
+        TransactionType: 2,
+        Amount: $('#txtAmt').val(),
+        Date: trnDate,
+        TransactionMode: Number($('#ddlTranMode').val()),
+        PaidBy: $('#txtpaidFrom').val(),
+        PaidTo: $('#txtpaidTo').val(),
+        Status: PaymentStatus,
+        Remarks: $('#txtRemarks').val(),
     });
+    ManageAjaxCalls.Post(ApiDictionary.PostTransaction(), TransactionToSave, (res) => {
+        console.log(res)
+        if (res.status == 201) {
+            CustomeToast("Transaction", 'Saved Successfully', "bg-success");
+        } else if (res.status == 405) {
+            CustomeToast("Transaction", res.responseJSON, "bg-danger");
+        }
+    })
 }
 
 const gotoAdminDashboard = () => {
@@ -209,6 +224,7 @@ const gotoMailLogsView = () => {
     $.get(url, function (response) {
         RenderContent.html(response);
         customizeUI();
+        setScreenLoader(true);
         getMailLogs();
     });
 }
@@ -216,6 +232,7 @@ const gotoTenantView = () => {
     var url = window.rootpath + TenantURLs.TenantDeedView;
     $.get(url, function (response) {
         RenderContent.html(response);
+        setScreenLoader(true);
         getTenantAgreementLogs();
         customizeUI();
     });
@@ -246,7 +263,7 @@ const getRentalData = () => {
             let tenantsamt = `${tenantData[0]["RentAmount"]}/- (${inWords(tenantData[0]["RentAmount"])})`;
             $(".rentamt").text(tenantsamt);
             $("#joiningDate").text(getDisplayDate(tenantData[0]["JoiningDate"]));
-            $("#rentAddress").text(AssetData[0]["Address"])
+            $("#rentAddress").text(AssetData[0]["Address"]);
         });
 }
 
@@ -275,4 +292,127 @@ function handleChangePassword() {
             $('#errMsgDiv').show('fade');
         }
     });
+}
+
+function AdminDashboardFunction(assetId) {
+    let currdate = Number(getCurrentDate().split("-")[2]);
+    if (currdate <= 5) {
+        $.when(GetAjax(ApiDictionary.GetTenentAgreementByID() + `?AssetName=${assetId}`))
+            .done(function (tenentData) {
+                if (tenentData) {
+                    console.log("Dashboard", tenentData);
+                    // Transaction 
+                    let TransactionToSave = JSON.stringify({
+                        AssetName: assetId,
+                        Description: "Rent For the Month",
+                        TransactionType: 102,
+                        Amount: tenentData.RentAmount,
+                        CutOffDate: getCurrentDate(),
+                        Date: getCurrentDate(),
+                        TransactionMode: 1,
+                        PaidBy: tenentData.ResidentsNames,
+                        PaidTo: sessionStorage.getItem("UserName"),
+                        Status: 2,
+                        Remarks: "Current Month Rent Pending.",
+                    });
+                    ManageAjaxCalls.Post(ApiDictionary.PostTransaction(), TransactionToSave, (res) => {
+                        console.log(res)
+                        if (res.status == 201) {
+                            CustomeToast("Transaction", 'Saved Successfully', "bg-success");
+                        } else if (res.status == 405) {
+                            console.log(res.responseJSONs);
+                        }
+                    })
+                }
+            });
+    }
+
+}
+
+
+// ACCOUNT DETAILS CODE //
+
+let picBase64 = "";
+let Documentdata = [];
+function getProPicSrc(input, imgContainer) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            console.log("endocestuff", e.target.result);
+            $('#' + imgContainer).attr('src', e.target.result);
+            picBase64 = e.target.result.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
+        };
+        reader.readAsDataURL(input.files[0]);
+        $('#NoPreview_Text').text("");
+        $('#' + imgContainer).show();
+    }
+}
+function clearProfilePreview() {
+    document.getElementById("profileBrowse").value = "";
+    $('#profilePreview').attr('src', "").hide();
+    $('#NoPreview_Text').text("No Preview");
+}
+
+function gotoAccountDetails() {
+    var url = window.rootpath + "UserAccount/AccountDetails";
+    $.get(url, function (response) {
+        RenderContent.html(response);
+        $("#divHouseName").text(sessionStorage.getItem("AssetName"));
+        $('#UserMail').text(sessionStorage.getItem('UserMail'));
+        $('#userName').text(sessionStorage.getItem('UserName'));
+        $("#UserNumber").text(sessionStorage.getItem('UserNumber'));
+        document.getElementById('profilePreview').setAttribute('src', picBase64);
+        picBase64 = "";
+    });
+}
+
+// Get Profile Picture
+function getProfilePicture() {
+    isAdmin() ? ManageAjaxCalls.GetData(ApiDictionary.GetAdminProfilePicture(), (res) => {
+        console.log("ProfilePicture", res);
+        if (res.constructor === Object) {
+            Documentdata = res;
+            picBase64 = 'data:image/png|jpg;base64,' + res.ImgEncode;
+            document.getElementById('proPicMini').setAttribute('src', picBase64);
+            document.getElementById('proPicMain').setAttribute('src', picBase64);
+        }
+    }):
+    ManageAjaxCalls.GetData(ApiDictionary.GetProfilePicture() + `?AssetName=${sessionStorage.getItem("AssetID")}`, (res) => {
+        console.log("ProfilePicture", res);
+        Documentdata = res;
+        picBase64 = 'data:image/png|jpg;base64,' + res.ImgEncode;
+        document.getElementById('proPicMini').setAttribute('src', picBase64);
+        document.getElementById('proPicMain').setAttribute('src', picBase64);
+    });
+}
+function SaveProfilePicture() {
+    let DocumentToSave = JSON.stringify({
+        ImgTitle: 1,
+        ImgEncode: picBase64,
+        ImgDescription: "User Profile Picture",
+        ImgDate: getCurrentDate(),
+        AssetName: isAdmin() ? null : sessionStorage.getItem("AssetID"),
+        isAdmin: isAdmin() ? 1 : 0             // 0 - Tenant , 1 - Admin
+    });
+    console.log("Documentdata", Documentdata)
+    Documentdata.length == 0 ?
+    ManageAjaxCalls.Post(ApiDictionary.PostDocument(), DocumentToSave, (res) => {
+        console.log(res)
+        document.getElementById('proPicMini').setAttribute('src', 'data:image/png|jpg;base64,' + picBase64);
+        document.getElementById('proPicMain').setAttribute('src', 'data:image/png|jpg;base64,' + picBase64);
+        if (res.status == 201) {
+            CustomeToast("Profile Picture", 'Saved Successfully', "bg-success");
+        } else if (res.status == 405) {
+            CustomeToast("Profile Picture", res.responseJSON, "bg-danger");
+        }
+    }) : ManageAjaxCalls.Put(ApiDictionary.PutDocument() + "?id=" + Documentdata.ImgID, DocumentToSave, (res) => {
+        console.log(res);
+        document.getElementById('proPicMini').setAttribute('src', 'data:image/png|jpg;base64,' + picBase64);
+        document.getElementById('proPicMain').setAttribute('src', 'data:image/png|jpg;base64,' + picBase64);
+        if (res.status == 201) {
+            CustomeToast("Profile Picture", 'Saved Successfully', "bg-success");
+        } else if (res.status == 405) {
+            CustomeToast("Profile Picture", res.responseJSON, "bg-danger");
+        }
+    })
 }

@@ -128,7 +128,7 @@ function tranResponseGet(transactions) {
         "initComplete": function () {
             setTimeout(() => {
                 setScreenLoader(false)
-            }, 500)
+            }, 500);
         }
     });
 
@@ -181,20 +181,24 @@ function Transactionsearch(val) {
 
 // Save and Edit Asset
 function saveTransaction() {
-    let trnDate=trnFrom = dateFormat($('#RenderContent').find('#trnDate').val());
-    let PaymentStatus = $("#ckbPaymentStatus").is(':checked') ? 1 :2;
+    let trnDate = trnFrom = dateFormat($('#RenderContent').find('#trnDate').val());
+    let PaymentStatus = $("#ckbPaymentStatus").is(':checked') ? 1 : 2;
+    let trnType = $("#ddlTransactionType :selected").val();
     let assetID = sessionStorage.getItem('AssetID');
+    let trnAmt = $("#txtAmt").val();
+
     let TransactionToSave = JSON.stringify({
         AssetName: assetID,
         Description: $('#txtDescription').val(),
-        TransactionType: Number($('#ddlTransactionType').val()),
-        Amount: $('#txtAmt').val(),
-        Date: trnDate,
+        TransactionType: trnType,
+        Amount: trnAmt,
+        Date: getCurrentDate(),
         TransactionMode: Number($('#ddlTranMode').val()),
         PaidBy: $('#txtpaidFrom').val(),
         PaidTo: $('#txtpaidTo').val(),
         Status: PaymentStatus,
         Remarks: $('#txtRemarks').val(),
+        CutOffDate: trnDate
     });
     trnisEdit ?
         ManageAjaxCalls.Put(ApiDictionary.PutTransaction() + `?id=${trnselectedID}`, TransactionToSave, () => { console.log("Transaction Updated.") }) :
@@ -205,39 +209,10 @@ function saveTransaction() {
             } else if (res.status == 405) {
                 CustomeToast("Transaction", res.responseJSON, "bg-danger");
             }
-        })
+        });
     trnisEdit = false;
     trnselectedID = '';    
 }
-
-
-// Transaction 
-function saveTransactionregularly() {
-    let trnDate = trnFrom = DateFormating(new Date);
-    let PaymentStatus = 2 ;
-    let assetID = sessionStorage.getItem('AssetID');
-    let TransactionToSave = JSON.stringify({
-        AssetName: assetID,
-        Description: "Rent For the Month",
-        TransactionType: 2,
-        Amount: 5000,
-        Date: trnDate,
-        TransactionMode: 1,
-        PaidBy: "Tenant",
-        PaidTo: "Owner",
-        Status: PaymentStatus,
-        Remarks: "Current Month Rent Pending.",
-    });
-    ManageAjaxCalls.Post(ApiDictionary.PostTransaction(), TransactionToSave, (res) => {
-        console.log(res)
-        if (res.status == 201) {
-            CustomeToast("Transaction", 'Saved Successfully', "bg-success");
-        } else if (res.status == 405) {
-            CustomeToast("Transaction", res.responseJSON, "bg-danger");
-        }
-    })
-}
-
 
 // EDIT Transaction
 function TransactionEdit(id) {

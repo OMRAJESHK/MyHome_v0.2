@@ -5,6 +5,7 @@ let emcyConResData = [];
 
 // Get Emergency Contact Details - Tenants
 const getEmergencyContactList = () => {
+    setScreenLoader(true);
     let assetID = Number(sessionStorage.getItem('AssetID'));
     ManageAjaxCalls.GetData(ApiDictionary.GetEmergencyContactsByAsset() + `?AssetName=${assetID}&IsVisible=1`, EmergencyContactRes)
 }
@@ -13,7 +14,6 @@ const EmergencyContactRes = (res) => {
     console.log(res, isAdmin(), mainContent);
     let emcyConResData = res;
     var url = window.rootpath + "Tenent/_emrcyContact";
-
     $.get(url, function (response) {
         RenderContent.html(response);
         isAdmin() ?
@@ -34,6 +34,11 @@ const EmergencyContactRes = (res) => {
                 { data: 'ContactNumber' },
                 { data: 'Profession', render: function (data) { return Professions[data] } },
             ],
+            "initComplete": function () {
+                setTimeout(() => {
+                    setScreenLoader(false)
+                }, 500);
+            }
         });
     });
 }
@@ -41,6 +46,7 @@ const EmergencyContactRes = (res) => {
 
 // Get Emergency Contact Details - Admins
 const getEmergencyContacts = () => {
+    setScreenLoader(true);
     let assetID = Number(sessionStorage.getItem('AssetID'));
     ManageAjaxCalls.GetData(ApiDictionary.GetEmergencyContacts() + `?AssetName=${assetID}`, EmergencyContactResponse);
 }
@@ -79,6 +85,11 @@ const EmergencyContactResponse = (res) => {
                     }
                 },
             ],
+            "initComplete": function () {
+                setTimeout(() => {
+                    setScreenLoader(false)
+                }, 500);
+            }
         });
     });
 }

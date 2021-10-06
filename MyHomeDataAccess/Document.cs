@@ -20,5 +20,6 @@ namespace MyHomeDataAccess
         public string ImgDescription { get; set; }
         public System.DateTime ImgDate { get; set; }
         public Nullable<int> AssetName { get; set; }
+        public bool isAdmin { get; set; }
     }
 }

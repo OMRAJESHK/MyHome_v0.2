@@ -33,6 +33,9 @@ const getProximities = () => {
         $("#MarketDistance").text(`  (${res["Market"].split("-")[1]}KM)`);
         $("#HotelDistance").text(`  (${res["Hotel"].split("-")[1]}KM)`);
         $("#TempleDistance").text(`  (${res["Temple"].split("-")[1]}KM)`);
+        setTimeout(() => {
+            setScreenLoader(false)
+        }, 500);
      });  
 }
 const getValue = (field) => {

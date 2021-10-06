@@ -1634,8 +1634,6 @@
         $(this).parent().parent().parent().toggleClass('show-chat-box');
       });
     });
-    
-
   } catch (error) {
     console.log(error);
   }

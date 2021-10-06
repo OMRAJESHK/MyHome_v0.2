@@ -91,13 +91,16 @@
             </div>
         </div>
 
+        <!-- Menu Cover -->
+        <div class="menuCover" style="position: fixed;inset: 0px 101rem 37px 0px;background: rgba(0, 0, 0, 0.63);z-index: 2147483640;"></div>
+        @*<div class="menuCover" style="position: fixed;inset: 0px 0px 54rem 300px;background: rgba(0, 0, 0, 0.63);z-index: 2147483640;"></div>*@
         <!-- HEADER MOBILE-->
         <header class="header-mobile d-block d-lg-none">
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
                         <div class="logo">
-                            <label class="text-bold" style="font-size:22px">HOME SWEET HOME</label>
+                            <label class="text-bold" style="font-size:22px">HOME COMPANION</label>
                         </div>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -148,7 +151,7 @@
         <!-- END HEADER MOBILE-->
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
-            <div class="logo"><label class="font-weight-bold">HOME SWEET HOME</label></div>
+            <div class="logo"><label class="font-weight-bold">HOME COMPANION</label></div>
             <div class="menu-sidebar__content js-scrollbar1 global-bg-primary">
                 <nav class="navbar-sidebar customizeUI">
                     <ul class="list-unstyled navbar__list ClientMenu">
@@ -222,14 +225,14 @@
                                             </div>
                                             <div id="listRequest"></div>
                                             @*<div class="notifi__item">
-                                                <div class="bg-c1 img-cir img-40">
-                                                    <i class="zmdi zmdi-email-open"></i>
-                                                </div>
-                                                <div class="content">
-                                                    <p>You got a email notification</p>
-                                                    <span class="date">April 12, 2018 06:50</span>
-                                                </div>
-                                            </div>*@
+                    <div class="bg-c1 img-cir img-40">
+                        <i class="zmdi zmdi-email-open"></i>
+                    </div>
+                    <div class="content">
+                        <p>You got a email notification</p>
+                        <span class="date">April 12, 2018 06:50</span>
+                    </div>
+                </div>*@
                                             <div class="notifi__footer text-center">
                                                 <button id="btnAllNotifn" class="btn btn-info" onclick="getRaiseReqHTML()">See All</button>
                                             </div>
@@ -288,6 +291,9 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="noti__item js-item-menu" onclick="gotoSetReminder()">
+                                        <i class="fas fa-clock text-light"></i>
                                     </div>
                                     <!-- Settings -->
                                     <div class="noti__item js-item-menu">
@@ -403,14 +409,16 @@
 
                                         </div>
                                     </div>
-                                    <div class="noti__item js-item-menu" id="fullscreen">
+                                    @*<div class="noti__item js-item-menu" id="fullscreen">
                                         <i class="fas fa-compress text-light"></i>
-                                    </div>
+                                    </div>*@
+
                                 </div>
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="~/Images/Profile.jpg" class="img-thumbnail rounded-circle global-text-primary" alt="John Doe" style="border:1px solid;" />
+                                            <img src="~/Images/Profile.jpg" id="proPicMain" class="img-thumbnail rounded-circle global-text-primary" alt="John Doe" 
+                                                 style="border: 1px solid;height: 45px;" />
                                         </div>
                                         <div class="content">
                                             <p class="UserName font-weight-bold"></p>
@@ -419,7 +427,7 @@
                                             <div class="info clearfix border shadow-sm">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="~/Images/Profile.jpg" class="img-fluid img-thumbnail" alt="Some Text" />
+                                                        <img id="proPicMini" src="~/Images/Profile.jpg" class="img-fluid img-thumbnail" alt="Some Text" style="height: 60px;"/>
                                                     </a>
                                                 </div>
                                                 <div class="content">
@@ -431,9 +439,7 @@
                                                 <div class="account-dropdown__item" onclick="gotoAccountDetails();">
                                                     <a href="#"> <i class="zmdi zmdi-account"></i>Account </a>
                                                 </div>
-                                                <div class="account-dropdown__item" id="div_setReminder">
-                                                    <a href="#"> <i class="zmdi zmdi-account"></i>Set Reminder</a>
-                                                </div>
+                                               
                                                 <div class="account-dropdown__item" onclick="gotoChnagePassword()">
                                                     <a href="#"> <i class="zmdi zmdi-settings"></i>Change Password</a>
                                                 </div>
@@ -458,6 +464,7 @@
             <!-- END MAIN CONTENT-->
             <!-- END PAGE CONTAINER-->
         </div>
+    </div>
         <!-- ======= Footer ======= -->
         <!--<footer id="footer">
             <div class="container py-4">
@@ -472,7 +479,6 @@
                     <!--Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
                 </div>
             </div>
-        </footer>-->
         </footer>-->
         <div class="body-content mt-5 bg-light" style="position:fixed; bottom:0; width:100%">
             <hr style=" margin: 0; padding: 5px;" />
