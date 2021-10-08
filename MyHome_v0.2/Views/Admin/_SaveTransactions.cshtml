@@ -13,7 +13,7 @@
                         <div autocomplete="off" class="form" role="form">
                             <div class="form-group">
                                 <label for="inputName">Transaction Type</label>
-                                <select class="form-control minWidthFull" id="ddlTransactionType" required></select>
+                                <select class="form-control minWidthFull" id="ddlTransactionType" required onchange="handleTrnTypeChange(this)"></select>
                             </div>
                             <div class="form-group">
                                 <label for="inputTranDesc">Transaction Description</label>
@@ -61,7 +61,7 @@
                         <div autocomplete="off" class="form" role="form">
                             <div style="display:flex;margin-top:20px">
                                 <div style="flex:1" className="text-right">
-                                    <div class="form-check p-0">
+                                    <div class="form-check p-0 white-space-nowrap">
                                         <input type="checkbox" id="ckbPaymentStatus" class="ckeckBoxStyle">
                                         <label class="font-weight-bold" for="PaymentStatus">Payment Status</label>
                                     </div>

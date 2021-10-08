@@ -79,7 +79,7 @@ w-90 { width: 90% !important; }
 .pl-6, .px-6 {
     padding-left: 5rem !important;
 }
-
+.text-align-justify { text-align: justify; }
 /* Screen Loader */
 
 .scrloader { width: 100px; height: 100px; display: inline-block; padding: 0px; text-align: left; }

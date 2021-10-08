@@ -281,6 +281,7 @@
     <Content Include="Content\LandingPage\boxicons\css\transformations.css" />
     <Content Include="Content\LandingPage\boxicons\fonts\boxicons.svg" />
     <Content Include="Content\LandingPage\icofont\icofont.min.css" />
+    <Content Include="Content\LandingPage\img\AppFeatures.jpg" />
     <Content Include="Content\LandingPage\img\apple-touch-icon.png" />
     <Content Include="Content\LandingPage\img\details-1.png" />
     <Content Include="Content\LandingPage\img\details-2.png" />
@@ -340,7 +341,7 @@
     <Content Include="Images\avatar-05.jpg" />
     <Content Include="Images\avatar-06.jpg" />
     <Content Include="Images\avatar-big-01.jpg" />
-    <Content Include="Images\favicon.png" />
+    <Content Include="Images\favicon.ico" />
     <Content Include="Images\loginimg.png" />
     <Content Include="Images\logo-blue.png" />
     <Content Include="Images\logo-mini.png" />

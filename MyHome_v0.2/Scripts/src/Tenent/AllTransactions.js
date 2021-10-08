@@ -3,6 +3,36 @@ let trnTo = "";
 let transactionsData = [];
 let trnisEdit = false;
 let trnselectedID = '';
+
+function betweenDatesTrns() {
+    isAdmin() ? AlltransactionsGet() : transactionCall();
+}
+
+function GotoSaveTransaction() {
+    var url = window.rootpath + AdminURLs.SaveTransaction;
+    let TransactionsList = convertObjectArray(TransactionTypes);
+    $.get(url, function (response) {
+        RenderContent.html(response);
+        RenderContent.find("#trnDate").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true }).datepicker("setDate", new Date())
+        let options = `<option value="">None</option>`;
+        options += TransactionsList.map(x => {
+            return `<option value=${x.value}>${x.name}</option>`;
+        });
+        RenderContent.find('#ddlTransactionType').html(options);
+        RenderContent.find('#txtpaidTo').val(sessionStorage.getItem("UserName"));
+        let assetID = sessionStorage.getItem('AssetID');
+        $.when(
+            GetAjax(ApiDictionary.GetTenentAgreementByID() + `?AssetName=${assetID}`),
+        ).done(function (tenentData) {
+            globalTenantAgreement = tenentData;
+            RenderContent.find('#txtpaidFrom').val(tenentData["ResidentsNames"]);
+            
+        });
+    }).catch(err => {
+        console.log(err)
+    });
+}
+
 function transactionCall() {
     let assetID = sessionStorage.getItem('AssetID');
     trnFrom = dateFormat($('#RenderContent').find('#trnFrom').val());
@@ -127,14 +157,25 @@ function tranResponseGet(transactions) {
         //},
         "initComplete": function () {
             setTimeout(() => {
-                setScreenLoader(false)
+                setScreenLoader(false);
             }, 500);
         }
     });
 
 };
+function handleTrnTypeChange() {
+    let trnType = $("#ddlTransactionType :selected").val();
+    if (trnType == 2) {
+        console.log("globalTenantAgreement", globalTenantAgreement, trnType)
+        RenderContent.find('#txtAmt').val(globalTenantAgreement["RentAmount"]).prop("disabled", true);
+    } else {
+        RenderContent.find('#txtAmt').prop("disabled", false);
+
+    }
+}
 
 function Transactionsearch(val) {
+    
     console.log(val);
     // 1 - Mon, 2 - Tue, 3 - Wed, 4-Thu, 5 - Fri, 6 - Sat, 7 - Sun.    
     let assetID = sessionStorage.getItem('AssetID');
@@ -200,16 +241,27 @@ function saveTransaction() {
         Remarks: $('#txtRemarks').val(),
         CutOffDate: trnDate
     });
-    trnisEdit ?
-        ManageAjaxCalls.Put(ApiDictionary.PutTransaction() + `?id=${trnselectedID}`, TransactionToSave, () => { console.log("Transaction Updated.") }) :
-        ManageAjaxCalls.Post(ApiDictionary.PostTransaction(), TransactionToSave, (res) => {
-            console.log(res)
+    if (trnType == 2) {
+        ManageAjaxCalls.Put(ApiDictionary.PutTransaction() + `?id=${trnselectedID}`, TransactionToSave, () => {
             if (res.status == 201) {
-                CustomeToast("Transaction", 'Saved Successfully', "bg-success");
+                CustomeToast("Transaction", 'Modified Successfully', "bg-info");
             } else if (res.status == 405) {
                 CustomeToast("Transaction", res.responseJSON, "bg-danger");
             }
-        });
+        })
+    } else {
+        trnisEdit ?
+            ManageAjaxCalls.Put(ApiDictionary.PutTransaction() + `?id=${trnselectedID}`, TransactionToSave, () => { console.log("Transaction Updated.") }) :
+            ManageAjaxCalls.Post(ApiDictionary.PostTransaction(), TransactionToSave, (res) => {
+                console.log(res)
+                if (res.status == 201) {
+                    CustomeToast("Transaction", 'Saved Successfully', "bg-success");
+                } else if (res.status == 405) {
+                    CustomeToast("Transaction", res.responseJSON, "bg-danger");
+                }
+            });
+    }
+
     trnisEdit = false;
     trnselectedID = '';    
 }

@@ -22,6 +22,7 @@
         $('.AdminMenu').show();
 
         $("#Notiquantity").css("display", "none");
+        setScreenLoader(true);
         getAssetsList();
         customizeUI();
         mainContent.find('#btnAddNotifications').show();
@@ -56,13 +57,7 @@
         });
     });
     $(".btnProximity , .btn_A_Proximity").click(() => {
-        var url = window.rootpath + "Tenent/_proximity";
-        $.get(url, function (response) {
-            RenderContent.html(response);
-            customizeUI();
-            setScreenLoader(true)
-            getProximities();
-        });
+        gotoProximityView();
     });
     
 
@@ -121,16 +116,6 @@
             isAdmin() ? getEmergencyContacts() : getEmergencyContactList() ;
         });
     });
-    $('#btnLogOut').click(() => {
-        sessionStorage.removeItem('accessToken'); 
-        //sessionStorage.getItem('RoleID') == 0?
-        //    window.location.href = window.rootpath + ApiDictionary.gotoLogin() :
-        //    window.location.href = window.rootpath + ApiDictionary.gotoAdminLogin()
-        ManageAjaxCalls.Post(ApiDictionary.gotoLogout, {}, () => {
-            console.log("Logged Out ")
-        })
-        window.location.href = window.rootpath 
-    });
 
     $(".btnRaiseReq").click(() => {
         getRaiseReqHTML();
@@ -151,9 +136,6 @@
     $(".btnDocument").on("click", () => {
         gotoDucumentView()
     });
-    $(".btnDocument").on("click", () => {
-        gotoAccountDetails()
-    });
 });
 
 
@@ -161,12 +143,33 @@ $("#fullscreen").click(() => {
     toggleFullScreen();
 });
 
+function handleLogOut() {
+    sessionStorage.clear();
+    ManageAjaxCalls.Post(ApiDictionary.gotoLogout, {}, () => {
+        console.log("Logged Out");
+    })
+    window.location.href = window.rootpath
+    console.log("Logged Out")
+}
+
+
+function gotoProximityView() {
+    var url = window.rootpath + "Tenent/_proximity";
+    $.get(url, function (response) {
+        RenderContent.html(response);
+        customizeUI();
+        setScreenLoader(true)
+        getProximities();
+    });
+}
+
 function gotoChnagePassword() {
     var url = window.rootpath + "UserAccount/ChangePassword";
     $.get(url, function (response) {
         RenderContent.html(response);
     });
 }
+
 function gotoDucumentView() {
     var url = window.rootpath + "UserAccount/DucumentView";
     $.get(url, function (response) {

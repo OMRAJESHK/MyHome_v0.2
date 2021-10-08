@@ -16,10 +16,10 @@ namespace MyHome_v0._2.Controllers
         [HttpGet]
          public HttpResponseMessage GetProximity(int AssetName) {
             string[] empty= new string[0]; 
-            var getValidData = entities.Proximities.Where(x => x.AssetName == AssetName).FirstOrDefault();
+            var getValidData = entities.Proximities.Where(x => x.AssetName == AssetName).ToList();
              try { 
                  if (getValidData == null){
-                    return Request.CreateResponse(HttpStatusCode.NotFound, empty);
+                    return Request.CreateResponse(HttpStatusCode.OK, empty);
                  }
                  return Request.CreateResponse(HttpStatusCode.Created, getValidData);
              }catch(Exception ex){
@@ -62,15 +62,15 @@ namespace MyHome_v0._2.Controllers
             }
         }
         [HttpDelete]
-        public HttpResponseMessage DeleteProximity(int id) {
+        public HttpResponseMessage DeleteProximity(int AssetName) {
             try {
-                var entity = entities.Proximities.FirstOrDefault(x => x.ProximityId == id);
+                var entity = entities.Proximities.FirstOrDefault(x => x.AssetName == AssetName);
                 if (entity == null) {
-                    return Request.CreateErrorResponse(HttpStatusCode.NotFound,id.ToString()+" Not Found");
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound,"Not Found");
                 } else { 
                     entities.Proximities.Remove(entity);
                     entities.SaveChanges();
-                    return Request.CreateResponse(HttpStatusCode.OK, id.ToString());
+                    return Request.CreateResponse(HttpStatusCode.OK, AssetName);
                 }                
             } catch (Exception ex) {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);

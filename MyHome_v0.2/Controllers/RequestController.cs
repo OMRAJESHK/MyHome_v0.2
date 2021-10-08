@@ -11,14 +11,14 @@ namespace MyHome_v0._2.Controllers
     [Authorize]
     public class RequestController : ApiController
     {
+        readonly string[] empty= new string[0]; 
         private readonly MyHomeDBEntities entities = new MyHomeDBEntities();
-
         [HttpGet]
          public HttpResponseMessage GetRequests() {
              var getValidData = entities.TenentRequests.ToList();
              try { 
                  if (getValidData == null){
-                    return Request.CreateResponse(HttpStatusCode.NotFound, getValidData);
+                    return Request.CreateResponse(HttpStatusCode.OK, empty);
                  }
                  return Request.CreateResponse(HttpStatusCode.Created, getValidData);
              }catch(Exception ex){
@@ -26,12 +26,11 @@ namespace MyHome_v0._2.Controllers
              } 
          }
 
-        [HttpGet]
         public HttpResponseMessage GetRequestsByID(int AssetID)
         {
             var getAssetName = entities.TenentRequests.Where(x => x.AssetName == AssetID).ToList();
             if (getAssetName == null){
-                return Request.CreateResponse(HttpStatusCode.NotFound);
+                return Request.CreateResponse(HttpStatusCode.OK,empty);
             }
             return Request.CreateResponse(HttpStatusCode.OK, getAssetName);
         }

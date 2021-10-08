@@ -6,18 +6,45 @@
         <div class="card shadow-sm">
             <div class="card-header global-bg-primary">
                 <div class="d-flex bd-highlight">
-                    <div class="display-6 p-2 flex-grow-1 text-center h4">WELCOME TO <span id="homeName">TENANT DASHBOARD</span></div>
-                    <div title="425 Days"><label>since 1Year 2months</label></div>
+                    <div class="display-6 p-2 flex-grow-1 text-center h4">WELCOME TO DASHBOARD</div>
+                    <div><label>since <span id="spentYr"></span> Year <span id="spentMonth"></span> Month</label></div>
                 </div>
             </div>
             <div class="card-body">
-                <div class="d-flex bd-highlight">
-                    <div class="p-2 flex-fill bd-highlight">Owner : <span id="OwnerName">Prakash</span></div>
-                    <div class="p-2 flex-fill bd-highlight text-right">Rented To: <span id="TenantName">Ramesh Kumar</span></div>
-                </div>
-                <div class="d-flex bd-highlight">
-
-                    <div class="p-2 flex-fill bd-highlight text-right">Joining Date : <span id="joinDate">12 Mar 2012</span></div>
+                <div class="d-flex bd-highlight" style="flex-wrap: wrap;">
+                    <div class="p-2 flex-fill bd-highlight ">
+                        <div class="form-group">
+                            <div class="d-flex">
+                                <div class="mt-2"><i class="fa fa-user-circle fontSize_50 global-text-primary "></i></div>
+                                <div>
+                                    <label for="inputEmail" class="h3 font-weight-bold mt-2 fontSize_16">Resident Name</label>
+                                    <div id="TenantName" class="fontSize_13 "></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-2 flex-fill bd-highlight ">
+                        <div class="form-group">
+                            <div class="d-flex">
+                                <div class="mt-2"><i class="fas fa-money-bill-wave fontSize_50 global-text-primary"></i></div>
+                                <div>
+                                    <label for="inputEmail" class="font-weight-bold mt-2 fontSize_16">Advance Amount</label>
+                                    <div id="AdvAmt" class="fontSize_13 "></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-2 flex-fill bd-highlight">
+                        <div class="form-group">
+                            <div class="d-flex">
+                                <div class="mt-2 mr-2"><i class="fas fa-calendar-alt fontSize_50 global-text-primary"></i></div>
+                                <div>
+                                    <label for="inputEmail" class="font-weight-bold mt-2 fontSize_16">Joining Date</label>
+                                    <div id="joinDate" class="fontSize_13 "></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -71,12 +98,36 @@
             </div>
         </div>*@
     <div class="row">
+        <div class="col-sm-12 col-lg-12">
+            <div class="alert alert-danger alert-dismissible fade show p-3" role="alert">
+                <strong class="monthlyRent">Rs. 8000 /-</strong> is the Rent for every <strong>Month</strong>.
+                <strong class="duedateMonthly"></strong><sup>th</sup> of every <strong>Month</strong> is Due Date to pay the Rent.
+            </div>
+        </div>
+        <div class="col-sm-12 col-lg-12">
+            <div class="alert alert-danger alert-dismissible fade show p-3" role="alert">
+                <strong class="duedateMonthly"></strong><sup>th</sup> of every <strong>Month</strong> is Due Date to pay the Electricity Bill.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+        <div class="col-sm-12 col-lg-12">
+            <div class="alert alert-danger alert-dismissible fade show p-3" role="alert">
+                <strong class="duedateMonthly"></strong><sup>th</sup> of every <strong>Month</strong> is Due Date to pay the Water Bill.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-sm-12 col-lg-3">
             <div class="card shadow-sm">
                 <div id="rentHeader" class="d-flex justify-content-between card-header" style="background-color: #f44336; color: #fff">
                     <span class="font-weight-bold"><span style="font-size: 18px;">&#x20b9;</span> Rent Amount</span>
                 </div>
-                <div class="d-flex card-body height_5">             
+                <div class="d-flex card-body height_5">
                     <div class="global-text-primary" id="rentDescription">June Month - Rent of Rs. 6000</div>
                 </div>
             </div>
@@ -113,8 +164,8 @@
             </div>
         </div>
     </div>
-        
-        @*<div class="row ">
+
+    @*<div class="row ">
             <div class="col-md-4">
                 <div class="card">
                     <div class="d-flex justify-content-between card-header global-bg-primary">
@@ -155,5 +206,5 @@
                 </div>
             </div>
         </div>*@
-    </div>
+</div>
     </div>

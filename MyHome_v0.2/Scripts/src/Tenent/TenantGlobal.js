@@ -152,46 +152,63 @@ const getDashboardData = () => {
     ).done(function (trnData, tenentData) {
         if (trnData[0] && trnData[0].length > 0) {
             console.log("trnData", trnData[0])
-               // Rent Description
+            // Rent Description
             let rentData = trnData[0].filter(row => row.TransactionType == 2);
-               let desc = `${Months[Number(mm)]} Month - Rent of Rs. ${formatNumber(rentData?.[0]?.["Amount"]) ?? "0.00"}/-`
-               $("#rentDescription").text(desc);
-               let rentHeader = `<span class="px-2 font-weight-bold ${rentData?.[0]?.["Status"] == 1 ? "text-success" : "text-danger"} fontSize_16" id="ckbTenantIsRent"
+            let desc = `${Months[Number(mm)]} Month - Rent of Rs. ${formatNumber(rentData?.[0]?.["Amount"]) ?? "0.00"}/-`
+            $("#rentDescription").text(desc);
+            let rentHeader = `<span class="px-2 font-weight-bold ${rentData?.[0]?.["Status"] == 1 ? "text-success" : "text-danger"} fontSize_16" id="ckbTenantIsRent"
                                      style="border-radius: 15px; border: 1px solid; background: #fff;">
                                      ${rentData?.[0]?.["Status"] == 1 ? `Paid &#10003;` : `Not Paid &#128473;`}
                                 </span>`;
-               $("#rentHeader").append(rentHeader);
+            $("#rentHeader").append(rentHeader);
 
-               // Water Description
+            // Water Description
             let waterData = trnData[0].filter(row => row.TransactionType == 3);
-               desc = `${Months[Number(mm)]} Month - Water Bill of Rs. ${formatNumber(waterData?.[0]?.["Amount"]) ?? "0.00"}/-`;
-               $("#waterDescription").text(desc);
-               let WaterHeader = `<span class="px-2 font-weight-bold ${waterData?.[0]?.["Status"] == 1 ? "text-success" : "text-danger"} fontSize_16" id="ckbTenantIsRent"
+            desc = `${Months[Number(mm)]} Month - Water Bill of Rs. ${formatNumber(waterData?.[0]?.["Amount"]) ?? "0.00"}/-`;
+            $("#waterDescription").text(desc);
+            let WaterHeader = `<span class="px-2 font-weight-bold ${waterData?.[0]?.["Status"] == 1 ? "text-success" : "text-danger"} fontSize_16" id="ckbTenantIsRent"
                                      style="border-radius: 15px; border: 1px solid; background: #fff;">
                                      ${waterData?.[0]?.["Status"] == 1 ? `Paid &#10003;` : `Not Paid &#128473;`}
                                 </span>`;
-               $("#WaterHeader").append(WaterHeader);
+            $("#WaterHeader").append(WaterHeader);
 
-
-               // Electricity Description
+            // Electricity Description
             let elecData = trnData[0].filter(row => row.TransactionType == 4);
-               desc = `${Months[Number(mm)]} Month - Electricity Bill of Rs. ${formatNumber(elecData)?.[0]?.["Amount"] ?? "0.00"}/-`;
-               $("#electricityDescription").text(desc);
-               let ElecHeader = `<span class="px-2 font-weight-bold ${elecData?.[0]?.["Status"] == 1 ? "text-success" : "text-danger"} fontSize_16" id="ckbTenantIsRent"
+            desc = `${Months[Number(mm)]} Month - Electricity Bill of Rs. ${formatNumber(elecData)?.[0]?.["Amount"] ?? "0.00"}/-`;
+            $("#electricityDescription").text(desc);
+            let ElecHeader = `<span class="px-2 font-weight-bold ${elecData?.[0]?.["Status"] == 1 ? "text-success" : "text-danger"} fontSize_16" id="ckbTenantIsRent"
                                      style="border-radius: 15px; border: 1px solid; background: #fff;">
                                      ${elecData?.[0]?.["Status"] == 1 ? `Paid &#10003;` : `Not Paid &#128473;`}
                                 </span>`;
-               $("#ElecHeader").append(ElecHeader);
+            $("#ElecHeader").append(ElecHeader);
 
-               // Motor Description
+            // Motor Description
             let motorData = trnData[0].filter(row => row.TransactionType == 5);
-               desc = `${Months[Number(mm)]} Month - Motor Bill of Rs. ${formatNumber(motorData)?.[0]?.["Amount"] ?? "0.00"}/-`;
-               $("#MotorDescription").text(desc);
-               let MotorHeader = `<span class="px-2 font-weight-bold ${motorData?.[0]?.["Status"] == 1 ? "text-success" : "text-danger"} fontSize_16" id="ckbTenantIsRent"
+            desc = `${Months[Number(mm)]} Month - Motor Bill of Rs. ${formatNumber(motorData)?.[0]?.["Amount"] ?? "0.00"}/-`;
+            $("#MotorDescription").text(desc);
+            let MotorHeader = `<span class="px-2 font-weight-bold ${motorData?.[0]?.["Status"] == 1 ? "text-success" : "text-danger"} fontSize_16" id="ckbTenantIsRent"
                                      style="border-radius: 15px; border: 1px solid; background: #fff;">
                                      ${motorData?.[0]?.["Status"] == 1 ? `Paid &#10003;` : `Not Paid &#128473;`}
                                 </span>`;
-               $("#MotorHeader").append(MotorHeader);
+            $("#MotorHeader").append(MotorHeader);
+        }
+        if (tenentData[0] && ["success"].includes(tenentData[1])) {
+            globalTenantAgreement = tenentData[0];
+            $(".duedateMonthly").text(tenentData[0]["RentDueDate"]);
+
+            $(".monthlyRent").text(`Rs.  ${tenentData[0]["RentAmount"]} /-`);
+            $("#TenantName").text(`${tenentData[0]["ResidentsNames"]}`);
+            let joinDate = dateFormat(getDateOnly(tenentData[0]["JoiningDate"]));
+            $("#joinDate").text(joinDate);
+
+            let yrsSpent = joinDate.split("-")[2] - dateFormat(getCurrentDate()).split("-")[2];
+            let monthsSpent = Math.abs(joinDate.split("-")[1] - dateFormat(getCurrentDate()).split("-")[1]);
+            console.log("dfgbdhgfsjfkhgkfksjkdfhgdg", dateFormat(getCurrentDate()), joinDate, yrsSpent, monthsSpent)
+            $("#spentYr").text(yrsSpent);
+            $("#spentMonth").text(monthsSpent);
+            $("#AdvAmt").text(`Rs. ${tenentData[0]["AdvanceAmount"]} /-`);
+            
+
         }
         console.log("tenentData", tenentData)
 

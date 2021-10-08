@@ -28,9 +28,10 @@ class ApiDictionary  {
     static GetProximity = () => path + '/api/Proximities/GetProximity';
     static PostProximity = () => path + '/api/Proximities/PostProximity';
     static PutProximity = () => path + '/api/Proximities/PutProximity';
-    static ProximityDelete = () => path + '/api/Proximities/ProximityDelete';
+    static DeleteProximity = () => path + '/api/Proximities/DeleteProximity';
     
-    static GetRequest = () => path + '/api/Request/GetRequestsByID';
+    static GetRequests = () => path + '/api/Request/GetRequests';
+    static GetRequestsByID = () => path + '/api/Request/GetRequestsByID';
     static PostRequest = () => path + "/api/Request/PostRequest";
     static PutRequest = () => path + "/api/Request/PutRequest";
     static DeleteRequest = () => path + "/api/Request/DeleteRequest";
@@ -66,9 +67,7 @@ class ApiDictionary  {
     static DeleteDocument = () => path + "/api/Document/DeleteDocument";
 
     static GetAdminProfilePicture = () => path + "/api/Document/GetAdminProfilePicture";
-    static GetProfilePicture = () => path + "/api/Document/GetProfilePicture";
-    
-    
+    static GetProfilePicture = () => path + "/api/Document/GetProfilePicture";    
 }
 
 const AdminURLs = {

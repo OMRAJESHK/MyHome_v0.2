@@ -38,7 +38,10 @@ const getAssetsList = () => {
                     </div>`
                 });
                 mainContent.find('#AssetsList').html(AssetListHtml);
-            });
+                setTimeout(() => {
+                    setScreenLoader(false);
+                }, 900);
+            })
         },
         error: (jqXHR) => {
             console.error('Something went wrong with the POST...!!!');
@@ -53,23 +56,6 @@ function SetAssetDeleteModal(id) {
     $('#deleteModal .modal-title').text("Asset");
     $('#deleteModal .modal-footer').html(deleteButtons);
     $('#deleteModal').modal('show');
-}
-
-
-function GotoSaveTransaction() {
-    var url = window.rootpath + AdminURLs.SaveTransaction;   
-    let TransactionsList = convertObjectArray(TransactionTypes);
-    $.get(url, function (response) {
-        RenderContent.html(response);
-        RenderContent.find("#trnDate").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true }).datepicker("setDate", new Date())
-        let options = `<option value="">None</option>`;
-        options += TransactionsList.map(x => {
-            return `<option value=${x.value}>${x.name}</option>`;
-        });
-        RenderContent.find('#ddlTransactionType').html(options);
-    }).catch(err => {
-        console.log(err)
-    });
 }
 
 function AssetDetails() {
@@ -132,7 +118,7 @@ function getNotifications() {
 }
 
 function getRequests() {
-    ManageAjaxCalls.GetData(ApiDictionary.GetRequest() + `?AssetName=${sessionStorage.getItem('AssetID')}`, (res) => {
+    ManageAjaxCalls.GetData(ApiDictionary.GetRequestsByID() + `?AssetID=${sessionStorage.getItem('AssetID')}`, (res) => {
         let RequestList = '';
         $('#btnAllRequest').prop('disabled', false);
         res.map(row => {

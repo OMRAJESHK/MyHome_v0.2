@@ -42,7 +42,7 @@ function getDocuments() {
         console.log("documentData", res);
         let docsHTML = ``;
         documentsData = res;
-        res.map((itm)=> {
+        res && res.length>0? res.map((itm)=> {
             docsHTML += `<div class="col col-6" onclick="handleDocClick(${itm.ImgID});">
                             <div class="card assetCards">
                                 <div class="card-body cursor-pointer" style="min-width:200px;height:200px;position: relative;">
@@ -59,7 +59,9 @@ function getDocuments() {
                                 </div>
                             </div>
                         </div>`
-        });
+        }) : (function () {
+                docsHTML =`<span class="text-center" style="width: 100%;font-size: 14px;font-weight: 500;">No Documents Available</span>`
+            }());
         $("#DocumentList").html(docsHTML);
     })
 
