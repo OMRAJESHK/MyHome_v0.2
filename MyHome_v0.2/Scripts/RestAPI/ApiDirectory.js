@@ -1,6 +1,8 @@
 ﻿const path = "https://localhost:44395";
 const Admin = 'Admin/';
 const Client = 'tenent/';
+const UserAccount = 'UserAccount/';
+
 class ApiDictionary  {
     static token = () => '/token'; 
     static gotoLogin = () => "UserAccount/UserLogin";
@@ -23,7 +25,7 @@ class ApiDictionary  {
     static AssetPost = () => path + "/api/Asset/PostAssetDetails";
     static AssetPut = () => path + "/api/Asset/PutAsset";
     static DeleteAsset = () => path + "/api/Asset/DeleteAsset";
-    static GetAssetName = () => path + '/api/Asset/GetAssetName';
+    static GetAssetById = () => path + '/api/Asset/GetAssetById';
 
     static GetProximity = () => path + '/api/Proximities/GetProximity';
     static PostProximity = () => path + '/api/Proximities/PostProximity';
@@ -68,6 +70,7 @@ class ApiDictionary  {
 
     static GetAdminProfilePicture = () => path + "/api/Document/GetAdminProfilePicture";
     static GetProfilePicture = () => path + "/api/Document/GetProfilePicture";    
+    static ChangePassword = () => path + "/api/Account/ChangePassword";    
 }
 
 const AdminURLs = {
@@ -85,7 +88,7 @@ const AdminURLs = {
     AssetView: Admin + "_AssetView",
     AssetslistView: Admin + '_AssetListView',
     SaveEmergancyContact: Admin + "_SaveEmergancyContact",
-    SaveDocument: Admin +"_SaveDocument"
+    SaveDocument: Admin + "_SaveDocument",
 }
 
 const TenantURLs = {
@@ -93,5 +96,13 @@ const TenantURLs = {
     Transactions: Client + '_allTransactions',
     TenantDeedView: Client + '_TenantAgreementView',
     SetReminder: Client + "_SetReminder",
-    AllNotification: Client +"_AllNotification"
+    AllNotification: Client + "_AllNotification",
+    TenentDetails: Client + "_tenentDetails",
+    Proximity: Client + "_proximity",
+    EmrcyContact: Client + "_emrcyContact" ,
+    HouseDetails: Client +"_houseDetails"
+}
+const UserAccountURLs = {
+    ChangePassword: UserAccount + "ChangePassword",
+    DucumentView: UserAccount + "DucumentView"
 }

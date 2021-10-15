@@ -20,7 +20,6 @@
     } else if (sessionStorage.getItem('RoleID') == 1) {
         $('.ClientMenu').hide();
         $('.AdminMenu').show();
-
         $("#Notiquantity").css("display", "none");
         setScreenLoader(true);
         getAssetsList();
@@ -36,112 +35,54 @@
             : $('.dashboardAngle').addClass('angleRotate180')
     });
 
-    $(".btn_T_Dashboad").click(() => {
-        gotoDashboard();
-    });
-    $(".btnRentAgreement").click(() => {
-        var url = window.rootpath + "Tenent/_tenentDetails";
-        $.get(url, function (response) {
-            customizeUI();
-            RenderContent.html(response);
-            getRentalData();
-        });
-    });
+    $(".btn_T_Dashboad").click(() => { gotoDashboard(); });
+    $(".btnRentAgreement").click(() => { gotoTenantDetails(); });
+    $(".btnHouseDetails").click(() => { gotoHouseDetails(); });
+    $(".btnProximity , .btn_A_Proximity").click(() => { gotoProximityView(); });
 
-    $(".btnHouseDetails").click(() => {
-        var url = window.rootpath + "Tenent/_houseDetails";
-        $.get(url, function (response) {
-            RenderContent.html(response);
-            customizeUI();
-            getHouseDetails();
-        });
-    });
-    $(".btnProximity , .btn_A_Proximity").click(() => {
-        gotoProximityView();
-    });
-    
+    //------ADMIN BUTTONS-----------//
 
-    //$(".btn_A_Notifications,#btn_AllNotifications").click(() => {
-    //    var url = window.rootpath + "Tenent/_AllNotification";
-    //    $.get(url, function (response) {
-    //        RenderContent.html(response);
-    //        $('#notificationsTab').removeClass('show-dropdown');
-    //        (sessionStorage.getItem('RoleID') == 0) ?
-    //            mainContent.find('#btnAddNotifications').hide() :
-    //            mainContent.find('#btnAddNotifications').show();
-    //    });
-    //});
-        //------ADMIN BUTTONS-----------//
+    $(".btn_A_Dashboad").click(() => { gotoAdminDashboard(); });
+    $(".btnAssetRegistration").click(() => { gotoAssetView(); });
+    $(".btnTenantAgreement").click(() => { gotoTenantView(); });
+    $(".btn_A_SendMail").click(() => { gotoMailLogsView(); });
+    $(".btnPropertyTax").click(() => { gotoPropertyTax(); });
 
-    $(".btn_A_Dashboad").click(() => {
-        gotoAdminDashboard()
-    });
-    $(".btnAssetRegistration").click(() => {
-        gotoAssetView();
-    });
-    $(".btnTenantAgreement").click(() => {
-        gotoTenantView();
-    });
+    //------COMMON BUTTONS----------//
 
-    mainContent.find('#btnAddProximities').on('click', '#btnAddProximity', () => {
-        var url = window.rootpath + "Admin/_SaveTransactions";
-        $.get(url, function (response) {
-            customizeUI();
-            RenderContent.html(response);
-        });
-    });
-    $(".btn_A_SendMail").click(() => {
-        gotoMailLogsView()
-    });
+    $(".btn_A_AllTransactions, .btnAllTransactions").click(() => { gotoTransactionView(); });
+    $(".btnEmcyContact,.btn_A_EmcyContact").click(() => { gotoEmergencyContact(); });
+    $(".btnRaiseReq").click(() => { getRaiseReqHTML(); });
+    $('#chktoggleSwitch').click(() => { customizeUI(); });
 
-    $(".btnPropertyTax").click(() => {
-        //var url = window.rootpath + AdminURLs.propertyTaxLogs;
-        //$.get(url, function (response) {
-        //    RenderContent.html(response);
-        //    customizeUI();
-        //    getPropertyTaxLogs();
-        //});
-
-        gotoPropertyTax();
-    });
-        //------COMMON BUTTONS----------//
-
-    $(".btn_A_AllTransactions, .btnAllTransactions").click(() => {
-        gotoTransactionView()
-    });
-    $(".btnEmcyContact,.btn_A_EmcyContact").click(() => {
-        var url = window.rootpath + "Tenent/_emrcyContact";
-        $.get(url, function (response) {
-            RenderContent.html(response);
-            isAdmin() ? getEmergencyContacts() : getEmergencyContactList() ;
-        });
-    });
-
-    $(".btnRaiseReq").click(() => {
-        getRaiseReqHTML();
-    });
-
-    $('#chktoggleSwitch').click(() => {
-        customizeUI();
-    });
-
+   
+    $("#div_setReminder").on("click", () => { gotoSetReminder(); });
+    $(".btnDocument").on("click", () => { gotoDucumentView() });
     $('span.logoFill').on('click', function () {
         let colorChosen = '#' + $(this).data().color;
         $('.menu-sidebar__content, .navbar-mobile__list').css('background-color', colorChosen).removeClass('global-bg-primary')
     });
-
-    $("#div_setReminder").on("click", () => {
-        gotoSetReminder();
-    });
-    $(".btnDocument").on("click", () => {
-        gotoDucumentView()
-    });
 });
 
 
-$("#fullscreen").click(() => {
-    toggleFullScreen();
-});
+$("#fullscreen").click(() => { toggleFullScreen(); });
+
+function gotoHouseDetails() {
+    var url = window.rootpath + TenantURLs.HouseDetails;
+    $.get(url, function (response) {
+        RenderContent.html(response);
+        customizeUI();
+        getHouseDetails();
+    });
+}
+
+function gotoEmergencyContact() {
+    var url = window.rootpath + TenantURLs.EmrcyContact;
+    $.get(url, function (response) {
+        RenderContent.html(response);
+        isAdmin() ? getEmergencyContacts() : getEmergencyContactList();
+    });
+} 
 
 function handleLogOut() {
     sessionStorage.clear();
@@ -152,9 +93,17 @@ function handleLogOut() {
     console.log("Logged Out")
 }
 
+function gotoTenantDetails() {
+    var url = window.rootpath + TenantURLs.TenentDetails
+    $.get(url, function (response) {
+        customizeUI();
+        RenderContent.html(response);
+        getRentalData();
+    });
+}
 
 function gotoProximityView() {
-    var url = window.rootpath + "Tenent/_proximity";
+    var url = window.rootpath + TenantURLs.Proximity;
     $.get(url, function (response) {
         RenderContent.html(response);
         customizeUI();
@@ -164,16 +113,21 @@ function gotoProximityView() {
 }
 
 function gotoChnagePassword() {
-    var url = window.rootpath + "UserAccount/ChangePassword";
+    var url = window.rootpath + UserAccountURLs.ChangePassword;
     $.get(url, function (response) {
         RenderContent.html(response);
     });
 }
 
 function gotoDucumentView() {
-    var url = window.rootpath + "UserAccount/DucumentView";
+    var url = window.rootpath + UserAccountURLs.DucumentView;
     $.get(url, function (response) {
         RenderContent.html(response);
+        if (isAdmin()) {
+            let btn = document.getElementById('btnAddDocument');
+            btn.removeAttribute("hidden");
+        }
+        setScreenLoader(true);
         getDocuments();
     });
 }
@@ -216,8 +170,9 @@ const gotoAdminDashboard = () => {
 const gotoDashboard = () => {
     var url = window.rootpath + TenantURLs.Dashboard;
     $.get(url, function (response) {
-        $('#RenderContent').html(response);
+        RenderContent.html(response);
         customizeUI();
+        setScreenLoader(true); 
         getDashboardData();
     });
 }
@@ -252,6 +207,7 @@ const gotoTransactionView = () => {
         RenderContent.find('#ddlTransactionType').append(getTransactionList()).prop('selectedIndex', 0);
         $("#RenderContent .betweenDatesSection").css("display", "none");
         customizeUI();
+        setScreenLoader(true)
         isAdmin() ? AlltransactionsGet():transactionCall();
     });
 }
@@ -260,7 +216,7 @@ const getRentalData = () => {
     let assetId = sessionStorage.getItem("AssetID");
     $.when(
         GetAjax(ApiDictionary.GetTenentAgreementByID() + `?AssetName=${assetId}`),
-        GetAjax(ApiDictionary.GetAssetName(), { AssetName: Number(sessionStorage.getItem('AssetID')) })).done(function (tenantData, AssetData) {
+        GetAjax(ApiDictionary.GetAssetById(), { AssetName: Number(sessionStorage.getItem('AssetID')) })).done(function (tenantData, AssetData) {
             console.log("resolve all", tenantData, AssetData);
             $("#tenants").text(tenantData[0]["ResidentsNames"]);
             let tenantsamt = `${tenantData[0]["RentAmount"]}/- (${inWords(tenantData[0]["RentAmount"])})`;
@@ -274,27 +230,38 @@ function handleChangePassword() {
     let oldPassword = $("#RenderContent #txtOldPassword").val();
     let NewPassword = $("#RenderContent #txtNewPassword").val();
     let AffirmPassword = $("#RenderContent #txtAffirmPassword").val();
-
-    $.ajax({
-        url: '/api/Account/ChangePassword',
-        method: 'post',
-        data: {
-            OldPassword: oldPassword,
-            NewPassword: NewPassword,
-            ConfirmPassword: AffirmPassword,
-        },
-        headers: {
-            'Authorization': "Bearer " + sessionStorage.getItem('accessToken')
-        },
-        success: (data) => {
-            CustomeToast("Change Password", "Password Changed Successfully...!", "bg-success");
-            $('#errMsgDiv').hide('fade');
-        },
-        error: (jqXHR) => {
-            $('#errTxt').text(jqXHR.responseText);
-            $('#errMsgDiv').show('fade');
-        }
-    });
+    let param = {
+        OldPassword: oldPassword,
+        NewPassword: NewPassword,
+        ConfirmPassword: AffirmPassword,
+    }
+    $.when(PostAjax(ApiDictionary.ChangePassword(), param))
+        .done(function (changeData) {
+            if (changeData) {
+                CustomeToast("Change Password", "Password Changed Successfully...!", "bg-success");
+                $('#errMsgDiv').hide('fade');
+            }
+        });
+    //$.ajax({
+    //    url: ApiDictionary.ChangePassword(),
+    //    method: 'post',
+    //    data: {
+    //        OldPassword: oldPassword,
+    //        NewPassword: NewPassword,
+    //        ConfirmPassword: AffirmPassword,
+    //    },
+    //    headers: {
+    //        'Authorization': "Bearer " + sessionStorage.getItem('accessToken')
+    //    },
+    //    success: (data) => {
+    //        CustomeToast("Change Password", "Password Changed Successfully...!", "bg-success");
+    //        $('#errMsgDiv').hide('fade');
+    //    },
+    //    error: (jqXHR) => {
+    //        $('#errTxt').text(jqXHR.responseText);
+    //        $('#errMsgDiv').show('fade');
+    //    }
+    //});
 }
 
 function AdminDashboardFunction(assetId) {
@@ -306,17 +273,12 @@ function AdminDashboardFunction(assetId) {
                     console.log("Dashboard", tenentData);
                     // Transaction 
                     let TransactionToSave = JSON.stringify({
-                        AssetName: assetId,
-                        Description: "Rent For the Month",
-                        TransactionType: 102,
-                        Amount: tenentData.RentAmount,
-                        CutOffDate: getCurrentDate(),
-                        Date: getCurrentDate(),
-                        TransactionMode: 1,
-                        PaidBy: tenentData.ResidentsNames,
+                        AssetName: assetId, Description: "Rent For the Month",
+                        TransactionType: 102, Amount: tenentData.RentAmount,
+                        CutOffDate: getCurrentDate(), Date: getCurrentDate(),
+                        TransactionMode: 1, PaidBy: tenentData.ResidentsNames,
                         PaidTo: sessionStorage.getItem("UserName"),
-                        Status: 2,
-                        Remarks: "Current Month Rent Pending.",
+                        Status: 2, Remarks: "Current Month Rent Pending.",
                     });
                     ManageAjaxCalls.Post(ApiDictionary.PostTransaction(), TransactionToSave, (res) => {
                         console.log(res)
@@ -329,11 +291,10 @@ function AdminDashboardFunction(assetId) {
                 }
             });
     }
-
 }
 
 
-// ACCOUNT DETAILS CODE //
+// USER ACCOUNT DETAILS CODE //
 
 let picBase64 = "";
 let Documentdata = [];

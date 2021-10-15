@@ -42,7 +42,7 @@ function transactionCall() {
 function tranRespose(transactions) {
     $('#tblTransactions tbody').empty();
     $('#tblTransactions thead').html(`
-                   <tr class="global-bg-primary">
+                   <tr class="global-text-primary">
                         <th>Description</th><th>Transaction Type</th><th>Amount</th><th>Date</th>
                         <th>Transaction Mode</th><th>Paid By</th><th>Paid To</th><th>Status</th><th>Remarks</th> 
                    </tr>`);
@@ -84,7 +84,7 @@ function tranRespose(transactions) {
                 }},
             { data: 'Remarks'  }
         ],
-
+        "initComplete": function () { setTimeout(() => { setScreenLoader(false); }, 500); }
     });
 
 }; 
@@ -97,10 +97,9 @@ function AlltransactionsGet() {
     ManageAjaxCalls.GetData(ApiDictionary.GetTransactions() + `?AssetName=${assetID}&trnFrom=${trnFrom}&trnTo=${trnTo}`, tranResponseGet)
 }
 function tranResponseGet(transactions) {
-    setScreenLoader(true)
     $('#tblTransactions tbody').empty();
     $('#tblTransactions thead').html(`
-                   <tr class="global-bg-primary">
+                   <tr class="global-text-primary">
                         <th>Description</th><th>Transaction Type</th><th>Amount</th><th>Date</th><th>Transaction Mode</th>
                         <th>Paid By</th><th>Paid To</th><th>Status</th><th>Remarks</th><th>Action</th>
                     </tr>`);

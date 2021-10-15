@@ -1,5 +1,5 @@
 ﻿
-//function getAssetName(res) {
+//function GetAssetById(res) {
 //    sessionStorage.setItem('AssetName', res.AssetName);
 //    $("#lblAssetName").text(sessionStorage.getItem('AssetName'))
 //    sessionStorage.setItem('AssetID', res.AssetId);
@@ -211,7 +211,7 @@ const getDashboardData = () => {
 
         }
         console.log("tenentData", tenentData)
-
+        setTimeout(() => { setScreenLoader(false); }, 500);
     });
 
 

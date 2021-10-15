@@ -25,7 +25,7 @@
                                         <span class="input-group-text font-weight-bold text-info" id="inputGroup-sizing-default"
                                               style="width: 6.5em;background: transparent;">Email</span>
                                     </div>
-                                    <input aria-describedby="inputGroup-sizing-default" type="email" class="form-control" placeholder="Enter email" id="txtLoginEmail" required autofocus >
+                                    <input aria-describedby="inputGroup-sizing-default" type="email" class="form-control" placeholder="Enter email" id="txtLoginEmail" required autofocus>
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -37,8 +37,9 @@
                                     <a href="~/UserAccount/adminregister">Not a member ? Register </a>
                                     <a href="~/UserAccount/forgotpassword" class="float-right">Forgot Password ?</a>
                                 </div>
-                                <div class="input-group text-center btn-block justify-content-center mb-3">
-                                    <button type="submit" class="btn btn w-75 btn-info mb-1">Sign in</button>
+                                <div class="input-group text-center btn-block justify-content-between mb-3">
+                                    <button type="button" class="btn w-30 btn-info mb-1" onclick="toMainScreen();">Back</button>
+                                    <button type="submit" class="btn w-30 btn-info mb-1">Sign in</button>
                                 </div>
                             </form>
                             <div id="UserloginErrMsgDiv" class="alert alert-danger collapse">

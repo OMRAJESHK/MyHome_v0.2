@@ -82,3 +82,13 @@ const GetAjax = (url, param = {}) => {
         }
     });
 }
+
+const PostAjax = (url, data) => {
+    $.ajax({
+        url: url,
+        method: 'post',
+        headers: { 'Authorization': "Bearer " + sessionStorage.getItem('accessToken') },
+        contentType: 'application/json',
+        data: data,
+    });
+}

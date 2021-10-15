@@ -56,28 +56,30 @@ function GotosaveProximities(isEdit) {
         ["ddlAirportDistance", "ddlRailwayStationDistance", "ddlBusStationDistance",
             "ddlMetroStationDistance", "ddlSchoolCollegeDistance", "ddlHospitalDistance",
             "ddlMarketDistance", "ddlHotelDistance", "ddlTempleDistance"].map(itm => {
+                console.log("convertObjectArray", convertObjectArray(Distance))
                 generateOptions(convertObjectArray(Distance), itm);
             });
         ManageAjaxCalls.GetData(ApiDictionary.GetProximity() + `?AssetName=${assetId}`, (res) => {
-            RenderContent.find('#txtRailwayStation').val(res["RailwayStation"].split("-")[0]);
-            RenderContent.find('#txtBusStation').val(res["BusStation"].split("-")[0]);
-            RenderContent.find('#txtAirport').val(res["Airport"].split("-")[0]);
-            RenderContent.find('#txtMetroStation').val(res["MetroStation"].split("-")[0]);
-            RenderContent.find('#txtSchoolorCollege').val(res["SchoolorCollege"].split("-")[0]);
-            RenderContent.find('#txtHospital').val(res["Hospital"].split("-")[0]);
-            RenderContent.find('#txtMarket').val(res["Market"].split("-")[0]);
-            RenderContent.find('#txtTemple').val(res["Temple"].split("-")[0]);
-            RenderContent.find('#txtHotel').val(res["Hotel"].split("-")[0]);
+            console.log("resres", res)
+            RenderContent.find('#txtRailwayStation').val(res[0]["RailwayStation"].split("-")[0]);
+            RenderContent.find('#txtBusStation').val(res[0]["BusStation"].split("-")[0]);
+            RenderContent.find('#txtAirport').val(res[0]["Airport"].split("-")[0]);
+            RenderContent.find('#txtMetroStation').val(res[0]["MetroStation"].split("-")[0]);
+            RenderContent.find('#txtSchoolorCollege').val(res[0]["SchoolorCollege"].split("-")[0]);
+            RenderContent.find('#txtHospital').val(res[0]["Hospital"].split("-")[0]);
+            RenderContent.find('#txtMarket').val(res[0]["Market"].split("-")[0]);
+            RenderContent.find('#txtTemple').val(res[0]["Temple"].split("-")[0]);
+            RenderContent.find('#txtHotel').val(res[0]["Hotel"].split("-")[0]);
 
-            RenderContent.find("#ddlAirportDistance").val(res["Airport"].split("-")[1]).change();
-            RenderContent.find("#ddlRailwayStationDistance").val(res["RailwayStation"].split("-")[1]).change();
-            RenderContent.find("#ddlBusStationDistance").val(res["BusStation"].split("-")[1]).change();
-            RenderContent.find("#ddlMetroStationDistance").val(res["MetroStation"].split("-")[1]).change();
-            RenderContent.find("#ddlSchoolCollegeDistance").val(res["SchoolorCollege"].split("-")[1]).change();
-            RenderContent.find("#ddlHospitalDistance").val(res["Hospital"].split("-")[1]).change();
-            RenderContent.find("#ddlMarketDistance").val(res["Market"].split("-")[1]).change();
-            RenderContent.find("#ddlHotelDistance").val(res["Hotel"].split("-")[1]).change();
-            RenderContent.find("#ddlTempleDistance").val(res["Temple"].split("-")[1]).change();
+            RenderContent.find("#ddlAirportDistance").val(res[0]["Airport"].split("-")[1]).change();
+            RenderContent.find("#ddlRailwayStationDistance").val(res[0]["RailwayStation"].split("-")[1]).change();
+            RenderContent.find("#ddlBusStationDistance").val(res[0]["BusStation"].split("-")[1]).change();
+            RenderContent.find("#ddlMetroStationDistance").val(res[0]["MetroStation"].split("-")[1]).change();
+            RenderContent.find("#ddlSchoolCollegeDistance").val(res[0]["SchoolorCollege"].split("-")[1]).change();
+            RenderContent.find("#ddlHospitalDistance").val(res[0]["Hospital"].split("-")[1]).change();
+            RenderContent.find("#ddlMarketDistance").val(res[0]["Market"].split("-")[1]).change();
+            RenderContent.find("#ddlHotelDistance").val(res[0]["Hotel"].split("-")[1]).change();
+            RenderContent.find("#ddlTempleDistance").val(res[0]["Temple"].split("-")[1]).change();
         });
     });
 }

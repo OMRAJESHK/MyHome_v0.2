@@ -14,9 +14,7 @@
 });
 
 
-function toclientLogin() {
-    window.location.href = "userLogin";
-}
+function toclientLogin() { window.location.href = "userLogin"; }
 
 function handleUserLogin() {
     if (!PhoneNumberValidate(Number($("#txtLoginPhoneNumber").val()))) {
@@ -75,7 +73,7 @@ function getCredentials(response) {
         sessionStorage.setItem('UserMail', response.mailId);
         sessionStorage.setItem('UserName', response.names);
         sessionStorage.setItem('UserNumber', $('#txtLoginPhoneNumber').val());
-        ManageAjaxCalls.Get(ApiDictionary.GetAssetName(), { AssetName: Number(response.assetname) }, (res) => {
+        ManageAjaxCalls.Get(ApiDictionary.GetAssetById(), { AssetName: Number(response.assetname) }, (res) => {
             console.log("resresres", res)
             var name = '';
             var id = '';
@@ -160,3 +158,5 @@ function forgotpasswordSendLink() {
         }
     });
 }
+
+function toMainScreen() { window.location.href = "index"; }

@@ -18,11 +18,8 @@
     font-style: normal;
     font-variant: normal;
     line-height: 1;
-
     display: inline-block;
-
     text-transform: none;
-
     speak: none;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -31,7 +28,6 @@
 {
     margin-left: 2em;
     padding-left: 0;
-
     list-style: none;
 }
 .bx-ul > li
@@ -45,9 +41,7 @@
 
     position: absolute;
     left: -2em;
-
     width: 2em;
-
     text-align: center;
 }
 @-webkit-keyframes spin
@@ -284,8 +278,7 @@
                 transform: scale3d(1, 1, 1);
     }
 
-    10%,
-    20%
+    10%, 20%
     {
         -webkit-transform: scale3d(.95, .95, .95) rotate3d(0, 0, 1, -10deg);
                 transform: scale3d(.95, .95, .95) rotate3d(0, 0, 1, -10deg);
@@ -300,9 +293,7 @@
                 transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, 10deg);
     }
 
-    40%,
-    60%,
-    80%
+    40%, 60%, 80%
     {
         -webkit-transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, -10deg);
                 transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, -10deg);
@@ -460,51 +451,32 @@
     vertical-align: middle;
 }
 
-.bx-lg
-{
-    font-size: 3.0rem!important;
-}
-.bx-pull-left
-{
-    float: left;
-
-    margin-right: .3em!important;
-}
-
-.bx-pull-right
-{
-    float: right;
-
-    margin-left: .3em!important;
-}
+.bx-lg { font-size: 3.0rem!important; }
+.bx-pull-left { float: left; margin-right: .3em!important; }
+.bx-pull-right { float: right; margin-left: .3em!important; }
 .bx-rotate-90
 {
     transform: rotate(90deg);
-
     -ms-filter: 'progid:DXImageTransform.Microsoft.BasicImage(rotation=1)';
 }
 .bx-rotate-180
 {
     transform: rotate(180deg);
-
     -ms-filter: 'progid:DXImageTransform.Microsoft.BasicImage(rotation=2)';
 }
 .bx-rotate-270
 {
     transform: rotate(270deg);
-
     -ms-filter: 'progid:DXImageTransform.Microsoft.BasicImage(rotation=3)';
 }
 .bx-flip-horizontal
 {
     transform: scaleX(-1);
-
     -ms-filter: 'progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1)';
 }
 .bx-flip-vertical
 {
     transform: scaleY(-1);
-
     -ms-filter: 'progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)';
 }
 .bx-border
@@ -517,7 +489,6 @@
 .bx-border-circle
 {
     padding: .25em;
-
     border: .07em solid rgba(0,0,0,.1);
     border-radius: 50%;
 }

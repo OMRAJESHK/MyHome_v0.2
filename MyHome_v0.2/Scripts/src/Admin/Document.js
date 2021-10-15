@@ -7,7 +7,8 @@ const gotoSaveDocument = () => {
         RenderContent.html(response);
         $('#documentPreview').attr('src', "").hide();
         $('#NoDoc_Text').text("No Preview");
-        generateOptions(convertObjectArray(DocumentTypes), "ddlDocumentTitle");
+        let DocumentsArray = convertObjectArray(DocumentTypes).filter(x => x.value != 1);
+        generateOptions(DocumentsArray, "ddlDocumentTitle");
         RenderContent.find("#txtDocumentDate").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true }).datepicker("setDate", new Date())
     });
 }
@@ -42,25 +43,31 @@ function getDocuments() {
         console.log("documentData", res);
         let docsHTML = ``;
         documentsData = res;
-        res && res.length>0? res.map((itm)=> {
-            docsHTML += `<div class="col col-6" onclick="handleDocClick(${itm.ImgID});">
-                            <div class="card assetCards">
-                                <div class="card-body cursor-pointer" style="min-width:200px;height:200px;position: relative;">
-                                    <div class="d-flex justify-content-between mb-1 border-bottom">
-                                         <div class="h6 global-text-primary font-weight-bold" style="white-space:nowrap">
-                                              <i class="fas fa-image fontSize_18" aria-hidden="true"></i> ${docTypes.filter(x => x.value == itm.ImgTitle)[0].name}
-                                         </div>
-                                         <button title="Delete" class="btn p-0">
-                                            <i class="fas fa-trash-alt fontSize_18 text-danger" onclick="SetDocumentDeleteModal(${itm.ImgID})"></i>
-                                         </button>
+        res && res.length > 0 ? res.map((itm) => {
+            if (itm.ImgTitle != 1) {
+                docsHTML += `<div class="col col-6" onclick="handleDocClick(${itm.ImgID});">
+                                <div class="card assetCards">
+                                    <div class="card-body cursor-pointer" style="min-width:200px;height:200px;position: relative;">
+                                        <div class="d-flex justify-content-between mb-1 border-bottom">
+                                             <div class="h6 global-text-primary font-weight-bold" style="white-space:nowrap">
+                                                  <i class="fas fa-image fontSize_18" aria-hidden="true"></i> ${docTypes.filter(x => x.value == itm.ImgTitle)[0].name}
+                                             </div>
+                                             <button title="Delete" class="btn p-0">
+                                                <i class="fas fa-trash-alt fontSize_18 text-danger" onclick="SetDocumentDeleteModal(${itm.ImgID})"></i>
+                                             </button>
+                                        </div>
+                                        <div class="h6 global-text-primary py-3">${dateFormat(getDateOnly(itm.ImgDate))}</div>
+                                        <div class="h6 global-text-primary">${itm.ImgDescription}</div>
                                     </div>
-                                    <div class="h6 global-text-primary py-3">${dateFormat(getDateOnly(itm.ImgDate))}</div>
-                                    <div class="h6 global-text-primary">${itm.ImgDescription}</div>
                                 </div>
-                            </div>
-                        </div>`
+                            </div>`
+                $("#downloadDoc").removeClass("disabled");
+                setTimeout(() => { setScreenLoader(false); }, 500);
+            }  
         }) : (function () {
-                docsHTML =`<span class="text-center" style="width: 100%;font-size: 14px;font-weight: 500;">No Documents Available</span>`
+                docsHTML = `<span class="text-center" style="width: 100%;font-size: 14px;font-weight: 500;">No Documents Available</span>`;
+                $("#downloadDoc").addClass("disabled");
+                setTimeout(() => { setScreenLoader(false); }, 500);
             }());
         $("#DocumentList").html(docsHTML);
     })

@@ -8,7 +8,7 @@
                 <div class="card-header">
                     <div class="d-flex justify-content-between mb-1">
                         <div class="h4 font-weight-bold">Documents</div>
-                        <button class="btn global-bg-primary" onclick="gotoSaveDocument()">Add New</button>
+                        <button class="btn global-bg-primary" onclick="gotoSaveDocument()"hidden id="btnAddDocument">Add New</button>
                     </div>
                 </div>
                 <div class="card-body">
@@ -34,7 +34,7 @@
                 </div>
                 <div class="card-footer">
                     <div class="d-flex justify-content-between">
-                        <a class="btn btn-info text-light" id="downloadDoc">
+                        <a class="btn btn-info text-light disabled" id="downloadDoc">
                             Download
                         </a>
                     </div>

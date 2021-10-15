@@ -17,7 +17,16 @@ namespace MyHome_v0._2.Controllers
             public string OwnerName;
             public string AssetAddress;
             public string AssetName;
-            public int AssetId;  
+            public int AssetId;
+            public int IsRent;
+            public int IsSump;
+            public int LandTaxAmount;
+            public int NumberofBulbs;
+            public int NumberofDoors;
+            public int NumberofFans;
+            public int NumberofTaps;
+            public int NumberofWindows;
+            
          }
         [HttpGet]
          public HttpResponseMessage GetAsset() {
@@ -32,13 +41,21 @@ namespace MyHome_v0._2.Controllers
          }
 
         [AllowAnonymous]
-        public IHttpActionResult GetAssetName(int AssetName){
+        public IHttpActionResult GetAssetById(int AssetName){
             AssetDetails assetdetails = new AssetDetails();
             var AssetData = entities.AssetRegistrations.Where(x => x.AssetId == AssetName).SingleOrDefault();
             assetdetails.OwnerName = AssetData.RegusteredTo;
             assetdetails.AssetName = AssetData.AssetName;
             assetdetails.AssetAddress = AssetData.Address;
             assetdetails.AssetId = AssetData.AssetId;
+            assetdetails.IsRent = AssetData.IsRent;
+            assetdetails.IsSump = AssetData.IsSump;
+            assetdetails.LandTaxAmount = AssetData.LandTaxAmount;
+            assetdetails.NumberofBulbs = AssetData.NumberofBulbs;
+            assetdetails.NumberofDoors = AssetData.NumberofDoors;
+            assetdetails.NumberofFans = AssetData.NumberofFans;
+            assetdetails.NumberofTaps = AssetData.NumberofTaps;
+            assetdetails.NumberofWindows = AssetData.NumberofWindows;
             
             if (AssetData == null)
                 return Ok("404");
