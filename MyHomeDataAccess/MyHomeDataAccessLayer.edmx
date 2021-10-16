@@ -119,6 +119,7 @@
           <Property Name="Subject" Type="nvarchar" MaxLength="100" />
           <Property Name="Body" Type="nvarchar(max)" />
           <Property Name="MailDate" Type="date" Nullable="false" />
+          <Property Name="isAttachment" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Notifications">
           <Key>
@@ -422,6 +423,7 @@
           <Property Name="Subject" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="MailDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="isAttachment" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Notification">
           <Key>
@@ -701,6 +703,7 @@
           <EntitySetMapping Name="MailLogs">
             <EntityTypeMapping TypeName="MyHomeDBModel.MailLog">
               <MappingFragment StoreEntitySet="MailLogs">
+                <ScalarProperty Name="isAttachment" ColumnName="isAttachment" />
                 <ScalarProperty Name="MailId" ColumnName="MailId" />
                 <ScalarProperty Name="AssetName" ColumnName="AssetName" />
                 <ScalarProperty Name="MailTo" ColumnName="MailTo" />

@@ -1,4 +1,5 @@
-﻿var globalAssetList = [];
+﻿var glodalSelectedAssetName = "Asset Name";
+var globalAssetList = [];
 var globalTransactions = [];
 var globalTenantAgreement = [];
 var globalEmrcyContacts = [];

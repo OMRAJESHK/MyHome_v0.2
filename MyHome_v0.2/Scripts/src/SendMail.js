@@ -25,7 +25,7 @@ function sendmail() {
     for (var i = 0; i < files.length; i++) {
         formData.append(files[i].name, files[i]);
     }
-    console.log("FormDataObj", formData);
+    console.log("FormDataObj", formData, files.length);
     $.ajax({
         type: "POST",
         url: ApiDictionary.Sendmail(),
@@ -42,6 +42,7 @@ function sendmail() {
                 MailDate: getCurrentDate(),
                 Subject: $('#txtSubject').val(),
                 Body: $('#txtBody').val(),
+                isAttachment: files.length > 0 ? 1 : 0      // 0 - false , 1 - true
             });
             ManageAjaxCalls.Post(ApiDictionary.PostMailLogs(), MailLogToSave, (res) => {
                 console.log(res, 'MailLog saved Successfully');
@@ -57,7 +58,11 @@ function sendmail() {
         }
     });
 }
-
+function mailFileCheck() {
+    let fileInput = $('#imageBrowse');
+    let fileSize = fileInput.get(0).files[0].size; // in bytes
+    console.log("fileSize", fileSize);
+}
 //function selectFile() {
 //    var File = document.getElementById("imageBrowse").files[0];
 //    if (File && File[0]) {
@@ -126,7 +131,14 @@ function getMailLogs() {
             columns: [
                 { data: 'MailTo' },
                 { data: 'Subject' },
-                { data: 'Body' },
+                {
+                    data: 'Body',
+                    render: function (data, type, row, meta) {
+                        return row["isAttachment"] ?
+                            `<div class="d-flex justify-content-between"><span>${data}</span><i class="bx bx-file mt-2 fontSize_20"></i></div>` :
+                            `<span>${data} 123</span>`;
+                    }
+                },
                 { data: 'MailDate', render: function (data) { return getDisplayDate(data) }},
                 {
                     data: 'MailId', render: function (data) {
@@ -135,11 +147,7 @@ function getMailLogs() {
                     }
                 },
             ],
-            "initComplete": function () {
-                setTimeout(() => {
-                    setScreenLoader(false)
-                }, 500);
-            }
+            "initComplete": function () { setTimeout(() => { setScreenLoader(false); }, 500); }
 
         });
     });

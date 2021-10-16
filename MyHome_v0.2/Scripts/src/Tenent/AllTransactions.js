@@ -42,7 +42,7 @@ function transactionCall() {
 function tranRespose(transactions) {
     $('#tblTransactions tbody').empty();
     $('#tblTransactions thead').html(`
-                   <tr class="global-text-primary">
+                   <tr class="global-text-primary tablelight">
                         <th>Description</th><th>Transaction Type</th><th>Amount</th><th>Date</th>
                         <th>Transaction Mode</th><th>Paid By</th><th>Paid To</th><th>Status</th><th>Remarks</th> 
                    </tr>`);
@@ -99,7 +99,7 @@ function AlltransactionsGet() {
 function tranResponseGet(transactions) {
     $('#tblTransactions tbody').empty();
     $('#tblTransactions thead').html(`
-                   <tr class="global-text-primary">
+                   <tr class="global-text-primary tablelight">
                         <th>Description</th><th>Transaction Type</th><th>Amount</th><th>Date</th><th>Transaction Mode</th>
                         <th>Paid By</th><th>Paid To</th><th>Status</th><th>Remarks</th><th>Action</th>
                     </tr>`);

@@ -127,7 +127,7 @@ function gotoDucumentView() {
             let btn = document.getElementById('btnAddDocument');
             btn.removeAttribute("hidden");
         }
-        setScreenLoader(true);
+        customizeUI();
         getDocuments();
     });
 }
@@ -299,17 +299,31 @@ function AdminDashboardFunction(assetId) {
 let picBase64 = "";
 let Documentdata = [];
 function getProPicSrc(input, imgContainer) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            console.log("endocestuff", e.target.result);
-            $('#' + imgContainer).attr('src', e.target.result);
-            picBase64 = e.target.result.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
-        };
-        reader.readAsDataURL(input.files[0]);
-        $('#NoPreview_Text').text("");
-        $('#' + imgContainer).show();
+    var filename = input.files[0].name;
+    let fileSize = input.files[0].size; // in bytes
+    let fileExtension = filename.split('.').pop();
+    if (["png", "jpeg", "jpg"].includes(fileExtension)) {
+        if (fileSize < 2000000) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    console.log("endocestuff", e.target.result);
+                    $('#' + imgContainer).attr('src', e.target.result);
+                    picBase64 = e.target.result.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
+                };
+                reader.readAsDataURL(input.files[0]);
+                $('#NoPreview_Text').text("");
+                $('#' + imgContainer).show();
+            }
+        } else {
+            CustomeToast("Upload Profile Picture", "Image File Size is Too Big. Please select image with size less that 2 MB", "bg-danger");
+        }
+        
+    } else {
+        CustomeToast("Upload Profile Picture", "Please Select Image File", "bg-danger");
+        document.getElementById("profileBrowse").value = "";
     }
+    
 }
 function clearProfilePreview() {
     document.getElementById("profileBrowse").value = "";
@@ -321,12 +335,11 @@ function gotoAccountDetails() {
     var url = window.rootpath + "UserAccount/AccountDetails";
     $.get(url, function (response) {
         RenderContent.html(response);
-        $("#divHouseName").text(sessionStorage.getItem("AssetName"));
+        $("#divHouseName").text(glodalSelectedAssetName);
         $('#UserMail').text(sessionStorage.getItem('UserMail'));
         $('#userName').text(sessionStorage.getItem('UserName'));
         $("#UserNumber").text(sessionStorage.getItem('UserNumber'));
-        document.getElementById('profilePreview').setAttribute('src', picBase64);
-        picBase64 = "";
+        getProfilePicture();
     });
 }
 
@@ -339,6 +352,8 @@ function getProfilePicture() {
             picBase64 = 'data:image/png|jpg;base64,' + res.ImgEncode;
             document.getElementById('proPicMini').setAttribute('src', picBase64);
             document.getElementById('proPicMain').setAttribute('src', picBase64);
+            let profilePreview = document.getElementById('profilePreview');
+            profilePreview && profilePreview.setAttribute('src', picBase64);
         }
     }):
     ManageAjaxCalls.GetData(ApiDictionary.GetProfilePicture() + `?AssetName=${sessionStorage.getItem("AssetID")}`, (res) => {
@@ -373,8 +388,8 @@ function SaveProfilePicture() {
         console.log(res);
         document.getElementById('proPicMini').setAttribute('src', 'data:image/png|jpg;base64,' + picBase64);
         document.getElementById('proPicMain').setAttribute('src', 'data:image/png|jpg;base64,' + picBase64);
-        if (res.status == 201) {
-            CustomeToast("Profile Picture", 'Saved Successfully', "bg-success");
+        if (res.status == 200) {
+            CustomeToast("Profile Picture", 'Profile Picture saved Successfully', "bg-success");
         } else if (res.status == 405) {
             CustomeToast("Profile Picture", res.responseJSON, "bg-danger");
         }

@@ -61,11 +61,13 @@ function customizeUI() {
         $('body').find('.global-bg-primary').addClass('darkmode').removeClass('global-bg-primary');
         $('body').find('.ckeckBoxStyle').addClass('ckeckBoxStyleDark').removeClass('ckeckBoxStyle');  //change checkbox color
         $('body').find('.global-text-primary').addClass('global-text-dark').removeClass('global-text-primary');
-
+        $('body').find('table.table thead tr th').addClass('tabledark').removeClass("tablelight");
     } else {
         $('body').find('.darkmode').addClass('global-bg-primary').removeClass('darkmode');
         $('body').find('.ckeckBoxStyleDark').addClass('ckeckBoxStyle').removeClass('ckeckBoxStyleDark');   //change checkbox color
         $('body').find('.global-text-dark').addClass('global-text-primary').removeClass('global-text-dark');
+        $('body').find('table.table thead tr th').removeClass('tabledark').addClass("tablelight");
+
     }
 }
 

@@ -11,6 +11,9 @@ namespace MyHome_v0._2.Controllers
     public class DocumentController : ApiController
     {
         private readonly MyHomeDBEntities entities = new MyHomeDBEntities();
+        public class DocumentRes {            
+            public int status;
+         }
         [HttpGet]
          public HttpResponseMessage GetDocument(int AssetName) {
             string[] empty= new string[0]; 
@@ -51,10 +54,13 @@ namespace MyHome_v0._2.Controllers
         
         [HttpPost]
          public HttpResponseMessage PostDocument(Document document) {
+            DocumentRes documentres = new DocumentRes();
+
              try { 
                 entities.Documents.Add(document);
                 entities.SaveChanges();
-                var message=Request.CreateResponse(HttpStatusCode.Created, document);
+                documentres.status = 200;
+                var message=Request.CreateResponse(HttpStatusCode.Created,documentres);
                 return message;
              }catch(Exception ex){
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
@@ -62,6 +68,7 @@ namespace MyHome_v0._2.Controllers
          }
         [HttpPut]
         public HttpResponseMessage PutDocument(int id,[FromBody]Document document) {
+            DocumentRes documentres = new DocumentRes();
             try {
                 var entity = entities.Documents.FirstOrDefault(x => x.ImgID == id);
                 if (entity == null) {
@@ -73,9 +80,9 @@ namespace MyHome_v0._2.Controllers
                     entity.ImgEncode = document.ImgEncode;
                     entity.ImgTitle = document.ImgTitle;
                     entity.isAdmin = document.isAdmin;
-                   
+                    documentres.status = 200;
                     entities.SaveChanges();
-                    return Request.CreateResponse(HttpStatusCode.OK, entity);
+                    return Request.CreateResponse(HttpStatusCode.OK, documentres);
                 }
             } catch (Exception ex) {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);

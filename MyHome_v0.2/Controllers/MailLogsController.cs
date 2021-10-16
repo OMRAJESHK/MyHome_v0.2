@@ -32,7 +32,7 @@ namespace MyHome_v0._2.Controllers
              try { 
                 entities.MailLogs.Add(maillog);
                 entities.SaveChanges();
-                var message=Request.CreateResponse(HttpStatusCode.Created, maillog);
+                var message = Request.CreateResponse(HttpStatusCode.Created, maillog);
                 return message;
              }catch(Exception ex){
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
@@ -50,6 +50,7 @@ namespace MyHome_v0._2.Controllers
                     entity.MailDate = maillog.MailDate;
                     entity.Subject = maillog.Subject;
                     entity.Body = maillog.Body;
+                    entity.isAttachment = maillog.isAttachment;
                     entities.SaveChanges();
                     return Request.CreateResponse(HttpStatusCode.OK, entity);
                 }

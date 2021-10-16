@@ -63,8 +63,10 @@ function AssetDetails() {
     let Asset = AssetList.filter(data => data.AssetId == id);
     console.log("AssetListAssetListAssetList", AssetList, Asset)
     $('#lblAssetName, #lblAssetNamehdr').text(Asset[0].AssetName);
+    CustomeToast("Welcome To", Asset[0].AssetName, "bg-primary");
     $('#lblRegDate').text(getDateOnly(Asset[0].RegisteredDate));
     $('#lblRegTo').text(Asset[0].RegusteredTo);
+    glodalSelectedAssetName = Asset[0].AssetName;
     $('#lblAssetAddress').text(Asset[0].Address);
     $('#lblRegTaxAmt').text(Asset[0].LandTaxAmount);
     $('#lblNumDoors').text(inWords(Asset[0].NumberofDoors));
@@ -85,7 +87,7 @@ function handleCardClick(id) {
     getNotifications();
     getRequests();
     let name = AssetList.filter(data => data.AssetId == id)[0].AssetName;
-    CustomeToast("Welcome To", name, "bg-primary");
+    
     AdminDashboardFunction(id);
 }
 

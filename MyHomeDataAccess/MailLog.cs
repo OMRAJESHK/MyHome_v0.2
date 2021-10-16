@@ -20,5 +20,6 @@ namespace MyHomeDataAccess
         public string Subject { get; set; }
         public string Body { get; set; }
         public System.DateTime MailDate { get; set; }
+        public bool isAttachment { get; set; }
     }
 }

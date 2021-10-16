@@ -20,7 +20,7 @@ const EmergencyContactRes = (res) => {
             mainContent.find('#btnAddEmergancies').show() :
             mainContent.find('#btnAddEmergancies').hide();
         $('#tblEmergancyContact tbody').empty();
-        $('#tblEmergancyContact thead').html(`<tr class="global-bg-primary">
+        $('#tblEmergancyContact thead').html(`<tr class="global-text-primary tablelight">
                         <th>Name</th>
                         <th>Contact Number</th>
                         <th>Profession</th> 
@@ -59,7 +59,7 @@ const EmergencyContactResponse = (res) => {
         RenderContent.html(response);
         $('#tblEmergancyContact tbody').empty();
         $('#tblEmergancyContact thead').html(`
-                    <tr class="global-bg-primary">
+                    <tr class="global-text-primary tablelight">
                         <th>Name</th> <th>Contact Number</th><th>Profession</th> 
                         <th>Is Visible to Tenant</th><th>Action</th>
                     </tr>`);

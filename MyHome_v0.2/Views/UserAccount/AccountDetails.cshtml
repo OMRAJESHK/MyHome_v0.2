@@ -12,7 +12,9 @@
                                 <img class="img-fluid w-100" src="" id="profilePreview" style="border-radius:10px;border:2px solid #efefef" />
                                 <div id="NoPreview_Text"></div>
                             </div>
-                            <div class="form-group"><input type="file" id="profileBrowse" onchange="getProPicSrc(this,'profilePreview');" required /></div>
+                            <div class="form-group">
+                                <input type="file" id="profileBrowse" onchange="getProPicSrc(this,'profilePreview');" required accept="image/x-png, image/jpg, image/gif, image/jpeg"/>
+                            </div>
                             <button class="btn btn-sm global-bg-primary" onclick="clearProfilePreview()"><i class="fas fa-broom"></i>Clear</button>
                             <button class="btn btn-sm global-bg-primary" onclick="SaveProfilePicture()"><i class="fas fa-broom"></i>SAVE</button>
                         </div>

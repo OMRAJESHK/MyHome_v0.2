@@ -14,17 +14,30 @@ const gotoSaveDocument = () => {
 }
 
 function getDocSrc(input, imgContainer) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            console.log("endocestuff", e.target.result);
-            $('#' + imgContainer).attr('src', e.target.result);
-            docBase64 = e.target.result.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
-        };
-        reader.readAsDataURL(input.files[0]);
-        $('#NoDoc_Text').text("");
-        $('#' + imgContainer).show();
+    var filename = input.files[0].name;
+    let fileSize = input.files[0].size; // in bytes
+    let fileExtension = filename.split('.').pop();
+    if (["png", "jpeg", "jpg"].includes(fileExtension)) {
+        if (fileSize < 5000000) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#' + imgContainer).attr('src', e.target.result);
+                    docBase64 = e.target.result.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
+                };
+                reader.readAsDataURL(input.files[0]);
+                $('#NoDoc_Text').text("");
+                $('#' + imgContainer).show();
+            }
+        } else {
+            CustomeToast("Document", "Image File Size is Too Big. Please select image with size less that 5 MB", "bg-danger");
+        }
+    } else {
+        CustomeToast("Document Upload", "Please Select Image File", "bg-danger");
+        document.getElementById("documentBrowse").value = "";
     }
+
+    
 }
 
 function clearPreview() {
@@ -36,6 +49,7 @@ function clearPreview() {
 }
 
 function getDocuments() {
+    setScreenLoader(true);
     $('#documentPreview').attr('src', "").hide();
     $('#NoDoc_Text').text("No Preview");
     let assetID = sessionStorage.getItem('AssetID');
@@ -62,15 +76,19 @@ function getDocuments() {
                                 </div>
                             </div>`
                 $("#downloadDoc").removeClass("disabled");
-                setTimeout(() => { setScreenLoader(false); }, 500);
-            }  
-        }) : (function () {
+            } else {
                 docsHTML = `<span class="text-center" style="width: 100%;font-size: 14px;font-weight: 500;">No Documents Available</span>`;
-                $("#downloadDoc").addClass("disabled");
-                setTimeout(() => { setScreenLoader(false); }, 500);
+            }
+        }) : (function () {
+            docsHTML = `<span class="text-center" style="width: 100%;font-size: 14px;font-weight: 500;">No Documents Available</span>`;
+            $("#downloadDoc").addClass("disabled");
             }());
+        console.log("documentData", docsHTML);
+
         $("#DocumentList").html(docsHTML);
-    })
+        setTimeout(() => { setScreenLoader(false); }, 600);
+
+    });
 
 }
 
@@ -106,7 +124,7 @@ function saveDocument() {
         ImgDescription: docDesc,
         ImgDate: docDate,
         AssetName: assetID,
-        isAdmin:0             // 0 - Tenant , 1 - Admin
+        isAdmin: 0             // 0 - Tenant , 1 - Admin
     });
     ManageAjaxCalls.Post(ApiDictionary.PostDocument(), DocumentToSave, (res) => {
         console.log(res)
