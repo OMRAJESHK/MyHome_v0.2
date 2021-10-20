@@ -7,19 +7,19 @@
             <div class="card border-info shadow">
                 <div class="card-body p-0">
                     <div class="row">
-                        <div class="col-12 col-sm-12 col-md-6 col-xl-6 text-center">
+                        <div class="col-12 col-sm-12 col-md-6 col-xl-6 ">
                             <div style="height:80%;" class="pb-2">
                                 <img class="img-fluid w-100" src="" id="profilePreview" style="border-radius:10px;border:2px solid #efefef" />
                                 <div id="NoPreview_Text"></div>
                             </div>
-                            <div class="form-group">
-                                <input type="file" id="profileBrowse" onchange="getProPicSrc(this,'profilePreview');" required accept="image/x-png, image/jpg, image/gif, image/jpeg"/>
+                            <div class="ml-1 mt-3">
+                                <input type="file" id="profileBrowse" onchange="getProPicSrc(this,'profilePreview');" 
+                                       required accept="image/x-png, image/jpg, image/gif, image/jpeg" />
+                                <button class="btn btn-clear w-20" onclick="clearProfilePreview()"><i class="fas fa-broom"></i>Clear</button>
+                                <button class="btn btn-success w-20" onclick="SaveProfilePicture()"><i class="fas fa-share"></i>SAVE</button>
                             </div>
-                            <button class="btn btn-sm global-bg-primary" onclick="clearProfilePreview()"><i class="fas fa-broom"></i>Clear</button>
-                            <button class="btn btn-sm global-bg-primary" onclick="SaveProfilePicture()"><i class="fas fa-broom"></i>SAVE</button>
-                        </div>
+                        </div>   
                         <div class="col-12 col-sm-12 col-md-6 col-xl-6 pt-3 pl-4">
-                            
                             <div class="form-group">
                                 <div class="d-flex border-bottom pb-4">
                                     <div class="w-25 mt-2"><i class="fa fa-home fontSize_50 global-text-primary"></i></div>

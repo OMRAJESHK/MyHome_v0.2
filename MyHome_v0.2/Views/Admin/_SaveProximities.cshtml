@@ -6,9 +6,7 @@
         <div class="row">
             <div class="col-lg-4">
                 <div class="card card-outline-secondary shadow">
-                    <div class="card-header bg-primary">
-                        <h3 class="mb-0 text-light">Primary</h3>
-                    </div>
+                    <div class="card-header bg-primary"> <h3 class="mb-0 text-light">Primary</h3></div>
                     <div class="card-body">
                         <div autocomplete="off" class="form" role="form">
                             <div class="form-group">
@@ -59,14 +57,18 @@
                     <div class="card-body">
                         <div autocomplete="off" class="form" role="form">
                             <div class="form-group">
-                                <div class="d-flex">
-                                    <div style="width:80%">
+                                <div class="row no-gutters">
+                                    <div class="col-12 col-sm-6 col-md-6 col-lg-6">
                                         <label for="inputMetro">NearBy Metro Station</label>
                                         <input class="form-control minWidthFull" placeholder="Metro Station..." type="text" id="txtMetroStation">
                                     </div>
-                                    <div style="width:20%">
-                                        <label class="white-space-nowrap" for="inputddlMetroStation">Distance <span class="fontSize_12"><i>(KM)</i></span></label>
+                                    <div class="col-12 col-sm-3 col-md-3 col-lg-3">
+                                        <label class="white-space-nowrap " for="inputddlMetroStation">Distance <span class="fontSize_12"><i>(KM)</i></span></label>
                                         <select class="form-control minWidthFull" id="ddlMetroStationDistance"></select>
+                                    </div>
+                                    <div class="col-12 col-sm-3 col-md-3 col-lg-3">
+                                        <label class="white-space-nowrap" for="inputDirectionMetroStation">Direction</label>
+                                        <select class="form-control minWidthFull" id="ddlMetroStationDirection"></select>
                                     </div>
                                 </div>
                             </div>
@@ -144,9 +146,9 @@
                     </div>
                     <div class="card-footer p-2">
                         <div class="d-flex justify-content-between">
-                            <button class="btn btn-info w-25" type="button" onclick="gotoProximityView()">Back</button>
-                            <button class="btn btn-danger w-25" type="submit">clear</button>
-                            <button class="btn btn-info w-25" type="submit">Save</button>
+                            <button class="btn btn-secondary w-25" type="button" onclick="gotoProximityView()"><i class="fas fa-arrow-circle-left"></i> Back</button>
+                            <button class="btn btn-clear w-25" type="submit"><i class="fas fa-broom"></i>clear</button>
+                            <button class="btn btn-success w-25" type="submit">Save <i class="fas fa-share"></i></button>
                         </div>
                     </div>
                 </div>

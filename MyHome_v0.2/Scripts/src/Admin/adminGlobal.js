@@ -1,7 +1,7 @@
 ﻿const RenderContent = $('#RenderContent');
 const mainContent = $('.main-content');
 var AssetList = [];
-sessionStorage.getItem('RoleID') == '0' ? $('#btnEmrcyContact').hide() : $('#btnEmrcyContact').show();
+isAdmin() ? $('#btnEmrcyContact').show() : $('#btnEmrcyContact').hide();
 
 const getAssetsList = () => {
     $.ajax({
@@ -124,7 +124,7 @@ function getRequests() {
         let RequestList = '';
         $('#btnAllRequest').prop('disabled', false);
         res.map(row => {
-            if (sessionStorage.getItem('RoleID')==1 && row.Status == 0) {
+            if (isAdmin() && row.Status == 0) {
                 RequestList += `
                     <div class="notifi__item">
                         <div class="bg-c3 img-cir img-40">

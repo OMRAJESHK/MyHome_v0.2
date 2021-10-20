@@ -6,7 +6,8 @@
     if (sessionStorage.getItem('accessToken') == null) {
         window.location.href = window.rootpath + ApiDictionary.gotoLogin();
     }
-    if (sessionStorage.getItem('RoleID') == 0) {
+
+    if (!isAdmin()) {
         $('.AdminMenu').hide();
         $('.ClientMenu').show();
         $(".menuCover").remove();
@@ -17,7 +18,7 @@
             customizeUI();
             getDashboardData();
         });
-    } else if (sessionStorage.getItem('RoleID') == 1) {
+    } else if (isAdmin()) {
         $('.ClientMenu').hide();
         $('.AdminMenu').show();
         $("#Notiquantity").css("display", "none");
@@ -123,8 +124,9 @@ function gotoDucumentView() {
     var url = window.rootpath + UserAccountURLs.DucumentView;
     $.get(url, function (response) {
         RenderContent.html(response);
+        let btn = document.getElementById('btnAddDocument');
+
         if (isAdmin()) {
-            let btn = document.getElementById('btnAddDocument');
             btn.removeAttribute("hidden");
         }
         customizeUI();

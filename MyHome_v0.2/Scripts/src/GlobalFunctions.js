@@ -88,9 +88,7 @@ function CustomeToast(txthead, txtbody, cls) {
 
 
 
-const isAdmin = () => {
-    return sessionStorage.getItem('RoleID') == 1;
-}
+const isAdmin = () => { return sessionStorage.getItem('RoleID') == 1; }
 
 // Toggle Fulscreen Logic
 
@@ -121,7 +119,7 @@ function toggleFullScreen() {
 }
 
 const generateOptions = (List, ddl) => {
-    let options = `<option value="">None</option>`;
+    let options = `<option value="" disabled>None</option>`;
     options += List.map(x => {
         return `<option value=${x.value}>${x.name}</option>`;
     });

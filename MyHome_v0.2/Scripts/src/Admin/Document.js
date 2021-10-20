@@ -54,7 +54,6 @@ function getDocuments() {
     $('#NoDoc_Text').text("No Preview");
     let assetID = sessionStorage.getItem('AssetID');
     ManageAjaxCalls.GetData(ApiDictionary.GetDocument() + `?AssetName=${assetID}`, (res) => {
-        console.log("documentData", res);
         let docsHTML = ``;
         documentsData = res;
         res && res.length > 0 ? res.map((itm) => {
@@ -80,11 +79,9 @@ function getDocuments() {
                 docsHTML = `<span class="text-center" style="width: 100%;font-size: 14px;font-weight: 500;">No Documents Available</span>`;
             }
         }) : (function () {
-            docsHTML = `<span class="text-center" style="width: 100%;font-size: 14px;font-weight: 500;">No Documents Available</span>`;
-            $("#downloadDoc").addClass("disabled");
+                docsHTML = `<span class="text-center" style="width: 100%;font-size: 14px;font-weight: 500;">No Documents Available</span>`;
+                $("#downloadDoc").addClass("disabled");
             }());
-        console.log("documentData", docsHTML);
-
         $("#DocumentList").html(docsHTML);
         setTimeout(() => { setScreenLoader(false); }, 600);
 

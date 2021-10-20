@@ -60,3 +60,5 @@ const ReminderTypes = {
     //"Every Minute": 1, "Every Hour": 2,
     "Every Day": 3, "Every Week": 4, "Every Month": 5, "Every Year": 6
 }
+
+const Directions = { "North": 1, "North East": 2, "East": 3, "South East": 4, "South": 5, "South West": 6, "West": 7, "North West": 8 }

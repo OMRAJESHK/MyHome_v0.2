@@ -59,17 +59,17 @@
                     <div class="card-header global-bg-primary"><h3 class="mb-0 text-light">Add Transaction</h3></div>
                     <div class="card-body card-body pb-4">
                         <div autocomplete="off" class="form" role="form">
-                            <div style="display:flex;margin-top:20px">
-                                <div style="flex:1" className="text-right">
+                            <div class="row no-gutters" style="display:flex;margin-top:20px">
+                                <div class="col-12">
                                     <div class="form-check p-0 white-space-nowrap">
-                                        <input type="checkbox" id="ckbPaymentStatus" class="ckeckBoxStyle">
+                                        <input type="checkbox" id="ckbPaymentStatus" class="ckeckBoxStyle" disabled>
                                         <label class="font-weight-bold" for="PaymentStatus">Payment Status</label>
                                     </div>
                                 </div>
-                                <div style="flex:1">
+                                <div class="col-12" title="Payment Date for Due Month">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text global-bg-primary">Date</span>
+                                            <span class="input-group-text global-bg-primary">CutOff Date</span>
                                         </div>
                                         <input type="text" class="form-control" placeholder="please enter transaction date" id="trnDate" required>
                                     </div>

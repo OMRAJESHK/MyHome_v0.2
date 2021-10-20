@@ -165,12 +165,11 @@ function tranResponseGet(transactions) {
 function handleTrnTypeChange() {
     let trnType = $("#ddlTransactionType :selected").val();
     if (trnType == 2) {
-        console.log("globalTenantAgreement", globalTenantAgreement, trnType)
         RenderContent.find('#txtAmt').val(globalTenantAgreement["RentAmount"]).prop("disabled", true);
     } else {
-        RenderContent.find('#txtAmt').prop("disabled", false);
-
+        RenderContent.find('#txtAmt').val("").prop("disabled", false);
     }
+    RenderContent.find("#ckbPaymentStatus").prop("checked", trnType <= 11); 
 }
 
 function Transactionsearch(val) {
@@ -241,6 +240,12 @@ function saveTransaction() {
         CutOffDate: trnDate
     });
     if (trnType == 2) {
+        trnFrom = dateFormat('01/01/' + yyyy);
+        trnTo = dateFormat('31/12/' + yyyy);
+        ManageAjaxCalls.GetData(ApiDictionary.GetTransactions() + `?AssetName=${assetID}&trnFrom=${trnFrom}&trnTo=${trnTo}`,
+            (res) => {
+                console.log("transactionsData", res);
+            })
         ManageAjaxCalls.Put(ApiDictionary.PutTransaction() + `?id=${trnselectedID}`, TransactionToSave, () => {
             if (res.status == 201) {
                 CustomeToast("Transaction", 'Modified Successfully', "bg-info");

@@ -24,7 +24,8 @@
 .global-text-secondary { color: bisque !important; }
 .minWidthFull { min-width:100%; }
 .asset-title { letter-spacing: 2px; text-transform: uppercase; }
-.fontSize_12 { font-size: 12px !important;}
+.fontSize_10 { font-size: 10px !important;}
+.fontSize_12 { font-size: 12px !important; }
 
 .fontSize_15 {font-size: 15px !important;}
 
@@ -38,6 +39,7 @@
 .fontSize_18 { font-size:18px !important; }
 .cursor-pointer { cursor:pointer !important; }
 .fontSize_20 { font-size: 20px !important; }
+.fontSize_25 { font-size: 25px !important; }
 .fontSize_30 { font-size: 30px !important; }
 .fontSize_50 { font-size: 50px !important; }
 .fontSize_60 { font-size: 60px !important; }

@@ -12,13 +12,14 @@ const getProximities = () => {
                 mainContent.find('#btnAddProximities').hide()
             }
         } else {
-            mainContent.find('#btnEditProximities').hide()
+            mainContent.find('#btnEditProximities,#btnAddProximities,#btnDeleteProximities').hide();
         }
         const checkFields = (val) => {
-            if (val) return val && val[0] == "" ? "N/A" : `${val[0]} (${val[1]}KM)`
+            if (val) return val && val[0] == "" ? "N/A" : `${val[0]} (${val[1] == 0 ? "Less than 1" : val[1]}KM)`
         }
         if (res.length > 0) {
             globalProximity = res;
+            console.log("globalProximity", globalProximity)
             $('#lblRailwayStation').text(checkFields(res[0]["RailwayStation"].split("-")));
             $('#lblBusStation').text(checkFields(res[0]["BusStation"].split("-")));
             $('#lblAirport').text(checkFields(res[0]["Airport"].split("-")));
@@ -59,6 +60,7 @@ function GotosaveProximities(isEdit) {
                 console.log("convertObjectArray", convertObjectArray(Distance))
                 generateOptions(convertObjectArray(Distance), itm);
             });
+        generateOptions(convertObjectArray(Directions), "ddlMetroStationDirection");
         ManageAjaxCalls.GetData(ApiDictionary.GetProximity() + `?AssetName=${assetId}`, (res) => {
             console.log("resres", res)
             RenderContent.find('#txtRailwayStation').val(res[0]["RailwayStation"].split("-")[0]);

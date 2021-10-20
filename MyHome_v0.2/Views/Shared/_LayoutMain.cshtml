@@ -27,7 +27,7 @@
     </script>
     <div class="page-wrapper">
         <!-- Get Started -->
-        <div style="position: fixed; inset: 0px; background: rgba(0, 0, 0, 0.63); z-index: 2147483647;" id="getStarted">
+        @*<div style="position: fixed; inset: 0px; background: rgba(0, 0, 0, 0.63); z-index: 2147483647;" id="getStarted">
             <div class="w-100 h-100 flex " style="flex-direction: column; justify-content: center; align-items: center; position: relative;">
                 <div class="mb-1" style="color: white; letter-spacing: 1.5px;">Hello, Welcome to <span>HOME SWEET HOME</span></div>
                 <button class="started_button">Get Started</button>
@@ -90,7 +90,7 @@
                     <div style="color: white; font-family: cursive; margin-right: 5px;">Customize website here</div>
                 </div>
             </div>
-        </div>
+        </div>*@
 
         <!-- Menu Cover -->
         <div class="menuCover" style="position: fixed;inset: 0px 101rem 37px 0px;background: rgba(0, 0, 0, 0.63);z-index: 2147483640;"></div>
@@ -118,22 +118,23 @@
                         <li class="btnAllTransactions"><a href="#" class="text-light"><i class="fas fa-chart-bar"></i>All Transactions</a></li>
                         <li class="btnRentAgreement"> <a href="#" class="text-light"> <i class="fas fa-table"></i>Tenant Details</a> </li>
                         @*<li class="has-sub">
-                                <a class="js-arrow btnTenentDetails text-light" href="#">
-                                    <i class="fas fa-table"></i>Tenant Details
-                                    <i class="fas fa-angle-down dashboardAngle" style="float: right;"></i>
-                                </a>
-                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                    <li class="btnRentAgreement"> <a href="#">Rental Agreement</a> </li>
-                                    <li class="btnDocuments"> <a href="#">Documents</a> </li>
-                                </ul>
-                            </li>*@
+                            <a class="js-arrow btnTenentDetails text-light" href="#">
+                                <i class="fas fa-table"></i>Tenant Details
+                                <i class="fas fa-angle-down dashboardAngle" style="float: right;"></i>
+                            </a>
+                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <li class="btnRentAgreement"> <a href="#">Rental Agreement</a> </li>
+                                <li class="btnDocuments"> <a href="#">Documents</a> </li>
+                            </ul>
+                        </li>*@
                         <li class="btnHouseDetails"><a href="#" class="text-light"><i class="fas fa-home"></i>House Details </a></li>
                         <li class="btnEmcyContact"><a href="#" class="text-light"><i class="fas fa-calendar-alt"></i>Emergency Contact</a></li>
                         <li class="btnProximity"><a href="#" class="text-light"><i class="fas fa-map-marker-alt"></i>Proximity</a></li>
                         <li class="btnRaiseReq"><a href="#" class="text-light"><i class="far fa-comment"></i>Raise Request</a></li>
                         <li class="btnDocument"><a href="#" class="text-light"><i class="fa fa-file" aria-hidden="true"></i>Documents</a></li>
+                        <li class="btnDocument"><a href="#" class="text-light"><i class="bx bx-cloud-download fontSize_25"></i>Documents</a></li>
                     </ul>
-                    <ul class="navbar-mobile__list list-unstyled AdminMenu global-bg-primary"style="font-weight: 500;">
+                    <ul class="navbar-mobile__list list-unstyled AdminMenu global-bg-primary" style="font-weight: 500;">
                         <li class="btn_A_Dashboad text-light"><a href="#" class="text-light"><i class="fas fa-border-all"></i>Dashboard</a></li>
                         <li class="btnAssetRegistration"><a href="#" class="text-light"><i class="fas fa-home"></i>Assets</a></li>
                         <li class="btnPropertyTax"><a href="#" class="text-light"><i class="fas fa-chart-bar"></i>Property Tax</a></li>
@@ -143,8 +144,7 @@
                         <li class="btn_A_Proximity"><a href="#" class="text-light"><i class="fas fa-map-marker-alt"></i>Proximities</a></li>
                         <li class="btn_A_SendMail"><a href="#" class="text-light"><i class="fas fa-envelope"></i>Send mail</a></li>
                         <li class="btnRaiseReq"><a href="#" class="text-light"><i class="far fa-comments"></i>Requests</a></li>
-                        <li class="btnDocument"><a href="#" class="text-light"><i class="fa fa-file" aria-hidden="true"></i>Documents</a></li>
-
+                        <li class="btnDocument"><a href="#" class="text-light"><i class="bx bx-cloud-upload fontSize_25"></i>Documents</a></li>
                     </ul>
                 </div>
             </nav>
@@ -163,20 +163,20 @@
                         <li class="btnAllTransactions"> <a href="#" class="text-light"> <i class="fas fa-chart-bar"></i>All Transactions</a> </li>
                         <li class="btnRentAgreement"> <a href="#" class="text-light"> <i class="fas fa-table"></i>Tenant Details</a> </li>
                         @*<li class="has-sub">
-                                <a class="js-arrow btnTenentDetails text-light" href="#">
-                                    <i class="fas fa-table"></i>Tenant Details
-                                    <i class="fas fa-angle-down dashboardAngle" style="float: right;"></i>
-                                </a>
-                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                    <li class="btnRentAgreement"> <a href="#">Rental Agreement</a> </li>
-                                    <li class="btnDocuments"> <a href="#">Documents</a> </li>
-                                </ul>
-                            </li>*@
+                            <a class="js-arrow btnTenentDetails text-light" href="#">
+                                <i class="fas fa-table"></i>Tenant Details
+                                <i class="fas fa-angle-down dashboardAngle" style="float: right;"></i>
+                            </a>
+                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <li class="btnRentAgreement"> <a href="#">Rental Agreement</a> </li>
+                                <li class="btnDocuments"> <a href="#">Documents</a> </li>
+                            </ul>
+                        </li>*@
                         <li class="btnHouseDetails"> <a href="#" class="text-light"> <i class="fas fa-home"></i>House Details </a> </li>
                         <li class="btnEmcyContact"> <a href="#" class="text-light"> <i class="fas fa-calendar-alt"></i>Emergency Contact </a> </li>
                         <li class="btnProximity"> <a href="#" class="text-light"> <i class="fas fa-map-marker-alt"></i>Proximity </a> </li>
                         <li class="btnRaiseReq"> <a href="#" class="text-light"> <i class="far fa-comment"></i>Raise Request</a> </li>
-                        <li class="btnDocument"><a href="#" class="text-light"><i class="fa fa-file" aria-hidden="true"></i>Documents</a></li>
+                        <li class="btnDocument"><a href="#" class="text-light"><i class="bx bx-cloud-download fontSize_25"></i>Documents</a></li>
                     </ul>
                     <ul class="list-unstyled navbar__list AdminMenu" style="font-weight: 500;">
                         <li class="btn_A_Dashboad"><a href="#" class="text-light"><i class="fas fa-border-all"></i>Dashboard</a></li>
@@ -188,8 +188,7 @@
                         <li class="btn_A_Proximity"><a href="#" class="text-light"><i class="fas fa-map-marker-alt"></i>Proximities</a></li>
                         <li class="btn_A_SendMail"><a href="#" class="text-light"><i class="fas fa-envelope"></i>Send mail</a></li>
                         <li class="btnRaiseReq"><a href="#" class="text-light"><i class="far fa-comments"></i>Requests</a></li>
-                        <li class="btnDocument"><a href="#" class="text-light"><i class="fa fa-file" aria-hidden="true"></i>Documents</a></li>
-
+                        <li class="btnDocument"><a href="#" class="text-light"><i class="bx bx-cloud-upload fontSize_25"></i><span>Documents</span></a></li>
                     </ul>
                 </nav>
             </div>
@@ -540,8 +539,10 @@
     <script src="~/Scripts/Assets/Calculator.js"></script>
     <script src="~/Scripts/RestAPI/ApiDirectory.js"></script>
     <script src="~/Scripts/RestAPI/ManageAjax.js"></script>
-    <script src="~/Scripts/src/Tenent/AllTransactions.js"></script>
     <script src="~/Scripts/src/GlobalConstants.js"></script>
+    <script src="~/Scripts/src/GlobalFunctions.js"></script>
+    <script src="~/Scripts/src/GlobalState.js"></script>
+    <script src="~/Scripts/src/Tenent/AllTransactions.js"></script>
     <script src="~/Scripts/src/Tenent/TenantGlobal.js"></script>
     <script src="~/Scripts/src/Admin/adminGlobal.js"></script>
     <script src="~/Scripts/src/Tenent/Proximities.js"></script>
@@ -549,7 +550,6 @@
     <script src="~/Scripts/src/Tenent/SendRequest.js"></script>
     <script src="~/Scripts/src/Tenent/Notification.js"></script>
     <script src="~/Scripts/src/SendMail.js"></script>
-    <script src="~/Scripts/src/GlobalFunctions.js"></script>
     <script src="~/Scripts/src/Admin/PropertyTax.js"></script>
     <script src="~/Scripts/src/Admin/TenantAgreement.js"></script>
     <script src="~/Scripts/Layout/LayoutMain.js"></script>
@@ -558,7 +558,6 @@
     @Scripts.Render("~/bundles/Mainjs")
     @Scripts.Render("~/bundles/Assetjs")
     <script src="~/Scripts/src/Admin/AdminDashboard.js"></script>
-    <script src="~/Scripts/src/GlobalState.js"></script>
     @RenderSection("scripts", required: false)
 
 </body>

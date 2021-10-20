@@ -23,9 +23,9 @@ $(document).ready(() => {
                     </div>`
                 }
             });
-            let notiNum = (sessionStorage.getItem('RoleID') == 0) ?
-                NotificationRes.filter(x => x.Status === 1).length :
-                NotificationRes.filter(x => x.Status === 0).length;
+            let notiNum = isAdmin() ?
+                NotificationRes.filter(x => x.Status === 0).length :
+                NotificationRes.filter(x => x.Status === 1).length;
             $('#listNotifications').html(NotificationList);
             $('#NotiCount').text(`You have ${notiNum} Notifications`);
             notiNum != 0 ? $('#Notiquantity').text(notiNum).removeClass('d-none') : $('#Notiquantity').addClass('d-none');
@@ -40,9 +40,9 @@ async function getAllNotification() {
     $.get(url, function (response) {
         RenderContent.html(response);
         $('#notificationsTab').removeClass('show-dropdown');
-        (sessionStorage.getItem('RoleID') == 0) ?
-            mainContent.find('#btnAddNotifications').hide() :
-            mainContent.find('#btnAddNotifications').show();
+        isAdmin() ?
+            mainContent.find('#btnAddNotifications').show() :
+            mainContent.find('#btnAddNotifications').hide();
         let NotifnArray = convertObjectArray(NotificationTypes);
         let thead = isAdmin() ? ` <tr><th>Notification Type</th><th>Date</th><th>Description</th><th>Action</th></tr>`
                               : ` <tr><th>Notification Type</th><th>Date</th><th>Description</th></tr>`;
