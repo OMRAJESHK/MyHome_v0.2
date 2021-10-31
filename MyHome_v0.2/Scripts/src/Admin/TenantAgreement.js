@@ -1,37 +1,33 @@
 ﻿var tenantAgreement = [];
 let agreemntIsEdit = false;
 let agreemntSelectedID = '';
-function getTenantAgreementLogs() {
-    let assetId = Number(sessionStorage.getItem('AssetID'));
-    ManageAjaxCalls.GetData(ApiDictionary.GetTenentAgreementByID() + `?AssetName=${assetId}`, (res) => {
-        tenantAgreement = res;
+async function getTenantAgreementLogs() {
+    try {
+        let assetId = Number(sessionStorage.getItem('AssetID'));
+        let getTenentAgreementData = await GetAjax(ApiDictionary.GetPropertyTaxes() + `?AssetName=${assetId}`);
+        tenantAgreement = getTenentAgreementData;
         if (isAdmin()) {
-            if (res.constructor === Object) {
+            if (getTenentAgreementData.constructor === Object) {
                 mainContent.find('#btnEditAgreement').show();
                 mainContent.find('#btnAddAgreement').hide()
-            } 
-        } else {
+            }
+        } else
             mainContent.find('#btnEditAgreement').hide();
-        }
-
-        RenderContent.find('#lblNumOfRecidents').text(res["ResidentsNumber"]);
-        RenderContent.find('#lblResidentsNames').text(res["ResidentsNames"]);
-        RenderContent.find('#lblResidentContactNumber').text(res["ContactNumbers"]);
-        RenderContent.find('#lblAdvAmt').text(res["AdvanceAmount"]);
-        RenderContent.find('#lblRentAmt').text(res["RentAmount"]);
-        RenderContent.find('#lblPercInc').text(res["PercentageIncreased"]);
-        RenderContent.find('#lblJoiningDate').text(getDisplayDate(res["JoiningDate"]));
-        RenderContent.find('#lblIdentityProofs').text(res["IdentityProofs"]);
-        RenderContent.find('#lblTenantRemarks').text(res["Remarks"]);
-        setTimeout(() => {
-            setScreenLoader(false)
-        }, 500);
-    }, () => {
-            //alert("No Tenant Available");
-            mainContent.find('#btnEditAgreement').hide();
-            mainContent.find('#btnAddAgreement').show()
-            CustomeToast("", "No Tenant Available", "bg-danger");
-    });
+        RenderContent.find('#lblNumOfRecidents').text(getTenentAgreementData["ResidentsNumber"]);
+        RenderContent.find('#lblResidentsNames').text(getTenentAgreementData["ResidentsNames"]);
+        RenderContent.find('#lblResidentContactNumber').text(getTenentAgreementData["ContactNumbers"]);
+        RenderContent.find('#lblAdvAmt').text(getTenentAgreementData["AdvanceAmount"]);
+        RenderContent.find('#lblRentAmt').text(getTenentAgreementData["RentAmount"]);
+        RenderContent.find('#lblPercInc').text(getTenentAgreementData["PercentageIncreased"]);
+        RenderContent.find('#lblJoiningDate').text(getDisplayDate(getTenentAgreementData["JoiningDate"]));
+        RenderContent.find('#lblIdentityProofs').text(getTenentAgreementData["IdentityProofs"]);
+        RenderContent.find('#lblTenantRemarks').text(getTenentAgreementData["Remarks"]);
+        setTimeout(() => { setScreenLoader(false); }, 500);
+    } catch (err) {
+        mainContent.find('#btnEditAgreement').hide();
+        mainContent.find('#btnAddAgreement').show()
+        CustomeToast("", "No Tenant Available", "bg-danger");
+    }
 }
 function gotoEditAgreement() {
     var url = window.rootpath + AdminURLs.TenantDeed;
@@ -88,13 +84,14 @@ function saveTenantAgreement() {
         ContactNumbers: getValue('#txtResidentContactNumber'),
         Remarks: getValue('#txtTenantRemarks'),
     })
-    agreemntIsEdit ? ManageAjaxCalls.Put(ApiDictionary.PutTenentAgreement() + `?id=${id}`, tenantAgmntToSave, (res) => {
-        console.log('tenantAgmnt Modified', res)
-    }):
-    ManageAjaxCalls.Post(ApiDictionary.PostTenentAgreement(), tenantAgmntToSave, (res) => {
-        console.log('tenantAgmnt Saved', res);
+    agreemntIsEdit ? (async function () {
+        let putTenentAgreementData = await PutAjax(ApiDictionary.PutTenentAgreement() + `?id=${id}`, tenantAgmntToSave);
+        console.log('tenantAgmnt Modified', putTenentAgreementData)
+    }()) : (async function () {
+        let postTenentAgreementData = await PostAjax(ApiDictionary.PostTenentAgreement(), tenantAgmntToSave);
+        console.log('tenantAgmnt Saved', postTenentAgreementData);
         CustomeToast("Tenant Agreement", "Tenant Agreement Saved", "bg-success");
-    });
+    }());
 }
 
 
@@ -108,10 +105,9 @@ function SetTenantAgreementDeleteModal() {
 }
 
 // DELETE PROPERTY TAX
-function TenantAgreementDelete() {
-    let id = sessionStorage.getItem("AssetID")
-    ManageAjaxCalls.Delete(ApiDictionary.DeleteTenentAgreement() + '?id=' + id, (res) => {
-        console.log('DEleted Successfully', res);
-        CustomeToast("Tenant Agreement", "Tenant Agreement Deleted Successfully", "bg-danger");
-    });
+async function TenantAgreementDelete() {
+    let id = sessionStorage.getItem("AssetID");
+    let deleteTenentAgreementData = await DeleteAjax(`${ApiDictionary.DeleteTenentAgreement()}?id=${id}`);
+    console.log('Deleted Successfully', deleteTenentAgreementData);
+    CustomeToast("Tenant Agreement", "Tenant Agreement Deleted Successfully", "bg-danger");
 }

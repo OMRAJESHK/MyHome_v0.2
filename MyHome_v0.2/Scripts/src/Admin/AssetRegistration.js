@@ -82,15 +82,21 @@ const saveAsset = () => {
         Remarks: $('#txtAssetRegRemarks').val()
     });
     let addetID = sessionStorage.getItem('AssetID');
-    assetIsEdit ? ManageAjaxCalls.Put(ApiDictionary.AssetPut() + `?id=${addetID}`, assetToSave, assetPutResponse) :
-        ManageAjaxCalls.Post(ApiDictionary.AssetPost(), assetToSave, assetPostResponse);
+    assetIsEdit ? (async function () {
+        let AssetPutData = await PutAjax(ApiDictionary.AssetPut() + `?id=${addetID}`, assetToSave);
+        assetPostResponse(AssetPutData);
+    }()) :
+        (async function () {
+            let AssetPostData = await PostAjax(ApiDictionary.AssetPost(), assetToSave);
+            assetPostResponse(AssetPostData);
+        }());
     $('#lblAssetName, #lblAssetNamehdr').text(asset.name);
     assetIsEdit = false;
-
 }
 // Delete Asset 
-const deleteAsset = (id) => {
-    ManageAjaxCalls.Delete(ApiDictionary.DeleteAsset() + `?id=${Number(id)}`, assetDeleteResponse);
+async function deleteAsset (id){
+    let deletePropertyTaxesData = await DeleteAjax(ApiDictionary.DeleteAsset() + `?id=${Number(id)}`);
+    assetDeleteResponse(deletePropertyTaxesData)
 }
 // ASSET POST 
 const assetPostResponse = (res) => {

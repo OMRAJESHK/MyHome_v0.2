@@ -4,10 +4,11 @@ let emcySelectedID = '';
 let emcyConResData = [];
 
 // Get Emergency Contact Details - Tenants
-const getEmergencyContactList = () => {
+const getEmergencyContactList = async () => {
     setScreenLoader(true);
     let assetID = Number(sessionStorage.getItem('AssetID'));
-    ManageAjaxCalls.GetData(ApiDictionary.GetEmergencyContactsByAsset() + `?AssetName=${assetID}&IsVisible=1`, EmergencyContactRes)
+    let getEmergencyData = await GetAjax(ApiDictionary.GetEmergencyContactsByAsset() + `?AssetName=${assetID}&IsVisible=1`);
+    EmergencyContactRes(getEmergencyData);
 }
 
 const EmergencyContactRes = (res) => {
@@ -45,10 +46,11 @@ const EmergencyContactRes = (res) => {
 
 
 // Get Emergency Contact Details - Admins
-const getEmergencyContacts = () => {
+const getEmergencyContacts = async () => {
     setScreenLoader(true);
     let assetID = Number(sessionStorage.getItem('AssetID'));
-    ManageAjaxCalls.GetData(ApiDictionary.GetEmergencyContacts() + `?AssetName=${assetID}`, EmergencyContactResponse);
+    let getEmergencyData = await GetAjax(ApiDictionary.GetEmergencyContacts() + `?AssetName=${assetID}`);
+    EmergencyContactResponse(getEmergencyData);
 }
 
 const EmergencyContactResponse = (res) => {
@@ -136,10 +138,11 @@ const saveEmergancyContactsDetails = () => {
             console.log('modified', res)
             CustomeToast("Contact Details", "Contact Details Modified", "bg-warning");
         }) :
-        ManageAjaxCalls.Post(ApiDictionary.PostEmergency(), EmcyContactToSave, (res) => {
-            console.log('res', res)
+        (async function () {
+            let postEmergencyData = await PostAjax(ApiDictionary.PostEmergency(), EmcyContactToSave,);
+            console.log('res', postEmergencyData)
             CustomeToast("Contact Details", "Contact Details Added", "bg-success");
-        });
+        }());
     emcyIsEdit = false;
     selectedID = '';
 }
@@ -167,12 +170,11 @@ function emergancyTaxEdit(id) {
 }
 
 // DELETE Emergancy Contact TAX
-function emergancyDelete(id) {
-    ManageAjaxCalls.Delete(ApiDictionary.DeleteEmergency() + '?id=' + id, (res) => {
-        console.log('DEleted Successfully', res);
-        CustomeToast("Contact Details", "Contact Deleted Successfully", "bg-danger");
-        isAdmin() ? getEmergencyContacts() : getEmergencyContactList();
-    });
+async function emergancyDelete(id) {
+    let deleteEmergencyData = await DeleteAjax(ApiDictionary.DeleteEmergency() + `?AssetName=${Number(id)}`);
+    console.log('Deleted Successfully', deleteEmergencyData);
+    CustomeToast("Contact Details", "Contact Deleted Successfully", "bg-danger");
+    isAdmin() ? getEmergencyContacts() : getEmergencyContactList();
 }
 
 // DELETE Confirmation Modal

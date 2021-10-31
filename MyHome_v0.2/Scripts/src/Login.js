@@ -1,18 +1,7 @@
-﻿$(document).ready(() => {
-    $('#btnRegister').click(() => {
-        window.location.href = "Register";
-    });
-    
-    $('#loginLinkClose').click(() => {
-        $('#loginErrMsgDiv').hide('fade');
-    });
-    $(document).keypress(() => {
-        var storage = window.sessionStorage;
-        if (event.shiftKey && event.keyCode == 76 && storage.length == 1) window.location.href = "Login";
-    })
-    
-});
-
+﻿$(document).keypress(() => {
+    var storage = window.sessionStorage;
+    if (event.shiftKey && event.keyCode == 76 && storage.length == 1) window.location.href = "Login"; //shift + L
+})  
 
 function toclientLogin() { window.location.href = "userLogin"; }
 
@@ -46,7 +35,7 @@ function loginCustomeToast(txthead, txtbody, cls) {
     setTimeout(function () { $("#loginToast").html(""); }, 5000)
 }
 
-function handleLogin() {
+async function handleLogin() {
     let Mail = $('#txtLoginEmail').val();
     let Password = $('#txtLoginPassword').val();
     sessionStorage.setItem('RoleID', 1);
@@ -54,11 +43,12 @@ function handleLogin() {
     let adminName = Mail.split('@');
     sessionStorage.setItem('UserName', adminName[0]);
     let postData = { username: Mail, password: Password, grant_type: 'password' };
-    ManageAjaxCalls.Post(ApiDictionary.token(), postData, getToken);
+    let token = await PostAjax(ApiDictionary.token(), postData);
+    getToken(token);
 }
 
 
-function getCredentials(response) {
+ function getCredentials(response) {
     console.log('postData', response)
     if (response == '404') {
         console.log(response)
@@ -73,7 +63,7 @@ function getCredentials(response) {
         sessionStorage.setItem('UserMail', response.mailId);
         sessionStorage.setItem('UserName', response.names);
         sessionStorage.setItem('UserNumber', $('#txtLoginPhoneNumber').val());
-        ManageAjaxCalls.Get(ApiDictionary.GetAssetById(), { AssetName: Number(response.assetname) }, (res) => {
+        ManageAjaxCalls.Get(ApiDictionary.GetAssetById(), { AssetName: Number(response.assetname) }, async (res) => {
             console.log("resresres", res)
             var name = '';
             var id = '';
@@ -83,7 +73,8 @@ function getCredentials(response) {
             } else { name = id = 'N/A' }
             sessionStorage.setItem('AssetName', name);
             sessionStorage.setItem('AssetID', id);
-            ManageAjaxCalls.Post(ApiDictionary.token(), postData, getToken);
+            let token = await PostAjax(ApiDictionary.token(), postData);
+            getToken(token);
         });
     }
 }
@@ -93,7 +84,7 @@ function getToken(res) {
         return false
     }
     sessionStorage.setItem('accessToken', res.access_token);
-    window.location.href = window.rootpath + "Home/index";
+    window.location.href = window.rootpath + dashboardPage;
 }
 
 
@@ -119,22 +110,11 @@ function resetPassword() {
     let pass = $('#reset_txtPassword').val();
     let email = $("#reset_txtEmail").val();
     $.ajax({
-        url: '/api/Account/ResetPassword',
+        url: ApiDictionary.ResetPassword(),
         method: 'post',
-        data: {
-            //Email: email,
-            Id: userID,
-            Password: pass,
-            Code: String(code)
-        },
-        success: (data) => {
-            console.log(data);
-            $('#errMsgDiv').hide('fade');
-        },
-        error: (jqXHR) => {
-            $('#errTxt').text(jqXHR.responseText);
-            $('#errMsgDiv').show('fade');
-        }
+        data: { Id: userID, Password: pass, Code: String(code) },
+        success: (data) => { console.log(data); },
+        error: (jqXHR) => { console.log(jqXHR.responseText); }
     });
 }
 
@@ -150,11 +130,9 @@ function forgotpasswordSendLink() {
         },
         success: (data) => {
             console.log(data);
-            $('#errMsgDiv').hide('fade');
         },
         error: (jqXHR) => {
-            $('#errTxt').text(jqXHR.responseText);
-            $('#errMsgDiv').show('fade');
+            console.log(jqXHR.responseText);
         }
     });
 }

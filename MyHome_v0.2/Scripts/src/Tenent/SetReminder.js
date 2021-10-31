@@ -12,30 +12,27 @@ const gotoSetReminder = () => {
     });
 }
 
-const getReminderData = () => {
-    let RoleId = Number(sessionStorage.getItem('RoleID'));
-    ManageAjaxCalls.GetData(ApiDictionary.GetRemindersByRole() + `?RoleId=${RoleId}`, (res) => {
-        console.log(res);
-        remindersList = res;
+const getReminderData = async () => {
+    try {
+        let RoleId = Number(sessionStorage.getItem('RoleID'));
+        let getRequestsData = await GetAjax(ApiDictionary.GetRemindersByRole() + `?RoleId=${RoleId}`);
+        remindersList = getRequestsData;
         RenderContent.find('#tblSetReminder').DataTable({
             "bLengthChange": false,
             "bFilter": true,
             "bInfo": true,
             "bPaginate": true,
             "bAutoWidth": false,
-            'bDestroy': true,
+            "bDestroy": true,
             "bSort": true,
             data: remindersList,
             columns: [
                 {
                     data: 'Type',
-                    render: function (data) { return '<div>' + ReminderTypesList.filter(x=>x.value==data)[0].name+ '</div>'; }
+                    render: function (data) { return '<div>' + ReminderTypesList.filter(x => x.value == data)[0].name + '</div>'; }
                 },
-                { data: 'Description', },   
-                {
-                    data: 'SetReminder',
-                    render: function (data) { return `<div>${data} </div>` }
-                },
+                { data: 'Description', },
+                { data: 'SetReminder', render: function (data) { return `<div>${data} </div>` } },
                 {
                     data: 'ReminderId', render: function (data) {
                         return `<div class="d-flex justify-content-center">
@@ -44,12 +41,12 @@ const getReminderData = () => {
                     }
                 },
             ],
-
         });
-    }, () => {
-        //alert("No Tenant Available");
+    } catch (err) {
+        console.log("getReminderData",err)
         CustomeToast("", "No Tenant Available", "bg-danger");
-    });
+    }
+
 }
 
 // SAVE Reminder
@@ -74,10 +71,11 @@ function saveReminderDetails() {
             console.log('modified', res);
             getReminderData();
         }) :
-        ManageAjaxCalls.Post(ApiDictionary.PostReminders(), setReminderToSave, (res) => {
-            console.log('res', res);
+        (async function () {
+            let postRemindersData = await PostAjax(ApiDictionary.PostReminders(), setReminderToSave);
+            console.log('res', postRemindersData);
             getReminderData();
-        });
+        }());
     reminderIsEdit = false;
     reminderselectedID = '';
 }
@@ -105,11 +103,10 @@ function SetReminderDeleteModal(id) {
 }
 
 // DELETE Reminder
-function SetReminderDelete(id) {
-    ManageAjaxCalls.Delete(ApiDictionary.DeleteReminders() + '?id=' + id, (res) => {
-        console.log('Deleted Successfully', res);
-        CustomeToast("SetReminder Delete", "Deleted Successfully", "bg-info");
-        getReminderData();
-        $('#deleteModal').modal('hide');
-    });
+async function SetReminderDelete(id) {
+    let deleteRemindersData = await DeleteAjax(ApiDictionary.DeleteReminders() + `?AssetName=${Number(id)}`);
+    console.log('Deleted Successfully', deleteRemindersData);
+    CustomeToast("SetReminder Delete", "Deleted Successfully", "bg-info");
+    getReminderData();
+    $('#deleteModal').modal('hide');
 }

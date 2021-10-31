@@ -87,20 +87,19 @@ function handleCardClick(id) {
     getNotifications();
     getRequests();
     let name = AssetList.filter(data => data.AssetId == id)[0].AssetName;
-    
     AdminDashboardFunction(id);
 }
 
-function getNotifications() {
-    ManageAjaxCalls.GetData(ApiDictionary.GetNotification() + `?AssetName=${sessionStorage.getItem('AssetID')}`, (res) => {
-        let NotificationList = '';
-        NotificationRes = res;
-        $('#btnAllNotifn').prop('disabled', false);
-        let list = convertObjectArray(NotificationTypes);
-        res.map(row => {
-            if (row.Status == 0) {
-                let date = dateFormat(getDateOnly(row.NotificationDate));
-                NotificationList += `
+async function getNotifications() {
+    let notificationData = await GetAjax(ApiDictionary.GetNotification() + `?AssetName=${sessionStorage.getItem('AssetID')}`);
+    let NotificationList = '';
+    NotificationRes = notificationData;
+    $('#btnAllNotifn').prop('disabled', false);
+    let list = convertObjectArray(NotificationTypes);
+    notificationData.map(row => {
+        if (row.Status == 0) {
+            let date = dateFormat(getDateOnly(row.NotificationDate));
+            NotificationList += `
                     <div class="notifi__item">
                         <div class="bg-c3 img-cir img-40">
                             <label class="notifnLetter">${NotificationLetter[row.NotificationType]}</label>
@@ -109,23 +108,21 @@ function getNotifications() {
                              <p>${list[row.NotificationType].name}</p><span class="date">${date}</span>
                         </div>
                     </div>`
-            }
-        });
-        let notiNum = NotificationRes.filter(x => x.Status === 0).length;
-        $('#listNotifications').html(NotificationList);
-        $('#NotiCount').text(`You have ${notiNum} Notifications`);
-        notiNum != 0 ? $('#Notiquantity').text(notiNum).removeClass('d-none') : $('#Notiquantity').addClass('d-none');
-
+        }
     });
+    let notiNum = NotificationRes.filter(x => x.Status === 0).length;
+    $('#listNotifications').html(NotificationList);
+    $('#NotiCount').text(`You have ${notiNum} Notifications`);
+    notiNum != 0 ? $('#Notiquantity').text(notiNum).removeClass('d-none') : $('#Notiquantity').addClass('d-none');
 }
 
-function getRequests() {
-    ManageAjaxCalls.GetData(ApiDictionary.GetRequestsByID() + `?AssetID=${sessionStorage.getItem('AssetID')}`, (res) => {
-        let RequestList = '';
-        $('#btnAllRequest').prop('disabled', false);
-        res.map(row => {
-            if (isAdmin() && row.Status == 0) {
-                RequestList += `
+async function getRequests() {
+    let getRequestsData = await GetAjax(ApiDictionary.GetRequestsByID() + `?AssetID=${sessionStorage.getItem('AssetID')}`);
+    let RequestList = '';
+    $('#btnAllRequest').prop('disabled', false);
+    getRequestsData.map(row => {
+        if (isAdmin() && row.Status == 0) {
+            RequestList += `
                     <div class="notifi__item">
                         <div class="bg-c3 img-cir img-40">
                             <label class="notifnLetter">T</label>
@@ -134,14 +131,12 @@ function getRequests() {
                              <p>${row.Description}</p><span class="date">${row.RequestDate}</span>
                         </div>
                     </div>`
-            }
-        });
-        let ReqNum = res.filter(x => x.Status === 0).length;
-        $('#listRequest').html(RequestList);
-        $('#RequestCount').text(`You have ${ReqNum} Requests`);
-        ReqNum != 0 ? $('#ReqQuantity').text(ReqNum).removeClass('d-none') : $('#ReqQuantity').addClass('d-none');
-
+        }
     });
+    let ReqNum = getRequestsData.filter(x => x.Status === 0).length;
+    $('#listRequest').html(RequestList);
+    $('#RequestCount').text(`You have ${ReqNum} Requests`);
+    ReqNum != 0 ? $('#ReqQuantity').text(ReqNum).removeClass('d-none') : $('#ReqQuantity').addClass('d-none');
 }
 
 const gotoAssetSave = () => {

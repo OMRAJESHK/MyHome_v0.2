@@ -1,9 +1,8 @@
 ﻿
 
-function getStatistics() {
+async function getStatistics() {
     var date = new Date();
     var year = date.getFullYear();
-    console.log("ererererer", year);
     let assetID = sessionStorage.getItem('AssetID');
     let yearlyddlhtml = '';
     [1, 2, 3, 4, 5].map((num,index) => {
@@ -12,7 +11,8 @@ function getStatistics() {
     $("#yearlyDdl").html(yearlyddlhtml);
     var trnFrom = dateFormat('01/01/' + year);
     var trnTo = dateFormat('31/12/' + year);
-    ManageAjaxCalls.GetData(ApiDictionary.GetTransactions() + `?AssetName=${assetID}&trnFrom=${trnFrom}&trnTo=${trnTo}`, TransactionsRes);
+    let transactionsData = await GetAjax(ApiDictionary.GetTransactions() + `?AssetName=${assetID}&trnFrom=${trnFrom}&trnTo=${trnTo}`);
+    TransactionsRes(transactionsData)
 }
 
 const TransactionsRes = (res) => {
@@ -241,11 +241,11 @@ const drawDoughnutGraph = (graphParams) => {
 }
 
 
-function yearlyDdlChange() {
+async function yearlyDdlChange() {
     let year = $('select#yearlyDdl option:selected').val();
-
     let assetID = sessionStorage.getItem('AssetID');
     var trnFrom = dateFormat('01/01/' + year);
     var trnTo = dateFormat('31/12/' + year);
-    ManageAjaxCalls.GetData(ApiDictionary.GetTransactions() + `?AssetName=${assetID}&trnFrom=${trnFrom}&trnTo=${trnTo}`, TransactionsRes);
+    let transactionsData = await GetAjax(ApiDictionary.GetTransactions() + `?AssetName=${assetID}&trnFrom=${trnFrom}&trnTo=${trnTo}`);
+    TransactionsRes(transactionsData)
 }

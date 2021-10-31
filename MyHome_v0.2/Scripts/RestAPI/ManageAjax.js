@@ -83,10 +83,30 @@ const GetAjax = (url, param = {}) => {
     });
 }
 
-const PostAjax = (url, data) => {
-    $.ajax({
+const PostAjax = (url, data = {}) => {
+    return $.ajax({
         url: url,
         method: 'post',
+        headers: { 'Authorization': "Bearer " + sessionStorage.getItem('accessToken') },
+        contentType: 'application/json',
+        data: data,
+    });
+}
+
+const PutAjax = (url, data = {}) => {
+    return $.ajax({
+        url: url,
+        method: 'put',
+        headers: { 'Authorization': "Bearer " + sessionStorage.getItem('accessToken') },
+        contentType: 'application/json',
+        data: data,
+    });
+}
+
+const DeleteAjax = (url, data = {}) => {
+    return $.ajax({
+        url: url,
+        method: 'delete',
         headers: { 'Authorization': "Bearer " + sessionStorage.getItem('accessToken') },
         contentType: 'application/json',
         data: data,

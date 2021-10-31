@@ -1,7 +1,7 @@
 ﻿var Render_Content = $('#RenderContent');
 var Fileurl = '';
 
-function sendmail() {    
+async function sendmail() {    
     Render_Content.find('#btnSandMail').attr("disabled", true);
     Render_Content.find('#icnSandMail').removeClass(defaultbtnclass).addClass(loadbtnclass);
     let mailTo = Render_Content.find('#txtMailTo').val();
@@ -33,7 +33,7 @@ function sendmail() {
         cache: false,
         contentType: false,
         processData: false,
-        success: function (message) {
+        success: async function (message) {
             console.log(message);
             // TO SAVE TO DB
             let MailLogToSave = JSON.stringify({
@@ -44,14 +44,13 @@ function sendmail() {
                 Body: $('#txtBody').val(),
                 isAttachment: files.length > 0 ? 1 : 0      // 0 - false , 1 - true
             });
-            ManageAjaxCalls.Post(ApiDictionary.PostMailLogs(), MailLogToSave, (res) => {
-                console.log(res, 'MailLog saved Successfully');
-                Render_Content.find('#btnSandMail').attr("disabled", false);
-                CustomeToast("Response", "Mail Sent Successfully", "bg-success");
-                Render_Content.find('#icnSandMail').removeClass(loadbtnclass).addClass(defaultbtnclass);
-                clearTextBoxes();
-                Render_Content.find("#imageBrowse").val('');
-            });
+            let postMailLogsData = await PostAjax(ApiDictionary.PostMailLogs(), MailLogToSave);
+            console.log(postMailLogsData, 'MailLog saved Successfully');
+            Render_Content.find('#btnSandMail').attr("disabled", false);
+            CustomeToast("Response", "Mail Sent Successfully", "bg-success");
+            Render_Content.find('#icnSandMail').removeClass(loadbtnclass).addClass(defaultbtnclass);
+            clearTextBoxes();
+            Render_Content.find("#imageBrowse").val('');
         },
         error: function (data) {
             console.log(data)
@@ -113,53 +112,45 @@ function gotoSendMail() {
     });
 }
 
-function getMailLogs() {
+async function getMailLogs() {
     let assetID = sessionStorage.getItem('AssetID');
-    assetID && ManageAjaxCalls.GetData(ApiDictionary.GetMailLogs() + `?AssetName=${assetID}`, (res) => {
-        $('#tblMailLogs tbody').empty();
-        $('#RenderContent #tblMailLogs').DataTable({
-            "bLengthChange": false,
-            "bFilter": true,
-            "bInfo": true,
-            "bPaginate": true,
-            "bAutoWidth": false,
-            'bDestroy': true,
-            "bSort": true,
-            "pageLength": 10,
-            language: { search: `` },
-            data: res,
-            columns: [
-                { data: 'MailTo' },
-                { data: 'Subject' },
-                {
-                    data: 'Body',
-                    render: function (data, type, row, meta) {
-                        return row["isAttachment"] ?
-                            `<div class="d-flex justify-content-between"><span>${data}</span><i class="bx bx-file mt-2 fontSize_20"></i></div>` :
-                            `<span>${data} 123</span>`;
-                    }
-                },
-                { data: 'MailDate', render: function (data) { return getDisplayDate(data) }},
-                {
-                    data: 'MailId', render: function (data) {
-                        return `<div class="d-flex justify-content-center">
+    let getMailData = await GetAjax(ApiDictionary.GetMailLogs() + `?AssetName=${assetID}`);
+    $('#tblMailLogs tbody').empty();
+    $('#RenderContent #tblMailLogs').DataTable({
+        "bLengthChange": false, "bFilter": true, "bInfo": true,
+        "bPaginate": true, "bAutoWidth": false,
+        "bDestroy": true, "bSort": true, "pageLength": 10,
+        language: { search: `` },
+        data: getMailData,
+        columns: [
+            { data: 'MailTo' },
+            { data: 'Subject' },
+            {
+                data: 'Body',
+                render: function (data, type, row, meta) {
+                    return row["isAttachment"] ?
+                        `<div class="d-flex justify-content-between"><span>${data}</span><i class="bx bx-file mt-2 fontSize_20"></i></div>` :
+                        `<span>${data} 123</span>`;
+                }
+            },
+            { data: 'MailDate', render: function (data) { return getDisplayDate(data) } },
+            {
+                data: 'MailId', render: function (data) {
+                    return `<div class="d-flex justify-content-center">
                                 <button title="Delete" class="btn"><i class="fas fa-trash-alt fontSize_20 text-danger" onclick="SetMailLogDeleteModal(${data})"></i></button></div>`;
-                    }
-                },
-            ],
-            "initComplete": function () { setTimeout(() => { setScreenLoader(false); }, 500); }
-
-        });
+                }
+            },
+        ],
+        "initComplete": function () { setTimeout(() => { setScreenLoader(false); }, 500); }
     });
 }
 
 // DELETE MailLog TAX
-function MailLogTaxDelete(id) {
-    ManageAjaxCalls.Delete(ApiDictionary.DeleteMailLogs() + '?id=' + id, (res) => {
-        console.log('DEleted Successfully', res);
-        setScreenLoader(true);
-        getMailLogs()
-    });
+async function MailLogTaxDelete(id) {
+    let deleteDocumentData = await DeleteAjax(ApiDictionary.DeleteMailLogs() + `?id=${Number(id)}`);
+    console.log('DEleted Successfully', deleteDocumentData);
+    setScreenLoader(true);
+    getMailLogs()
 }
 
 // DELETE Confirmation Modal

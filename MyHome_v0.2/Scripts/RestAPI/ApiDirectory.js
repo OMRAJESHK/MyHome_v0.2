@@ -8,7 +8,11 @@ class ApiDictionary  {
     static gotoLogin = () => "UserAccount/UserLogin";
     static gotoAdminLogin = () => "UserAccount/Login";
     static gotoLogout = () => "Account/Logout";
-    
+
+    static ResetPassword = () => path + "/api/Account/ResetPassword";
+    static ForgotPassword = () => path + "/api/Account/ForgotPassword";
+
+
     static gotoLandingPage = () => "UserAccount/index";
     static GetUserRole = () => path+"/api/account/GetUserRole";
     static GetTransactions = () => path + '/api/Transactions/GetTransaction';
@@ -106,3 +110,4 @@ const UserAccountURLs = {
     ChangePassword: UserAccount + "ChangePassword",
     DucumentView: UserAccount + "DucumentView"
 }
+const dashboardPage = "Home/index";

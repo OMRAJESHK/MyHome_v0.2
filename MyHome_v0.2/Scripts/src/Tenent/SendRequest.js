@@ -2,33 +2,31 @@
     !isAdmin() && getClientRequests();
 })
 let request = [];
-function RequestCall() {
+async function RequestCall() {
     let assetID = sessionStorage.getItem('AssetID');
-    ManageAjaxCalls.GetData(ApiDictionary.GetRequest() + '?assetID=' + assetID, (res) => {
-        request = res;
-        if (res?.length > 0) {
-            let rowItem = `<div class="text-center mb-2 d-none" id="divLoadMore">
+    let requestCallData = await GetAjax(`${ApiDictionary.GetRequests()}?assetID=${assetID}`);
+    request = requestCallData;
+    if (requestCallData?.length > 0) {
+        let rowItem = `<div class="text-center mb-2 d-none" id="divLoadMore">
             <button class="btn btn-info">Load More</button></div >`;
-            $.each(res, function (key, row) {
-                rowItem += isAdmin() ? clietResponseHTML(row) : adminResponseHTML(row)
-            });
-            $('#RenderContent #divChatBody').html(rowItem);
-            //let id = request[request.length - 1].TenentRequestId;
-            //let saveObj = {
-            //    AssetName: assetID,
-            //    Description: request[request.length - 1].Description,
-            //    RequestDate: request[request.length - 1].RequestDate,
-            //    Response: request[request.length - 1].Response,
-            //    Status: 2
-            //}
-            //ManageAjaxCalls.Put(ApiDictionary.PutRequest() + '?id=' + id, JSON.stringify(saveObj), () => {
-            //    console.log('status - 2')
-            //});
-        } else {
-            $('#RenderContent #divChatBody').html("");
-        }
-        
-    });
+        $.each(requestCallData, function (key, row) {
+            rowItem += isAdmin() ? clietResponseHTML(row) : adminResponseHTML(row)
+        });
+        $('#RenderContent #divChatBody').html(rowItem);
+        //let id = request[request.length - 1].TenentRequestId;
+        //let saveObj = {
+        //    AssetName: assetID,
+        //    Description: request[request.length - 1].Description,
+        //    RequestDate: request[request.length - 1].RequestDate,
+        //    Response: request[request.length - 1].Response,
+        //    Status: 2
+        //}
+        //ManageAjaxCalls.Put(ApiDictionary.PutRequest() + '?id=' + id, JSON.stringify(saveObj), () => {
+        //    console.log('status - 2')
+        //});
+    } else {
+        $('#RenderContent #divChatBody').html("");
+    }
 }
 const ReqResponse = (res) => {
     RequestCall();
@@ -79,30 +77,29 @@ const adminResponseHTML = (row) => {
                     <label>${row.Description}</label>
                 </div>`;
 }
-function getClientRequests() {
-    ManageAjaxCalls.GetData(ApiDictionary.GetRequest() + `?AssetName=${sessionStorage.getItem('AssetID')}`, (res) => {
-        let RequestList = '';
-        $('#btnAllRequest').prop('disabled', false);
-        res.map(row => {
-            if (sessionStorage.getItem('RoleID') == 0 && row.Status == 1) {
-                RequestList += `
-                    <div class="notifi__item">
-                        <div class="bg-c3 img-cir img-40">
-                            <label class="notifnLetter">T</label>
-                        </div>
-                        <div class="content">
-                             <p>${row.Description}</p><span class="date">${row.RequestDate}</span>
-                        </div>
-                    </div>`
-            }
-        });
-        let ReqNum = res.filter(x => x.Status === 0).length;
-        $('#listRequest').html(RequestList);
-        $('#RequestCount').text(`You have ${ReqNum} Requests`);
-        ReqNum != 0 ? $('#ReqQuantity').text(ReqNum).removeClass('d-none') : $('#ReqQuantity').addClass('d-none');
+async function getClientRequests() {
+    let getRequestsData = await GetAjax(ApiDictionary.GetRequests() + `?AssetName=${sessionStorage.getItem('AssetID')}`);
+    let RequestList = '';
+    $('#btnAllRequest').prop('disabled', false);
+    getRequestsData?.map(row => {
+        if (sessionStorage.getItem('RoleID') == 0 && row.Status == 1) {
+            RequestList += `
+                 <div class="notifi__item">
+                     <div class="bg-c3 img-cir img-40">
+                         <label class="notifnLetter">T</label>
+                     </div>
+                     <div class="content">
+                          <p>${row.Description}</p><span class="date">${row.RequestDate}</span>
+                     </div>
+                 </div>`
+        }
     });
+    let ReqNum = getRequestsData.filter(x => x.Status === 0).length;
+    $('#listRequest').html(RequestList);
+    $('#RequestCount').text(`You have ${ReqNum} Requests`);
+    ReqNum != 0 ? $('#ReqQuantity').text(ReqNum).removeClass('d-none') : $('#ReqQuantity').addClass('d-none');
 }
-function saveRequest() {
+async function saveRequest() {
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -117,17 +114,17 @@ function saveRequest() {
         Response: '',
         Status: 0
     }
-    ManageAjaxCalls.Post(ApiDictionary.PostRequest(), JSON.stringify(saveObj), ReqResponse);
+    let postRequestData = await PostAjax(ApiDictionary.PostRequest(), JSON.stringify(saveObj));
+    ReqResponse(postRequestData);
 }
 
 
 // DELETE Request TAX
-function RequestDelete(id) {
-    ManageAjaxCalls.Delete(ApiDictionary.DeleteRequest(), (res) => {
-        console.log('DEleted Successfully', res);
-        request = [];
-        RequestCall();
-    });
+async function RequestDelete(id) {
+    let deleteProximityData = await DeleteAjax(ApiDictionary.DeleteRequest() + `?AssetName=${Number(id)}`);
+    console.log('Deleted Successfully', deleteProximityData);
+    request = [];
+    RequestCall();
 }
 
 // DELETE Confirmation Modal

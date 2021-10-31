@@ -29,6 +29,7 @@
         //saveRentTransactionMonthly();
     }
     getProfilePicture();
+
     //------TENANT BUTTONS-----------//
     $(".btnTenentDetails").click(() => {
         $('.dashboardAngle').hasClass('angleRotate180') ?
@@ -41,16 +42,16 @@
     $(".btnHouseDetails").click(() => { gotoHouseDetails(); });
     $(".btnProximity , .btn_A_Proximity").click(() => { gotoProximityView(); });
 
-    //------ADMIN BUTTONS-----------//
 
+    //------ADMIN BUTTONS-----------//
     $(".btn_A_Dashboad").click(() => { gotoAdminDashboard(); });
     $(".btnAssetRegistration").click(() => { gotoAssetView(); });
     $(".btnTenantAgreement").click(() => { gotoTenantView(); });
     $(".btn_A_SendMail").click(() => { gotoMailLogsView(); });
     $(".btnPropertyTax").click(() => { gotoPropertyTax(); });
 
-    //------COMMON BUTTONS----------//
 
+    //------COMMON BUTTONS----------//
     $(".btn_A_AllTransactions, .btnAllTransactions").click(() => { gotoTransactionView(); });
     $(".btnEmcyContact,.btn_A_EmcyContact").click(() => { gotoEmergencyContact(); });
     $(".btnRaiseReq").click(() => { getRaiseReqHTML(); });
@@ -65,8 +66,32 @@
     });
 });
 
-
+// code for Fullscreen toggling
 $("#fullscreen").click(() => { toggleFullScreen(); });
+
+
+//------ADMIN FUNCTION DECLARATION-----------//
+
+//------TENANT FUNCTION DECLARATION-----------//
+
+const gotoDashboard = () => {
+    var url = window.rootpath + TenantURLs.Dashboard;
+    $.get(url, function (response) {
+        RenderContent.html(response);
+        customizeUI();
+        setScreenLoader(true);
+        getDashboardData();
+    });
+}
+
+function gotoTenantDetails() {
+    var url = window.rootpath + TenantURLs.TenentDetails
+    $.get(url, function (response) {
+        customizeUI();
+        RenderContent.html(response);
+        getRentalData();
+    });
+}
 
 function gotoHouseDetails() {
     var url = window.rootpath + TenantURLs.HouseDetails;
@@ -74,6 +99,25 @@ function gotoHouseDetails() {
         RenderContent.html(response);
         customizeUI();
         getHouseDetails();
+    });
+}
+//------END OF TENANT FUNCTION DECLARATION-----------//
+
+//------COMMON FUNCTION DECLARATION-----------//
+
+const gotoTransactionView = () => {
+    var url = window.rootpath + TenantURLs.Transactions;
+    $.get(url, function (response) {
+        RenderContent.html(response);
+        isAdmin() ?
+            mainContent.find('#btnAddTransactions').show() :
+            mainContent.find('#btnAddTransactions').hide();
+        RenderContent.find("#trnFrom , #trnTo").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true }).datepicker('setDate', new Date());
+        RenderContent.find('#ddlTransactionType').append(getTransactionList()).prop('selectedIndex', 0);
+        $("#RenderContent .betweenDatesSection").css("display", "none");
+        customizeUI();
+        setScreenLoader(true)
+        isAdmin() ? AlltransactionsGet() : transactionCall();
     });
 }
 
@@ -85,23 +129,28 @@ function gotoEmergencyContact() {
     });
 } 
 
-function handleLogOut() {
-    sessionStorage.clear();
-    ManageAjaxCalls.Post(ApiDictionary.gotoLogout, {}, () => {
-        console.log("Logged Out");
-    })
-    window.location.href = window.rootpath
-    console.log("Logged Out")
-}
 
-function gotoTenantDetails() {
-    var url = window.rootpath + TenantURLs.TenentDetails
+
+function getRaiseReqHTML() {
+    var url = window.rootpath + "Tenent/_raiseRequest";
+    $('#ReqQuantity').hide();
     $.get(url, function (response) {
-        customizeUI();
         RenderContent.html(response);
-        getRentalData();
+        customizeUI();
+        RequestCall();
     });
 }
+
+//------END OF COMMON FUNCTION DECLARATION-----------//
+async function handleLogOut() {
+    sessionStorage.clear();
+    let logoutData = await PostAjax(ApiDictionary.gotoLogout, {});
+    console.log("Logged Out", logoutData);
+    window.location.href = window.rootpath
+    console.log("Logged Out");
+}
+
+
 
 function gotoProximityView() {
     var url = window.rootpath + TenantURLs.Proximity;
@@ -134,7 +183,7 @@ function gotoDucumentView() {
     });
 }
 
-function saveRentTransactionMonthly() {
+async function saveRentTransactionMonthly() {
     let assetID = sessionStorage.getItem('AssetID');
 
     let TransactionToSave = JSON.stringify({
@@ -149,14 +198,13 @@ function saveRentTransactionMonthly() {
         Status: PaymentStatus,
         Remarks: $('#txtRemarks').val(),
     });
-    ManageAjaxCalls.Post(ApiDictionary.PostTransaction(), TransactionToSave, (res) => {
-        console.log(res)
-        if (res.status == 201) {
-            CustomeToast("Transaction", 'Saved Successfully', "bg-success");
-        } else if (res.status == 405) {
-            CustomeToast("Transaction", res.responseJSON, "bg-danger");
-        }
-    })
+    let logoutData = await PostAjax(ApiDictionary.PostTransaction(), TransactionToSave);
+    console.log(logoutData)
+    if (res.status == 201) {
+        CustomeToast("Transaction", 'Saved Successfully', "bg-success");
+    } else if (logoutData.status == 405) {
+        CustomeToast("Transaction", logoutData.responseJSON, "bg-danger");
+    }
 }
 
 const gotoAdminDashboard = () => {
@@ -168,16 +216,7 @@ const gotoAdminDashboard = () => {
     });
 }
 
-// Tenant Dashboard
-const gotoDashboard = () => {
-    var url = window.rootpath + TenantURLs.Dashboard;
-    $.get(url, function (response) {
-        RenderContent.html(response);
-        customizeUI();
-        setScreenLoader(true); 
-        getDashboardData();
-    });
-}
+
 // Tenant a
 const gotoMailLogsView = () => {
     var url = window.rootpath + AdminURLs.MailLogs;
@@ -195,22 +234,6 @@ const gotoTenantView = () => {
         setScreenLoader(true);
         getTenantAgreementLogs();
         customizeUI();
-    });
-}
-
-const gotoTransactionView = () => {
-    var url = window.rootpath + TenantURLs.Transactions;
-    $.get(url, function (response) {
-        RenderContent.html(response);
-        isAdmin() ?
-            mainContent.find('#btnAddTransactions').show():
-            mainContent.find('#btnAddTransactions').hide();
-        RenderContent.find("#trnFrom , #trnTo").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true }).datepicker('setDate', new Date());
-        RenderContent.find('#ddlTransactionType').append(getTransactionList()).prop('selectedIndex', 0);
-        $("#RenderContent .betweenDatesSection").css("display", "none");
-        customizeUI();
-        setScreenLoader(true)
-        isAdmin() ? AlltransactionsGet():transactionCall();
     });
 }
 
@@ -270,7 +293,7 @@ function AdminDashboardFunction(assetId) {
     let currdate = Number(getCurrentDate().split("-")[2]);
     if (currdate <= 5) {
         $.when(GetAjax(ApiDictionary.GetTenentAgreementByID() + `?AssetName=${assetId}`))
-            .done(function (tenentData) {
+            .done(async function (tenentData) {
                 if (tenentData) {
                     console.log("Dashboard", tenentData);
                     // Transaction 
@@ -282,14 +305,13 @@ function AdminDashboardFunction(assetId) {
                         PaidTo: sessionStorage.getItem("UserName"),
                         Status: 2, Remarks: "Current Month Rent Pending.",
                     });
-                    ManageAjaxCalls.Post(ApiDictionary.PostTransaction(), TransactionToSave, (res) => {
-                        console.log(res)
-                        if (res.status == 201) {
-                            CustomeToast("Transaction", 'Saved Successfully', "bg-success");
-                        } else if (res.status == 405) {
-                            console.log(res.responseJSONs);
-                        }
-                    })
+                    let postTransactionData = await PostAjax(ApiDictionary.PostTransaction(), TransactionToSave);
+                    console.log(postTransactionData);
+                    if (postTransactionData.status == 201) {
+                        CustomeToast("Transaction", 'Saved Successfully', "bg-success");
+                    } else if (postTransactionData.status == 405) {
+                        console.log(postTransactionData.responseJSONs);
+                    }
                 }
             });
     }
@@ -346,25 +368,29 @@ function gotoAccountDetails() {
 }
 
 // Get Profile Picture
-function getProfilePicture() {
-    isAdmin() ? ManageAjaxCalls.GetData(ApiDictionary.GetAdminProfilePicture(), (res) => {
-        console.log("ProfilePicture", res);
-        if (res.constructor === Object) {
-            Documentdata = res;
-            picBase64 = 'data:image/png|jpg;base64,' + res.ImgEncode;
+ function getProfilePicture() {
+     isAdmin() ? (async function () {
+        let profilePicData = await GetAjax(ApiDictionary.GetAdminProfilePicture());
+        console.log("ProfilePicture", profilePicData);
+        if (profilePicData.constructor === Object) {
+            Documentdata = profilePicData;
+            picBase64 = 'data:image/png|jpg;base64,' + profilePicData.ImgEncode;
             document.getElementById('proPicMini').setAttribute('src', picBase64);
             document.getElementById('proPicMain').setAttribute('src', picBase64);
             let profilePreview = document.getElementById('profilePreview');
             profilePreview && profilePreview.setAttribute('src', picBase64);
         }
-    }):
-    ManageAjaxCalls.GetData(ApiDictionary.GetProfilePicture() + `?AssetName=${sessionStorage.getItem("AssetID")}`, (res) => {
-        console.log("ProfilePicture", res);
-        Documentdata = res;
-        picBase64 = 'data:image/png|jpg;base64,' + res.ImgEncode;
-        document.getElementById('proPicMini').setAttribute('src', picBase64);
-        document.getElementById('proPicMain').setAttribute('src', picBase64);
-    });
+     }()) : (async function () {
+             let profilePicData = await GetAjax(ApiDictionary.GetProfilePicture() + `?AssetName=${sessionStorage.getItem("AssetID")}`);
+             console.log("ProfilePicture", profilePicData);
+             if (profilePicData.constructor === Object) {
+                 console.log("ProfilePicture", profilePicData);
+                 Documentdata = profilePicData;
+                 picBase64 = 'data:image/png|jpg;base64,' + profilePicData.ImgEncode;
+                 document.getElementById('proPicMini').setAttribute('src', picBase64);
+                 document.getElementById('proPicMain').setAttribute('src', picBase64);
+             }
+     }())
 }
 function SaveProfilePicture() {
     let DocumentToSave = JSON.stringify({
@@ -376,24 +402,26 @@ function SaveProfilePicture() {
         isAdmin: isAdmin() ? 1 : 0             // 0 - Tenant , 1 - Admin
     });
     console.log("Documentdata", Documentdata)
-    Documentdata.length == 0 ?
-    ManageAjaxCalls.Post(ApiDictionary.PostDocument(), DocumentToSave, (res) => {
-        console.log(res)
+    Documentdata.length == 0 ? (async function () {
+        let postDocumentData = await PostAjax(ApiDictionary.PostDocument(), DocumentToSave);
+        console.log(postDocumentData)
         document.getElementById('proPicMini').setAttribute('src', 'data:image/png|jpg;base64,' + picBase64);
         document.getElementById('proPicMain').setAttribute('src', 'data:image/png|jpg;base64,' + picBase64);
-        if (res.status == 201) {
+        if (postDocumentData.status == 201) {
             CustomeToast("Profile Picture", 'Saved Successfully', "bg-success");
-        } else if (res.status == 405) {
-            CustomeToast("Profile Picture", res.responseJSON, "bg-danger");
+        } else if (postDocumentData.status == 405) {
+            CustomeToast("Profile Picture", postDocumentData.responseJSON, "bg-danger");
         }
-    }) : ManageAjaxCalls.Put(ApiDictionary.PutDocument() + "?id=" + Documentdata.ImgID, DocumentToSave, (res) => {
-        console.log(res);
-        document.getElementById('proPicMini').setAttribute('src', 'data:image/png|jpg;base64,' + picBase64);
-        document.getElementById('proPicMain').setAttribute('src', 'data:image/png|jpg;base64,' + picBase64);
-        if (res.status == 200) {
-            CustomeToast("Profile Picture", 'Profile Picture saved Successfully', "bg-success");
-        } else if (res.status == 405) {
-            CustomeToast("Profile Picture", res.responseJSON, "bg-danger");
-        }
-    })
+    }())
+        : (async function () {
+            let putDocumentData = await PutAjax(`${ApiDictionary.PutDocument()}?id=${Documentdata.ImgID}`, DocumentToSave);
+            console.log(putDocumentData);
+            document.getElementById('proPicMini').setAttribute('src', 'data:image/png|jpg;base64,' + picBase64);
+            document.getElementById('proPicMain').setAttribute('src', 'data:image/png|jpg;base64,' + picBase64);
+            if (putDocumentData.status == 200) {
+                CustomeToast("Profile Picture", 'Profile Picture saved Successfully', "bg-success");
+            } else if (putDocumentData.status == 405) {
+                CustomeToast("Profile Picture", putDocumentData.responseJSON, "bg-danger");
+            }
+        }());
 }

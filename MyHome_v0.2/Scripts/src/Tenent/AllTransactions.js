@@ -33,11 +33,12 @@ function GotoSaveTransaction() {
     });
 }
 
-function transactionCall() {
+async function transactionCall() {
     let assetID = sessionStorage.getItem('AssetID');
     trnFrom = dateFormat($('#RenderContent').find('#trnFrom').val());
-    trnTo = dateFormat($('#RenderContent').find('#trnTo').val()); 
-    ManageAjaxCalls.GetData(ApiDictionary.GetTransactions() + `?AssetName=${assetID}&trnFrom=${trnFrom}&trnTo=${trnTo}`, tranRespose)
+    trnTo = dateFormat($('#RenderContent').find('#trnTo').val());
+    let getTransactionsData = await GetAjax(ApiDictionary.GetTransactions() + `?AssetName=${assetID}&trnFrom=${trnFrom}&trnTo=${trnTo}`);
+    tranRespose(getTransactionsData)
 }
 function tranRespose(transactions) {
     $('#tblTransactions tbody').empty();
@@ -90,11 +91,12 @@ function tranRespose(transactions) {
 }; 
 
 // transaction Call
-function AlltransactionsGet() {
+async function AlltransactionsGet() {
     let assetID = sessionStorage.getItem('AssetID');
     trnFrom = dateFormat($('#RenderContent').find('#trnFrom').val());
     trnTo = dateFormat($('#RenderContent').find('#trnTo').val());
-    ManageAjaxCalls.GetData(ApiDictionary.GetTransactions() + `?AssetName=${assetID}&trnFrom=${trnFrom}&trnTo=${trnTo}`, tranResponseGet)
+    let getTransactionsData = await GetAjax(ApiDictionary.GetTransactions() + `?AssetName=${assetID}&trnFrom=${trnFrom}&trnTo=${trnTo}`);
+    tranResponseGet(getTransactionsData);
 }
 function tranResponseGet(transactions) {
     $('#tblTransactions tbody').empty();
@@ -172,8 +174,7 @@ function handleTrnTypeChange() {
     RenderContent.find("#ckbPaymentStatus").prop("checked", trnType <= 11); 
 }
 
-function Transactionsearch(val) {
-    
+async function Transactionsearch(val) {
     console.log(val);
     // 1 - Mon, 2 - Tue, 3 - Wed, 4-Thu, 5 - Fri, 6 - Sat, 7 - Sun.    
     let assetID = sessionStorage.getItem('AssetID');
@@ -211,15 +212,13 @@ function Transactionsearch(val) {
         trnTo = dateFormat('31/12/' + yyyy);
     }
     if (val != 4) {
-        ManageAjaxCalls.GetData(ApiDictionary.GetTransactions() + `?AssetName=${assetID}&trnFrom=${trnFrom}&trnTo=${trnTo}`,
-            (res) => {
-                isAdmin() ? tranResponseGet(res) : tranRespose(res);
-            })
+        let getTransactionsData = await GetAjax(ApiDictionary.GetTransactions() + `?AssetName=${assetID}&trnFrom=${trnFrom}&trnTo=${trnTo}`);
+        isAdmin() ? tranResponseGet(getTransactionsData) : tranRespose(getTransactionsData);
     }
 }
 
 // Save and Edit Asset
-function saveTransaction() {
+async function saveTransaction() {
     let trnDate = trnFrom = dateFormat($('#RenderContent').find('#trnDate').val());
     let PaymentStatus = $("#ckbPaymentStatus").is(':checked') ? 1 : 2;
     let trnType = $("#ddlTransactionType :selected").val();
@@ -242,30 +241,31 @@ function saveTransaction() {
     if (trnType == 2) {
         trnFrom = dateFormat('01/01/' + yyyy);
         trnTo = dateFormat('31/12/' + yyyy);
-        ManageAjaxCalls.GetData(ApiDictionary.GetTransactions() + `?AssetName=${assetID}&trnFrom=${trnFrom}&trnTo=${trnTo}`,
-            (res) => {
-                console.log("transactionsData", res);
-            })
-        ManageAjaxCalls.Put(ApiDictionary.PutTransaction() + `?id=${trnselectedID}`, TransactionToSave, () => {
-            if (res.status == 201) {
-                CustomeToast("Transaction", 'Modified Successfully', "bg-info");
-            } else if (res.status == 405) {
-                CustomeToast("Transaction", res.responseJSON, "bg-danger");
-            }
-        })
+        //ManageAjaxCalls.GetData(ApiDictionary.GetTransactions() + `?AssetName=${assetID}&trnFrom=${trnFrom}&trnTo=${trnTo}`,
+        //    (res) => {
+        //        console.log("transactionsData", res);
+        //    });
+        let putTransactionData = await GetAjax(ApiDictionary.PutTransaction() + `?id=${trnselectedID}`);
+        if (putTransactionData.status == 201) {
+            CustomeToast("Transaction", 'Modified Successfully', "bg-info");
+        } else if (putTransactionData.status == 405) {
+            CustomeToast("Transaction", putTransactionData.responseJSON, "bg-danger");
+        }
     } else {
-        trnisEdit ?
-            ManageAjaxCalls.Put(ApiDictionary.PutTransaction() + `?id=${trnselectedID}`, TransactionToSave, () => { console.log("Transaction Updated.") }) :
-            ManageAjaxCalls.Post(ApiDictionary.PostTransaction(), TransactionToSave, (res) => {
-                console.log(res)
-                if (res.status == 201) {
+        trnisEdit ? (async function () {
+            let putTransactionData = await PutAjax(ApiDictionary.PutTransaction() + `?id=${trnselectedID}`, TransactionToSave);
+            console.log("Transaction Updated.", putTransactionData)
+        }()):
+            (async function () {
+                let postTransactionData = await PostAjax(ApiDictionary.PostTransaction(), TransactionToSave);
+                console.log(postTransactionData)
+                if (postTransactionData.status == 201) {
                     CustomeToast("Transaction", 'Saved Successfully', "bg-success");
-                } else if (res.status == 405) {
-                    CustomeToast("Transaction", res.responseJSON, "bg-danger");
+                } else if (postTransactionData.status == 405) {
+                    CustomeToast("Transaction", postTransactionData.responseJSON, "bg-danger");
                 }
-            });
+            }());
     }
-
     trnisEdit = false;
     trnselectedID = '';    
 }
@@ -300,10 +300,10 @@ function TransactionEdit(id) {
 }
 
 // DELETE Transaction
-function TransactionDelete(id) {
-    ManageAjaxCalls.Delete(ApiDictionary.DeleteTransaction() + '?id=' + id, (res) => {
-        CustomeToast("Transaction", 'Deleted Successfully', "bg-danger");
-    });
+async function TransactionDelete(id) {
+    let deleteTransactionData = await DeleteAjax(`${ApiDictionary.DeleteTransaction()}?id=${id}`);
+    console.log("deleteTransactionData", deleteTransactionData)
+    CustomeToast("Transaction", 'Deleted Successfully', "bg-danger");
 }
 
 // DELETE Confirmation Modal

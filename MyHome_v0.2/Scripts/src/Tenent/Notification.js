@@ -3,16 +3,15 @@ $(document).ready(() => {
         if(isAdmin() == false) getNotifications();
     $('#btnAllNotifn').prop('disabled', true);
 
-    function getNotifications() {
-        ManageAjaxCalls.GetData(ApiDictionary.GetNotification() + `?AssetName=${sessionStorage.getItem('AssetID')}`, (res) => {
-            let NotificationList = '';
-            NotificationRes = res;
-            $('#btnAllNotifn').prop('disabled', false);
-            let list = convertObjectArray(NotificationTypes);
-            res.map(row => {
-                if (row.Status == 0) {
-                    let date = dateFormat(getDateOnly(row.NotificationDate));
-                    NotificationList += `
+    async function getNotifications() {
+        let NotificationRes = await GetAjax(ApiDictionary.GetNotification() + `?AssetName=${sessionStorage.getItem('AssetID')}`);
+        let NotificationList = '';
+        $('#btnAllNotifn').prop('disabled', false);
+        let list = convertObjectArray(NotificationTypes);
+        NotificationRes.map(row => {
+            if (row.Status == 0) {
+                let date = dateFormat(getDateOnly(row.NotificationDate));
+                NotificationList += `
                     <div class="notifi__item">
                         <div class="bg-c3 img-cir img-40">
                             <label class="notifnLetter">${NotificationLetter[row.NotificationType]}</label>
@@ -21,16 +20,14 @@ $(document).ready(() => {
                              <p>${list[row.NotificationType].name}</p><span class="date">${date}</span>
                         </div>
                     </div>`
-                }
-            });
-            let notiNum = isAdmin() ?
-                NotificationRes.filter(x => x.Status === 0).length :
-                NotificationRes.filter(x => x.Status === 1).length;
-            $('#listNotifications').html(NotificationList);
-            $('#NotiCount').text(`You have ${notiNum} Notifications`);
-            notiNum != 0 ? $('#Notiquantity').text(notiNum).removeClass('d-none') : $('#Notiquantity').addClass('d-none');
-            
+            }
         });
+        let notiNum = isAdmin() ?
+            NotificationRes.filter(x => x.Status === 0).length :
+            NotificationRes.filter(x => x.Status === 1).length;
+        $('#listNotifications').html(NotificationList);
+        $('#NotiCount').text(`You have ${notiNum} Notifications`);
+        notiNum != 0 ? $('#Notiquantity').text(notiNum).removeClass('d-none') : $('#Notiquantity').addClass('d-none');
     }
 });
 
@@ -81,13 +78,12 @@ async function getAllNotification() {
 }
 
 // Delete Notification
-function deleteNotification(id) {
-    ManageAjaxCalls.Delete(ApiDictionary.DeleteNotification() + `?id=${Number(id)}`, (res) => {
-        console.log(res);
-        getNotifications();
-        getAllNotification();
-        CustomeToast("Notification", "Deleted Successfully", "bg-danger");
-    });
+async function deleteNotification(id) {
+    let deleteDocumentData = await DeleteAjax(ApiDictionary.DeleteMailLogs() + `?id=${Number(id)}`);
+    console.log(deleteDocumentData);
+    getNotifications();
+    getAllNotification();
+    CustomeToast("Notification", "Deleted Successfully", "bg-danger");
 }
 
 // DELETE Confirmation Modal
@@ -99,7 +95,7 @@ function SetNotificationDeleteModal(id) {
     $('#deleteModal').modal('show');
 }
 
-function saveNotifcation() {
+async function saveNotifcation() {
     let notiToSave = JSON.stringify({
         AssetName: sessionStorage.getItem('AssetID'),
         NotificationType: $("#ddlNotifications option:selected").attr('value'),
@@ -107,9 +103,8 @@ function saveNotifcation() {
         NotificationDate: getCurrentDate(),
         Status:0
     });
-    let assetID = sessionStorage.getItem('AssetID');
-    ManageAjaxCalls.Post(ApiDictionary.PostNotification(), notiToSave, () => {
-        console.log('Notification Added');
-        CustomeToast("Notification", "Saved Successfully", "bg-success")
-    });  
+    let postNotificationData = await PostAjax(ApiDictionary.PostNotification(), notiToSave,);
+    console.log('Notification Added', postNotificationData);
+    CustomeToast("Notification", "Saved Successfully", "bg-success")
+    
 }

@@ -1,13 +1,14 @@
 ﻿let ProxisEdit = false;
 
-const getProximities = () => {
-    let assetID = sessionStorage.getItem('AssetID')
-    ManageAjaxCalls.GetData(ApiDictionary.GetProximity() + `?AssetName=${assetID}`, (res) => {
+async function getProximities() {
+    try {
+        let assetID = sessionStorage.getItem('AssetID');
+        let getProximityData = await GetAjax(ApiDictionary.GetProximity() + `?AssetName=${assetID}`);
         if (isAdmin()) {
-            if (res.length == 0) {
+            if (getProximityData.length == 0) {
                 mainContent.find('#btnEditProximities').hide();
                 mainContent.find('#btnAddProximities').show();
-            } else if (res.length != 0){
+            } else if (getProximityData.length != 0) {
                 mainContent.find('#btnEditProximities').show();
                 mainContent.find('#btnAddProximities').hide()
             }
@@ -15,43 +16,40 @@ const getProximities = () => {
             mainContent.find('#btnEditProximities,#btnAddProximities,#btnDeleteProximities').hide();
         }
         const checkFields = (val) => {
-            if (val) return val && val[0] == "" ? "N/A" : `${val[0]} (${val[1] == 0 ? "Less than 1" : val[1]}KM)`
+            if (val) return val && val[0] == "" ? "N/A" : `${val[0]} (${val[1] == 0 ? "Less than 1" : val[1]}KM)`;
         }
-        if (res.length > 0) {
-            globalProximity = res;
+        if (getProximityData.length > 0) {
+            globalProximity = getProximityData;
             console.log("globalProximity", globalProximity)
-            $('#lblRailwayStation').text(checkFields(res[0]["RailwayStation"].split("-")));
-            $('#lblBusStation').text(checkFields(res[0]["BusStation"].split("-")));
-            $('#lblAirport').text(checkFields(res[0]["Airport"].split("-")));
-            $('#lblMetroStation').text(checkFields(res[0]["MetroStation"].split("-")));
-            $('#lblSchoolorCollege').text(checkFields(res[0]["SchoolorCollege"].split("-")));
-            $('#lblHospital').text(checkFields(res[0]["Hospital"].split("-")));
-            $('#lblMarket').text(checkFields(res[0]["Market"].split("-")));
-            $('#lblTemple').text(checkFields(res[0]["Temple"].split("-")));
-            $('#lblHotel').text(checkFields(res[0]["Hotel"].split("-")));
+            $('#lblRailwayStation').text(checkFields(getProximityData[0]["RailwayStation"].split("-")));
+            $('#lblBusStation').text(checkFields(getProximityData[0]["BusStation"].split("-")));
+            $('#lblAirport').text(checkFields(getProximityData[0]["Airport"].split("-")));
+            $('#lblMetroStation').text(checkFields(getProximityData[0]["MetroStation"].split("-")));
+            $('#lblSchoolorCollege').text(checkFields(getProximityData[0]["SchoolorCollege"].split("-")));
+            $('#lblHospital').text(checkFields(getProximityData[0]["Hospital"].split("-")));
+            $('#lblMarket').text(checkFields(getProximityData[0]["Market"].split("-")));
+            $('#lblTemple').text(checkFields(getProximityData[0]["Temple"].split("-")));
+            $('#lblHotel').text(checkFields(getProximityData[0]["Hotel"].split("-")));
         } else {
             $('#lblRailwayStation,#lblBusStation,#lblAirport,#lblMetroStation,#lblSchoolorCollege,#lblHospital,#lblMarket,#lblTemple,#lblHotel').text("N/A");
             $("#airportDistance,#RailwayStationDistance,#BusStationDistance,#MetroDistance,#SchoolCollegeDistance,#HospitalDistance,#MarketDistance,#HotelDistance,#TempleDistance").text("");
         }
-        
-        setTimeout(() => {
-            setScreenLoader(false)
-        }, 500);
-    }, () => {
-            setScreenLoader(false);
-            mainContent.find('#btnEditProximities').hide();
-            mainContent.find('#btnAddProximities').hide();
-            mainContent.find('#btnDeleteProximities').hide();
-            
-    });  
+
+        setTimeout(() => { setScreenLoader(false); }, 500);
+    } catch (err) {
+        setScreenLoader(false);
+        mainContent.find('#btnEditProximities').hide();
+        mainContent.find('#btnAddProximities').hide();
+        mainContent.find('#btnDeleteProximities').hide();
+    }
 }
 const getValue = (field) => {
     return RenderContent.find(field).val();
 }
-function GotosaveProximities(isEdit) {
+ function GotosaveProximities(isEdit) {
     var url = window.rootpath + AdminURLs.SaveProximity;
     ProxisEdit = isEdit;
-    $.get(url, function (response) {
+     $.get(url, async function (response) {
         RenderContent.html(response);
         let assetId = Number(sessionStorage.getItem('AssetID'));
         ["ddlAirportDistance", "ddlRailwayStationDistance", "ddlBusStationDistance",
@@ -61,28 +59,28 @@ function GotosaveProximities(isEdit) {
                 generateOptions(convertObjectArray(Distance), itm);
             });
         generateOptions(convertObjectArray(Directions), "ddlMetroStationDirection");
-        ManageAjaxCalls.GetData(ApiDictionary.GetProximity() + `?AssetName=${assetId}`, (res) => {
-            console.log("resres", res)
-            RenderContent.find('#txtRailwayStation').val(res[0]["RailwayStation"].split("-")[0]);
-            RenderContent.find('#txtBusStation').val(res[0]["BusStation"].split("-")[0]);
-            RenderContent.find('#txtAirport').val(res[0]["Airport"].split("-")[0]);
-            RenderContent.find('#txtMetroStation').val(res[0]["MetroStation"].split("-")[0]);
-            RenderContent.find('#txtSchoolorCollege').val(res[0]["SchoolorCollege"].split("-")[0]);
-            RenderContent.find('#txtHospital').val(res[0]["Hospital"].split("-")[0]);
-            RenderContent.find('#txtMarket').val(res[0]["Market"].split("-")[0]);
-            RenderContent.find('#txtTemple').val(res[0]["Temple"].split("-")[0]);
-            RenderContent.find('#txtHotel').val(res[0]["Hotel"].split("-")[0]);
+        let getProximityData = await GetAjax(ApiDictionary.GetProximity() + `?AssetName=${assetId}`);
 
-            RenderContent.find("#ddlAirportDistance").val(res[0]["Airport"].split("-")[1]).change();
-            RenderContent.find("#ddlRailwayStationDistance").val(res[0]["RailwayStation"].split("-")[1]).change();
-            RenderContent.find("#ddlBusStationDistance").val(res[0]["BusStation"].split("-")[1]).change();
-            RenderContent.find("#ddlMetroStationDistance").val(res[0]["MetroStation"].split("-")[1]).change();
-            RenderContent.find("#ddlSchoolCollegeDistance").val(res[0]["SchoolorCollege"].split("-")[1]).change();
-            RenderContent.find("#ddlHospitalDistance").val(res[0]["Hospital"].split("-")[1]).change();
-            RenderContent.find("#ddlMarketDistance").val(res[0]["Market"].split("-")[1]).change();
-            RenderContent.find("#ddlHotelDistance").val(res[0]["Hotel"].split("-")[1]).change();
-            RenderContent.find("#ddlTempleDistance").val(res[0]["Temple"].split("-")[1]).change();
-        });
+        console.log("resres", getProximityData)
+        RenderContent.find('#txtRailwayStation').val(getProximityData[0]["RailwayStation"].split("-")[0]);
+        RenderContent.find('#txtBusStation').val(getProximityData[0]["BusStation"].split("-")[0]);
+        RenderContent.find('#txtAirport').val(getProximityData[0]["Airport"].split("-")[0]);
+        RenderContent.find('#txtMetroStation').val(getProximityData[0]["MetroStation"].split("-")[0]);
+        RenderContent.find('#txtSchoolorCollege').val(getProximityData[0]["SchoolorCollege"].split("-")[0]);
+        RenderContent.find('#txtHospital').val(getProximityData[0]["Hospital"].split("-")[0]);
+        RenderContent.find('#txtMarket').val(getProximityData[0]["Market"].split("-")[0]);
+        RenderContent.find('#txtTemple').val(getProximityData[0]["Temple"].split("-")[0]);
+        RenderContent.find('#txtHotel').val(getProximityData[0]["Hotel"].split("-")[0]);
+
+        RenderContent.find("#ddlAirportDistance").val(getProximityData[0]["Airport"].split("-")[1]).change();
+        RenderContent.find("#ddlRailwayStationDistance").val(getProximityData[0]["RailwayStation"].split("-")[1]).change();
+        RenderContent.find("#ddlBusStationDistance").val(getProximityData[0]["BusStation"].split("-")[1]).change();
+        RenderContent.find("#ddlMetroStationDistance").val(getProximityData[0]["MetroStation"].split("-")[1]).change();
+        RenderContent.find("#ddlSchoolCollegeDistance").val(getProximityData[0]["SchoolorCollege"].split("-")[1]).change();
+        RenderContent.find("#ddlHospitalDistance").val(getProximityData[0]["Hospital"].split("-")[1]).change();
+        RenderContent.find("#ddlMarketDistance").val(getProximityData[0]["Market"].split("-")[1]).change();
+        RenderContent.find("#ddlHotelDistance").val(getProximityData[0]["Hotel"].split("-")[1]).change();
+        RenderContent.find("#ddlTempleDistance").val(getProximityData[0]["Temple"].split("-")[1]).change();
     });
 }
 
@@ -104,14 +102,17 @@ function saveProximity() {
     });
     let addetID = sessionStorage.getItem('AssetID');
     console.log(ApiDictionary.PutProximity() + `?id=${addetID}`, ProximityToSave);
-    ProxisEdit?
-        ManageAjaxCalls.Put(ApiDictionary.PutProximity() + `?id=${addetID}`, ProximityToSave, (res) => {
-            CustomeToast("Proximity", 'Modified Successfully', "bg-info");
-            console.log('Proximity Modified', res)
-    }) : ManageAjaxCalls.Post(ApiDictionary.PostProximity(), ProximityToSave, (res) => {
-        CustomeToast("Proximity", 'Saved Successfully', "bg-success");
-        console.log("Proximity Saved", res)
-    });
+    ProxisEdit ?
+        (async function () {
+            let putProximityData = await PutAjax(ApiDictionary.PutProximity() + `?id=${addetID}`, ProximityToSave);
+            CustomeToast("Proximity", 'Saved Successfully', "bg-success");
+            console.log("Proximity Saved", putProximityData)
+        }())
+        : (async function () {
+            let postProximityData = await PostAjax(ApiDictionary.PostProximity(), ProximityToSave);
+            CustomeToast("Proximity", 'Saved Successfully', "bg-success");
+            console.log("Proximity Saved", postProximityData)
+        }());
 }
 
 // DELETE Confirmation Modal
@@ -124,12 +125,11 @@ function SetProximityDeleteModal() {
 }
 
 // DELETE Proximity TAX
-function ProximityDelete() {
+async function ProximityDelete() {
     let id = sessionStorage.getItem("AssetID")
-    ManageAjaxCalls.Delete(ApiDictionary.DeleteProximity() + '?AssetName=' + id, (res) => {
-        console.log('Deleted Successfully', res);
-        CustomeToast("Tenant Agreement", "Proximity Deleted Successfully", "bg-danger");
-        $('#lblRailwayStation,#lblBusStation,#lblAirport,#lblMetroStation,#lblSchoolorCollege,#lblHospital,#lblMarket,#lblTemple,#lblHotel').text("N/A");
-        $("#airportDistance,#RailwayStationDistance,#BusStationDistance,#MetroDistance,#SchoolCollegeDistance,#HospitalDistance,#MarketDistance,#HotelDistance,#TempleDistance").text("");
-    });
+    let deleteProximityData = await DeleteAjax(ApiDictionary.DeleteProximity() + `?AssetName=${Number(id)}`);
+    console.log('Deleted Successfully', deleteProximityData);
+    CustomeToast("Tenant Agreement", "Proximity Deleted Successfully", "bg-danger");
+    $('#lblRailwayStation,#lblBusStation,#lblAirport,#lblMetroStation,#lblSchoolorCollege,#lblHospital,#lblMarket,#lblTemple,#lblHotel').text("N/A");
+    $("#airportDistance,#RailwayStationDistance,#BusStationDistance,#MetroDistance,#SchoolCollegeDistance,#HospitalDistance,#MarketDistance,#HotelDistance,#TempleDistance").text("");
 }

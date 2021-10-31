@@ -8,16 +8,6 @@ var date = new Date();
 var mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
 var yyyy = date.getFullYear();
 
-function getRaiseReqHTML(){
-    var url = window.rootpath + "Tenent/_raiseRequest";
-    $('#ReqQuantity').hide();
-    $.get(url, function (response) {
-        RenderContent.html(response);
-        customizeUI();
-        RequestCall();
-    });
-}
-
 function createGraph (){
     var ctx = document.getElementById("elecBill").getContext('2d');
     var myChart = new Chart(ctx, {
@@ -203,7 +193,6 @@ const getDashboardData = () => {
 
             let yrsSpent = joinDate.split("-")[2] - dateFormat(getCurrentDate()).split("-")[2];
             let monthsSpent = Math.abs(joinDate.split("-")[1] - dateFormat(getCurrentDate()).split("-")[1]);
-            console.log("dfgbdhgfsjfkhgkfksjkdfhgdg", dateFormat(getCurrentDate()), joinDate, yrsSpent, monthsSpent)
             $("#spentYr").text(yrsSpent);
             $("#spentMonth").text(monthsSpent);
             $("#AdvAmt").text(`Rs. ${tenentData[0]["AdvanceAmount"]} /-`);

@@ -62,3 +62,4 @@ const ReminderTypes = {
 }
 
 const Directions = { "North": 1, "North East": 2, "East": 3, "South East": 4, "South": 5, "South West": 6, "West": 7, "North West": 8 }
+

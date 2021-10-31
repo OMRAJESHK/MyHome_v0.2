@@ -48,17 +48,17 @@ function clearPreview() {
     $('#NoDoc_Text').text("No Preview");
 }
 
-function getDocuments() {
+async function getDocuments() {
     setScreenLoader(true);
     $('#documentPreview').attr('src', "").hide();
     $('#NoDoc_Text').text("No Preview");
     let assetID = sessionStorage.getItem('AssetID');
-    ManageAjaxCalls.GetData(ApiDictionary.GetDocument() + `?AssetName=${assetID}`, (res) => {
-        let docsHTML = ``;
-        documentsData = res;
-        res && res.length > 0 ? res.map((itm) => {
-            if (itm.ImgTitle != 1) {
-                docsHTML += `<div class="col col-6" onclick="handleDocClick(${itm.ImgID});">
+    let getDocumentData = await GetAjax(ApiDictionary.GetDocument() + `?AssetName=${assetID}`);
+    let docsHTML = ``;
+    documentsData = getDocumentData;
+    getDocumentData && getDocumentData.length > 0 ? getDocumentData.map((itm) => {
+        if (itm.ImgTitle != 1) {
+            docsHTML += `<div class="col col-6" onclick="handleDocClick(${itm.ImgID});">
                                 <div class="card assetCards">
                                     <div class="card-body cursor-pointer" style="min-width:200px;height:200px;position: relative;">
                                         <div class="d-flex justify-content-between mb-1 border-bottom">
@@ -74,19 +74,16 @@ function getDocuments() {
                                     </div>
                                 </div>
                             </div>`
-                $("#downloadDoc").removeClass("disabled");
-            } else {
-                docsHTML = `<span class="text-center" style="width: 100%;font-size: 14px;font-weight: 500;">No Documents Available</span>`;
-            }
-        }) : (function () {
-                docsHTML = `<span class="text-center" style="width: 100%;font-size: 14px;font-weight: 500;">No Documents Available</span>`;
-                $("#downloadDoc").addClass("disabled");
-            }());
-        $("#DocumentList").html(docsHTML);
-        setTimeout(() => { setScreenLoader(false); }, 600);
-
-    });
-
+            $("#downloadDoc").removeClass("disabled");
+        } else {
+            docsHTML = `<span class="text-center" style="width: 100%;font-size: 14px;font-weight: 500;">No Documents Available</span>`;
+        }
+    }) : (function () {
+        docsHTML = `<span class="text-center" style="width: 100%;font-size: 14px;font-weight: 500;">No Documents Available</span>`;
+        $("#downloadDoc").addClass("disabled");
+    }());
+    $("#DocumentList").html(docsHTML);
+    setTimeout(() => { setScreenLoader(false); }, 600);
 }
 
 // DELETE Confirmation Modal
@@ -99,15 +96,14 @@ function SetDocumentDeleteModal(id) {
 }
 
 // DELETE PROPERTY TAX
-function DocumentDelete(id) {
-    ManageAjaxCalls.Delete(ApiDictionary.DeleteDocument() + '?id=' + id, (res) => {
-        console.log('Deleted Successfully', res);
-        CustomeToast("Document", 'Deleted Successfully', "bg-danger");
-        getDocuments();
-    });
+async function DocumentDelete(id) {
+    let deleteDocumentData = await DeleteAjax(ApiDictionary.DeleteDocument() + `?id=${Number(id)}`);
+    console.log('Deleted Successfully', deleteDocumentData);
+    CustomeToast("Document", 'Deleted Successfully', "bg-danger");
+    getDocuments();
 }
 
-function saveDocument() {
+async function saveDocument() {
     let docTitle = $('#ddlDocumentTitle :selected').val();
     let docDesc = $('#txtDocumentDescription').val();
     let docDate = dateFormat($('#RenderContent').find('#txtDocumentDate').val())
@@ -123,14 +119,13 @@ function saveDocument() {
         AssetName: assetID,
         isAdmin: 0             // 0 - Tenant , 1 - Admin
     });
-    ManageAjaxCalls.Post(ApiDictionary.PostDocument(), DocumentToSave, (res) => {
-        console.log(res)
-        if (res.status == 201) {
-            CustomeToast("Document", 'Saved Successfully', "bg-success");
-        } else if (res.status == 405) {
-            CustomeToast("Document", res.responseJSON, "bg-danger");
-        }
-    })
+    let postDocumentData = await PostAjax(ApiDictionary.PostDocument(), DocumentToSave);
+    console.log(res)
+    if (postDocumentData.status == 201) {
+        CustomeToast("Document", 'Saved Successfully', "bg-success");
+    } else if (postDocumentData.status == 405) {
+        CustomeToast("Document", postDocumentData.responseJSON, "bg-danger");
+    }
 }
 
 function handleDocClick(ID) {
