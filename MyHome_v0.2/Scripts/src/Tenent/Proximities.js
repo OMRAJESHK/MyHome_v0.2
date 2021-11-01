@@ -105,12 +105,12 @@ function saveProximity() {
     ProxisEdit ?
         (async function () {
             let putProximityData = await PutAjax(ApiDictionary.PutProximity() + `?id=${addetID}`, ProximityToSave);
-            CustomeToast("Proximity", 'Saved Successfully', "bg-success");
+            CustomeToast("Proximity", "Proximity Saved Successfully", "bg-success");
             console.log("Proximity Saved", putProximityData)
         }())
         : (async function () {
             let postProximityData = await PostAjax(ApiDictionary.PostProximity(), ProximityToSave);
-            CustomeToast("Proximity", 'Saved Successfully', "bg-success");
+            CustomeToast("Proximity", 'Proximity Saved Successfully', "bg-success");
             console.log("Proximity Saved", postProximityData)
         }());
 }
@@ -129,7 +129,7 @@ async function ProximityDelete() {
     let id = sessionStorage.getItem("AssetID")
     let deleteProximityData = await DeleteAjax(ApiDictionary.DeleteProximity() + `?AssetName=${Number(id)}`);
     console.log('Deleted Successfully', deleteProximityData);
-    CustomeToast("Tenant Agreement", "Proximity Deleted Successfully", "bg-danger");
+    CustomeToast("Proximity", "Proximity Deleted Successfully", "bg-danger");
     $('#lblRailwayStation,#lblBusStation,#lblAirport,#lblMetroStation,#lblSchoolorCollege,#lblHospital,#lblMarket,#lblTemple,#lblHotel').text("N/A");
     $("#airportDistance,#RailwayStationDistance,#BusStationDistance,#MetroDistance,#SchoolCollegeDistance,#HospitalDistance,#MarketDistance,#HotelDistance,#TempleDistance").text("");
 }

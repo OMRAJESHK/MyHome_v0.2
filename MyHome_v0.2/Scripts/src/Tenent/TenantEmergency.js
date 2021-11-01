@@ -133,11 +133,11 @@ const saveEmergancyContactsDetails = () => {
        
     });
     console.log('isEdit', emcyIsEdit)
-    emcyIsEdit ?
-        ManageAjaxCalls.Put(ApiDictionary.PutEmergency() + '?id=' + selectedID, EmcyContactToSave, (res) => {
-            console.log('modified', res)
-            CustomeToast("Contact Details", "Contact Details Modified", "bg-warning");
-        }) :
+    emcyIsEdit ? (async function () {
+        let putEmergencyData = await PutAjax(`${ApiDictionary.PutEmergency()}?id=${selectedID}`, EmcyContactToSave);
+        console.log('modifiedpostEmergencyData', putEmergencyData);
+        CustomeToast("Contact Details", "Contact Details Modified", "bg-warning");
+    }()):
         (async function () {
             let postEmergencyData = await PostAjax(ApiDictionary.PostEmergency(), EmcyContactToSave,);
             console.log('res', postEmergencyData)

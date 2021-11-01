@@ -254,13 +254,14 @@ async function saveTransaction() {
     } else {
         trnisEdit ? (async function () {
             let putTransactionData = await PutAjax(ApiDictionary.PutTransaction() + `?id=${trnselectedID}`, TransactionToSave);
-            console.log("Transaction Updated.", putTransactionData)
+            console.log("Transaction Updated.", putTransactionData);
+            CustomeToast("Transaction", "Transaction Modified Successfully", "bg-info");
         }()):
             (async function () {
                 let postTransactionData = await PostAjax(ApiDictionary.PostTransaction(), TransactionToSave);
                 console.log(postTransactionData)
                 if (postTransactionData.status == 201) {
-                    CustomeToast("Transaction", 'Saved Successfully', "bg-success");
+                    CustomeToast("Transaction", "Transaction Saved Successfully", "bg-success");
                 } else if (postTransactionData.status == 405) {
                     CustomeToast("Transaction", postTransactionData.responseJSON, "bg-danger");
                 }
@@ -302,8 +303,8 @@ function TransactionEdit(id) {
 // DELETE Transaction
 async function TransactionDelete(id) {
     let deleteTransactionData = await DeleteAjax(`${ApiDictionary.DeleteTransaction()}?id=${id}`);
-    console.log("deleteTransactionData", deleteTransactionData)
-    CustomeToast("Transaction", 'Deleted Successfully', "bg-danger");
+    console.log("deleteTransactionData", deleteTransactionData);
+    CustomeToast("Transaction", "Transaction Deleted Successfully", "bg-danger");
 }
 
 // DELETE Confirmation Modal

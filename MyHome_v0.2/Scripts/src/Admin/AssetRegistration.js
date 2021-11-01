@@ -84,7 +84,7 @@ const saveAsset = () => {
     let addetID = sessionStorage.getItem('AssetID');
     assetIsEdit ? (async function () {
         let AssetPutData = await PutAjax(ApiDictionary.AssetPut() + `?id=${addetID}`, assetToSave);
-        assetPostResponse(AssetPutData);
+        assetPutResponse(AssetPutData);
     }()) :
         (async function () {
             let AssetPostData = await PostAjax(ApiDictionary.AssetPost(), assetToSave);
@@ -102,17 +102,17 @@ async function deleteAsset (id){
 const assetPostResponse = (res) => {
     console.log(res);
     sessionStorage.setItem('AssetID', res.AssetId);
-    CustomeToast("Asset Registration", "Asset Saved Successfully", "bg-success");
+    CustomeToast("Asset", "Asset Saved Successfully", "bg-success");
     clearTextBoxes();
 }
 // ASSET PUT 
 const assetPutResponse = (res) => {
     console.log(res);
-    CustomeToast("Asset Modify", "Asset Modified Successfully", "bg-warning")
+    CustomeToast("Asset", "Asset Modified Successfully", "bg-warning")
 }
 const assetDeleteResponse = (res) => {
     console.log('delete', res);
-    CustomeToast("Asset Modify", "Asset Deleted Successfully", "bg-danger");
+    CustomeToast("Asset", "Asset Deleted Successfully", "bg-danger");
     getAssetsList();
 }
 const clearTextBoxes = () => {

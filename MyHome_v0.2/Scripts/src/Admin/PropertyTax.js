@@ -65,13 +65,14 @@ function savePropertyDetails() {
     isEdit ? (async function () {
         let putPropertyTaxesData = await PutAjax(ApiDictionary.PutPropertyTaxes() + '?id=' + selectedID, PropertyTaxToSave);
         console.log('putPropertyTaxesData modified', putPropertyTaxesData);
+        CustomeToast("Property Tax", "Property Tax Modified Successfully", "bg-info");
     }()) : (async function () {
             let postPropertyTaxesData = await PostAjax(ApiDictionary.PostPropertyTaxes(), PropertyTaxToSave);
             console.log('res', postPropertyTaxesData);
             CustomeToast("Property Tax", "Property Tax Saved Successfully", "bg-success");
         }())
     isEdit = false;
-    selectedID = '';
+    selectedID = "";
 }
 // EDIT PROPERTY TAX
 function propertyTaxEdit(id) {
@@ -90,6 +91,7 @@ function propertyTaxEdit(id) {
 async function propertyTaxDelete(id) {
     let deletePropertyTaxesData = await DeleteAjax(`${ApiDictionary.DeletePropertyTaxes()}?id=${id}`);
     console.log('Deleted Successfully', deletePropertyTaxesData);
+    CustomeToast("Property Tax", "Property Tax Deleted Successfully", "bg-danger");
     getPropertyTaxLogs();
 }
 

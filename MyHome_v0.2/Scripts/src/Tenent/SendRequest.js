@@ -116,6 +116,7 @@ async function saveRequest() {
     }
     let postRequestData = await PostAjax(ApiDictionary.PostRequest(), JSON.stringify(saveObj));
     ReqResponse(postRequestData);
+    CustomeToast("Request", "Request Sent Successfully", "bg-success");
 }
 
 
@@ -123,6 +124,7 @@ async function saveRequest() {
 async function RequestDelete(id) {
     let deleteProximityData = await DeleteAjax(ApiDictionary.DeleteRequest() + `?AssetName=${Number(id)}`);
     console.log('Deleted Successfully', deleteProximityData);
+    CustomeToast("Request", "Request Deleted Successfully", "bg-danger");
     request = [];
     RequestCall();
 }

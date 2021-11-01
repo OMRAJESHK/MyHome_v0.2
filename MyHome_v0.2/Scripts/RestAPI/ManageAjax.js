@@ -84,6 +84,7 @@ const GetAjax = (url, param = {}) => {
 }
 
 const PostAjax = (url, data = {}) => {
+    console.log("uersbfsfs",url)
     return $.ajax({
         url: url,
         method: 'post',
@@ -108,7 +109,6 @@ const DeleteAjax = (url, data = {}) => {
         url: url,
         method: 'delete',
         headers: { 'Authorization': "Bearer " + sessionStorage.getItem('accessToken') },
-        contentType: 'application/json',
         data: data,
     });
 }

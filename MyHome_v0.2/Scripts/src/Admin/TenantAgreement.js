@@ -86,7 +86,8 @@ function saveTenantAgreement() {
     })
     agreemntIsEdit ? (async function () {
         let putTenentAgreementData = await PutAjax(ApiDictionary.PutTenentAgreement() + `?id=${id}`, tenantAgmntToSave);
-        console.log('tenantAgmnt Modified', putTenentAgreementData)
+        console.log('tenantAgmnt Modified', putTenentAgreementData);
+        CustomeToast("Tenent Agreement", "Tenent Deed Agreement Modified Successfully", "bg-info");
     }()) : (async function () {
         let postTenentAgreementData = await PostAjax(ApiDictionary.PostTenentAgreement(), tenantAgmntToSave);
         console.log('tenantAgmnt Saved', postTenentAgreementData);

@@ -144,8 +144,12 @@ function getRaiseReqHTML() {
 //------END OF COMMON FUNCTION DECLARATION-----------//
 async function handleLogOut() {
     sessionStorage.clear();
-    let logoutData = await PostAjax(ApiDictionary.gotoLogout, {});
-    console.log("Logged Out", logoutData);
+    console.log("Losdsdsut", ApiDictionary.gotoLogout);
+    ManageAjaxCalls.Post(ApiDictionary.gotoLogout, {}, () => {
+        console.log("Logged Out ")
+    })
+   // let logoutData = await PostAjax("Account/Logout", {});
+   //console.log("Logged Out", logoutData);
     window.location.href = window.rootpath
     console.log("Logged Out");
 }
@@ -201,7 +205,7 @@ async function saveRentTransactionMonthly() {
     let logoutData = await PostAjax(ApiDictionary.PostTransaction(), TransactionToSave);
     console.log(logoutData)
     if (res.status == 201) {
-        CustomeToast("Transaction", 'Saved Successfully', "bg-success");
+        CustomeToast("Transaction", "Transaction Saved Successfully", "bg-success");
     } else if (logoutData.status == 405) {
         CustomeToast("Transaction", logoutData.responseJSON, "bg-danger");
     }
@@ -308,7 +312,7 @@ function AdminDashboardFunction(assetId) {
                     let postTransactionData = await PostAjax(ApiDictionary.PostTransaction(), TransactionToSave);
                     console.log(postTransactionData);
                     if (postTransactionData.status == 201) {
-                        CustomeToast("Transaction", 'Saved Successfully', "bg-success");
+                        CustomeToast("Transaction", "Saved Successfully", "bg-success");
                     } else if (postTransactionData.status == 405) {
                         console.log(postTransactionData.responseJSONs);
                     }

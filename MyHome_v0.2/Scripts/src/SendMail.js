@@ -146,9 +146,10 @@ async function getMailLogs() {
 }
 
 // DELETE MailLog TAX
-async function MailLogTaxDelete(id) {
+async function MailLogDelete(id) {
     let deleteDocumentData = await DeleteAjax(ApiDictionary.DeleteMailLogs() + `?id=${Number(id)}`);
-    console.log('DEleted Successfully', deleteDocumentData);
+    console.log('Deleted Successfully', deleteDocumentData);
+    CustomeToast("Mail Log", "Mail Log Deleted Successfully", "bg-danger");
     setScreenLoader(true);
     getMailLogs()
 }
@@ -156,7 +157,7 @@ async function MailLogTaxDelete(id) {
 // DELETE Confirmation Modal
 function SetMailLogDeleteModal(id) {
     let deleteButtons = `<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="MailLogTaxDelete(${id})">Delete</button>`;
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="MailLogDelete(${id})">Delete</button>`;
     $('#deleteModal .modal-title').text("Mail Logs");
     $('#deleteModal .modal-footer').html(deleteButtons);
     $('#deleteModal').modal('show');

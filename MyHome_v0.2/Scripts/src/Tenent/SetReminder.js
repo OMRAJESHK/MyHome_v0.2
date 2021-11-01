@@ -49,7 +49,7 @@ const getReminderData = async () => {
 
 }
 
-// SAVE Reminder
+// SAVE ReminderPostAjax
 function saveReminderDetails() {
     let description = RenderContent.find("#txtDescription").val();
     let setdate = RenderContent.find("#txtSetTime").val();
@@ -73,7 +73,8 @@ function saveReminderDetails() {
         }) :
         (async function () {
             let postRemindersData = await PostAjax(ApiDictionary.PostReminders(), setReminderToSave);
-            console.log('res', postRemindersData);
+            console.log('Remindersres', postRemindersData);
+            CustomeToast("Reminders", "Reminders Saved Successfully", "bg-success");
             getReminderData();
         }());
     reminderIsEdit = false;
@@ -106,7 +107,7 @@ function SetReminderDeleteModal(id) {
 async function SetReminderDelete(id) {
     let deleteRemindersData = await DeleteAjax(ApiDictionary.DeleteReminders() + `?AssetName=${Number(id)}`);
     console.log('Deleted Successfully', deleteRemindersData);
-    CustomeToast("SetReminder Delete", "Deleted Successfully", "bg-info");
+    CustomeToast("Reminders", "Deleted Successfully", "bg-info");
     getReminderData();
     $('#deleteModal').modal('hide');
 }

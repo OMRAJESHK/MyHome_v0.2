@@ -105,6 +105,5 @@ async function saveNotifcation() {
     });
     let postNotificationData = await PostAjax(ApiDictionary.PostNotification(), notiToSave,);
     console.log('Notification Added', postNotificationData);
-    CustomeToast("Notification", "Saved Successfully", "bg-success")
-    
+    CustomeToast("Notification", "Notification Saved Successfully", "bg-success");
 }
