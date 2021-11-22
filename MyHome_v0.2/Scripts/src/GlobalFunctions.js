@@ -118,8 +118,8 @@ function toggleFullScreen() {
     }
 }
 
-const generateOptions = (List, ddl) => {
-    let options = `<option value="" disabled>None</option>`;
+const generateOptions = (List, ddl, defaultOpt ="None") => {
+    let options = `<option value="" disabled selected>${defaultOpt}</option>`;
     options += List.map(x => {
         return `<option value=${x.value}>${x.name}</option>`;
     });
@@ -131,7 +131,7 @@ function formatNumber(number) {
     if (number) {
         return number.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
     }
-    return "";
+    return number;
 }
 
 

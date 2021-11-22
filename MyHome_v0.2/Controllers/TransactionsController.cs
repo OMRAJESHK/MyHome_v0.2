@@ -11,18 +11,20 @@ namespace MyHome_v0._2.Controllers
     [Authorize]
     public class TransactionsController : ApiController
     {
-         private MyHomeDBEntities entities = new MyHomeDBEntities();
+         private readonly MyHomeDBEntities entities = new MyHomeDBEntities();
         public IEnumerable<Transaction> GetTransactions() {
             using (MyHomeDBEntities entities = new MyHomeDBEntities()) {
                 return entities.Transactions.ToList();
             }
         }
         [HttpGet]
-         public HttpResponseMessage GetTransaction(int AssetName,DateTime trnFrom, DateTime trnTo) {
-            string[] empty= new string[0]; 
-            var getValidData= entities.Transactions.Where(x => x.AssetName == AssetName && x.Date >= trnFrom && x.Date <= trnTo).ToList();
-
-             try { 
+         public HttpResponseMessage GetTransaction(int AssetName,DateTime trnFrom, DateTime trnTo,int type) {
+            string[] empty= new string[0];
+            var getValidData = entities.Transactions.Where(x => x.AssetName == AssetName && x.Date >= trnFrom && x.Date <= trnTo).ToList();
+             if (type == 2){
+                getValidData = entities.Transactions.Where(x => x.AssetName == AssetName && x.Date >= trnFrom && x.Date <= trnTo && x.TransactionType == type).ToList();
+            }
+            try { 
                  if (getValidData == null){
                     return Request.CreateResponse(HttpStatusCode.NotFound, empty);
                  }
@@ -46,7 +48,7 @@ namespace MyHome_v0._2.Controllers
         [HttpPost]
          public HttpResponseMessage PostTransaction(Transaction transaction) {
              try {
-                if (transaction.TransactionType == 2 || transaction.TransactionType == 102) {
+                if (transaction.TransactionType == 2) {
                     var currdate = transaction.Date.ToString().Substring(3, 7);         
                     var getRow = entities.Transactions.Where(x => x.TransactionType == transaction.TransactionType && x.AssetName == transaction.AssetName).FirstOrDefault();
                     if (getRow == null) { 
@@ -63,7 +65,7 @@ namespace MyHome_v0._2.Controllers
                             entities.Transactions.Add(transaction);
                             entities.SaveChanges();
                             entities.Transactions.Add(transaction);
-                            var message=Request.CreateResponse(HttpStatusCode.Created, transaction);
+                            var message=Request.CreateResponse(HttpStatusCode.Created, true);
                             return message;
                         }
                     }

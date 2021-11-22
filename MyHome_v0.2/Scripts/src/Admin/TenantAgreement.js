@@ -4,7 +4,7 @@ let agreemntSelectedID = '';
 async function getTenantAgreementLogs() {
     try {
         let assetId = Number(sessionStorage.getItem('AssetID'));
-        let getTenentAgreementData = await GetAjax(ApiDictionary.GetPropertyTaxes() + `?AssetName=${assetId}`);
+        let getTenentAgreementData = await GetAjax(ApiDictionary.GetTenentAgreementByID() + `?AssetName=${assetId}`);
         tenantAgreement = getTenentAgreementData;
         if (isAdmin()) {
             if (getTenentAgreementData.constructor === Object) {
@@ -13,6 +13,7 @@ async function getTenantAgreementLogs() {
             }
         } else
             mainContent.find('#btnEditAgreement').hide();
+        console.log("tenantDetails", getTenentAgreementData)
         RenderContent.find('#lblNumOfRecidents').text(getTenentAgreementData["ResidentsNumber"]);
         RenderContent.find('#lblResidentsNames').text(getTenentAgreementData["ResidentsNames"]);
         RenderContent.find('#lblResidentContactNumber').text(getTenentAgreementData["ContactNumbers"]);
@@ -22,6 +23,8 @@ async function getTenantAgreementLogs() {
         RenderContent.find('#lblJoiningDate').text(getDisplayDate(getTenentAgreementData["JoiningDate"]));
         RenderContent.find('#lblIdentityProofs').text(getTenentAgreementData["IdentityProofs"]);
         RenderContent.find('#lblTenantRemarks').text(getTenentAgreementData["Remarks"]);
+        RenderContent.find('#lblRentDueDate').text(getTenentAgreementData["RentDueDate"]);
+        
         setTimeout(() => { setScreenLoader(false); }, 500);
     } catch (err) {
         mainContent.find('#btnEditAgreement').hide();
@@ -40,9 +43,11 @@ function gotoEditAgreement() {
         RenderContent.find('#txtAdvAmt').val(tenantAgreement["AdvanceAmount"]);
         RenderContent.find('#txtRentAmt').val(tenantAgreement["RentAmount"]);
         RenderContent.find('#txtPercInc').val(tenantAgreement["PercentageIncreased"]);
-        RenderContent.find('#txtJoiningDate').val(tenantAgreement["JoiningDate"]);
+        RenderContent.find('#txtJoiningDate').val(getDisplayDate(tenantAgreement["JoiningDate"]));
         RenderContent.find('#txtIdentityProofs').val(tenantAgreement["IdentityProofs"]);
         RenderContent.find('#txtTenantRemarks').val(tenantAgreement["Remarks"]);
+        RenderContent.find('#txtRentDueDate').val(tenantAgreement["RentDueDate"]);
+
         agreemntIsEdit = true;
     });
 }
@@ -52,7 +57,6 @@ function gotoAddAgreement() {
         RenderContent.html(response);
         RenderContent.find("#txtJoiningDate").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true }).datepicker('setDate', new Date());
         agreemntIsEdit = false;
-
     });
 }
 
@@ -61,7 +65,7 @@ function saveTenantAgreement() {
         AssetName: sessionStorage.getItem('AssetID'),
         ResidentsNumber: getValue('#txtNumOfRecidents'),
         JoiningDate: dateFormat(getValue('#txtJoiningDate')),
-        LeavingDate: dateFormat(getValue('#txtJoiningDate')),
+       // LeavingDate: dateFormat(getValue('#txtJoiningDate')),
         ResidentsNames: getValue('#txtResidentsNames'),
         IdentityProofs: getValue('#txtIdentityProofs'),
         AdvanceAmount: getValue('#txtAdvAmt'),
@@ -69,21 +73,10 @@ function saveTenantAgreement() {
         PercentageIncreased: getValue('#txtPercInc'),
         ContactNumbers: getValue('#txtResidentContactNumber'),
         Remarks: getValue('#txtTenantRemarks'),
+        RentDueDate: getValue('#txtRentDueDate')
     });
     let id = tenantAgreement.AgreementId;
-    console.log(`?id=${id}`, {
-        AssetName: sessionStorage.getItem('AssetID'),
-        ResidentsNumber: getValue('#txtNumOfRecidents'),
-        JoiningDate: dateFormat(getValue('#txtJoiningDate')),
-        LeavingDate: dateFormat(getValue('#txtJoiningDate')),
-        ResidentsNames: getValue('#txtResidentsNames'),
-        IdentityProofs: getValue('#txtIdentityProofs'),
-        AdvanceAmount: getValue('#txtAdvAmt'),
-        RentAmount: getValue('#txtRentAmt'),
-        PercentageIncreased: getValue('#txtPercInc'),
-        ContactNumbers: getValue('#txtResidentContactNumber'),
-        Remarks: getValue('#txtTenantRemarks'),
-    })
+    console.log(`?id=${id}`, tenantAgmntToSave)
     agreemntIsEdit ? (async function () {
         let putTenentAgreementData = await PutAjax(ApiDictionary.PutTenentAgreement() + `?id=${id}`, tenantAgmntToSave);
         console.log('tenantAgmnt Modified', putTenentAgreementData);
@@ -111,4 +104,18 @@ async function TenantAgreementDelete() {
     let deleteTenentAgreementData = await DeleteAjax(`${ApiDictionary.DeleteTenentAgreement()}?id=${id}`);
     console.log('Deleted Successfully', deleteTenentAgreementData);
     CustomeToast("Tenant Agreement", "Tenant Agreement Deleted Successfully", "bg-danger");
+}
+
+
+async function getHouseDetails() {
+    let assetId = sessionStorage.getItem('AssetID');
+    let agreementData = await GetAjax(ApiDictionary.GetAssetById() + `?AssetName=${assetId}`);
+    if (agreementData) {
+        ["NumberofDoors", "NumberofWindows", "NumberofTaps", "NumberofFans", "NumberofBulbs"].map(item => {
+            $('#lbl' + item).text(inWords(agreementData[item]));
+        });
+        $('#lblAssetAddress').text(agreementData['AssetAddress']);
+        $('#ckbIsSump').prop('checked', agreementData.IsSump == 1 ? true : false);
+        $('#ckbIsRent').prop('checked', agreementData.IsRent == 1 ? true : false);
+    }
 }

@@ -1,5 +1,4 @@
 ﻿
-
 async function getStatistics() {
     var date = new Date();
     var year = date.getFullYear();
@@ -14,6 +13,8 @@ async function getStatistics() {
     let transactionsData = await GetAjax(ApiDictionary.GetTransactions() + `?AssetName=${assetID}&trnFrom=${trnFrom}&trnTo=${trnTo}`);
     TransactionsRes(transactionsData)
 }
+let Tick = "&#10003;";
+let cross = "&#128473;";
 
 const TransactionsRes = (res) => {
     var date = new Date();

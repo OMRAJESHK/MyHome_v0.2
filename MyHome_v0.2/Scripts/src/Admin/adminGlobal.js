@@ -19,12 +19,14 @@ const getAssetsList = () => {
                 customizeUI();
                 $.each(AssetList, (key, value) => {
                     AssetListHtml += `
-                    <div class="col" id=${key + 1} onclick="handleCardClick(${value.AssetId})">
+                    <div style="flex:1;width:20rem" id=${key + 1} onclick="handleCardClick(${value.AssetId})">
                         <div class="card assetCards">
-                            <div class="card-body cursor-pointer crdAssets" data-assetid=${value.AssetId} style="height:270px;position: relative;">
+                            <div class="card-body cursor-pointer crdAssets" data-assetid=${value.AssetId} >
                                  <div class="h6 global-text-primary  asset-title font-weight-bold border-bottom"><i class="fa fa-home fontSize_50" aria-hidden="true"></i> ${value.AssetName}</div>
-                                 <div class="h5 font-weight-bold my-5">${value.RegusteredTo}<span class="primary-font" style="float:right;">${getDisplayDate(value.RegisteredDate)}</span></div>
-                                 <div class="fontSize_15 text-right font-weight-bold pr-1">${value.Address}</div>
+                                 <div style="height:10rem;position: relative;">
+                                    <div class="h5 font-weight-bold my-5">${value.RegusteredTo}<span class="primary-font" style="float:right;">${getDisplayDate(value.RegisteredDate)}</span></div>
+                                    <div class="fontSize_15 text-right pr-1">${value.Address}</div>
+                                 </div>
                             </div>
                             <div class="card-footer">
                                 <div class="d-flex justify-content-between">

@@ -7,7 +7,7 @@ async function getPropertyTaxLogs() {
     let StatusList = convertObjectArray(Status);
     let getPropertyTaxesData = await GetAjax(ApiDictionary.GetPropertyTaxes() + `?AssetName=${assetID}`);
     $('#tblPropertyTaxLogs tbody').empty();
-    if (res.length > 0) {
+    if (getPropertyTaxesData?.length > 0) {
         propertyTaxList = getPropertyTaxesData;
         $('#RenderContent #tblPropertyTaxLogs').DataTable({
             "bLengthChange": false, "bFilter": true,

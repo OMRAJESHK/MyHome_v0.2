@@ -26,6 +26,7 @@
         getAssetsList();
         customizeUI();
         mainContent.find('#btnAddNotifications').show();
+        $('#viewReminders').removeAttr('hidden');
         //saveRentTransactionMonthly();
     }
     getProfilePicture();
@@ -429,3 +430,8 @@ function SaveProfilePicture() {
             }
         }());
 }
+
+
+
+
+

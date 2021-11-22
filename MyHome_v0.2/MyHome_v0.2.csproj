@@ -413,7 +413,6 @@
     <Content Include="Scripts\src\GlobalConstants.js" />
     <Content Include="Scripts\src\Login.js" />
     <Content Include="Scripts\src\Registration.js" />
-    <Content Include="Scripts\src\Tenent\houseDetails.js" />
     <Content Include="Scripts\src\Tenent\Notification.js" />
     <Content Include="Scripts\src\Tenent\Proximities.js" />
     <Content Include="Scripts\src\Tenent\SendRequest.js" />

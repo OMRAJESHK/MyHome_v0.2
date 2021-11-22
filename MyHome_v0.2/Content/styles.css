@@ -30,12 +30,18 @@
 .fontSize_15 {font-size: 15px !important;}
 
 .fontSize_16 {font-size: 16px !important;}
+.height_1 { height: 1rem !important}
+.height_2 { height: 2rem !important}
+.height_3 { height: 3rem !important}
+.height_4 { height: 4rem !important }
 .height_5 { height: 5rem !important }
 .height_6 { height: 6rem !important}
 .zi-0 { z-index: 0 !important }
 .zi-1 { z-index: 1 !important }
 .zi-2 { z-index:2 !important  }
 
+
+.line-height-1 { line-height: 1.5rem !important; }
 .fontSize_18 { font-size:18px !important; }
 .cursor-pointer { cursor:pointer !important; }
 .fontSize_20 { font-size: 20px !important; }
@@ -372,4 +378,88 @@ table.dataTable thead th, table.dataTable thead td {
 
 @media screen and (max-width: 1400px) {
     #AppFeatures { padding-left: 1.5rem !important; }
+}
+
+.month-pills {width: 20%;line-height: 1.5rem;height: 2rem;}
+.month-pill-container {display: flex;flex-flow: row wrap;column-gap:20px;row-gap: 10px;justify-content: space-between;justify-content: space-evenly;margin-bottom:1rem;}
+
+#calendar {
+    margin-left: auto;
+    margin-right: auto;
+    width: 320px;
+    font-family: 'Lato', sans-serif;
+}
+
+#calendar_weekdays div {
+    display: inline-block;
+    vertical-align: top;
+}
+
+#calendar_content, #calendar_weekdays, #calendar_header {
+    position: relative;
+    width: 320px;
+    overflow: hidden;
+    float: left;
+}
+
+    #calendar_weekdays div, #calendar_content div {
+        width: 40px;
+        height: 40px;
+        overflow: hidden;
+        text-align: center;
+        background-color: #FFFFFF;
+        color: #787878;
+    }
+
+#calendar_content {
+    -webkit-border-radius: 0px 0px 12px 12px;
+    -moz-border-radius: 0px 0px 12px 12px;
+    border-radius: 0px 0px 12px 12px;
+}
+
+    #calendar_content div {
+        float: left;
+    }
+
+        #calendar_content div:hover {
+            background-color: #F8F8F8;
+        }
+
+        #calendar_content div.blank {
+            background-color: #E8E8E8;
+        }
+
+        #calendar_header, #calendar_content div.today {
+            zoom: 1;
+            filter: alpha(opacity=70);
+            opacity: 0.7;
+        }
+
+        #calendar_content div.today {
+            color: #FFFFFF;
+        }
+
+#calendar_header {
+    width: 100%;
+    height: 37px;
+    text-align: center;
+    background-color: #FF6860;
+    padding: 18px 0;
+    -webkit-border-radius: 12px 12px 0px 0px;
+    -moz-border-radius: 12px 12px 0px 0px;
+    border-radius: 12px 12px 0px 0px;
+}
+
+    #calendar_header h1 {
+        font-size: 1.5em;
+        color: #FFFFFF;
+        float: left;
+        width: 70%;
+    }
+
+i[class^=icon-chevron] {
+    color: #FFFFFF;
+    float: left;
+    width: 15%;
+    border-radius: 50%;
 }

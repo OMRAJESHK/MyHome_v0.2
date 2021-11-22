@@ -2,34 +2,34 @@
 let defaultbtnclass = "fas fa-share";
 
 const TransactionTypes = {
-  "Advance Paid": 1,
-  "Rent Paid": 2,
-  "Water Bill Paid": 3,
-  'Electricity Bill Paid': 4,
-  "Motor Bill Paid":5,
-  'Water Tanks Amt Paid': 6,
-  'Electric Appliances Amt Paid': 7,
-  "Households Amt Paid": 8,
-  "Fine Paid": 9,
-  "Festival Amt Paid":10,
-  "Miscellanious Amt Paid":11,
+  "Advance": 1,
+  "Rent": 2,
+  "Water Bill": 3,
+  'Electricity Bill': 4,
+  "Motor Bill":5,
+  'Water Tanks Amount': 6,
+  'Electric Appliances Amount': 7,
+  "Households Amount": 8,
+  "Fine Amount": 9,
+  "Festival Amount":10,
+  "Miscellanious Amount":11,
 
-  "Advance Unpaid": 101,
-  "Rent Unpaid": 102,
-  "Water Bill Unpaid": 103,
-  'Electricity Bill Unpaid': 104,
-  "Motor Bill Unpaid":105,
-  'Water Tanks Amt Unpaid': 106,
-  'Electric Appliances Amt Unpaid': 107,
-  "Households Amt Unpaid": 108,
-  "Fine Unpaid": 109,
-  "Festival Amt Unpaid": 110,
-  "Miscellanious Amt Unpaid": 111,
+  //"Advance Unpaid": 101,
+  //"Rent Unpaid": 102,
+  //"Water Bill Unpaid": 103,
+  //'Electricity Bill Unpaid': 104,
+  //"Motor Bill Unpaid":105,
+  //'Water Tanks Amt Unpaid': 106,
+  //'Electric Appliances Amt Unpaid': 107,
+  //"Households Amt Unpaid": 108,
+  //"Fine Unpaid": 109,
+  //"Festival Amt Unpaid": 110,
+  //"Miscellanious Amt Unpaid": 111,
 };
 
 const ModeOFPayment = { CASH: 1, ONLINE: 2, Other: 3 };
 
-const Status = { Paid: 1, Unpaid: 2, Omit:3 };
+const Status = { Paid: 1, Unpaid: 2, Omit: 3, "Partially Paid": 4, "Extra Paid": 5 };
 
 const NotificationTypes = {
     "Advance Paid": 1, "Advance UnPaid": 2, 'Rent Paid': 3, 'Rent Unpaid': 4, 'Electricity Bill Paid': 5,

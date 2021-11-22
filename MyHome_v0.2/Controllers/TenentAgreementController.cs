@@ -71,6 +71,7 @@ namespace MyHome_v0._2.Controllers
                     entity.ContactNumbers = tenentagreement.ContactNumbers;
                     entity.TenentEmailId = tenentagreement.TenentEmailId;
                     entity.Remarks = tenentagreement.Remarks;
+                    entity.RentDueDate = tenentagreement.RentDueDate;
                     entities.SaveChanges();
                     return Request.CreateResponse(HttpStatusCode.OK, entity);
                 }
