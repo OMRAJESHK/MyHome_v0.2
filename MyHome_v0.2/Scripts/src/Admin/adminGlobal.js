@@ -66,6 +66,7 @@ function AssetDetails() {
     console.log("AssetListAssetListAssetList", AssetList, Asset)
     $('#lblAssetName, #lblAssetNamehdr').text(Asset[0].AssetName);
     CustomeToast("Welcome To", Asset[0].AssetName, "bg-primary");
+    sessionStorage.setItem('AssetName', Asset[0].AssetName);
     $('#lblRegDate').text(getDateOnly(Asset[0].RegisteredDate));
     $('#lblRegTo').text(Asset[0].RegusteredTo);
     glodalSelectedAssetName = Asset[0].AssetName;
@@ -81,6 +82,7 @@ function AssetDetails() {
     $('#lblAssetRegRemarks').text(Asset[0].Remarks);
 }
 
+
 function handleCardClick(id) {
     $(".menuCover").remove();
     mainContent.find('#modSelectAsset').modal('hide');
@@ -88,7 +90,6 @@ function handleCardClick(id) {
     AssetDetails();
     getNotifications();
     getRequests();
-    let name = AssetList.filter(data => data.AssetId == id)[0].AssetName;
     AdminDashboardFunction(id);
 }
 

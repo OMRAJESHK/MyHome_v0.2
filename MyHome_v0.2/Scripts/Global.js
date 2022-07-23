@@ -403,7 +403,7 @@ function SaveProfilePicture() {
         ImgEncode: picBase64,
         ImgDescription: "User Profile Picture",
         ImgDate: getCurrentDate(),
-        AssetName: isAdmin() ? null : sessionStorage.getItem("AssetID"),
+        AssetName: sessionStorage.getItem("AssetID") === null ? 0 : sessionStorage.getItem("AssetID"),
         isAdmin: isAdmin() ? 1 : 0             // 0 - Tenant , 1 - Admin
     });
     console.log("Documentdata", Documentdata)

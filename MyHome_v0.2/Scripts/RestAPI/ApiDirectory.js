@@ -15,7 +15,7 @@ class ApiDictionary  {
 
     static gotoLandingPage = () => "UserAccount/index";
     static GetUserRole = () => path+"/api/account/GetUserRole";
-    static GetTransactions = () => path + '/api/Transactions/GetTransaction';
+    static GetTransactions = () => path + '/api/Transactions/GetTransactions';
     static PostTransaction = () => path + '/api/Transactions/PostTransaction';
     static PutTransaction = () => path + '/api/Transactions/PutTransaction';
     static DeleteTransaction = () => path + '/api/Transactions/DeleteTransaction';

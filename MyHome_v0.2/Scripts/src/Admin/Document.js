@@ -120,7 +120,6 @@ async function saveDocument() {
         isAdmin: 0             // 0 - Tenant , 1 - Admin
     });
     let postDocumentData = await PostAjax(ApiDictionary.PostDocument(), DocumentToSave);
-    console.log(res)
     if (postDocumentData.status == 201) {
         CustomeToast("Document", 'Saved Successfully', "bg-success");
     } else if (postDocumentData.status == 405) {

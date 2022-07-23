@@ -6,6 +6,7 @@ async function getPropertyTaxLogs() {
     let assetID = sessionStorage.getItem('AssetID');
     let StatusList = convertObjectArray(Status);
     let getPropertyTaxesData = await GetAjax(ApiDictionary.GetPropertyTaxes() + `?AssetName=${assetID}`);
+    console.log("getPropertyTaxesData", getPropertyTaxesData)
     $('#tblPropertyTaxLogs tbody').empty();
     if (getPropertyTaxesData?.length > 0) {
         propertyTaxList = getPropertyTaxesData;
@@ -29,10 +30,18 @@ async function getPropertyTaxLogs() {
                     }
                 },
             ],
-            "initComplete": function () { setTimeout(() => { setScreenLoader(false); }, 500); }
+            "initComplete": function () {
+                setTimeout(() => {
+                    setScreenLoader(false);
+                }, 500);
+            }
         });
 
-    }
+    } else if (getPropertyTaxesData?.length === 0){
+        setTimeout(() => {
+            setScreenLoader(false);
+        }, 500);}
+    
 }
 
 function gotoPropertyTax() {

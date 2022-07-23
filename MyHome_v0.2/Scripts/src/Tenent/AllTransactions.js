@@ -48,7 +48,7 @@ function tranRespose(transactions) {
     $('#tblTransactions thead').html(`
                    <tr class="global-text-primary tablelight">
                         <th>Description</th><th>Transaction Type</th><th>Amount</th><th>Date</th>
-                        <th>Transaction Mode</th><th>Paid By</th><th>Paid To</th><th>Status</th><th>Remarks</th> 
+                        <th>Payment Mode</th><th>Paid By</th><th>Paid To</th><th>Status</th><th>Remarks</th>
                    </tr>`);
     let rowItem = '';
     let TransactionsList = convertObjectArray(TransactionTypes);
@@ -90,8 +90,17 @@ function tranRespose(transactions) {
                         return `<div class="w-100 text-center badge badge-pill" style="color:#dc3545;background-color:#f9939d;">${StatusList.filter((x) => x.value == data)[0].name}</div>`;
                     if (data == Status["Partially Paid"])
                         return `<div class="w-100 text-center badge badge-pill badge-warning" style="color:#dea907;background-color:#fbe194;">${StatusList.filter((x) => x.value == data)[0].name}</div>`
+                    if (data == Status["Extra Paid"])
+                        return `<div class="w-100 text-center badge badge-pill badge-info" >${StatusList.filter((x) => x.value == data)[0].name}</div>`
                 }},
-            { data: 'Remarks'  }
+            { data: 'Remarks' },
+            //{
+            //    data: 'TransactionId', render: function (data, type, row, meta) {
+            //        return `<div class="d-flex justify-content-center">
+            //                    <button title="Delete" class="btn"><i class="bx bx-file fontSize_20 text-warning" onclick="SetTransactionPreviewModal(${data})"></i></button>
+            //                </div>`;
+            //    }
+            //},
         ],
         "initComplete": function () { setTimeout(() => { setScreenLoader(false); }, 500); }
     });
@@ -110,7 +119,7 @@ function tranResponseGet(transactions) {
     $('#tblTransactions tbody').empty();
     $('#tblTransactions thead').html(`
                    <tr class="global-text-primary tablelight">
-                        <th>Description</th><th>Transaction Type</th><th>Amount</th><th>Date</th><th>Transaction Mode</th>
+                        <th>Description</th><th>Transaction Type</th><th>Amount</th><th>Date</th><th>Payment Mode</th>
                         <th>Paid By</th><th>Paid To</th><th>Status</th><th>Remarks</th><th>Action</th>
                     </tr>`);
     let rowItem = '';
@@ -133,7 +142,7 @@ function tranResponseGet(transactions) {
             { data: 'Description', },
             {
                 data: 'TransactionType',
-                render: function (data) { return '<div>' + TransactionsList.filter((x) => x.value == data)[0].name + '</div>'; }
+                render: function (data) { return '<div>' + TransactionsList.filter((x) => x.value == data)[0]?.name??"N/A" + '</div>'; }
             },
             {
                 data: 'Amount',
@@ -143,7 +152,7 @@ function tranResponseGet(transactions) {
             {
                 data: 'TransactionMode',
                 render: function (data) {
-                    return `<div class="w-100 text-center">${TransactionModesList.filter((x) => x.value == data)[0].name}</div>`;
+                    return `<div class="w-100 text-center">${TransactionModesList.filter((x) => x.value == data)[0]?.name??"N/A"}</div>`;
                 }
             },
             { data: 'PaidBy' },
@@ -156,23 +165,22 @@ function tranResponseGet(transactions) {
                         return `<div class="w-100 text-center badge badge-pill" style="color:#dc3545;background-color:#f9939d;">${StatusList.filter((x) => x.value == data)[0].name}</div>`;
                     if (data == Status["Partially Paid"])
                         return `<div class="w-100 text-center badge badge-pill badge-warning" style="color:#dea907;background-color:#fbe194;">${StatusList.filter((x) => x.value == data)[0].name}</div>`
+                    if (data == Status["Extra Paid"])
+                        return `<div class="w-100 text-center badge badge-pill badge-info" >${StatusList.filter((x) => x.value == data)[0].name}</div>`
                 }
             },
             { data: 'Remarks' },
             {
                 data: 'TransactionId', render: function (data, type, row, meta) {
+                    //  <button title="Delete" class="btn"><i class="bx bx-file fontSize_20 text-warning" onclick="SetTransactionPreviewModal(${data})"></i></button>
                     return `<div class="d-flex justify-content-center">
                                 <button title="Edit" class="btn"><i class="fas fa-edit fontSize_20 text-info" onclick="TransactionEdit(${data})"></i></button>
+                              
                                 <button title="Delete" class="btn"><i class="fas fa-trash-alt fontSize_20 text-danger" onclick="SetTransactionDeleteModal(${data})"></i></button>
-                                <button title="Delete" class="btn"><i class="bx bx-file fontSize_20 text-warning" onclick="SetTransactionPreviewModal(${data})"></i></button>
                             </div>`;
                 }
             },
         ],
-        //"drawCallback": function (settings) {
-            
-        //    $("#scrLoaderModal").modal("hide");
-        //},
         "initComplete": function () {
             setTimeout(() => {
                 setScreenLoader(false);
@@ -233,12 +241,13 @@ async function Transactionsearch(val) {
 
 // Save and Edit Asset
 async function saveTransaction() {
-    let trnDate = trnFrom = dateFormat($('#RenderContent').find('#trnDate').val());
+    let paymentDate  = dateFormat($('#RenderContent').find('#trnDate').val());
     let PaymentStatus = $("#ddlPaymentStatus :selected").val();
     let trnType = $("#ddlTransactionType :selected").val();
     let assetID = sessionStorage.getItem('AssetID');
     let trnAmt = $("#txtAmt").val();
-    let paymentDate = ["2", "102"].includes(trnType) ? dateFormat(`${rentDay}/${$("#ddlTranDate :selected").val()}/${curYr}`) : getCurrentDate();
+    let dueDate = dateFormat(`${rentDay}/${$("#ddlTranDate :selected").val()}/${curYr}`);
+    console.log("getCurrentDate", `${rentDay}/${$("#ddlTranDate :selected").val()}/${curYr}`)
 
     let TransactionToSave = JSON.stringify({
         AssetName: assetID,
@@ -251,11 +260,12 @@ async function saveTransaction() {
         PaidTo: $('#txtpaidTo').val(),
         Status: PaymentStatus,
         Remarks: $('#txtRemarks').val(),
-        CutOffDate: trnDate
+        CutOffDate: dueDate 
     });
     trnFrom = dateFormat('01/01/' + curYr);
     trnTo = dateFormat('31/12/' + curYr);
-
+    console.log("TradataafansactionToSave", paymentDate, dueDate)
+    console.log("TransactionToSave", TransactionToSave)
     trnisEdit ? (async function () {
         let putTransactionData = await PutAjax(ApiDictionary.PutTransaction() + `?id=${trnselectedID}`, TransactionToSave);
         console.log("Transaction Updated.", putTransactionData);
@@ -326,15 +336,13 @@ function SetTransactionDeleteModal(id) {
 }
 // Preview Modal
 function SetTransactionPreviewModal(id) {
+    let currentRow = transactionsData.filter(x => x.TransactionId === id);
+
     let deleteButtons = `<button type="button" class="btn btn-secondary" data-dismiss="modal">CLose</button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="TransactionDelete(${id})">Download</button>`;
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Download</button>`;
     $('#previewModal .modal-title').text("Transaction Preview");
     $('#previewModal .modal-footer').html(deleteButtons);
+    $('#previewModal #receiptHouseName').html(sessionStorage.getItem("AssetName"));
     $('#previewModal').modal('show');
-}
-
-function handleMonthClick(month){
-    paymentDate = dateFormat(`01/${month}/${curYr}`);
-    //alert(paymentDate + " - " + getCurrentDate());
-    console.log("month",month)
+   
 }

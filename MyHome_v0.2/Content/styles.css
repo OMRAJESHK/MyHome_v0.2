@@ -189,7 +189,7 @@ table.dataTable thead th, table.dataTable thead td {
     padding: 5px 18px !important;
     border-bottom: 1px solid var(--primary) !important;
     border: 1px solid var(--primary) !important;
-   
+    font-size:15px;
 }
 
 /*Customize CheckBox*/

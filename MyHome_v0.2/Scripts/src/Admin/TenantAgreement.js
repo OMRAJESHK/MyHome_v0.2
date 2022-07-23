@@ -5,6 +5,7 @@ async function getTenantAgreementLogs() {
     try {
         let assetId = Number(sessionStorage.getItem('AssetID'));
         let getTenentAgreementData = await GetAjax(ApiDictionary.GetTenentAgreementByID() + `?AssetName=${assetId}`);
+        console.log(`tenantAgreement`, getTenentAgreementData)
         tenantAgreement = getTenentAgreementData;
         if (isAdmin()) {
             if (getTenentAgreementData.constructor === Object) {
@@ -30,6 +31,7 @@ async function getTenantAgreementLogs() {
         mainContent.find('#btnEditAgreement').hide();
         mainContent.find('#btnAddAgreement').show()
         CustomeToast("", "No Tenant Available", "bg-danger");
+        setTimeout(() => { setScreenLoader(false); }, 500);
     }
 }
 function gotoEditAgreement() {
@@ -75,9 +77,10 @@ function saveTenantAgreement() {
         Remarks: getValue('#txtTenantRemarks'),
         RentDueDate: getValue('#txtRentDueDate')
     });
-    let id = tenantAgreement.AgreementId;
-    console.log(`?id=${id}`, tenantAgmntToSave)
+    
+    console.log(`tenantAgreement`, tenantAgreement)
     agreemntIsEdit ? (async function () {
+        let id = tenantAgreement.AgreementId;
         let putTenentAgreementData = await PutAjax(ApiDictionary.PutTenentAgreement() + `?id=${id}`, tenantAgmntToSave);
         console.log('tenantAgmnt Modified', putTenentAgreementData);
         CustomeToast("Tenent Agreement", "Tenent Deed Agreement Modified Successfully", "bg-info");

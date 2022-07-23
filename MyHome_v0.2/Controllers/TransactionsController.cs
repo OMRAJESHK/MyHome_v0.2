@@ -26,7 +26,7 @@ namespace MyHome_v0._2.Controllers
             }
             try { 
                  if (getValidData == null){
-                    return Request.CreateResponse(HttpStatusCode.NotFound, empty);
+                    return Request.CreateResponse(HttpStatusCode.OK, empty);
                  }
                  return Request.CreateResponse(HttpStatusCode.OK, getValidData);
              }catch(Exception ex){

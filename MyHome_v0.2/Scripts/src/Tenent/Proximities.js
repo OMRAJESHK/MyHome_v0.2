@@ -101,12 +101,11 @@ function saveProximity() {
         Market: Market, Temple: Temple, Hotel: Hotel,
     });
     let addetID = sessionStorage.getItem('AssetID');
-    console.log(ApiDictionary.PutProximity() + `?id=${addetID}`, ProximityToSave);
     ProxisEdit ?
         (async function () {
             let putProximityData = await PutAjax(ApiDictionary.PutProximity() + `?id=${addetID}`, ProximityToSave);
-            CustomeToast("Proximity", "Proximity Saved Successfully", "bg-success");
-            console.log("Proximity Saved", putProximityData)
+            CustomeToast("Proximity", "Proximity Updated Successfully", "bg-info");
+            console.log("Proximity Updated", putProximityData)
         }())
         : (async function () {
             let postProximityData = await PostAjax(ApiDictionary.PostProximity(), ProximityToSave);
